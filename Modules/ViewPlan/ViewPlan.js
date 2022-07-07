@@ -67,7 +67,8 @@ app.service('ContestService', function ($http, $location, $rootScope) {
 app.controller('ViewPlanController', function ($scope, $http, $location, ContestService,
   $rootScope, $uibModal, $filter) {
   $scope.myVar = true;
-  $scope.myVar1 = true;
+  $scope.myVar1 = false;
+  $scope.myVar2 = false;
   $scope.ListItem = [
     {
       ContestId: null,
@@ -510,6 +511,27 @@ app.controller('ViewPlanController', function ($scope, $http, $location, Contest
     }, function (error) {
       console.log(error);
     });
+  }
+
+  $scope.ViewPlan = function () {
+    $scope.myVar = false;
+    $scope.myVar1 = true;
+    $scope.myVar2 = false;
+  }
+  $scope.Close = function () {
+    $scope.myVar = true;
+    $scope.myVar1 = false;
+    $scope.myVar2 = false;
+  }
+  $scope.Asign = function () {
+    $scope.myVar = false;
+    $scope.myVar1 = false;
+    $scope.myVar2 = true;
+  }
+  $scope.AsignClose = function () {
+    $scope.myVar = true;
+    $scope.myVar1 = false;
+    $scope.myVar2 = false;
   }
 
   $scope.init();

@@ -15,6 +15,7 @@ app.factory('httpRequestInterceptor', function () {
       if (session != null) {
         return config;
       }
+
       sessionStorage.setItem("app", null);
       //window.location.assign('./login.html');
       //console.log(config);
