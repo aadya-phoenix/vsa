@@ -211,6 +211,8 @@ app.service('HomeService', function ($http, $location, $rootScope) {
 
 app.controller('HomeController', function ($scope, HomeService, $http, $rootScope, $window, $location) {
 
+  $scope.RoleName = 'Admin';
+
   $scope.userObj = {
     UserId: null,
     CurrentPassword: null,
