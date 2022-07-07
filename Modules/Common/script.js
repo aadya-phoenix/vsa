@@ -98,7 +98,7 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
     })
     .when('/PendingPlan/', {
       templateUrl: 'Modules/PendingPlan/PendingPlan.html',
-      controller: 'PendingPlanModule'
+      controller: 'PendingPlanController'
     })
     .when('/EmployeeMaster/', {
       templateUrl: 'Modules/EmployeeMaster/EmployeeMaster.html',

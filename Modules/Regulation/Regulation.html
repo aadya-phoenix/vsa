@@ -1,13 +1,13 @@
 <section class="content pt-2">
   <div class="container-fluid">
 
-    <div class="row">
+    <div class="row" ng-show="Regulation==true">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Regulation Master</h3>
-              <a href="" ng-click="OpenAddForm()" class="btn btn-blue"> <img src="dist/img/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
+              <a href="" ng-click="AddRegulation()" class="btn btn-blue"> <img src="dist/img/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
             </div>
           </div>
           <!-- /.card-header -->
@@ -35,7 +35,7 @@
                   <td>12-2-2022</td>
 
                   <td>
-                    <a><img src="dist/img/icons/document-editor.png" class="w_25"></a>
+                    <a ng-click="AddRegulation()"><img src="dist/img/icons/document-editor.png" class="w_25"></a>
                     <a><img src="dist/img/icons/delete.png" class="w_25"></a>
                   </td>
                 </tr>
@@ -49,7 +49,7 @@
       </div>
       <!-- /.col -->
     </div>
-    <div class="row">
+    <div class="row" ng-show="RegulationDetail==true">
       <div class="col-md-12">
 
         <div class="card card-default">
@@ -129,7 +129,7 @@
 
             <div class="card-footer">
               <button ng-click="AddData()" class="btn btn-primary">Save</button>
-              <button ng-click="init()" class="btn btn-default" style="padding:10px;">Close</button>
+              <button ng-click="Close()" class="btn btn-default" style="padding:10px;">Close</button>
             </div>
           </form>
         </div>
