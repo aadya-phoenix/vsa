@@ -1,0 +1,34 @@
+.nav_bar_space{
+    display: flex;
+    justify-content: space-between;
+}
+.pass_change{
+    width: 16px;
+}
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: transparent !important;
+}
+.sing_out_button{
+    background: #ebecec;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+}
+.sing_out_button a{
+    font-size: 14px;
+    margin-top: 4px;
+    color: #000;
+}
+
+
+
+
+
+
+
+/* comon css */
+.justif_space_betwen{
+    justify-content: space-between;
+}

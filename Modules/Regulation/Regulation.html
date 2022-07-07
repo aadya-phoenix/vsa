@@ -1,0 +1,131 @@
+<section class="content pt-2">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Regulation Master</h3>
+              <a href="" ng-click="OpenAddForm()" class="btn btn-blue"> <i class="far fa-user mr-2" aria-hidden="true"></i>Add Influencer</a>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+
+                  <th>Regulation Name </th>
+                  <th>Regulation Code</th>
+                  <th>Categories</th>
+                  <th>Audit Area</th>
+                  <th>Regulation Creation Date</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Regulation Details</h3>
+          </div>
+
+
+          <form>
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Regulation Name</label>
+                    <textarea class="form-control"></textarea>
+                  </div>
+
+                </div>
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Regulation Code</label>
+                    <input type="text" class="form-control inputbox_css" ng-model="influencerObj.FirstName"
+                           placeholder="Enter Driver Name" maxlength="200">
+                  </div>
+
+                </div>
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Categories</label>
+                    <select class="form-control">
+                      <option>Select</option>
+                      <option>Employee 1</option>
+                      <option>Employee  2</option>
+
+                    </select>
+                  </div>
+
+                </div>
+
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Audit Area</label>
+                    <select class="form-control">
+                      <option>Select</option>
+                      <option>Employee 1</option>
+                      <option>Employee  2</option>
+
+                    </select>
+                  </div>
+
+                </div>
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Regulation Creation Date</label>
+                    <input type="date" class="form-control inputbox_css">
+                  </div>
+
+                </div>
+
+
+
+              </div>
+
+
+            </div>
+
+            <div class="card-footer">
+              <button ng-click="AddData()" class="btn btn-primary">Save</button>
+              <button ng-click="init()" class="btn btn-default" style="padding:10px;">Close</button>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+</section>

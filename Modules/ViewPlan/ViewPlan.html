@@ -1,0 +1,322 @@
+
+
+<section class="content pt-2">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card" ng-show="myVar">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">View Plan Details</h3>
+
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="table-responsive max_hei_table">
+              <table id="example2" class="table table-bordered table-hover">
+
+                <thead>
+                  <tr class="now_rap text-center sticky_header">
+                    <th>Business Unit </th>
+                    <th>Planned Start Date </th>
+                    <th>Planned End Date</th>
+                    <th>Auditor </th>
+                    <th> VSA users</th>
+                    <th>Locations</th>
+
+                    <th>Status </th>
+
+                    <th>Action </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="tbody_data">
+
+
+                    <td>Vendor</td>
+                    <td>12-2-2022</td>
+                    <td>12-4-2022</td>
+                    <td>abc</td>
+                    <td>abc</td>
+                    <td>abc</td>
+                    <td><p class="pend_coloe  backgr_blue">Pending </p></td>
+
+                    <td>
+                      <a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+
+                      <a ng-click="myVar=false"><img src="dist/img/icons/audit.png" class="viwe_iamge"></a>
+                    </td>
+
+                  </tr>
+                  <tr class="tbody_data">
+
+
+                    <td>Vendor</td>
+                    <td>12-2-2022</td>
+                    <td>12-4-2022</td>
+                    <td>abc</td>
+                    <td>abc</td>
+                    <td>abc</td>
+                    <td><p class="pend_coloe  backgr_green">Approve </p></td>
+
+                    <td>
+                      <a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+
+                      <a ng-click="myVar=false"><img src="dist/img/icons/audit.png" class="viwe_iamge"></a>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <!-- /.card -->
+        <div class="card" ng-hide="myVar">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">View Plan Details</h3>
+
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="table-responsive max_hei_table">
+              <table id="example2" class="table table-bordered table-hover">
+
+                <thead>
+                  <tr class="now_rap text-center sticky_header">
+                    <th>S.No</th>
+                    <th>Assign Auditor </th>
+                    <th>Select </th>
+
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="tbody_data">
+                    <td>1</td>
+                    <td>Auditor 1</td>
+
+                    <td><input type="checkbox"></td>
+
+
+                  </tr>
+                  <tr class="tbody_data">
+
+                    <td>2</td>
+                    <td>Auditor 2</td>
+
+                    <td><input type="checkbox"></td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer text-right">
+
+            <button type="button" class="btn btn-primary" ng-click="assign()">Assign</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="myVar=true" style="padding:10px;">Close</button>
+          </div>
+        </div>
+        <div class="card" ng-hide="myVar1">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">View Plan Details</h3>
+
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">Business Unit </label>
+                  <select class="form-control">
+                    <option>Select</option>
+                    <option>Business Unit 1</option>
+                    <option>Business Unit 2</option>
+                    <option>Business Unit 3</option>
+                    <option>Business Unit 4</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned Start Date</label>
+                  <input type="date" class="form-control inputbox_css">
+                </div>
+
+              </div>
+
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned End Date</label>
+                  <input type="date" class="form-control inputbox_css">
+                </div>
+
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">
+                    Auditee
+                  </label>
+                  <select class="form-control">
+                    <option>Select</option>
+                    <option>Auditee 1</option>
+                    <option>Auditee 2</option>
+                    <option>Auditee 3</option>
+                    <option>Auditee 4</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">Auditor</label>
+                  <select class="form-control">
+                    <option>Select</option>
+                    <option>Auditor 1</option>
+                    <option>Auditort 2</option>
+                    <option>Auditor 3</option>
+                    <option>Auditor 4</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">
+                    Additional MSIL email
+                  </label>
+                  <input type="email" class="form-control inputbox_css" ng-model="driverObj.DriverName"
+                         placeholder="Enter Driver Name" maxlength="200">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">
+                    VSA users
+                  </label>
+                  <select class="form-control">
+                    <option>Select</option>
+                    <option> VSA users 1</option>
+                    <option> VSA users 2</option>
+                    <option> VSA users 3</option>
+                    <option> VSA users 4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">
+                    Locations
+                  </label>
+                  <select class="form-control">
+                    <option>Select</option>
+                    <option> Locations 1</option>
+                    <option> Locations 2</option>
+                    <option> Locations 3</option>
+                    <option> Locations 4</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">
+                    Additional Auditee Email
+
+                  </label>
+                  <input type="email" class="form-control inputbox_css" ng-model="driverObj.DriverName"
+                         placeholder="Enter Driver Name" maxlength="200">
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">
+                    Other Location
+
+                  </label>
+                  <select class="form-control">
+                    <option>Select</option>
+                    <option>  Other Location 1</option>
+                    <option>  Other Location 2</option>
+                    <option>  Other Location 3</option>
+                    <option>  Other Location 4</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">
+                    PPT & PDF Upload Feature
+
+                  </label>
+                  <label for="exampleInputFile">File input</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="exampleInputFile">
+                      <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+
+            <button type="button" class="btn btn-primary" ng-click="submit()">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="myVar1=true" style="padding:10px;">Close</button>
+          </div>
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+   
+
+  </div>
+</section>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content view_plan_popup">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View Plan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="padding:10px;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

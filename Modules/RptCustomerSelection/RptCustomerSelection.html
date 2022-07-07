@@ -1,0 +1,88 @@
+<script type="text/javascript">
+//<![CDATA[
+
+        var tableToExcel = (function() {
+            var uri = 'data:application/vnd.ms-excel;base64,', template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+                    , base64 = function(s) {
+                        return window.btoa(unescape(encodeURIComponent(s)))
+                    }
+            , format = function(s, c) {
+                return s.replace(/{(\w+)}/g, function(m, p) {
+                    return c[p];
+                })
+            }
+            return function(table, name) {
+                if (!table.nodeType)
+                    table = document.getElementById(table)
+                var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+                window.location.href = uri + base64(format(template, ctx))
+            }
+        })()
+//]]>
+</script>
+<section class="content pt-2">
+  <div class="container-fluid">
+
+    <div class="row" ng-show="MainGrid==true">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Report : User Responses</h3>
+             
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-sm-3">
+                <select name="Horse" class="form-control selectpicker"
+                        ng-options=" DC.Id as DC.ContestName for DC in ContestList"
+                        ng-model="ContestId" ng-change="SearchData()"></select>
+              </div>
+            </div>
+            <div class="row mb-2" ng-if="RptList.length>0">
+              <div class="col-sm-3">
+                <a onclick="tableToExcel('example2', 'SHEET1')" class="btn btn-primary btn-xs">Export to Excel </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="table-responsive max_hei_table">
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr class="now_rap text-center sticky_header">
+                        <th>No.</th>
+                        <th>User Name </th>
+                        <th>Contest Name </th>
+                        <th ng-repeat="item in RptList[0].questionResponseReportDtos">{{item.QuestionText}}</th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="item in RptList" class="tbody_data">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.UserName}}</td>
+                        <td>{{item.ContestName}}</td>
+                        <td ng-repeat="res in item.questionResponseReportDtos">
+                          {{res.Response}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+            <!-- /.card-body -->
+          </div>
+        <!-- /.card -->
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+   
+
+  </div>
+</section>

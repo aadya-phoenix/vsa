@@ -1,0 +1,165 @@
+<section class="content pt-2">
+  <div class="container-fluid">
+
+    
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Create Plan Details</h3>
+          </div>
+
+
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">Business Unit <span class="start_css">*</span></label>
+                    <select class="form-control">
+                      <option>Select</option>
+                      <option>Business Unit 1</option>
+                      <option>Business Unit 2</option>
+                      <option>Business Unit 3</option>
+                      <option>Business Unit 4</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Planned Start Date <span class="start_css">*</span></label>
+                    <input type="date" class="form-control inputbox_css">
+                  </div>
+
+                </div>
+
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Planned End Date <span class="start_css">*</span></label>
+                    <input type="date" class="form-control inputbox_css">
+                  </div>
+
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">
+                      Auditee<span class="start_css">*</span>
+                    </label>
+                    <select class="form-control">
+                      <option>Select</option>
+                      <option>Auditee 1</option>
+                      <option>Auditee 2</option>
+                      <option>Auditee 3</option>
+                      <option>Auditee 4</option>
+                    </select>
+                  </div>
+                </div>
+
+                
+               
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">
+                      Additional MSIL email<span class="start_css">*</span>
+                    </label>
+                    <input type="email" class="form-control inputbox_css" ng-model="driverObj.DriverName"
+                           placeholder="Enter Driver Name" maxlength="200">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">
+                      VSA users<span class="start_css">*</span>
+                    </label>
+                    <select class="form-control">
+                      <option>Select</option>
+                      <option> VSA users 1</option>
+                      <option> VSA users 2</option>
+                      <option> VSA users 3</option>
+                      <option> VSA users 4</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">
+                      Locations<span class="start_css">*</span>
+                    </label>
+                    <select class="form-control">
+                      <option>Select</option>
+                      <option> Locations 1</option>
+                      <option> Locations 2</option>
+                      <option> Locations 3</option>
+                      <option> Locations 4</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">
+                      Additional Auditee Email<span class="start_css">*</span>
+
+                    </label>
+                    <input type="email" class="form-control inputbox_css" ng-model="driverObj.DriverName"
+                           placeholder="Enter Driver Name" maxlength="200">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">
+                      Other Location<span class="start_css">*</span>
+
+                    </label>
+                    <select class="form-control">
+                      <option>Select</option>
+                      <option>  Other Location 1</option>
+                      <option>  Other Location 2</option>
+                      <option>  Other Location 3</option>
+                      <option>  Other Location 4</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form_label">
+                      Upload File<span class="start_css">*</span>
+
+                    </label>
+                  
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+
+            </div>
+
+            <div class="card-footer">
+              <button ng-click="AddData()" class="btn btn-primary">Submit</button>
+              <button ng-click="init()" class="btn btn-default" style="padding:10px;">Back</button>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+   
+  </div>
+</section>

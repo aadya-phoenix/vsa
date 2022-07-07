@@ -1,0 +1,165 @@
+<section class="content pt-2">
+  <div class="container-fluid">
+
+    <div class="row" ng-show="MainGrid==true">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Colour Code Details</h3>
+              <a href="" ng-click="OpenAddForm()" class="btn btn-blue"> <i class="far fa-user mr-2" aria-hidden="true"></i>Add Colour Code</a>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="table-responsive max_hei_table">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr class="now_rap text-center sticky_header">
+                    <th>Colour Name </th>
+                    <th>Colour Code </th>
+
+                    <th>Action </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in ListType"  class="tbody_data">
+                    <td>{{item.ListTypeText}}</td>
+                    <td>{{item.ListTypeValue}}</td>
+                    <td>
+                      <a href="" ng-click="OpenEditForm(item)"><img src="dist/img/icon/edit.png" class="table_icon mr-1"></a>
+                      <a href="" ng-click="DeleteItem(item)"><img src="dist/img/icon/Delet.png" class="table_icon mr-1"></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        <!-- /.card -->
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="row" ng-show="AddForm==true">
+      <div class="col-md-12">
+
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Driver Details</h3>
+          </div>
+
+
+          <form>
+            <div class="card-body">
+              <div class="row">
+              
+              
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Colour Name</label>
+                    <input type="text" class="form-control inputbox_css" ng-model="listTypeObj.ListTypeText"
+                           placeholder="Colour Name" maxlength="200">
+                  </div>
+
+                </div>
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">HTML Colour  Code</label>
+                    <input type="text" class="form-control inputbox_css" ng-model="listTypeObj.ListTypeValue"
+                           placeholder="HTML Colour  Code" maxlength="200">
+                  </div>
+
+                </div>
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Display Order</label>
+                    <input type="text" class="form-control inputbox_css" ng-model="listTypeObj.Sequence"
+                           placeholder="Display Order" maxlength="200">
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="card-footer">
+              <button ng-click="AddData()" class="btn btn-blue">Save</button>
+              <button ng-click="init()" class="btn btn-default">Back</button>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="row" ng-show="EditForm==true">
+      <div class="col-md-12">
+
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Driver Details</h3>
+          </div>
+
+
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Colour Name</label>
+                    <input type="text" class="form-control inputbox_css" ng-model="listTypeObj.ListTypeText"
+                           placeholder="Colour Name" maxlength="200">
+                  </div>
+
+                </div>
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">HTML Colour  Code</label>
+                    <input type="text" class="form-control inputbox_css" ng-model="listTypeObj.ListTypeValue"
+                           placeholder="HTML Colour  Code" maxlength="200">
+                  </div>
+
+                </div>
+                <div class="col-sm-4">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Display Order</label>
+                    <input type="text" class="form-control inputbox_css" ng-model="listTypeObj.Sequence"
+                           placeholder="Display Order" maxlength="200">
+                  </div>
+
+                </div>
+
+              </div>
+
+            <div class="card-footer">
+              <button ng-click="EditData()" class="btn btn-blue">Save</button>
+              <button ng-click="init()" class="btn btn-default">Back</button>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+   
+
+  </div>
+</section>

@@ -1,0 +1,74 @@
+<section class="content pt-2">
+  <div class="container-fluid">
+
+    <div class="row" ng-show="MainGrid==true">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Sticker Details</h3>
+              <a href="" ng-click="OpenMobileUploadForm(listTypeObj)" class="btn btn-blue"> <i class="far fa-user mr-2" aria-hidden="true"></i>Add Sticker</a>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="table-responsive max_hei_table">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr class="now_rap text-center sticky_header">
+                    <th>Sticker</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in ListType" class="tbody_data">
+                    <td class=""><img src="{{item.ImageName}}" class="driver_img" /></td>
+                    <td>
+                      <a href="" ng-click="OpenMobileUploadForm(item)" data-toggle="tooltip" data-placement="top" title="Upload Image"><img src="dist/img/icon/camera.png" class="table_icon mr-1"></a>
+                      <a href="" ng-click="DeleteItem(item)"><img src="dist/img/icon/Delet.png" class="table_icon mr-1"></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+   
+     <div class="row" ng-show="UploadMobileImage==true">
+      <div class="col-md-12">
+
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Driver Image</h3>
+          </div>
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4">
+
+                  <div class="form-group">
+                    <label class="form_label">Upload Image</label>
+                    <input class="form-control" type="file" file-model="myFile" />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card-footer">
+              <button ng-click="UploadMobileLogo()" class="btn btn-blue">Save</button>
+              <button ng-click="ManageScreenView('Main')" class="btn btn-blue">Back</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
