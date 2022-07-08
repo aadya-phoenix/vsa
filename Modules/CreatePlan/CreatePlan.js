@@ -279,6 +279,9 @@ app.controller('CreatePlanController', function ($scope, $http, $location, Creat
   //  return isValid;
 
   //};
+  $scope.Create = function () {
+    new swal("Plan Created Successfully");
+  };
 
   $scope.Back = function () {
     $scope.Plan = false;

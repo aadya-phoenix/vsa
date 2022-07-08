@@ -170,6 +170,12 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
   //    UserId: null,
   //  };
   //};
+  $scope.AuditCreate = function () {
+    new swal("Submitted Successfully");
+  };
+  $scope.SaveAsDraft = function () {
+    new swal("Audit Saved As Draft");
+  };
 
   $scope.AddAuditArea = function () {
     $scope.Auditarea = false;

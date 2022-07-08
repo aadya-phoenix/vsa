@@ -517,7 +517,7 @@ app.controller('ViewPlanController', function ($scope, $http, $location, Contest
     new swal("Submitted Successfully");
   };
   $scope.assign = function () {
-    new swal("Assign Successfully");
+    new swal("Assigned Successfully");
   }
 
   $scope.ViewPlan = function () {
