@@ -109,6 +109,9 @@ app.controller('CategoriesController', function ($scope, $http, $location, Categ
   //    IsRaceLocked: false,
   //  };
   //};
+  $scope.Save = function () {
+    new swal("Category Saved Successfully");
+  };
 
   $scope.AddCategory = function () {
     $scope.Category = false;

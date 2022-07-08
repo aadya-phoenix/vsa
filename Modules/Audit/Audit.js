@@ -109,6 +109,9 @@ app.controller('AuditController', function ($scope, $http, $location, AuditServi
   //    IsRaceLocked: false,
   //  };
   //};
+  $scope.Save = function () {
+    new swal("Saved Successfully");
+  };
 
   $scope.AddAuditArea = function () {
     $scope.Auditarea = false;

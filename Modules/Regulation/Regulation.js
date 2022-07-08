@@ -157,6 +157,9 @@ app.controller('RegulationController', function ($scope, $http, $location, Regul
   //  return isValid;
 
   //};
+  $scope.Save = function () {
+    new swal("Regulation added successfully");
+  };
 
   $scope.AddRegulation = function () {
     $scope.Regulation = false;

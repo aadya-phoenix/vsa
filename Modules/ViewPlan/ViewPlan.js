@@ -513,6 +513,13 @@ app.controller('ViewPlanController', function ($scope, $http, $location, Contest
   //  });
   //}
 
+  $scope.Submit = function () {
+    new swal("Submitted Successfully");
+  };
+  $scope.assign = function () {
+    new swal("Assign Successfully");
+  }
+
   $scope.ViewPlan = function () {
     $scope.myVar = false;
     $scope.myVar1 = true;
