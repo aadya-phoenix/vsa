@@ -189,6 +189,24 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
     $scope.Auditarea2 = false;
     $scope.Auditarea3 = true;
   }
+  $scope.Back = function () {
+    $scope.Auditarea = true;
+    $scope.Auditarea1 = false;
+    $scope.Auditarea2 = false;
+    $scope.Auditarea3 = false;
+  }
+  $scope.Back1 = function () {
+    $scope.Auditarea = false;
+    $scope.Auditarea1 = true;
+    $scope.Auditarea2 = false;
+    $scope.Auditarea3 = false;
+  }
+  $scope.Back2 = function () {
+    $scope.Auditarea = false;
+    $scope.Auditarea1 = false;
+    $scope.Auditarea2 = true;
+    $scope.Auditarea3 = false;
+  }
  
   $scope.init();
 
