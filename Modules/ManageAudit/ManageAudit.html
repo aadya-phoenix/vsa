@@ -3,11 +3,11 @@
 
     <div class="row">
       <div class="col-12">
-        <div class="card">
+        <div class="card" ng-show="Auditarea==true">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
-              <a href="" ng-click="OpenAddForm()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
+              <a href="" ng-click="AddAuditArea()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
             </div>
           </div>
           <!-- /.card-header -->
@@ -43,14 +43,14 @@
                   <td><p class="pend_coloe  backgr_green">Complete </p></td>
                   <td>
                     <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
-                    <a ng-click="ViewPlan()"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+                    <a ><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
 
                   </td>
 
                   <td>
                     <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
 
-                    <a ng-click="ViewPlan()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
+                    <a ng-click="AddAuditArea()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
 
                   </td>
 
@@ -67,12 +67,12 @@
                   <td><p class="pend_coloe  backgr_green">Approve </p></td>
 
                   <td>
-                    <a ng-click="ViewPlan()"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+                    <a><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
 
 
                   </td>
                   <td>
-                    <a ng-click="ViewPlan()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
+                    <a ng-click="AddAuditArea()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
 
 
                   </td>
@@ -85,7 +85,7 @@
         </div>
         <!-- /.card -->
         <!-- /.card -->
-        <div class="card">
+        <div class="card" ng-show="Auditarea1==true">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
@@ -206,11 +206,11 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
             <!-- /.card-body -->
           </div>
           <div class="card-footer text-right">
-            <button ng-click="AddData()" class="btn btn-primary">Next</button>
+            <button ng-click="Next()" class="btn btn-primary">Next</button>
             
           </div>
         </div>
-        <div class="card">
+        <div class="card" ng-show="Auditarea2==true">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
@@ -229,7 +229,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
                     </div>
                   </div>
 
-                  <button class="btn  btn-blue fon_12">  Production preparation</button>
+                  <button ng-click="Page3()" class="btn  btn-blue fon_12">  Production preparation</button>
 
                 </div>
               </div>
@@ -440,7 +440,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
       </div>
         <!-- /.col -->
       </div>
-    <div class="row">
+    <div class="row" ng-show="Auditarea3==true">
       <div class="col-md-12">
 
         <div class="card card-default">
