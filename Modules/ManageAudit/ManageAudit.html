@@ -198,7 +198,8 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
           </div>
           <div class="card-footer text-right">
             <button ng-click="Next()" class="btn btn-primary">Next</button>
-            
+            <button ng-click="Back()" class="btn btn-default">Back</button>
+
           </div>
         </div>
         <div class="card" ng-show="Auditarea2==true">
@@ -427,6 +428,10 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
 
             <!-- /.card-body -->
           </div>
+          <div class="card-footer">
+            <button ng-click="Back1()" class="btn btn-default">Back</button>
+          </div>
+
         </div>
       </div>
         <!-- /.col -->
@@ -442,40 +447,40 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
 
           <form>
             <div class="card-body">
-             
+
               <div id="accordion">
                 <div class="row">
                   <div class="col-sm-4">
                     <div class="d-flex flex_colum mt_17" id="myDIV">
                       <div id="headingOne" class="div_main_active">
 
-                     
+
                         <button class="btn btn-link mb-2 active" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           Regarding implementation rule of production preparation
                         </button>
-                     
+
 
                       </div>
                       <div class="div_main_active" id="headingTwo">
-                     
+
                         <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                           Regarding management /implementation by production preparation plan/report (master plan)
                         </button>
-                      
+
                       </div>
                       <div id="headingThree" class="div_main_active">
-                      
+
                         <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                           Defect prevention on the stage of process design by using FMEA/Matrix diagram
                         </button>
-                     
+
                       </div>
                       <div id="heading4" class="div_main_active">
-                      
+
                         <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                           Defect prevention on the stage of process design by using FMEA/Matrix diagram
                         </button>
-                       
+
                       </div>
                     </div>
                   </div>
@@ -488,7 +493,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
                           </div>
 
                           <div class="card-body">
-                           
+
                             <div class="row">
                               <div class="col-sm-12">
 
@@ -825,8 +830,10 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
 
               </div>
             </div>
+            <div class="card-footer">
+              <button ng-click="Back2()" class="btn btn-default">Back</button>
+            </div>
 
-          
           </form>
         </div>
 
