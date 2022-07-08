@@ -46,7 +46,86 @@
 .menu-open {
   background: #80808087;
 }
+.btn-link {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 13px;
+  width:100%;
+}
+.active, .btn-link:hover {
+  background-color: #666;
+  color: white;
+}
+.box_css {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 168px;
+}
+.fon_15{
+    font-size:15px;
+}
+.diacisq_css {
+  width: 15px;
+  margin-left: 2px
+}
+.jugme_css {
+  background: #f1f1f1;
+  padding: 3px 11px;
+  display: flex;
+  justify-content: space-between;
+}
 /* comon css */
 .justif_space_betwen {
   justify-content: space-between;
+}
+.border_botom_black {
+  border-bottom: 2px solid #333;
+}
+.flex_colum{
+    flex-direction:column;
+}
+.fon_12{
+    font-size:12px;
+}
+.mt_17{
+    margin-top:17px !important;
+}
+.fon_14{
+    font-size:14px;
+}
+.chek_box {
+  width: 11px;
+  height: 12px;
+  position: relative;
+  top: 4px;
+}
+.btn-primary {
+  padding: 2px 14px;
+  font-size: 17px;
+  background-color: #1a65a3;
+  border-color: #1a65a3;
+}
+.btn-danger {
+  padding: 2px 14px;
+  font-size: 17px;
+}
+.btn-default {
+  padding: 7px 14px;
+  font-size: 17px;
+}
+.btn-success {
+  padding: 2px 14px;
+  font-size: 17px;
+}
+
+.card-footer{
+    text-align:right;
 }

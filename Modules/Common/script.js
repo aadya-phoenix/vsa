@@ -2,7 +2,7 @@ var app = angular.module('homeApp', ['ui.bootstrap', 'ngLoadingSpinner', '720kb.
   'angularUtils.directives.dirPagination', 'ngAnimate', 'ngRoute', 'chart.js',
   'angular.morris-chart', 'HorseModule', 'DashboardController','CreatePlanModule',
   'ckeditor', 'TeamModule', 'ViewPlanModule', 'PendingPlanModule', 'EmployeeMasterModule', ,
-  'StickerModule', 'ColourCodeModule', 'VendorMasterModule', 'TnCModule', 'PPModule', 'FAQModule',
+  'ManageAuditModule', 'ColourCodeModule', 'VendorMasterModule', 'TnCModule', 'PPModule', 'FAQModule',
   'RptCustomerSelectionModule', 'GameRuleModule', 'CategoriesModule', 'AuditModule', 'ForgotPasswordModule', 'WelcomeEmailModule'
   , 'ContestEmailModule', 'PickSaveModule', 'RegulationModule','ChangePasswordModule']);
 
@@ -105,9 +105,9 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
       controller: 'EmployeeMasterController'
     })
    
-    .when('/sticker/', {
-      templateUrl: 'Modules/Sticker/Sticker.html',
-      controller: 'StickerController'
+    .when('/ManageAudit/', {
+      templateUrl: 'Modules/ManageAudit/ManageAudit.html',
+      controller: 'ManageAuditController'
     })
     .when('/colour/', {
       templateUrl: 'Modules/ColourCode/ColourCode.html',

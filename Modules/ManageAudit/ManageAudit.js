@@ -1,4 +1,4 @@
-var app = angular.module('StickerModule', []);
+var app = angular.module('ManageAuditModule', []);
 
 app.service('StickerService', function ($http, $location, $rootScope) {
 
@@ -35,7 +35,7 @@ app.service('StickerService', function ($http, $location, $rootScope) {
 
 });
 
-app.controller('StickerController', function ($scope, $http, $location, StickerService,
+app.controller('ManageAuditController', function ($scope, $http, $location, StickerService,
   $rootScope, $uibModal, $filter) {
   $scope.ListType = [];
   $scope.DriverList = [];
