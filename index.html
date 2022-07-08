@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="dist/css/adminlte.css">
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <link rel="stylesheet" href="dist/css/common.css">
+  <link rel="stylesheet" href="dist/css/circle.css">
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
@@ -93,17 +95,17 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <!-- <div class="image">
-      <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-    </div>
-    <div class="info">
-      <a href="#" class="d-block">Alexander Pierce</a>
-    </div> -->
+            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">Alexander Pierce</a>
+          </div> -->
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-      with font-awesome or any other icon font library -->
+            with font-awesome or any other icon font library -->
             <li class="nav-item">
               <a href="#/" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -112,46 +114,6 @@
 
                 </p>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">
-                <img src="dist/img/icons/management.png" class="side_img">
-                <p>
-                  Audit Plan
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#/CreatePlan" class="nav-link">
-                    <img src="dist/img/icons/lightbulb.png" class="side_img">
-                    <p>
-                      Create Plan
-
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item" ng-show="RoleName=='Admin'">
-                  <a href="#/ViewPlan" class="nav-link">
-                    <img src="dist/img/icons/view.png" class="side_img">
-                    <p>
-                      View Plan
-
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item" ng-show="RoleName=='Vender'">
-                  <a href="#/PendingPlan" class="nav-link">
-                    <img src="dist/img/icons/planning.png" class="side_img">
-                    <p>
-                      Pending Plan
-
-                    </p>
-                  </a>
-                </li>
-
-
-              </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link">
@@ -209,6 +171,57 @@
 
               </ul>
             </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                <img src="dist/img/icons/management.png" class="side_img">
+                <p>
+                  Audit Plan
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#/CreatePlan" class="nav-link">
+                    <img src="dist/img/icons/lightbulb.png" class="side_img">
+                    <p>
+                      Create Plan
+
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item" ng-show="RoleName=='Admin'">
+                  <a href="#/ViewPlan" class="nav-link">
+                    <img src="dist/img/icons/view.png" class="side_img">
+                    <p>
+                      View Plan
+
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item" ng-show="RoleName=='Vender'">
+                  <a href="#/PendingPlan" class="nav-link">
+                    <img src="dist/img/icons/planning.png" class="side_img">
+                    <p>
+                      Pending Plan
+
+                    </p>
+                  </a>
+                </li>
+
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#/ManageAudit" class="nav-link">
+                <img src="dist/img/icons/management.png" class="side_img">
+                <p>
+                  Manage Audit
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+
+            </li>
+
 
           </ul>
         </nav>
@@ -313,7 +326,7 @@
   <script src="Modules/PendingPlan/PendingPlan.js"></script>
   <script src="Modules/EmployeeMaster/EmployeeMaster.js"></script>
 
-  <script src="Modules/Sticker/Sticker.js"></script>
+  <script src="Modules/ManageAudit/ManageAudit.js"></script>
   <script src="Modules/ColourCode/ColourCode.js"></script>
   <script src="Modules/VendorMaster/VendorMaster.js"></script>
   <script src="Modules/TnC/TnC.js"></script>
@@ -331,25 +344,26 @@
   <script src="Modules/ChangePassword/ChangePassword.js"></script>
 
 
-  
+
 
 
 
   <script>
+
+
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
 
-    // Add active class to the current button (highlight it)
-    var header = document.getElementById("myDIV");
-    var btns = header.getElementsByClassName("li_active");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-        current[0].className = current[0].className.replace(" active", "");
-        this.className += " active";
+  
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('.div_main_active .btn-link').click(function () {
+        $('.div_main_active .btn-link').removeClass("active");
+        $(this).addClass("active");
       });
-    }
+    });
   </script>
 </body>
 </html>
