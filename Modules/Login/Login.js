@@ -67,7 +67,7 @@ app.controller('LoginController', function ($scope, $http, $location, LoginServi
     Username: null,
     Password: null,
     Role_Id: null,
-    UserType: null,
+    RoleName: null,
     RefId: null
   };
 

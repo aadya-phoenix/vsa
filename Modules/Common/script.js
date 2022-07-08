@@ -98,7 +98,7 @@ app.config(function ($routeProvider, $httpProvider, $locationProvider) {
     })
     .when('/PendingPlan/', {
       templateUrl: 'Modules/PendingPlan/PendingPlan.html',
-      controller: 'PendingPlanModule'
+      controller: 'PendingPlanController'
     })
     .when('/EmployeeMaster/', {
       templateUrl: 'Modules/EmployeeMaster/EmployeeMaster.html',
@@ -210,6 +210,8 @@ app.service('HomeService', function ($http, $location, $rootScope) {
 
 
 app.controller('HomeController', function ($scope, HomeService, $http, $rootScope, $window, $location) {
+
+  $scope.RoleName = 'Admin';
 
   $scope.userObj = {
     UserId: null,

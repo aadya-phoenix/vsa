@@ -1,13 +1,13 @@
 <section class="content pt-2">
   <div class="container-fluid">
 
-    <div class="row">
+    <div class="row" ng-show="Auditarea==true">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
-              <a href="" ng-click="OpenAddForm()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
+              <a href="" ng-click="AddAuditArea()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
             </div>
           </div>
           <!-- /.card-header -->
@@ -32,7 +32,7 @@
 
 
                   <td>
-                    <a><img src="dist/img/icons/document-editor.png" class="w_25"></a>
+                    <a ng-click="AddAuditArea()"><img src="dist/img/icons/document-editor.png" class="w_25"></a>
                     <a><img src="dist/img/icons/delete.png" class="w_25"></a>
                   </td>
                 </tr>
@@ -46,7 +46,7 @@
       </div>
       <!-- /.col -->
     </div>
-    <div class="row">
+    <div class="row" ng-show="AuditareaDetail==true">
       <div class="col-md-12">
 
         <div class="card card-default">
