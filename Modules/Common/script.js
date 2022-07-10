@@ -211,7 +211,7 @@ app.service('HomeService', function ($http, $location, $rootScope) {
 
 app.controller('HomeController', function ($scope, HomeService, $http, $rootScope, $window, $location) {
 
-  $scope.RoleName = 'Admin';
+  //$scope.RoleName = 'Admin';
 
   $scope.userObj = {
     UserId: null,
@@ -230,6 +230,10 @@ app.controller('HomeController', function ($scope, HomeService, $http, $rootScop
       ConfirmPassword: null,
     };
   };
+
+  var Session = angular.fromJson(sessionStorage.getItem("app"));
+
+  $scope.RoleName = Session.RoleName;
 
   $rootScope.stopSpinner = true;
   console.log("homecontroller ");
