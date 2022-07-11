@@ -1,7 +1,7 @@
 <section class="content pt-2">
   <div class="container-fluid">
 
-    
+
     <div class="row" ng-show="Plan==true">
       <div class="col-md-12">
 
@@ -14,20 +14,109 @@
           <form>
             <div class="card-body">
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+
+
                   <div class="form-group">
-                    <label class="form_label">Business Unit <span class="start_css">*</span></label>
+                    <label class="form_label">Vendor Code <span class="start_css">*</span></label>
                     <select class="form-control">
-                      <option>Select</option>
-                      <option>Business Unit 1</option>
-                      <option>Business Unit 2</option>
-                      <option>Business Unit 3</option>
-                      <option>Business Unit 4</option>
+                      <option>Select Vendor Code</option>
+                      <option>VCNH1231</option>
+                      <option>VCNH12312</option>
+                      <option>VCNH12313</option>
+                      <option>VCNH12314</option>
                     </select>
                   </div>
+
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Vendor Name <span class="start_css">*</span></label>
+                    <select class="form-control">
+                      <option>Select Vendor Name</option>
+                      <option>Vendor1</option>
+                      <option> Vendor2</option>
+                      <option>Vendor3</option>
+                      <option>Vendor4</option>
+                    </select>
+                  </div>
+
+                </div>
+                <div class="col-sm-3">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Location <span class="start_css">*</span></label>
+                    <select class="form-control">
+                      <option>Select Vendor Code</option>
+                      <option>Location1</option>
+                      <option>Location2</option>
+                      <option>Location3</option>
+                      <option>Location4</option>
+                    </select>
+
+                  </div>
+
+
+                </div><!--row-->
+
+
+                <div class="col-sm-3">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Any Other location <span class="start_css">*</span></label>
+                    <input type="text" class="form-control" placeholder="Type Any Other location">
+
+                  </div>
+
+
+                </div>
+                <div class="col-sm-3">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Any Other Code <span class="start_css">*</span></label>
+                    <input type="text" class="form-control" placeholder="Type Any Other Code">
+
+                  </div>
+
+
+                </div>
+
+                <div class="col-sm-3">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Type Code</label>
+                    <input type="text" class="form-control" placeholder="Type Code">
+                  </div>
+
+                </div>
+                <div class="col-sm-3">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Type Name</label>
+                    <input type="text" class="form-control" placeholder="Type Name">
+                  </div>
+
+                </div>
+                <div class="col-sm-3">
+
+
+                  <div class="form-group">
+                    <label class="form_label">Type location</label>
+                    <input type="text" class="form-control" placeholder="Type location">
+                  </div>
+
+
+                </div>
+
+                <div class="col-sm-3">
 
 
                   <div class="form-group">
@@ -37,7 +126,7 @@
 
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
 
 
                   <div class="form-group">
@@ -47,108 +136,48 @@
 
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form_label">
-                      Auditee<span class="start_css">*</span>
+                      Additional MSIL email
                     </label>
-                    <select class="form-control">
-                      <option>Select</option>
-                      <option>Auditee 1</option>
-                      <option>Auditee 2</option>
-                      <option>Auditee 3</option>
-                      <option>Auditee 4</option>
-                    </select>
+                    <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                           placeholder="Enter Auditee email id">
+
                   </div>
                 </div>
-
-                
-               
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form_label">
-                      Additional MSIL email<span class="start_css">*</span>
+                      Auditee email id <span class="start_css">*</span>
                     </label>
-                    <input type="email" class="form-control inputbox_css" ng-model="driverObj.DriverName"
-                           placeholder="Enter Additional MSIL emaie" maxlength="200">
+                    <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                           placeholder="Enter Auditee email id">
+
                   </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <label class="form_label">
-                      VSA users<span class="start_css">*</span>
-                    </label>
-                    <select class="form-control">
-                      <option>Select</option>
-                      <option> VSA users 1</option>
-                      <option> VSA users 2</option>
-                      <option> VSA users 3</option>
-                      <option> VSA users 4</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label class="form_label">
-                      Locations<span class="start_css">*</span>
-                    </label>
-                    <select class="form-control">
-                      <option>Select</option>
-                      <option> Locations 1</option>
-                      <option> Locations 2</option>
-                      <option> Locations 3</option>
-                      <option> Locations 4</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label class="form_label">
-                      Additional Auditee Email<span class="start_css">*</span>
+                      Upload File
 
                     </label>
-                    <input type="email" class="form-control inputbox_css" ng-model="driverObj.DriverName"
-                           placeholder="Enter   Additional Auditee Email" maxlength="200">
-                  </div>
-                </div>
 
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label class="form_label">
-                      Other Location<span class="start_css">*</span>
-
-                    </label>
-                    <select class="form-control">
-                      <option>Select</option>
-                      <option>  Other Location 1</option>
-                      <option>  Other Location 2</option>
-                      <option>  Other Location 3</option>
-                      <option>  Other Location 4</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label class="form_label">
-                      Upload File<span class="start_css">*</span>
-
-                    </label>
-                  
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
               </div>
              
 
+
             </div>
+
 
             <div class="card-footer">
               <button ng-click="Create()" class="btn btn-primary">Submit</button>
@@ -160,6 +189,6 @@
 
       </div>
     </div>
-   
+
   </div>
 </section>

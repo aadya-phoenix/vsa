@@ -53175,6 +53175,14 @@ width:100%;}
 }
 .backgr_blue {
   background: #1a65a3;
+ 
+}
+.backgr_red {
+  background: #dc3545;
+}
+.backgr_yellow {
+  background: #fffc00;
+  color: #333;
 }
 .viwe_iamge {
   width: 25px;
