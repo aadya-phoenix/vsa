@@ -115,7 +115,7 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="RoleName=='Admin'">
               <a class="nav-link">
                 <img src="dist/img/icons/management.png" class="side_img">
                 <p>
@@ -124,7 +124,7 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item" ng-show="RoleName=='Admin'">
+                <li class="nav-item">
                   <a href="#/VendorMaster" class="nav-link">
                     <img src="dist/img/icons/lightbulb.png" class="side_img">
                     <p>
@@ -180,7 +180,7 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
+                <li class="nav-item" ng-show="RoleName=='Admin'">
                   <a href="#/CreatePlan" class="nav-link">
                     <img src="dist/img/icons/lightbulb.png" class="side_img">
                     <p>
@@ -211,7 +211,7 @@
 
               </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="RoleName=='Admin'">
               <a href="#/ManageAudit" class="nav-link">
                 <img src="dist/img/icons/management.png" class="side_img">
                 <p>

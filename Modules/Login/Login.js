@@ -8,9 +8,9 @@ app.service('LoginService', function ($http, $location, $rootScope) {
   else {
     this.AppUrl = "/api/"
   }
-  this.authenticateLogin = function (data) {
-    return $http.post('http://localhost:44361/api/User/ValidateUserCredentials', data, {});
-  };
+  //this.authenticateLogin = function (data) {
+  //  return $http.post('http://localhost:44361/api/User/ValidateUserCredentials', data, {});
+  //};
 
 
 });
@@ -67,7 +67,8 @@ app.controller('LoginController', function ($scope, $http, $location, LoginServi
     Username: null,
     Password: null,
     Role_Id: null,
-    RoleName: null,
+    RoleName: 'Admin',
+    RoleName: 'Vender',
     RefId: null
   };
 
@@ -85,8 +86,24 @@ app.controller('LoginController', function ($scope, $http, $location, LoginServi
 
   }
 
-  $scope.Login = function () {  
-    window.location = 'index.html#/';
+  $scope.Login = function () {
+    debugger
+    if ($scope.UserInfo.Username == 'Vender' && $scope.UserInfo.Password == 123) {
+      $scope.UserInfo.RoleName = 'Vender'
+      $scope.UserInfo;
+      sessionStorage.setItem("app", angular.toJson($scope.UserInfo));
+      window.location = 'index.html#/';
+    }
+    else if ($scope.UserInfo.Username == 'Admin' && $scope.UserInfo.Password == 123) {
+      $scope.UserInfo.RoleName = 'Admin'
+      $scope.UserInfo;
+      sessionStorage.setItem("app", angular.toJson($scope.UserInfo));
+      window.location = 'index.html#/';
+    }
+    else {
+      new swal("Incorrect username and password");
+    }
+    
     
   };
 
