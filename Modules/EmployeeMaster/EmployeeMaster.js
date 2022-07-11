@@ -345,7 +345,7 @@ app.controller('EmployeeMasterController', function ($scope, $http, $location, E
   //  }];
   //};
   $scope.Save = function () {
-    new swal("Added Successfully");
+    new swal("Employee Details Added Successfully");
   };
 
   $scope.AddEmployee = function () {

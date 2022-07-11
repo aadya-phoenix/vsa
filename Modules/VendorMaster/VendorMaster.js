@@ -460,7 +460,7 @@ app.controller('VendorMasterController', function ($scope, $http, $location, Ven
   //};
 
   $scope.Save = function () {
-    new swal("Vender added successfully");
+    new swal("Vendor added successfully");
   };
 
   $scope.AddVender = function () {

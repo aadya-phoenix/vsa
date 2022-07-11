@@ -110,7 +110,7 @@ app.controller('AuditController', function ($scope, $http, $location, AuditServi
   //  };
   //};
   $scope.Save = function () {
-    new swal("Saved Successfully");
+    new swal("Audit Area Deatils Saved Successfully");
   };
 
   $scope.AddAuditArea = function () {

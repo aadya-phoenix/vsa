@@ -51,6 +51,7 @@
   outline: none;
   padding: 10px 16px;
   background-color: #f1f1f1;
+  text-align:left;
   cursor: pointer;
   font-size: 13px;
   width:100%;
@@ -104,8 +105,8 @@
 .chek_box {
   width: 11px;
   height: 12px;
-  position: relative;
-  top: 4px;
+  position: relative !important;
+  top: 2px !important;
 }
 .btn-primary {
   padding: 2px 14px;
@@ -128,4 +129,11 @@
 
 .card-footer{
     text-align:right;
+}
+.user-panel{
+    background:#fff !important;
+}
+.w_190{
+    width:190px !important;
+    padding:10px;
 }
