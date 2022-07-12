@@ -7,89 +7,92 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
-            
+
 
               <!--<a href="" ng-click="AddAuditArea()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>-->
             </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="" class="table table-bordered table-hover">
 
-              <thead>
-                <tr class="now_rap text-center sticky_header">
-                  <th>Audit No</th>
-                  <th>Vendor Code </th>
-                  <th>Vendor Name</th>
-                  <th>Location</th>
-                  <th>Any Other Location</th>
-                  <th>Planned Start Date </th>
-                  <th>Planned End Date</th>
+            <div class="table-responsive max_hei_table">
+              <table id="" class="table table-bordered table-hover">
 
-                  <th>Status </th>
-                  <th>View</th>
+                <thead>
+                  <tr class=" text-center sticky_header">
+                    <th>Audit No</th>
+                    <th>Vendor Code </th>
+                    <th>Vendor Name</th>
+                    <th>Location</th>
+                    <th>Any Other Location</th>
+                    <th>Planned Start Date </th>
+                    <th>Planned End Date</th>
 
-                  <th>Initiate Audit </th>
+                    <th>Status </th>
+                    <th>View</th>
 
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="tbody_data">
+                    <th>Initiate Audit </th>
 
-                  <td>AU1</td>
-                  <td>VN123</td>
-                  <td>Vendor</td>
-                  <td>Location</td>
-                  <td>Any Location</td>
-                  <td>12-2-2022</td>
-                  <td>12-4-2022</td>
-                  <td><p class="pend_coloe  backgr_green">Complete </p></td>
-                  <td>
-                    <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
-                    <a ng-click="ManageScreenView('AuditArea1')"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="tbody_data">
 
-                  </td>
+                    <td>AU1</td>
+                    <td>VN123</td>
+                    <td>Vendor</td>
+                    <td>Location</td>
+                    <td>Any Location</td>
+                    <td>12-2-2022</td>
+                    <td>12-4-2022</td>
+                    <td><p class="pend_coloe  backgr_green">Complete </p></td>
+                    <td>
+                      <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
+                      <a ng-click="ManageScreenView('AuditArea1')"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
 
-                  <td>
-                    <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
+                    </td>
 
-                    <a ng-click="ManageScreenView('AuditArea2')"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
+                    <td>
+                      <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
 
-                  </td>
+                      <a ng-click="ManageScreenView('AuditArea2')"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
 
-                </tr>
-                <tr class="tbody_data">
+                    </td>
 
-
-                  <td>AU1</td>
-                  <td>VN123</td>
-                  <td>Vendor</td>
-                  <td>Location</td>
-                  <td>Any Location</td>
-                  <td>12-2-2022</td>
-                  <td>12-4-2022</td>
-                  <td><p class="pend_coloe  backgr_green">Approve </p></td>
-
-                  <td>
-                    <a ng-click="AddAuditArea()"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+                  </tr>
+                  <tr class="tbody_data">
 
 
-                  </td>
-                  <td>
-                    <a ng-click="AddAuditArea()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
+                    <td>AU1</td>
+                    <td>VN123</td>
+                    <td>Vendor</td>
+                    <td>Location</td>
+                    <td>Any Location</td>
+                    <td>12-2-2022</td>
+                    <td>12-4-2022</td>
+                    <td><p class="pend_coloe  backgr_green">Approve </p></td>
+
+                    <td>
+                      <a ng-click="AddAuditArea()"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
 
 
-                  </td>
+                    </td>
+                    <td>
+                      <a ng-click="AddAuditArea()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
 
-                </tr>
-              </tbody>
-            </table>
+
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
         <!-- /.card -->
-        <div class="card"  ng-show="Auditarea1==true">
+        <div class="card" ng-show="Auditarea1==true">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
@@ -98,7 +101,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <div class="row" >
+            <div class="row">
               <div class="col-sm-3">
 
 
@@ -262,7 +265,7 @@
           </div>
         </div>
         <div class="card" ng-show="Auditarea2==true">
-          <div class="card-header" >
+          <div class="card-header">
             <div class="header_card d-flex justify-content-between">
               <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
 
@@ -287,7 +290,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
 
                 <div class="form-group">
                   <label class="form_label">Start Date</label>
-                  <input type="date" class="form-control inputbox_css"
+                  <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
                          disabled>
                 </div>
 
@@ -297,10 +300,22 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
 
                 <div class="form-group">
                   <label class="form_label">End Date</label>
-                  <input type="date" class="form-control inputbox_css"
+                  <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
                          disabled>
                 </div>
 
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">Department Head </label>
+                  <select class="form-control" >
+
+                    <option>Department Head 1</option>
+                    <option>Department Head 2</option>
+                    <option>Department Head 3</option>
+                    <option>Department Head 4</option>
+                  </select>
+                </div>
               </div>
 
               <div class="col-sm-4">
@@ -327,13 +342,11 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
 
 
                 <div class="form-group">
-                  <label class="form_label">Auditors</label>
-                  <select class="form-control">
-                    <option>Select</option>
-                    <option>Auditors 1</option>
-                    <option>Auditors  2</option>
+                  <label class="mb-0">Auditor</label>
+                  <p class="form_label">Auditor1, Auditor2, Auditor3</p>
 
-                  </select>
+
+
                 </div>
 
               </div>
@@ -360,8 +373,10 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
                                placeholder="Enter Vendor Attendees" maxlength="200">
                       </td>
                       <td>
-                        <button class="btn btn-primary">+</button>
-                        <button class="btn btn-danger">-</button>
+                        <div class="d-flex add_minus_mar">
+                          <button class="btn btn-primary">+</button>
+                          <button class="btn btn-danger">-</button>
+                        </div>
                       </td>
 
                     </tr>
@@ -379,7 +394,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
           </div>
         </div>
         <div class="card" ng-show="Auditarea3==true">
-          <div class="card-header"  >
+          <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
               <button class="btn btn-success">Download PDF</button>
@@ -606,16 +621,20 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
             <!-- /.card-body -->
           </div>
           <div class="card-footer">
+            <div class="flex_direction_media">
             <button class="btn btn-primary">View Summary Details</button>
-            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-primary">Save as draft</button>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"> Critical Observation</button>
+            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Submit</button>
 
             <button ng-click="Back1()" class="btn btn-default">Back</button>
+              </div>
           </div>
 
         </div>
       </div>
-        <!-- /.col -->
-      </div>
+      <!-- /.col -->
+    </div>
     <div class="row">
       <div class="col-md-12">
 
@@ -1032,3 +1051,47 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
   </div>
 </section>
 
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remarks</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" rows="3" placeholder="Enter Your Remark"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Audit Type</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <select class="form-control">
+
+          <option>Provisional</option>
+          <option>Final</option>
+          
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -53166,9 +53166,8 @@ width:100%;}
   width: 100% !important;
 }
 .pend_coloe {
- 
-  color: #fff;
-  margin-bottom:10px;
+  padding: 4px 14px; color: #fff;
+  margin-bottom: 10px;
 }
 .backgr_green {
   background: green;

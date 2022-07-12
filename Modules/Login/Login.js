@@ -75,36 +75,27 @@ app.controller('LoginController', function ($scope, $http, $location, LoginServi
   $scope.init = function () {
     $scope.UserInfo = {
       Username: null,
-      Password: null,     
+      Password: null,
     };
     sessionStorage.setItem("app", null);
     $scope.showForgotPassword = false;
   };
 
 
-  $scope.ForgotPass = function () {   
+  $scope.ForgotPass = function () {
 
   }
 
   $scope.Login = function () {
     debugger
-    if ($scope.UserInfo.Username == 'Vender' && $scope.UserInfo.Password == 123) {
-      $scope.UserInfo.RoleName = 'Vender'
-      $scope.UserInfo;
-      sessionStorage.setItem("app", angular.toJson($scope.UserInfo));
-      window.location = 'index.html#/';
-    }
-    else if ($scope.UserInfo.Username == 'Admin' && $scope.UserInfo.Password == 123) {
-      $scope.UserInfo.RoleName = 'Admin'
-      $scope.UserInfo;
-      sessionStorage.setItem("app", angular.toJson($scope.UserInfo));
-      window.location = 'index.html#/';
-    }
-    else {
-      new swal("Incorrect username and password");
-    }
-    
-    
+
+    $scope.UserInfo.RoleName = "Admin";
+
+    sessionStorage.setItem("app", angular.toJson($scope.UserInfo));
+    window.location = 'index.html#/';
+
+
+
   };
 
 

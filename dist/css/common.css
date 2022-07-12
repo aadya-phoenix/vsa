@@ -26,6 +26,10 @@
     color: #000;
   }
 
+.fon_16 {
+  font-size: 16px;
+}
+
 .w_25 {
   width: 25px;
 }
@@ -46,20 +50,23 @@
 .menu-open {
   background: #80808087;
 }
+
 .btn-link {
   border: none;
   outline: none;
   padding: 10px 16px;
   background-color: #f1f1f1;
-  text-align:left;
+  text-align: left;
   cursor: pointer;
   font-size: 13px;
-  width:100%;
+  width: 100%;
 }
-.active, .btn-link:hover {
-  background-color: #666;
-  color: white;
-}
+
+  .active, .btn-link:hover {
+    background-color: #666;
+    color: white;
+  }
+
 .box_css {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   padding: 10px;
@@ -70,13 +77,16 @@
   justify-content: center;
   height: 168px;
 }
-.fon_15{
-    font-size:15px;
+
+.fon_15 {
+  font-size: 15px;
 }
+
 .diacisq_css {
   width: 15px;
   margin-left: 2px
 }
+
 .jugme_css {
   background: #f1f1f1;
   padding: 3px 11px;
@@ -87,58 +97,109 @@
 .justif_space_betwen {
   justify-content: space-between;
 }
+
 .border_botom_black {
   border-bottom: 2px solid #333;
 }
-.flex_colum{
-    flex-direction:column;
+
+.flex_colum {
+  flex-direction: column;
 }
-.fon_12{
-    font-size:12px;
+
+.fon_12 {
+  font-size: 12px;
 }
-.mt_17{
-    margin-top:17px !important;
+
+.mt_17 {
+  margin-top: 17px !important;
 }
-.fon_14{
-    font-size:14px;
+
+.fon_14 {
+  font-size: 14px;
 }
+
 .chek_box {
   width: 11px;
   height: 12px;
   position: relative !important;
   top: 2px !important;
 }
+
 .btn-primary {
   padding: 2px 14px;
   font-size: 17px;
   background-color: #1a65a3;
   border-color: #1a65a3;
 }
+
 .btn-danger {
   padding: 2px 14px;
   font-size: 17px;
 }
+
 .btn-default {
   padding: 7px 14px;
   font-size: 17px;
 }
+
 .btn-success {
   padding: 2px 14px;
   font-size: 17px;
 }
 
-.card-footer{
-    text-align:right;
+.card-footer {
+  text-align: right;
 }
-.user-panel{
-    background:#fff !important;
+
+.user-panel {
+  background: #fff !important;
 }
-.w_190{
-    width:190px !important;
-    padding:10px;
+
+.w_190 {
+  width: 190px !important;
+  padding: 10px;
 }
 
 .w_17 {
   width: 17px;
 }
 
+.add_minus_mar .btn{
+    margin-right:3px;
+}
+.modal-content{
+    max-width:700px;
+}
+.modal-dialog{
+    width:700px;
+}
+
+@media (max-width: 768px) {
+  .nav_bar_space {
+    margin-left: 0px !IMPORTANT;
+  }
+
+  .content-wrapper {
+    margin-left: 0px !important;
+  }
+  .header_card {
+  flex-direction:column;}
+  .box_css{
+      margin-bottom:10px;
+  }
+  .modal-content {
+    max-width: 100%;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    margin: 0px;
+  }
+  .flex_direction_media{
+      flex-direction:column;
+      display:flex;
+  }
+  .flex_direction_media .btn{
+   margin-bottom:10px;
+  }
+  }
