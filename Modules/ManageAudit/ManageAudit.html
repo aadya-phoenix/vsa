@@ -7,11 +7,7 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
-              <!--<div class="search-container">
-                <div class="autocomplete">
-                  <input id="myInput" type="text" name="myCountry" placeholder="Country">
-                </div>
-              </div>-->
+            
 
               <!--<a href="" ng-click="AddAuditArea()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>-->
             </div>
@@ -22,12 +18,13 @@
 
               <thead>
                 <tr class="now_rap text-center sticky_header">
-                  <th>Business Unit </th>
+                  <th>Audit No</th>
+                  <th>Vendor Code </th>
+                  <th>Vendor Name</th>
+                  <th>Location</th>
+                  <th>Any Other Location</th>
                   <th>Planned Start Date </th>
                   <th>Planned End Date</th>
-                  <th>Auditor </th>
-                  <th> VSA users</th>
-                  <th>Locations</th>
 
                   <th>Status </th>
                   <th>View</th>
@@ -39,24 +36,24 @@
               <tbody>
                 <tr class="tbody_data">
 
-
-                  <td>Vendor1</td>
+                  <td>AU1</td>
+                  <td>VN123</td>
+                  <td>Vendor</td>
+                  <td>Location</td>
+                  <td>Any Location</td>
                   <td>12-2-2022</td>
                   <td>12-4-2022</td>
-                  <td>abc</td>
-                  <td>abc</td>
-                  <td>abc</td>
                   <td><p class="pend_coloe  backgr_green">Complete </p></td>
                   <td>
                     <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
-                    <a ><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+                    <a ng-click="ManageScreenView('AuditArea1')"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
 
                   </td>
 
                   <td>
                     <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
 
-                    <a ng-click="AddAuditArea()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
+                    <a ng-click="ManageScreenView('AuditArea2')"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
 
                   </td>
 
@@ -64,16 +61,17 @@
                 <tr class="tbody_data">
 
 
-                  <td>Vendor2</td>
+                  <td>AU1</td>
+                  <td>VN123</td>
+                  <td>Vendor</td>
+                  <td>Location</td>
+                  <td>Any Location</td>
                   <td>12-2-2022</td>
                   <td>12-4-2022</td>
-                  <td>abc</td>
-                  <td>abc</td>
-                  <td>abc</td>
                   <td><p class="pend_coloe  backgr_green">Approve </p></td>
 
                   <td>
-                    <a><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+                    <a ng-click="AddAuditArea()"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
 
 
                   </td>
@@ -91,11 +89,183 @@
         </div>
         <!-- /.card -->
         <!-- /.card -->
-        <div class="card" ng-show="Auditarea1==true">
+        <div class="card"  ng-show="Auditarea1==true">
           <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Audit Area Details</h3>
+
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row" >
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Vendor Code <span class="start_css">*</span></label>
+                  <input list="europe-countries" placeholder="Search Vendor Code" class="form-control" disabled>
+                  <datalist id="europe-countries">
+
+                    <option>VCNH1231</option>
+
+                  </datalist>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Vendor Name <span class="start_css">*</span></label>
+                  <select class="form-control" disabled>
+
+                    <option>Vendor1</option>
+
+                  </select>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Location <span class="start_css">*</span></label>
+                  <select class="form-control" disabled>
+
+                    <option>Location2</option>
+
+                  </select>
+
+                </div>
+
+
+              </div><!--row-->
+
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Any Other location <span class="start_css">*</span></label>
+                  <input type="text" class="form-control" placeholder="XXXXXXXX" disabled>
+
+                </div>
+
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Any Other Code <span class="start_css">*</span></label>
+                  <input type="text" class="form-control" placeholder="XXXXXX" disabled>
+
+                </div>
+
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type Code</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type Name</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type location</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned Start Date <span class="start_css">*</span></label>
+                  <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned End Date <span class="start_css">*</span></label>
+                  <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="form_label">
+                    Additional MSIL email
+                  </label>
+                  <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                         placeholder="XXXXX" disabled>
+
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="form_label">
+                    Auditee email id <span class="start_css">*</span>
+                  </label>
+                  <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                         placeholder="xyz@gmail.com" disabled>
+
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="form_label">
+                    Upload File
+
+                  </label>
+
+
+                  <a href="http://localhost:64604/index.html#/ViewPlan/">http://localhost:64604/index.html#/ViewPlan/</a>
+
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+
+            <!--<button type="button" class="btn btn-primary" ng-click="Submit()">Submit</button>-->
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ManageScreenView('Main')">Close</button>
+          </div>
+        </div>
+        <div class="card" ng-show="Auditarea2==true">
+          <div class="card-header" >
             <div class="header_card d-flex justify-content-between">
               <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
-            
+
             </div>
           </div>
           <!-- /.card-header -->
@@ -143,7 +313,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
                 </div>
 
               </div>
-            
+
               <div class="col-sm-4">
 
 
@@ -204,12 +374,12 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
           </div>
           <div class="card-footer text-right">
             <button ng-click="Next()" class="btn btn-primary">Next</button>
-            <button ng-click="Back()" class="btn btn-default">Back</button>
+            <button ng-click="ManageScreenView('Main')" class="btn btn-default">Back</button>
 
           </div>
         </div>
-        <div class="card" ng-show="Auditarea2==true">
-          <div class="card-header">
+        <div class="card" ng-show="Auditarea3==true">
+          <div class="card-header"  >
             <div class="header_card">
               <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
               <button class="btn btn-success">Download PDF</button>
@@ -436,8 +606,8 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
             <!-- /.card-body -->
           </div>
           <div class="card-footer">
-            <button  class="btn btn-primary">View Summary Details</button>
-            <button  class="btn btn-success">Submit</button>
+            <button class="btn btn-primary">View Summary Details</button>
+            <button class="btn btn-success">Submit</button>
 
             <button ng-click="Back1()" class="btn btn-default">Back</button>
           </div>
@@ -446,10 +616,10 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
       </div>
         <!-- /.col -->
       </div>
-    <div class="row" ng-show="Auditarea3==true">
+    <div class="row">
       <div class="col-md-12">
 
-        <div class="card card-default">
+        <div class="card card-default" ng-show="Auditarea4==true">
           <div class="card-header">
             <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
 
@@ -847,7 +1017,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
               </div>
             </div>
             <div class="card-footer">
-              <button ng-click="Back2()" class="btn btn-default">Back</button>
+              <button ng-click="ManageScreenView('Main')" class="btn btn-default">Back</button>
             </div>
 
           </form>

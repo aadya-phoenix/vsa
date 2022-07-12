@@ -42,6 +42,7 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
   $scope.Auditarea1 = false;
   $scope.Auditarea2 = false;
   $scope.Auditarea3 = false;
+  $scope.Auditarea3 = false;
 
   $scope.ListType = [];
   $scope.DriverList = [];
@@ -58,11 +59,10 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
     UserId: null,
   };
 
-  //$scope.init = function () {    //Section Wise Doughnought
-  //  $scope.ManageScreenView('Main');
-  //  $scope.InitializeObject();
-  //  $scope.GetDataOnInit();
-  //};
+  $scope.init = function () {    //Section Wise Doughnought
+    $scope.ManageScreenView('Main');
+   
+  };
 
   //$scope.GetDataOnInit = function () {
   //  StickerService.GetStickerList().then(function (success) {
@@ -125,43 +125,43 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
 
   //};
   
-  //$scope.ManageScreenView = function (screenName) {
-  //  if (screenName == 'Main') {
-  //    $scope.MainGrid = true;
-  //    $scope.AddForm = false;
-  //    $scope.EditForm = false;
-  //    $scope.UploadMobileImage = false;
-  //    $scope.UploadDesktopImage = false;
-  //  }
-  //  else if (screenName == 'Add') {
-  //    $scope.MainGrid = false;
-  //    $scope.AddForm = true;
-  //    $scope.EditForm = false;
-  //    $scope.UploadMobileImage = false;
-  //    $scope.UploadDesktopImage = false;
-  //  }
-  //  else if (screenName == 'Edit') {
-  //    $scope.MainGrid = false;
-  //    $scope.AddForm = false;
-  //    $scope.EditForm = true;
-  //    $scope.UploadMobileImage = false;
-  //    $scope.UploadDesktopImage = false;
-  //  }
-  //  else if (screenName == 'UploadMobile') {
-  //    $scope.MainGrid = false;
-  //    $scope.AddForm = false;
-  //    $scope.EditForm = false;
-  //    $scope.UploadMobileImage = true;
-  //    $scope.UploadDesktopImage = false;
-  //  }
-  //  else if (screenName == 'UploadDesktop') {
-  //    $scope.MainGrid = false;
-  //    $scope.AddForm = false;
-  //    $scope.EditForm = false;
-  //    $scope.UploadMobileImage = false;
-  //    $scope.UploadDesktopImage = true;
-  //  }
-  //};
+  $scope.ManageScreenView = function (screenName) {
+    if (screenName == 'Main') {
+      $scope.Auditarea = true;
+      $scope.Auditarea1 = false;
+      $scope.Auditarea2 = false;
+      $scope.Auditarea3 = false;
+      $scope.Auditarea4 = false;
+    }
+    else if (screenName == 'AuditArea1') {
+      $scope.Auditarea = false;
+      $scope.Auditarea1 = true;
+      $scope.Auditarea2 = false;
+      $scope.Auditarea3 = false;
+      $scope.Auditarea4 = false;
+    }
+    else if (screenName == 'AuditArea2') {
+      $scope.Auditarea = false;
+      $scope.Auditarea1 = false;
+      $scope.Auditarea2 = true;
+      $scope.Auditarea3 = false;
+      $scope.Auditarea4 = false;
+    }
+    else if (screenName == 'UploadMobile') {
+      $scope.MainGrid = false;
+      $scope.AddForm = false;
+      $scope.EditForm = false;
+      $scope.UploadMobileImage = true;
+      $scope.UploadDesktopImage = false;
+    }
+    else if (screenName == 'UploadDesktop') {
+      $scope.MainGrid = false;
+      $scope.AddForm = false;
+      $scope.EditForm = false;
+      $scope.UploadMobileImage = false;
+      $scope.UploadDesktopImage = true;
+    }
+  };
 
   //$scope.InitializeObject = function () {
   //  $scope.listTypeObj = {
@@ -182,18 +182,28 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
     $scope.Auditarea1 = true;
     $scope.Auditarea2 = false;
     $scope.Auditarea3 = false;
+    $scope.Auditarea4 = false;
   };
   $scope.Next = function () {
     $scope.Auditarea = false;
     $scope.Auditarea1 = false;
-    $scope.Auditarea2 = true;
-    $scope.Auditarea3 = false;
+    $scope.Auditarea2 = false;
+    $scope.Auditarea3 = true;
+    $scope.Auditarea4 = false;
   }
   $scope.Page3 = function () {
     $scope.Auditarea = false;
     $scope.Auditarea1 = false;
     $scope.Auditarea2 = false;
-    $scope.Auditarea3 = true;
+    $scope.Auditarea3 = false;
+    $scope.Auditarea4 = true;
+  }
+  $scope.Page4 = function () {
+    $scope.Auditarea = false;
+    $scope.Auditarea1 = false;
+    $scope.Auditarea2 = false;
+    $scope.Auditarea3 = false;
+    $scope.Auditarea4 = true;
   }
   $scope.Back = function () {
     $scope.Auditarea = true;

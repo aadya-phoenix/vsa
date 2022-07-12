@@ -19,13 +19,19 @@
 
                   <div class="form-group">
                     <label class="form_label">Vendor Code <span class="start_css">*</span></label>
-                    <select class="form-control">
+                    <input list="europe-countries" placeholder="Search Vendor Code"  class="form-control">
+                    <datalist id="europe-countries">
                       <option>Select Vendor Code</option>
                       <option>VCNH1231</option>
                       <option>VCNH12312</option>
+                      <option>Vendor5</option>
                       <option>VCNH12313</option>
                       <option>VCNH12314</option>
-                    </select>
+                      <option>Vendor1</option>
+                      <option>Vendor2</option>
+                      <option>Vendor3</option>
+                    </datalist>
+                  
                   </div>
 
                 </div>
@@ -142,7 +148,7 @@
                       Additional MSIL email
                     </label>
                     <input type="text" class="form-control" ng-model="driverObj.DriverName"
-                           placeholder="Enter Auditee email id">
+                           placeholder="Enter Auditee MSIL email">
 
                   </div>
                 </div>
@@ -152,7 +158,7 @@
                       Auditee email id <span class="start_css">*</span>
                     </label>
                     <input type="text" class="form-control" ng-model="driverObj.DriverName"
-                           placeholder="Enter Auditee email id">
+                           placeholder="xyz@gmail.com" disabled>
 
                   </div>
                 </div>

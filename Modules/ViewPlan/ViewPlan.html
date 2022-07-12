@@ -9,7 +9,7 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">View Plan Details</h3>
-
+              <button class="btn btn-success"><img src="dist/img/icons/upload.png" class="w_17 mr-1"><span>Upload Plan</span></button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -20,6 +20,7 @@
 
                 <thead>
                   <tr class="now_rap text-center sticky_header">
+                    <th>Audit No</th>
                     <th>Vendor Code </th>
                     <th>Vendor Name</th>
                     <th>Location</th>
@@ -36,7 +37,7 @@
                 </thead>
                 <tbody>
                   <tr class="tbody_data">
-
+                    <td>AU1</td>
                     <td>VN123</td>
                     <td>Vendor</td>
                     <td>Location</td>
@@ -54,7 +55,7 @@
 
                   </tr>
                   <tr class="tbody_data">
-
+                    <td>AU1</td>
                     <td>VN123</td>
                     <td>Vendor</td>
                     <td>Location</td>
@@ -72,7 +73,7 @@
                   </tr>
                   <tr class="tbody_data">
 
-
+                    <td>AU1</td>
                     <td>VN123</td>
                     <td>Vendor</td>
                     <td>Location</td>
@@ -121,18 +122,70 @@
                 <tbody>
                   <tr class="tbody_data">
                     <td>1</td>
-                    <td>Auditor 1</td>
+                    <td>
+                      <select class="form-control">
+                        <option>Select</option>
+                        <option>Auditor1 </option>
+                        <option>Auditor2</option>
+                        <option>Auditor3 </option>
+                        <option>Auditor4</option>
 
-                    <td><input type="checkbox"></td>
+                        <option>Auditor5 </option>
+                        <option>Auditor6</option>
+
+                      </select>
+                    </td>
+
+                    <td>
+                      <button class="btn btn-success">+</button>
+                      <button class="btn btn-danger">-</button>
+                    </td>
 
 
                   </tr>
                   <tr class="tbody_data">
+                    <td>1</td>
+                    <td>
+                      <select class="form-control">
+                        <option>Select</option>
+                        <option>Auditor1 </option>
+                        <option>Auditor2</option>
+                        <option>Auditor3 </option>
+                        <option>Auditor4</option>
 
-                    <td>2</td>
-                    <td>Auditor 2</td>
+                        <option>Auditor5 </option>
+                        <option>Auditor6</option>
 
-                    <td><input type="checkbox"></td>
+                      </select>
+                    </td>
+
+                    <td>
+                      <button class="btn btn-success">+</button>
+                      <button class="btn btn-danger">-</button>
+                    </td>
+
+
+                  </tr>
+                  <tr class="tbody_data">
+                    <td>1</td>
+                    <td>
+                      <select class="form-control">
+                        <option>Select</option>
+                        <option>Auditor1 </option>
+                        <option>Auditor2</option>
+                        <option>Auditor3 </option>
+                        <option>Auditor4</option>
+
+                        <option>Auditor5 </option>
+                        <option>Auditor6</option>
+
+                      </select>
+                    </td>
+
+                    <td>
+                      <button class="btn btn-success">+</button>
+                      <button class="btn btn-danger">-</button>
+                    </td>
 
 
                   </tr>
@@ -157,148 +210,160 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-3">
+
+
                 <div class="form-group">
-                  <label class="form_label">Business Unit </label>
+                  <label class="form_label">Vendor Code <span class="start_css">*</span></label>
+                  <input list="europe-countries" placeholder="Search Vendor Code" class="form-control" disabled>
+                  <datalist id="europe-countries">
+                   
+                    <option>VCNH1231</option>
+                   
+                  </datalist>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Vendor Name <span class="start_css">*</span></label>
                   <select class="form-control" disabled>
-
-                    <option>Business Unit 1</option>
-                    <option>Business Unit 2</option>
-                    <option>Business Unit 3</option>
-                    <option>Business Unit 4</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-4">
-
-
-                <div class="form-group">
-                  <label class="form_label">Planned Start Date</label>
-                  <input type="date" class="form-control inputbox_css" disabled>
-                </div>
-
-              </div>
-
-              <div class="col-sm-4">
-
-
-                <div class="form-group">
-                  <label class="form_label">Planned End Date</label>
-                  <input type="date" class="form-control inputbox_css" disabled>
-                </div>
-
-              </div>
-
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label class="form_label">
-                    Auditee
-                  </label>
-                  <select class="form-control" disabled>
-
-                    <option>Auditee 1</option>
-                    <option>Auditee 2</option>
-                    <option>Auditee 3</option>
-                    <option>Auditee 4</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label class="form_label">Auditor</label>
-                  <select class="form-control" disabled>
-
-                    <option>Auditor 1</option>
-                    <option>Auditort 2</option>
-                    <option>Auditor 3</option>
-                    <option>Auditor 4</option>
+                   
+                    <option>Vendor1</option>
+                   
                   </select>
                 </div>
 
               </div>
+              <div class="col-sm-3">
 
-              <div class="col-sm-4">
+
+                <div class="form-group">
+                  <label class="form_label">Location <span class="start_css">*</span></label>
+                  <select class="form-control" disabled>
+                  
+                    <option>Location2</option>
+                   
+                  </select>
+
+                </div>
+
+
+              </div><!--row-->
+
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Any Other location <span class="start_css">*</span></label>
+                  <input type="text" class="form-control" placeholder="XXXXXXXX" disabled>
+
+                </div>
+
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Any Other Code <span class="start_css">*</span></label>
+                  <input type="text" class="form-control" placeholder="XXXXXX" disabled>
+
+                </div>
+
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type Code</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type Name</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type location</label>
+                  <input type="text" class="form-control"placeholder="XXXXX" disabled>
+                </div>
+
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned Start Date <span class="start_css">*</span></label>
+                  <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned End Date <span class="start_css">*</span></label>
+                  <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
                 <div class="form-group">
                   <label class="form_label">
                     Additional MSIL email
                   </label>
-                  <input type="email" class="form-control inputbox_css" placeholder="xyz@gmail.com" disabled>
+                  <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                         placeholder="XXXXX" disabled >
+
                 </div>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-3">
                 <div class="form-group">
                   <label class="form_label">
-                    VSA users
+                    Auditee email id <span class="start_css">*</span>
                   </label>
-                  <select class="form-control" disabled>
+                  <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                         placeholder="xyz@gmail.com" disabled>
 
-                    <option> VSA users 1</option>
-                    <option> VSA users 2</option>
-                    <option> VSA users 3</option>
-                    <option> VSA users 4</option>
-                  </select>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label class="form_label">
-                    Locations
-                  </label>
-                  <select class="form-control" disabled>
-
-                    <option> Locations 1</option>
-                    <option> Locations 2</option>
-                    <option> Locations 3</option>
-                    <option> Locations 4</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label class="form_label">
-                    Additional Auditee Email
-
-                  </label>
-                  <input type="email" class="form-control inputbox_css" placeholder="xyz@gmail.com" disabled>
-                </div>
-              </div>
-
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label class="form_label">
-                    Other Location
-
-                  </label>
-                  <select class="form-control" disabled>
-
-                    <option>  Other Location 1</option>
-                    <option>  Other Location 2</option>
-                    <option>  Other Location 3</option>
-                    <option>  Other Location 4</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-4">
+              <div class="col-sm-3">
                 <div class="form-group">
                   <label class="form_label">
                     Upload File
 
                   </label>
 
-                  <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="exampleInputFile" disabled>
-                      <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                    </div>
-
-                  </div>
+                 
+                  <a href="http://localhost:64604/index.html#/ViewPlan/">http://localhost:64604/index.html#/ViewPlan/</a>
+                   
                 </div>
               </div>
             </div>
+
+
+
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
