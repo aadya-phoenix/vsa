@@ -246,6 +246,9 @@
   vertical-align: middle;
   text-align: center;
 }
+.w_100{
+    width:100%;
+}
 @media (max-width: 768px) {
   .nav_bar_space {
     margin-left: 0px !IMPORTANT;

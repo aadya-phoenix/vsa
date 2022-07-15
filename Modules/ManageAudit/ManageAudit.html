@@ -3,6 +3,7 @@
 
     <div class="row">
       <div class="col-12">
+        <div  ng-show="Auditarea==true">
         <div class="d-flex justify-content-center mb-2 flex_direction_media">
           <a href="">
             <div class="child_counter gradien_plan">
@@ -58,7 +59,7 @@
           </a>
         </div>
 
-        <div class="card" ng-show="Auditarea==true">
+        <div class="card">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
@@ -170,6 +171,7 @@
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
+        </div>
         <!-- /.card -->
         <div class="card" ng-show="Auditarea1==true">
           <div class="card-header">
@@ -701,7 +703,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
           </div>
           <div class="card-footer">
             <div class="flex_direction_media">
-              <button class="btn btn-primary">View Summary Details</button>
+              <button class="btn btn-primary" ng-click="ManageScreenView('Summary')">View Summary Details</button>
               <button class="btn btn-primary">Save as draft</button>
               <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"> Critical Observation</button>
               <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Submit</button>
@@ -711,7 +713,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
           </div>
 
         </div>
-        <div class="card">
+        <div class="card" ng-show="ViewSummary==true">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
@@ -747,7 +749,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
                             <th> Remarks</th>
                             <th>Follow</th>
                           </tr>
-                          </thead>
+                        </thead>
                         <tbody class="text-center">
                           <tr>
                             <th rowspan="5">
@@ -814,8 +816,8 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
                         </tbody>
                       </table>
                     </div>
-                    </div>
-    
+                  </div>
+
                 </div>
               </div>
               <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
@@ -921,18 +923,18 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
 
                     <p class="mb-1 mt-2"><b>Supplier category is "Yellow". Major improvement areas are as follows:-</b></p>
                     <p>
-                      - New product development planning needs improvement.  All relevant activities to be included in preparation of APQP plan.<br>
-                      - Review of APQP plan to be adequately recorded and Process FMEAs to be made in accordance with the defined standards.<br>
-                      - Initial flow control process implementation to be improved. Extension criteria of the activity to be clearly defined..<br>
-                      - 4M change management to be defined and implemented effectively on shop floor with proper recording and quality checks of parts..<br>
-                      - Tier - 2 supplier controls needs strengthening. Supplier rating and auditing system to be standardized..<br>
-                      - Skill Evaluation criteria to be defined for operators and adherence to be strengthened. Monitoring of annual training plan to be improved..<br>
-                      - Quality abnormality handling process needs effective implementation with focus on root cause analysis and standardization of countermeasure actions..<br>
-                      - Implementation of updated standards on shop floor and actual working as per defined PCS / WI to be ensured..<br>
-                      - Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
-                      - Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
+                      1- New product development planning needs improvement.  All relevant activities to be included in preparation of APQP plan.<br>
+                      2- Review of APQP plan to be adequately recorded and Process FMEAs to be made in accordance with the defined standards.<br>
+                      3- Initial flow control process implementation to be improved. Extension criteria of the activity to be clearly defined..<br>
+                      4- 4M change management to be defined and implemented effectively on shop floor with proper recording and quality checks of parts..<br>
+                      5- Tier - 2 supplier controls needs strengthening. Supplier rating and auditing system to be standardized..<br>
+                      6- Skill Evaluation criteria to be defined for operators and adherence to be strengthened. Monitoring of annual training plan to be improved..<br>
+                      7- Quality abnormality handling process needs effective implementation with focus on root cause analysis and standardization of countermeasure actions..<br>
+                      8- Implementation of updated standards on shop floor and actual working as per defined PCS / WI to be ensured..<br>
+                      9- Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
+                      10- Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
                     </p>
-                    <img src="dist/img/graph.png">
+                    <img src="dist/img/graph.png" class="w_100">
                   </div>
 
                 </div>
@@ -1104,12 +1106,19 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
                       </table>
                     </div>
                   </div>
-                  </div>
-                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="card-footer">
+
+            <!--<button type="button" class="btn btn-primary" ng-click="Submit()">Submit</button>-->
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ManageScreenView('Main')">Close</button>
           </div>
         </div>
+
+        <!--view summary sho div-->
+      </div>
       <!-- /.col -->
     </div>
     <div class="row">

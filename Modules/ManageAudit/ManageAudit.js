@@ -132,6 +132,7 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
       $scope.Auditarea2 = false;
       $scope.Auditarea3 = false;
       $scope.Auditarea4 = false;
+      $scope.ViewSummary = false;
     }
     else if (screenName == 'AuditArea1') {
       $scope.Auditarea = false;
@@ -139,6 +140,7 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
       $scope.Auditarea2 = false;
       $scope.Auditarea3 = false;
       $scope.Auditarea4 = false;
+      $scope.ViewSummary = false;
     }
     else if (screenName == 'AuditArea2') {
       $scope.Auditarea = false;
@@ -146,6 +148,15 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
       $scope.Auditarea2 = true;
       $scope.Auditarea3 = false;
       $scope.Auditarea4 = false;
+      $scope.ViewSummary = false;
+    }
+    else if (screenName == 'Summary') {
+      $scope.Auditarea = false;
+      $scope.Auditarea1 = false;
+      $scope.Auditarea2 = false;
+      $scope.Auditarea3 = false;
+      $scope.Auditarea4 = false;
+      $scope.ViewSummary = true;
     }
     else if (screenName == 'UploadMobile') {
       $scope.MainGrid = false;
@@ -153,6 +164,7 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
       $scope.EditForm = false;
       $scope.UploadMobileImage = true;
       $scope.UploadDesktopImage = false;
+      $scope.ViewSummary = false;
     }
     else if (screenName == 'UploadDesktop') {
       $scope.MainGrid = false;
@@ -160,7 +172,12 @@ app.controller('ManageAuditController', function ($scope, $http, $location, Mana
       $scope.EditForm = false;
       $scope.UploadMobileImage = false;
       $scope.UploadDesktopImage = true;
+      $scope.ViewSummary = false;
     }
+  };
+
+  $scope.showgrid = function () {
+    $scope.ViewSummary = true;
   };
 
   //$scope.InitializeObject = function () {
