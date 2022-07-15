@@ -53125,14 +53125,15 @@ tr:nth-child(even) {
   white-space: nowrap;
 }
 
-.max_hei_table {
+/*.max_hei_table {
   max-height: 450px;
-}
+}*/
 
 .sticky_header {
   position: sticky;
   top: -3px;
-  background: #fff;
+  font-size: 13px;
+  background: #93bcd68a;
 }
 .tbody_data{
  white-space: nowrap;

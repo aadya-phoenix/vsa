@@ -3,12 +3,74 @@
 
     <div class="row">
       <div class="col-12">
+        <div class="d-flex justify-content-center mb-2 flex_direction_media">
+          <a href="">
+            <div class="child_counter gradien_plan">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/user.png" class="counter_img">
+                <p class="color_white mb-0 fon_17">Total Auditor(MTD)</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">8</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+          <a href="">
+            <div class="child_counter gradien_approve">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/operation.png" class="counter_img">
+                <p class="color_white mb-0 fon_17">In Progress</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">6</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+          <a href="">
+            <div class="child_counter gradien_pending">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/complete.png" class="counter_img">
+                <p class="color_white mb-0 fon_17">Completed</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">6</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+          <a href="">
+            <div class="child_counter gradien_auditor_assign">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/pastdue.png" class="counter_img">
+                <p class="color_white mb-0 fon_17">Past Due</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">6</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+        </div>
+
         <div class="card" ng-show="Auditarea==true">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
+            
+              <div class="d-flex">
 
-
+                <input type="text" class="form-control mr-1" placeholder="search ...">
+                <button class="btn btn-success d-flex  align-items-center">
+                  <i class="fas fa-upload mr-1 upload_ico"></i>
+                  <span class="now_rap">Upload Plan</span>
+                </button>
+              </div>
               <!--<a href="" ng-click="AddAuditArea()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>-->
             </div>
           </div>
@@ -45,7 +107,7 @@
                     <td>Any Location</td>
                     <td>12-2-2022</td>
                     <td>12-4-2022</td>
-                    <td><p class="pend_coloe  backgr_green">Complete </p></td>
+                    <td><p class="pend_coloe backgr_blue">Complete </p></td>
                     <td>
                       <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
                       <a ng-click="ManageScreenView('AuditArea1')"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
@@ -87,6 +149,23 @@
                 </tbody>
               </table>
             </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justift_end">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
           <!-- /.card-body -->
         </div>
@@ -308,7 +387,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
               <div class="col-sm-4">
                 <div class="form-group">
                   <label class="form_label">Department Head </label>
-                  <select class="form-control" >
+                  <select class="form-control">
 
                     <option>Department Head 1</option>
                     <option>Department Head 2</option>
@@ -357,7 +436,7 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
               <div class="col-sm-12">
                 <table class="table table-bordered">
                   <thead>
-                    <tr>
+                    <tr class="sticky_header">
                       <th scope="col">S.No</th>
                       <th scope="col">Vendor Attendees</th>
                       <th scope="col">Action</th>
@@ -622,17 +701,415 @@ Hypothetical City, Kodaikanal" maxlength="200" disabled>
           </div>
           <div class="card-footer">
             <div class="flex_direction_media">
-            <button class="btn btn-primary">View Summary Details</button>
-            <button class="btn btn-primary">Save as draft</button>
-            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"> Critical Observation</button>
-            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Submit</button>
+              <button class="btn btn-primary">View Summary Details</button>
+              <button class="btn btn-primary">Save as draft</button>
+              <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"> Critical Observation</button>
+              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Submit</button>
 
-            <button ng-click="Back1()" class="btn btn-default">Back</button>
-              </div>
+              <button ng-click="Back1()" class="btn btn-default">Back</button>
+            </div>
           </div>
 
         </div>
-      </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+              <button class="btn btn-success">Download PDF</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="accordion" id="accordionExample">
+              <div class="d-flex justify-content-center align-content-center mb-2">
+                <button class="btn btn-primary mr-1" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Check Sheet</button>
+                <button class="btn btn-primary mr-1" id="heading2" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">Executive Summary</button>
+                <button class="btn btn-primary mr-1" id="heading3" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseOne">C'measure Report Format</button>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="header_card">
+                      <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                      <button class="btn btn-success">Download PDF</button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead class="bac_table_white">
+                          <tr class="now_rap text-center sticky_header">
+                            <th> Category</th>
+                            <th></th>
+                            <th> Audit Area</th>
+                            <th></th>
+                            <th> Concerning regulation</th>
+                            <th> Judgment</th>
+                            <th> Remarks</th>
+                            <th>Follow</th>
+                          </tr>
+                          </thead>
+                        <tbody class="text-center">
+                          <tr>
+                            <th rowspan="5">
+                              １.Production preparation
+                            </th>
+
+                          </tr>
+                          <tr>
+                            <th>
+                              1
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>
+                              2
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>
+                              3
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>
+                              4
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    </div>
+    
+                </div>
+              </div>
+              <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="header_card">
+                      <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                      <button class="btn btn-success">Download PDF</button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead class="bac_table_white">
+                          <tr class="text-center ">
+                            <th rowspan="2" class="ver_midd"> Vendor Quality System Audit Report</th>
+                            <th>Issue Deptt</th>
+                            <td>QA-VSA</td>
+                            <th>Prepared</th>
+                            <th>Verified</th>
+                            <th>Approved</th>
+
+                          </tr>
+
+                          <tr class="text-center">
+
+                            <th>Date of Issue
+
+                            <td>01-03-2015</td>
+                            <td>Ravi Mehta</td>
+                            <td>Paramjit Singh</td>
+                            <td>DVM San</td>
+
+                          </tr>
+
+                        </thead>
+                        <tbody class="text-center">
+                          <tr>
+                            <th colspan="2">Copy to</th>
+                            <th>Supplier name</th>
+                            <th>Supplier Attendant Name</th>
+                            <th colspan="2">Audit Date</th>
+
+                          </tr>
+                          <tr>
+                            <td>Vendor</td>
+
+                            <td>1</td>
+                            <td rowspan="2" class="ver_midd">Dummy Industries</td>
+
+                            <td>Mr. X - Director</td>
+                            <td colspan="2">28th - 29th Feb'15</td>
+
+                          </tr>
+                          <tr>
+                            <td>QAPQ</td>
+
+                            <td>1</td>
+
+                            <td rowspan="2">Mr. Y - Plant Head</td>
+
+
+                            <th colspan="2">Audit Person</th>
+
+                          </tr>
+                          <tr>
+                            <td>SC</td>
+                            <td>1</td>
+                            <th>Supplier code:DD01</th>
+
+                            <td colspan="2">Ravi Mehta</td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th>(Audit Score)</th>
+                          </tr>
+                          <tr>
+                            <td>Total</td>
+                            <td>3</td>
+                            <td>62</td>
+                          </tr>
+                        </tbody>
+                        <tbody class="text-center">
+                        </tbody>
+                      </table>
+
+
+                    </div>
+                    <table class="table table-borderd">
+                      <thead>
+                        <tr class="now_rap text-center sticky_header">
+                          <th rowspan="2" class="ver_midd"><b>Subject:</b> Vendor System Audit</th>
+                          <th>Part Number：</th>
+                          <td></td>
+                        </tr>
+                        <tr class="text-center">
+                          <th>Part Name:</th>
+                          <td>Alpha Beta Gamma</td>
+                        </tr>
+                      </thead>
+                    </table>
+
+                    <p class="mb-1 mt-2"><b>Supplier category is "Yellow". Major improvement areas are as follows:-</b></p>
+                    <p>
+                      - New product development planning needs improvement.  All relevant activities to be included in preparation of APQP plan.<br>
+                      - Review of APQP plan to be adequately recorded and Process FMEAs to be made in accordance with the defined standards.<br>
+                      - Initial flow control process implementation to be improved. Extension criteria of the activity to be clearly defined..<br>
+                      - 4M change management to be defined and implemented effectively on shop floor with proper recording and quality checks of parts..<br>
+                      - Tier - 2 supplier controls needs strengthening. Supplier rating and auditing system to be standardized..<br>
+                      - Skill Evaluation criteria to be defined for operators and adherence to be strengthened. Monitoring of annual training plan to be improved..<br>
+                      - Quality abnormality handling process needs effective implementation with focus on root cause analysis and standardization of countermeasure actions..<br>
+                      - Implementation of updated standards on shop floor and actual working as per defined PCS / WI to be ensured..<br>
+                      - Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
+                      - Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
+                    </p>
+                    <img src="dist/img/graph.png">
+                  </div>
+
+                </div>
+              </div>
+              <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="header_card">
+                      <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                      <button class="btn btn-success">Download PDF</button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <td rowspan="5">
+                                  <p class="rota_css">Planning</p>
+                                </td>
+                                <td>RECEIVING DATE</td>
+
+                                <td rowspan="5">
+                                  <p class="rota_css">Planning</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+
+                              </tr>
+                              <tr>
+                                <td rowspan="4"></td>
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td>Total</td>
+                                <td>0</td>
+
+
+                              </tr>
+                              <tr class="">
+                                <td rowspan="5">
+                                  <p class="rota_css">Verification</p>
+                                </td>
+                                <td>RECEIVING DATE</td>
+
+                                <td rowspan="5">
+                                  <p class="rota_css">Verification</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+
+                              </tr>
+                              <tr>
+                                <td rowspan="4"></td>
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td>Total</td>
+                                <td>0</td>
+
+
+                              </tr>
+
+                            </thead>
+                          </table>
+                        </div>
+
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <th>Audit Point</th>
+                                <td></td>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <td rowspan="2">VENDOR NAME</td>
+                                <td rowspan="2"></td>
+                                <td></td>
+                                <td>PLANNED</td>
+                                <td>CHECKED</td>
+                                <td>APPROVED</td>
+                              </tr>
+                              <tr class="">
+                                <td rowspan="2">VENDOR NAME</td>
+
+                                <td>PLANNED</td>
+                                <td>CHECKED</td>
+                                <td>APPROVED</td>
+                              </tr>
+
+                            </thead>
+                          </table>
+                        </div>
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <th>DEADLINE FOR SUBMISSION OF PLAN</th>
+                                <td></td>
+                                <th>DEADLINE FOR SUBMISSION OF ACTUAL RESULT</th>
+                                <td></td>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead class="bac_table_white">
+                          <tr class="">
+                            <th>ITEM NO.</th>
+                            <th>SUB ITEM NO.</th>
+                            <th>DESIRED IMPROVEMENT POINTS</th>
+                            <th>DETAIL OF IMPROVEMENT PLAN</th>
+                            <th>IN-CHARGE</th>
+                            <th>DATE</th>
+                            <th>RESULT OF VERIFICATION</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
       <!-- /.col -->
     </div>
     <div class="row">

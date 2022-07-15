@@ -13,37 +13,54 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="table-responsive">
-            <table id="example2" class="table table-bordered table-hover">
-              <thead>
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr class="sticky_header">
+
+                    <th>Employee Name </th>
+                    <th>Employee Code</th>
+                    <th>Employee Role</th>
+                    <th>Employee Creation Date</th>
+                    <th>Action</th>
+
+
+                  </tr>
+                </thead>
                 <tr>
+                  <td>Arvind</td>
+                  <td>12345</td>
+                  <td>Manager</td>
+                  <td>12-2-2022</td>
 
-                  <th>Employee Name </th>
-                  <th>Employee Code</th>
-                  <th>Employee Role</th>
-                  <th>Employee Creation Date</th>
-                  <th>Action</th>
-
-
-                </tr>
-              </thead>
-              <tr>
-                <td>Arvind</td>
-                <td>12345</td>
-                <td>Manager</td>
-                <td>12-2-2022</td>
-
-                <td>
-                  <div class="d-flex">
-                  <a ng-click="AddEmployee()"><img src="dist/img/icons/document-editor.png" class="w_25"></a>
-                  <a><img src="dist/img/icons/delete.png" class="w_25"></a>
+                  <td>
+                    <div class="d-flex">
+                      <a ng-click="AddEmployee()"><img src="dist/img/icons/document-editor.png" class="w_25"></a>
+                      <a><img src="dist/img/icons/delete.png" class="w_25"></a>
                     </div>
-                </td>
-              </tr>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
+                  </td>
+                </tr>
+                <tbody>
+                </tbody>
+              </table>
             </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justift_end">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->

@@ -15,7 +15,7 @@
             <div class="table-responsive">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
-                  <tr>
+                  <tr class="sticky_header">
 
                     <th>Regulation Name </th>
                     <th>Regulation Code</th>
@@ -39,7 +39,7 @@
                       <div class="d-flex">
                         <a ng-click="AddRegulation()"><img src="dist/img/icons/document-editor.png" class="w_25"></a>
                         <a><img src="dist/img/icons/delete.png" class="w_25"></a>
-                        </div>
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -53,12 +53,29 @@
                       <div class="d-flex">
                         <a ng-click="AddRegulation()"><img src="dist/img/icons/document-editor.png" class="w_25"></a>
                         <a><img src="dist/img/icons/delete.png" class="w_25"></a>
-                        </div>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              </div>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justift_end">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
             </div>
             <!-- /.card-body -->
           </div>

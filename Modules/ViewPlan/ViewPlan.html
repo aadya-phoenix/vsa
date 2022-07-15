@@ -2,14 +2,75 @@
 
 <section class="content pt-2">
   <div class="container-fluid">
+    <div class="d-flex justify-content-center mb-2 flex_direction_media">
+      <a href="">
+        <div class="child_counter gradien_plan">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="dist/img/icons/counter/shield.png" class="counter_img">
+            <p class="color_white mb-0 fon_17">Total Plan</p>
 
+          </div>
+          <div>
+            <p class="counter_digit">8</p>
+            <a href=""></a>
+          </div>
+        </div>
+      </a>
+      <a href="">
+        <div class="child_counter gradien_approve">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="dist/img/icons/counter/approve.png" class="counter_img">
+            <p class="color_white mb-0 fon_17">Approve Task</p>
+
+          </div>
+          <div>
+            <p class="counter_digit">6</p>
+            <a href=""></a>
+          </div>
+        </div>
+      </a>
+      <a href="">
+        <div class="child_counter gradien_pending">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="dist/img/icons/counter/pending.png" class="counter_img">
+            <p class="color_white mb-0 fon_17">Pending Plan</p>
+
+          </div>
+          <div>
+            <p class="counter_digit">6</p>
+            <a href=""></a>
+          </div>
+        </div>
+      </a>
+      <a href="">
+        <div class="child_counter gradien_auditor_assign">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="dist/img/icons/counter/auditor.png" class="counter_img">
+            <p class="color_white mb-0 fon_17">Auditor Assign</p>
+
+          </div>
+          <div>
+            <p class="counter_digit">6</p>
+            <a href=""></a>
+          </div>
+        </div>
+      </a>
+    </div>
+    
     <div class="row">
       <div class="col-12">
         <div class="card" ng-show="myVar==true">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">View Plan Details</h3>
-              <button class="btn btn-success"><img src="dist/img/icons/upload.png" class="w_17 mr-1"><span>Upload Plan</span></button>
+              <div class="d-flex">
+
+                <input type="text" class="form-control mr-1" placeholder="search ...">
+                <button class="btn btn-success d-flex  align-items-center">
+                  <i class="fas fa-upload mr-1 upload_ico"></i>
+                  <span class="now_rap">Upload Plan</span>
+                </button>
+              </div>
             </div>
           </div>
           <!-- /.card-header -->
@@ -27,7 +88,7 @@
                     <th>Any Other Location</th>
                     <th>Planned Start Date </th>
                     <th>Planned End Date</th>
-                  
+
 
                     <th>Status </th>
 
@@ -44,7 +105,7 @@
                     <td>Any Location</td>
                     <td>12-2-2022</td>
                     <td>12-4-2022</td>
-                    
+
                     <td><p class="pend_coloe  backgr_blue">Pending </p></td>
 
                     <td>
@@ -92,6 +153,23 @@
                 </tbody>
               </table>
             </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justift_end">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
           <!-- /.card-body -->
         </div>
@@ -217,9 +295,9 @@
                   <label class="form_label">Vendor Code <span class="start_css">*</span></label>
                   <input list="europe-countries" placeholder="Search Vendor Code" class="form-control" disabled>
                   <datalist id="europe-countries">
-                   
+
                     <option>VCNH1231</option>
-                   
+
                   </datalist>
 
                 </div>
@@ -232,9 +310,9 @@
                 <div class="form-group">
                   <label class="form_label">Vendor Name <span class="start_css">*</span></label>
                   <select class="form-control" disabled>
-                   
+
                     <option>Vendor1</option>
-                   
+
                   </select>
                 </div>
 
@@ -245,9 +323,9 @@
                 <div class="form-group">
                   <label class="form_label">Location <span class="start_css">*</span></label>
                   <select class="form-control" disabled>
-                  
+
                     <option>Location2</option>
-                   
+
                   </select>
 
                 </div>
@@ -302,7 +380,7 @@
 
                 <div class="form-group">
                   <label class="form_label">Type location</label>
-                  <input type="text" class="form-control"placeholder="XXXXX" disabled>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
                 </div>
 
 
@@ -334,7 +412,7 @@
                     Additional MSIL email
                   </label>
                   <input type="text" class="form-control" ng-model="driverObj.DriverName"
-                         placeholder="XXXXX" disabled >
+                         placeholder="XXXXX" disabled>
 
                 </div>
               </div>
@@ -355,9 +433,9 @@
 
                   </label>
 
-                 
+
                   <a href="http://localhost:64604/index.html#/ViewPlan/">http://localhost:64604/index.html#/ViewPlan/</a>
-                   
+
                 </div>
               </div>
             </div>
@@ -369,13 +447,13 @@
           <div class="card-footer">
 
             <!--<button type="button" class="btn btn-primary" ng-click="Submit()">Submit</button>-->
-            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="Close()" >Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="Close()">Close</button>
           </div>
         </div>
       </div>
       <!-- /.col -->
     </div>
-   
+
 
   </div>
 </section>
