@@ -5,9 +5,12 @@
 .fon_17{
     font-size:17px;
 }
+.fon_13 {
+  font-size: 13px;
+}
 .counter_digit {
-  font-size: 50px;
-  font-weight: 300;
+  font-size: 32px;
+  font-weight: 600;
   color: #fff;
   margin-bottom:0px;
   text-align:center;
@@ -87,7 +90,7 @@
   left: 26.5%;
 }
 .counter_img{
-    width:34px;
+    width:22px;
 }
 .counter_das_child {
   position: absolute;
