@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { dataConstants } from '../shared/constants/dataConstants';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  users = dataConstants.Users;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    
     this.router.navigate(['/dashboard']);
     /* if (this.loginForm.valid) {
       this.router.navigate(['/dashboard']);
