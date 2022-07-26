@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   users = dataConstants.Users;
+  roleObj:any;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -25,11 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    
-    this.router.navigate(['/dashboard']);
-    /* if (this.loginForm.valid) {
+     if (this.loginForm.valid) {
+      let loginDetails = this.loginForm.value;
+      localStorage.setItem('loginDetails', JSON.stringify(loginDetails));
+      this.users.find((role: any) => {
+        if (role.username == loginDetails.username) {
+          this.roleObj = role.roleId;
+        }
+      });
+      localStorage.setItem('role', JSON.stringify(this.roleObj));
       this.router.navigate(['/dashboard']);
-    } */
+    } 
   }
 
 }

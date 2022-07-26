@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ViewPlanComponent } from './view-plan.component';
+import { ManageAuditComponent } from './manage-audit.component';
 
 const routes: Routes = [
-  {path:'',component:ViewPlanComponent},
+  {path:'',component:ManageAuditComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ViewPlanRoutingModule { }
+export class ManageAuditRoutingModule { }

@@ -12,7 +12,8 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
     SidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    
   ],
   exports:[
     FormsModule,
