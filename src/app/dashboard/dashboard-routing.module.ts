@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
-  {path:'',component:DashboardComponent},
-  {path:'create',loadChildren:()=>import("./audit-plan/create-plan/create-plan.module").then(m=>m.CreatePlanModule)}, 
- 
-  ];
+  {
+    path: '', component: DashboardComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
