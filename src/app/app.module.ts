@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DefaultLayoutComponent } from './default-layout/default-layout.component';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
