@@ -1,6 +1,0 @@
-﻿CREATE TABLE [dbo].[Role]
-(
-	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [Name] NVARCHAR(50) NULL, 
-    [Active] BIT NULL
-)
