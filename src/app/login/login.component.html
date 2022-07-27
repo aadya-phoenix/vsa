@@ -1,0 +1,50 @@
+<!-- <div style="width: 100%; height: 100%; position: fixed; z-index: 11111; left: 0; top: 0;"
+us-spinner="{radius:30, width:8, length: 16}"
+ng-if="stopSpinner==true">
+
+<div style="clear: both;" class="clear"></div>
+</div> -->
+
+<div class="main">
+<div class="container-fluid">
+<div class="row hei_100">
+ <div class="col-sm-8">
+   <div class=" backr_img">
+     </div>
+ </div><!--colend-->
+ <div class="col-md-4" style="
+     background: #fff;background-size:cover;">
+   <div class="inner-form-new">
+     <header class="header_fixed">
+     <img src="../../assets/img/maruti-logo.png" class="w_300" /> 
+     </header>
+     <div class="title">
+       <h4 class="primary-title">Welcome to VSA</h4>
+       <form [formGroup]="loginForm">
+       <div class="input_data">
+         <div class="form-group">
+           <label for="exampleInputEmail1" class="text_black">User Name</label>
+           <input type="Text" class="form-control inputbox_css" placeholder="Enter User Name"
+           formControlName="username">
+         </div>
+         <div class="form-group">
+           <label for="exampleInputEmail1" class="text_black">Password</label>
+           <input type="password" class="form-control inputbox_css"  placeholder="********"
+           formControlName="password">
+         </div>
+       </div><!--inpiu-->
+       <div class="btn_div">
+
+         <a (click)="login()" class="btn btn-blue">Log In</a>
+       </div>
+      </form>
+     </div><!--title-->
+   </div><!--inner-->
+  
+
+ </div><!--colend-->
+   </div><!--row-->
+</div>
+
+
+</div><!---row-->

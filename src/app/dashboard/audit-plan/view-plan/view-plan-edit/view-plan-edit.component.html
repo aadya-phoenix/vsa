@@ -1,0 +1,263 @@
+<section class="content">
+    <div>
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">View Plan Details</h3>
+                    </div>
+                      <form [formGroup]="viewPlanForm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Vendor Code <span class="start_css">*</span></label>
+                                        <select class="form-control" formControlName="vendor_code">
+                                            <option>Select Vendor Code</option>
+                                            <option>Vendor1</option>
+                                            <option> Vendor2</option>
+                                            <option>Vendor3</option>
+                                            <option>Vendor4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Vendor Name <span class="start_css">*</span></label>
+                                        <select class="form-control" formControlName="vendor_name">
+                                            <option>Select Vendor Name</option>
+                                            <option>Vendor1</option>
+                                            <option> Vendor2</option>
+                                            <option>Vendor3</option>
+                                            <option>Vendor4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Location <span class="start_css">*</span></label>
+                                        <select class="form-control" formControlName="location">
+                                            <option>Select Vendor Code</option>
+                                            <option>Location1</option>
+                                            <option>Location2</option>
+                                            <option>Location3</option>
+                                            <option>Location4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Any Other location <span
+                                                class="start_css">*</span></label>
+                                        <input type="text" class="form-control"
+                                        formControlName="other_location" placeholder="Type Any Other location">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Any Other Code <span
+                                                class="start_css">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Type Any Other Code" formControlName="other_code">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type Code</label>
+                                        <input type="text" class="form-control" placeholder="Type Code" formControlName="code">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type Name</label>
+                                        <input type="text" class="form-control" placeholder="Type Name" formControlName="name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type location</label>
+                                        <input type="text" class="form-control" placeholder="Type location" formControlName="new_location">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Planned Start Date <span
+                                                class="start_css">*</span></label>
+                                        <input type="date" class="form-control inputbox_css" formControlName="start_date">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Planned End Date <span
+                                                class="start_css">*</span></label>
+                                        <input type="date" class="form-control inputbox_css"
+                                        formControlName="end_date">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">
+                                            Additional MSIL email
+                                        </label>
+                                        <input type="text" class="form-control" 
+                                            placeholder="Enter Auditee MSIL email"
+                                            formControlName="email">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">
+                                            Auditee email id <span class="start_css">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" 
+                                            placeholder="xyz@gmail.com" 
+                                            formControlName="auditee_email">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">
+                                            Upload File
+                                        </label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="exampleInputFile" formControlName="attachment">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose
+                                                    file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" (click)="submit()">Submit</button>
+                            <button class="btn btn-default" (click)="close()">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card" ng-show="myVar1==true">
+                    <div class="card-header">
+                        <div class="header_card">
+                            <h3 class="card-title">View Plan Details</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Vendor Code <span class="start_css">*</span></label>
+                                    <input list="europe-countries" placeholder="Search Vendor Code" class="form-control"
+                                        disabled>
+                                    <datalist id="europe-countries">
+                                        <option>VCNH1231</option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Vendor Name <span class="start_css">*</span></label>
+                                    <select class="form-control" disabled>
+                                        <option>Vendor1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Location <span class="start_css">*</span></label>
+                                    <select class="form-control" disabled>
+                                        <option>Location2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Any Other location <span
+                                            class="start_css">*</span></label>
+                                    <input type="text" class="form-control" placeholder="XXXXXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Any Other Code <span class="start_css">*</span></label>
+                                    <input type="text" class="form-control" placeholder="XXXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Type Code</label>
+                                    <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Type Name</label>
+                                    <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Type location</label>
+                                    <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Planned Start Date <span
+                                            class="start_css">*</span></label>
+                                    <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">Planned End Date <span class="start_css">*</span></label>
+                                    <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">
+                                        Additional MSIL email
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                                        placeholder="XXXXX" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">
+                                        Auditee email id <span class="start_css">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                                        placeholder="xyz@gmail.com" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form_label">
+                                        Upload File
+                                    </label>
+                                    <a
+                                        href="http://localhost:64604/index.html#/ViewPlan/">http://localhost:64604/index.html#/ViewPlan/</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            (click)="Close()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->

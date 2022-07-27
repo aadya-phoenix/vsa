@@ -1,71 +1,46 @@
-# System / Log files
-*.DS_Store
-*.log
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Archives
-*.zip
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
 
-# Sass Cache
-.sass-cache
+# dependencies
+/node_modules
 
-# Project files
-.idea
-nbproject
-nbproject/private
-.vscode/
-.vs/
+# profiling files
+chrome-profiler-events*.json
 
-# Node / Bower
-node_modules/
-bower_components/
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Plugins
-/plugins/**/*.html
-/plugins/**/*.less
-/plugins/**/*.md
-/plugins/**/*.scss
-/plugins/**/*.ts
-/plugins/**/bower.json
-/plugins/**/package.json
-/plugins/**/webpack.config.js
-/plugins/**/demo/
-/plugins/**/demos/
-/plugins/**/dev/
-/plugins/**/example/
-/plugins/**/examples/
-/plugins/**/less/
-/plugins/**/test/
-/plugins/**/tests/
-/plugins/daterangepicker/website/
-/plugins/daterangepicker/drp.png
-/plugins/daterangepicker/moment.min.js
-/plugins/daterangepicker/package.js
-/plugins/daterangepicker/website.css
-/plugins/daterangepicker/website.js
-/plugins/jquery-ui/AUTHORS.txt
-/plugins/jquery-ui/external/jquery/jquery.js
-/plugins/inputmask/bindings/
-/plugins/flot/plugins/jquery*.js
-!/plugins/flot/plugins/jquery.flot.*.js
-!/plugins/**/LICENSE.md
-!/plugins/**/LICENSE.txt
-!/plugins/**/license.md
-!/plugins/**/license.txt
-!/plugins/**/LICENSE
-!/plugins/**/license
-!/plugins/**/COPYING
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
 
-# Docs
-/docs/_site/
-/docs/vendor/
-/docs/.bundle/
-/docs_html/
-.jekyll-cache/
-.jekyll-metadata
-
-# ETC
-TODO
-test.html
-ad.js
-/.cache/
+# System Files
+.DS_Store
+Thumbs.db

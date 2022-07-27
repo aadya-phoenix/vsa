@@ -1,0 +1,66 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row"> 
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="header_card">
+                <h3 class="card-title">Vendor Master</h3>
+                <a (click)="addVendor()" class="btn btn-blue">   <img src="../../../../../assets/icons/owner copy.png" class="side_imgmaster mr-1">Add Vendor</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr class="sticky_header">
+                      <th>S.No</th>
+                      <th>Vendor Name </th>
+                      <th>Vendor Code</th>
+                      <th>Image</th>
+                      <th>Vendor Email</th>
+                      <th>Location </th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Arvind</td>
+                      <td>12345</td>
+                      <td></td>
+                      <td>arvin@gmial.com</td>
+                      <td>abchshhhss</td>
+                      <td>
+                        <div class="d-flex">
+                          <a (click)="addVendor()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justift_end">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
