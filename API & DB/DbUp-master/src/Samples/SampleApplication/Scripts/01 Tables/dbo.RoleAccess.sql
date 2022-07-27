@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Table]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [PageId] UNIQUEIDENTIFIER NULL, 
+    [RoleId] UNIQUEIDENTIFIER NULL, 
+    [Add] BIT NULL, 
+    [Edit] BIT NULL, 
+    [Delete] BIT NULL
+)

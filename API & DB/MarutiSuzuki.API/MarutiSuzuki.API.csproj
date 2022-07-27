@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AuditImage\**" />
+    <Content Remove="AuditImage\**" />
+    <EmbeddedResource Remove="AuditImage\**" />
+    <None Remove="AuditImage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Collection" Version="6.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.27" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="3.1.27" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="NETCore.MailKit" Version="2.0.1" />
+  
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Business\MarutiSuzuki.Audit.Business.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Common\MarutiSuzuki.Audit.Common.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Contract\MarutiSuzuki.Audit.Contract.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Data\MarutiSuzuki.Audit.Data.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Entity\MarutiSuzuki.Audit.Entity.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.ExceptionHandling\MarutiSuzuki.Audit.ExceptionHandling.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Model\MarutiSuzuki.Audit.Model.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Repository\MarutiSuzuki.Audit.Repository.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Wrapper\MarutiSuzuki.Audit.Wrapper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\AuditImages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="libwkhtmltox.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="libwkhtmltox.dylib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="libwkhtmltox.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

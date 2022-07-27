@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <RootNamespace>SampleApplication</RootNamespace>
+    <AssemblyName>SampleApplication</AssemblyName> 
+    <OutputType>Exe</OutputType>
+    <NoWarn>$(NoWarn);NETSDK1138</NoWarn> <!-- Purposefully leaving an old version of netcoreapp to ensure we have compatibility. This never gets published -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dbup-sqlserver\dbup-sqlserver.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\*.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="RunAlways\RunAlwaysScript0001 - CreateRole.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RunAlways\RunAlwaysScript0001 - CreateRole.sql" />
+    <EmbeddedResource Include="Scripts\01 Tables\Script0001 - Create tables.sql" />
+    <EmbeddedResource Include="Scripts\01 Tables\Script0006 - Transactions.sql" />
+    <EmbeddedResource Include="Scripts\06 Data\Script0002 - Default feed.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+</Project>

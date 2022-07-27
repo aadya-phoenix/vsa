@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Entity\MarutiSuzuki.Audit.Entity.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Model\MarutiSuzuki.Audit.Model.csproj" />
+  </ItemGroup>
+
+</Project>

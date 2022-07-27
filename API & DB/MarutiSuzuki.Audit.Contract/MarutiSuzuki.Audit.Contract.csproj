@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Entity\MarutiSuzuki.Audit.Entity.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Helper\MarutiSuzuki.Audit.Helper.csproj" />
+    <ProjectReference Include="..\MarutiSuzuki.Audit.Model\MarutiSuzuki.Audit.Model.csproj" />
+  </ItemGroup>
+
+</Project>

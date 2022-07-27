@@ -1,0 +1,58 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{FA530374-E28B-419B-BCA2-82A0512774F2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		..\appveyor.yml = ..\appveyor.yml
+		..\Breaking changes.md = ..\Breaking changes.md
+		..\build.cake = ..\build.cake
+		..\build.ps1 = ..\build.ps1
+		dbup.nuspec = dbup.nuspec
+		Directory.Build.props = Directory.Build.props
+		..\GitVersionConfig.yaml = ..\GitVersionConfig.yaml
+		..\global.json = ..\global.json
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbup-core", "dbup-core\dbup-core.csproj", "{C98DE7C6-AF51-4901-904D-75FCCB17EE31}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbup-sqlserver", "dbup-sqlserver\dbup-sqlserver.csproj", "{8190B40B-AC5B-414F-8A00-9B6A2C12B010}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SuzukiDB", "SuzukiDB", "{ACA9F575-BFC0-4FE1-BAB6-AE59FD8E5C26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuzukiDB", "Samples\SampleApplication\SuzukiDB.csproj", "{397F41BC-1076-4D1B-9620-C6051E8104F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C98DE7C6-AF51-4901-904D-75FCCB17EE31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98DE7C6-AF51-4901-904D-75FCCB17EE31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98DE7C6-AF51-4901-904D-75FCCB17EE31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98DE7C6-AF51-4901-904D-75FCCB17EE31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8190B40B-AC5B-414F-8A00-9B6A2C12B010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8190B40B-AC5B-414F-8A00-9B6A2C12B010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8190B40B-AC5B-414F-8A00-9B6A2C12B010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8190B40B-AC5B-414F-8A00-9B6A2C12B010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397F41BC-1076-4D1B-9620-C6051E8104F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397F41BC-1076-4D1B-9620-C6051E8104F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397F41BC-1076-4D1B-9620-C6051E8104F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397F41BC-1076-4D1B-9620-C6051E8104F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{397F41BC-1076-4D1B-9620-C6051E8104F4} = {ACA9F575-BFC0-4FE1-BAB6-AE59FD8E5C26}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6807402B-EE7A-4324-A615-28F3499B1E9F}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DbUp\DbUp.csproj
+	EndGlobalSection
+EndGlobal
