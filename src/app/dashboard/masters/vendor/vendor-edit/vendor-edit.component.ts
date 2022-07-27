@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VendorEditComponent implements OnInit {
 
+  influencerObj:any;
+  Vender = true;
+  VenderDetail = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  Save(){}
+  Close(){
+    this.Vender = true;
+    this.VenderDetail = false;
+  }
+  addVendor(){
+    this.Vender = false;
+    this.VenderDetail = true;
+  }
 }

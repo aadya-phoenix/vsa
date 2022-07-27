@@ -1,45 +1,30 @@
 <section class="content">
-    <div >
+    <div>
         <div class="row" >
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">
                         <h3 class="card-title">Create Plan Details</h3>
                     </div>
-
-
-                    <form>
+                      <form [formGroup]="createPlanForm">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code <span class="start_css">*</span></label>
-                                        <input list="europe-countries" placeholder="Search Vendor Code"
-                                            class="form-control">
-                                        <datalist id="europe-countries">
+                                        <select class="form-control" formControlName="vendor_code">
                                             <option>Select Vendor Code</option>
-                                            <option>VCNH1231</option>
-                                            <option>VCNH12312</option>
-                                            <option>Vendor5</option>
-                                            <option>VCNH12313</option>
-                                            <option>VCNH12314</option>
                                             <option>Vendor1</option>
-                                            <option>Vendor2</option>
+                                            <option> Vendor2</option>
                                             <option>Vendor3</option>
-                                        </datalist>
-
+                                            <option>Vendor4</option>
+                                        </select>
                                     </div>
-
                                 </div>
-
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Vendor Name <span class="start_css">*</span></label>
-                                        <select class="form-control">
+                                        <select class="form-control" formControlName="vendor_name">
                                             <option>Select Vendor Name</option>
                                             <option>Vendor1</option>
                                             <option> Vendor2</option>
@@ -47,112 +32,75 @@
                                             <option>Vendor4</option>
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Location <span class="start_css">*</span></label>
-                                        <select class="form-control">
+                                        <select class="form-control" formControlName="location">
                                             <option>Select Vendor Code</option>
                                             <option>Location1</option>
                                             <option>Location2</option>
                                             <option>Location3</option>
                                             <option>Location4</option>
                                         </select>
-
                                     </div>
-
-
                                 </div>
-                                <!--row-->
-
-
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Any Other location <span
                                                 class="start_css">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Type Any Other location">
-
+                                        <input type="text" class="form-control"
+                                        formControlName="other_location" placeholder="Type Any Other location">
                                     </div>
-
-
                                 </div>
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Any Other Code <span
                                                 class="start_css">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Type Any Other Code">
-
+                                        <input type="text" class="form-control" placeholder="Type Any Other Code" formControlName="other_code">
                                     </div>
-
-
                                 </div>
-
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Type Code</label>
-                                        <input type="text" class="form-control" placeholder="Type Code">
+                                        <input type="text" class="form-control" placeholder="Type Code" formControlName="code">
                                     </div>
-
                                 </div>
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Type Name</label>
-                                        <input type="text" class="form-control" placeholder="Type Name">
+                                        <input type="text" class="form-control" placeholder="Type Name" formControlName="name">
                                     </div>
-
                                 </div>
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Type location</label>
-                                        <input type="text" class="form-control" placeholder="Type location">
+                                        <input type="text" class="form-control" placeholder="Type location" formControlName="new_location">
                                     </div>
-
-
                                 </div>
-
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Planned Start Date <span
                                                 class="start_css">*</span></label>
-                                        <input type="date" class="form-control inputbox_css">
+                                        <input type="date" class="form-control inputbox_css" formControlName="start_date">
                                     </div>
-
                                 </div>
-
                                 <div class="col-sm-3">
-
-
                                     <div class="form-group">
                                         <label class="form_label">Planned End Date <span
                                                 class="start_css">*</span></label>
-                                        <input type="date" class="form-control inputbox_css">
+                                        <input type="date" class="form-control inputbox_css"
+                                        formControlName="end_date">
                                     </div>
-
                                 </div>
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">
                                             Additional MSIL email
                                         </label>
                                         <input type="text" class="form-control" 
-                                            placeholder="Enter Auditee MSIL email">
-
+                                            placeholder="Enter Auditee MSIL email"
+                                            formControlName="email">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -161,44 +109,33 @@
                                             Auditee email id <span class="start_css">*</span>
                                         </label>
                                         <input type="text" class="form-control" 
-                                            placeholder="xyz@gmail.com" disabled>
-
+                                            placeholder="xyz@gmail.com" 
+                                            formControlName="auditee_email">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">
                                             Upload File
-
                                         </label>
-
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                                <input type="file" class="custom-file-input" id="exampleInputFile" formControlName="attachment">
                                                 <label class="custom-file-label" for="exampleInputFile">Choose
                                                     file</label>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
-
-
                         <div class="card-footer">
-                            <button class="btn btn-primary">Submit</button>
-                            <button class="btn btn-default">Close</button>
+                            <button class="btn btn-primary" (click)="submit()">Submit</button>
+                            <button class="btn btn-default" (click)="close()">Close</button>
                         </div>
                     </form>
                 </div>
-
-
             </div>
         </div>
-
     </div>
 </section>

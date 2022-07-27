@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesListComponent implements OnInit {
 
+  Category = true;
+  CategoryDetails = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  Save(){
+    
+  };
+
+  AddCategory(){
+    this.Category = false;
+    this.CategoryDetails = true;
+  };
+  Close(){
+    this.Category = true;
+    this.CategoryDetails = false;
   }
 
 }
