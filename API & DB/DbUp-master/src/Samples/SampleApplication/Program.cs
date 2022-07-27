@@ -12,7 +12,7 @@ namespace SampleApplication
     {
         public static void Main(string[] args)
         {
-            var instanceName = @"DESKTOP-8JMJR2N\SQLEXPRESS";
+            var instanceName = @"DESKTOP-STQ50N4\SQLSERVER";
             // Uncomment the following line to run against sql local db instance.
             //string instanceName = @"(localdb)\Projects";
 
@@ -27,8 +27,8 @@ namespace SampleApplication
                 .SqlDatabase(connectionString, null) //null or "" for default schema for user
                 .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), script =>
                 {
-                    if (script.EndsWith("Script0006 - Transactions.sql"))
-                        return !args.Any(a => "--noError".Equals(a, StringComparison.InvariantCultureIgnoreCase));
+                    //if (script.EndsWith("Script0006 - Transactions.sql"))
+                    //    return !args.Any(a => "--noError".Equals(a, StringComparison.InvariantCultureIgnoreCase));
 
                     return script.StartsWith("SampleApplication.Scripts.");
                 })
