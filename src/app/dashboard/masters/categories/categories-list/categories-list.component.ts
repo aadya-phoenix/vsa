@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories-list',
@@ -7,24 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesListComponent implements OnInit {
 
-  Category = true;
-  CategoryDetails = false;
-  constructor() { }
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  Save(){
-    
-  };
-
-  AddCategory(){
-    this.Category = false;
-    this.CategoryDetails = true;
-  };
-  Close(){
-    this.Category = true;
-    this.CategoryDetails = false;
+  addCategory(){
+    this.router.navigateByUrl('dashboard/categories/edit');
   }
-
+ 
 }

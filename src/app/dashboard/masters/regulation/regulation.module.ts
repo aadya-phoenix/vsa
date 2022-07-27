@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RegulationRoutingModule } from './regulation-routing.module';
 import { RegulationListComponent } from './regulation-list/regulation-list.component';
 import { RegulationEditComponent } from './regulation-edit/regulation-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { RegulationEditComponent } from './regulation-edit/regulation-edit.compo
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RegulationRoutingModule
   ]
 })

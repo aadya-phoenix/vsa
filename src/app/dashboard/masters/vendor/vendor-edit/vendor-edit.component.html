@@ -6,38 +6,59 @@
                     <div class="card-header">
                         <h3 class="card-title">Vendor Details</h3>
                     </div>
-                    <form>
+                    <form [formGroup]="vendorForm">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Name</label>
-                                        <input type="text" class="form-control inputbox_css" [(ngModel)]="influencerObj"
-                                            placeholder="Enter Vendor Name" maxlength="200">
+                                        <input type="text" class="form-control inputbox_css" 
+                                            placeholder="Enter Vendor Name" formControlName="vendor_name"
+                                            maxlength="200">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code</label>
-                                        <input type="text" class="form-control inputbox_css" [(ngModel)]="influencerObj"
+                                        <input type="text" class="form-control inputbox_css" formControlName="vendor_code"
                                             placeholder="Enter Vendor Code" maxlength="200">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Email</label>
-                                        <input type="text" class="form-control inputbox_css" [(ngModel)]="influencerObj"
+                                        <input type="text" class="form-control inputbox_css" formControlName="vendor_email"
                                             placeholder="Enter Vendor Email" maxlength="200">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Creation Date</label>
-                                        <input type="date" class="form-control inputbox_css">
+                                        <input type="date" class="form-control inputbox_css" formControlName="vendor_creation_date">
                                     </div>
                                 </div>
-                                <div class="col-sm-8 mt-4">
-                                    <table id="example2" class="table table-bordered table-hover">
+                            </div>
+                            <div class="row"></div>
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered table-hover" formArrayName="vendor_location">
+                                        <thead>
+                                          <tr *ngFor="let obj of vendorLocationArray.controls;let i = index;" class="now_rap text-center sticky_header">
+                                            <td>{{i+1}}</td>
+                                            <td class="p-1" [formGroupName]="i">
+                                              <input type="text" class="form-control form_width" formControlName="location" />
+                                            </td>
+                                            <td class="btn-width p-1">
+                                              <button class="btn btn-success mr-2 py-1" (click)="addLocation('')">
+                                                +
+                                              </button>
+                                              <button class="btn btn-danger py-1" *ngIf="i > 0" (click)="removeLocation(i)">
+                                                <i class="fa fa-trash"></i>
+                                              </button>
+                                            </td>
+                                          </tr>
+                                        </thead>
+                                      </table>
+                                   <!--  <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr class="now_rap text-center sticky_header">
                                                 <th>S.No</th>
@@ -63,13 +84,13 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table> -->
                                 </div>
-                            </div>
+                            
                         </div>
                         <div class="card-footer">
-                            <button (click)="Save()" class="btn btn-primary">Save</button>
-                            <button (click)="Close()" class="btn btn-default">Close</button>
+                            <button (click)="save()" class="btn btn-primary">Save</button>
+                            <button (click)="close()" class="btn btn-default">Close</button>
                         </div>
                     </form>
                 </div>

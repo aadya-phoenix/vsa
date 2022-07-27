@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -6,22 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-  EmpMaster = true;
-  EmpMasterDetail = false;
-  constructor() { }
 
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  AddEmployee(){
-    this.EmpMaster = false;
-    this.EmpMasterDetail = true;
+  addEmployee(){
+  this.router.navigateByUrl("dashboard/employee/edit");
   }
-  Close () {
-    this.EmpMaster = true;
-    this.EmpMasterDetail = false;
-  }
-  Save(){}
 
 }

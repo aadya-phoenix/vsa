@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-list',
@@ -6,22 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vendor-list.component.css']
 })
 export class VendorListComponent implements OnInit {
-  influencerObj:any;
-  Vender = true;
-  VenderDetail = false;
-  constructor() { }
+ 
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  Save(){}
-  Close(){
-    this.Vender = true;
-    this.VenderDetail = false;
+  save(){}
+  close(){
+ 
   }
   addVendor(){
-    this.Vender = false;
-    this.VenderDetail = true;
+    this.router.navigateByUrl('dashboard/vendor/edit');
   }
 
 }

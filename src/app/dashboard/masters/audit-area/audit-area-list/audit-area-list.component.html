@@ -1,1 +1,87 @@
-<p>audit-area-list works!</p>
+<section class="content pt-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="header_card">
+                <h3 class="card-title">Audit Area Details</h3>
+                <a (click)="addAuditArea()" class="btn btn-blue"> <img src="../../../../../assets/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr class="sticky_header">
+                    <th>Audit Area Name </th>
+                    <th>Category </th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Regarding implementation rule of production preparation </td>
+                    <td>Production preparation</td>
+                    <td>
+                      <div class="d-flex">
+                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Regarding management /implementation by production preparation plan/report (master plan) </td>
+                    <td>Production preparation </td>
+                    <td>
+                      <div class="d-flex">
+                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Regarding implementation rule of production preparation </td>
+                    <td>Standards management</td>
+                    <td>
+                      <div class="d-flex">
+                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Regarding management /implementation by production preparation plan/report (master plan) </td>
+                    <td>Supplier control </td>
+                    <td>
+                      <div class="d-flex">
+                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+                </div><nav aria-label="Page navigation example">
+                <ul class="pagination justift_end">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

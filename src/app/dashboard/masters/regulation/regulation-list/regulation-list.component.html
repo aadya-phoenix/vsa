@@ -1,1 +1,78 @@
-<p>regulation-list works!</p>
+<section class="content pt-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="header_card">
+                <h3 class="card-title">Regulation Master</h3>
+                <a (click)="addRegulation()" class="btn btn-blue"> <img src="../../../../../assets/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr class="sticky_header">
+                      <th>Regulation Name </th>
+                      <th>Regulation Code</th>
+                      <th>Categories</th>
+                      <th>Audit Area</th>
+                      <th>Regulation Creation Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                      <td>12345</td>
+                      <td>Production preparation</td>
+                      <td>Regarding implementation rule of production preparation</td>
+                      <td>12-2-2022</td>
+                      <td>
+                        <div class="d-flex">
+                          <a (click)="addRegulation()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                      <td>12345</td>
+                      <td>Production preparation</td>
+                      <td>Regarding implementation rule of production preparation</td>
+                      <td>12-2-2022</td>
+                      <td>
+                        <div class="d-flex">
+                          <a (click)="addRegulation()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justift_end">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

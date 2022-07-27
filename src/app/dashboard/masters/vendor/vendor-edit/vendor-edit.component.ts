@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -7,21 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VendorEditComponent implements OnInit {
 
-  influencerObj:any;
-  Vender = true;
-  VenderDetail = false;
-  constructor() { }
+  vendorForm:FormGroup;
+  constructor(
+    private fb:FormBuilder,
+    private router:Router
+  ) {
+    this.vendorForm = this.fb.group({
+      vendor_name: new FormControl('',[Validators.required]),
+      vendor_code: new FormControl('',[Validators.required]),
+      vendor_email: new FormControl('',[Validators.required]),
+      vendor_creation_date: new FormControl('',[Validators.required]),
+      vendor_location: this.fb.array([]),
+    });
+   }
 
   ngOnInit(): void {
   }
 
-  Save(){}
-  Close(){
-    this.Vender = true;
-    this.VenderDetail = false;
+  get vendorLocationArray(): FormArray {
+    return this.vendorForm.get("vendor_location") as FormArray;
   }
-  addVendor(){
-    this.Vender = false;
-    this.VenderDetail = true;
+
+  addLocation(locationVal: string) {
+    return this.vendorLocationArray.push(this.addMoreLocation(locationVal));
   }
+
+  addMoreLocation(locationVal: string) {
+    return this.fb.group({
+      location: new FormControl(locationVal, [Validators.required]),
+    });
+  }
+
+  removeLocation(i: any) {
+    this.vendorLocationArray.removeAt(i);
+  }
+
+  save(){}
+  close(){
+   this.router.navigateByUrl('dashboard/vendor'); 
+  }
+  
 }
