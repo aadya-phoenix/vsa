@@ -72,6 +72,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./dashboard/masters/regulation/regulation.module').then((m) => m.RegulationModule),
       },
+      {
+        path: 'report',
+        loadChildren: () =>
+          import('./dashboard/reports/reports.module').then((m) => m.ReportsModule),
+      },
     ]
   },
 ];
