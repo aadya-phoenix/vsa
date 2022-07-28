@@ -24,5 +24,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Scripts\02 Functions\" />
+    <Folder Include="Scripts\03 Views\" />
+    <Folder Include="Scripts\04 Trigger\" />
   </ItemGroup>
 </Project>
