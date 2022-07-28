@@ -16,8 +16,9 @@ namespace SampleApplication
             // Uncomment the following line to run against sql local db instance.
             //string instanceName = @"(localdb)\Projects";
 
-            var connectionString =
-                $"Server={instanceName}; Database=SuzukiDB; Trusted_connection=true";
+            //var connectionString =
+            //    $"Server={instanceName}; Database=vms; Trusted_connection=true";
+            var connectionString = "Data Source=3.130.154.203;Initial Catalog=VMS; uid=sa;Pwd=master@5;Trusted_Connection=False; Integrated Security=False; MultipleActiveResultSets=True";
 
             DropDatabase.For.SqlDatabase(connectionString);
 
