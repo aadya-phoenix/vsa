@@ -1,0 +1,20 @@
+<section class="content p-3">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="card card-default">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <canvas baseChart [data]="vendorDistData" [type]="'bar'" [options]="vendorDistOptions">
+                            </canvas>
+                        </div>
+                        <div class="col-md-4">
+                            <canvas baseChart [data]="pieVSACateData" [type]="'pie'" [options]="pieVSACateOptions">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

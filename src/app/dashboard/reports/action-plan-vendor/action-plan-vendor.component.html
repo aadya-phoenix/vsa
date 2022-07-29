@@ -7,18 +7,19 @@
                         <div class="col-md-3 offset-md-9">
                             <div class="form-group">
                                 <label class="form_label">Filter</label>
-                                <select class="form-control" name="filter" [(ngModel)]="selectedFilter"
+                                <select class="form-control" name="actionfilter" [(ngModel)]="selectedActionFilter"
                                     (change)='onFilterSelected()'>
-                                    <option value="month">Month</option>
                                     <option value="year">Year</option>
-                                    <option value="location">Location</option>
+                                    <option value="month">Month</option>
+                                    <option value="auditor">Auditor</option>
+                                    <option value="date">Date</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-9">
-                            <canvas baseChart [data]="salesData" [type]="'bar'" [options]="chartOptions">
+                            <canvas baseChart [data]="actionPlanData" [type]="'bar'" [options]="actionPlanOptions">
                             </canvas>
                         </div>
                     </div>
