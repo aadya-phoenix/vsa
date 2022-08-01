@@ -10,6 +10,7 @@ import { ManageAuditQuestionCategoryComponent } from './manage-audit-question-ca
 import { ManageAuditQuestionDetailsComponent } from './manage-audit-question-details/manage-audit-question-details.component';
 
 
+
 @NgModule({
   declarations: [
     ManageAuditComponent,
@@ -21,6 +22,7 @@ import { ManageAuditQuestionDetailsComponent } from './manage-audit-question-det
   ],
   imports: [
     CommonModule,
+   // NgbModule,
     ManageAuditRoutingModule
   ]
 })

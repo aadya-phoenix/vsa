@@ -16,7 +16,8 @@ export class CategoriesEditComponent implements OnInit {
     private router:Router
   ) {
     this.categoryForm = this.fb.group({
-      name: new FormControl('', [Validators.required])
+      name: new FormControl('', [Validators.required]),
+      code: new FormControl('', [Validators.required])
     });
    }
 
