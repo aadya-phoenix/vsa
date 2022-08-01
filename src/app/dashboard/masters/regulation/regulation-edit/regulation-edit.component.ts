@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-regulation-edit',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegulationEditComponent implements OnInit {
 
-  constructor() { }
+  regulationForm: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private router:Router
+  ) { 
+    this.regulationForm = this.formBuilder.group({
+      regulation_name: new FormControl('', [Validators.required]),
+      regulation_code: new FormControl('', [Validators.required]),
+      categories: new FormControl('', [Validators.required]),
+      audit_area: new FormControl('', [Validators.required]),
+   });
+  }
 
   ngOnInit(): void {
+  }
+
+  save(){}
+
+  close(){
+    this.router.navigateByUrl('dashboard/regulation');
   }
 
 }

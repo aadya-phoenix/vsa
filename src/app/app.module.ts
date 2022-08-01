@@ -7,6 +7,7 @@ import { DefaultLayoutComponent } from './default-layout/default-layout.componen
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
 import { NgChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgChartsModule } from 'ng2-charts';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NgChartsModule
   ],
   providers: [],

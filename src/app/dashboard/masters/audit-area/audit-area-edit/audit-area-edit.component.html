@@ -1,1 +1,49 @@
-<p>audit-area-edit works!</p>
+<section class="content pt-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Audit Area Details</h3>
+                    </div>
+                    <form [formGroup]="auditAreaForm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form_label">Audit Area Name</label>
+                                        <input type="text" class="form-control inputbox_css"
+                                            placeholder="Enter Audit Area Name" formControlName="auditAreaName" maxlength="200">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form_label">Category</label>
+                                        <select class="form-control" 
+                                        formControlName="category">
+                                            <option>Select</option>
+                                            <option>Education and training</option>
+                                            <option>Supplier control</option>
+                                            <option>
+                                                Regulation for
+                                                initial production control
+                                            </option>
+                                            <option>
+                                                Regulation for
+                                                initial production control
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" (click)="save()" class="btn btn-primary">Save</button>
+                            <button type="button" (click)="close()" class="btn btn-default">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
