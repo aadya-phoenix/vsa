@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
    });
   }
   ngOnInit(): void {
+    localStorage.setItem('token', JSON.stringify({}));
+    localStorage.setItem('loginDetails', JSON.stringify({}));
+    localStorage.setItem('role', JSON.stringify({}));
   }
 
   login(){
@@ -34,11 +37,11 @@ export class LoginComponent implements OnInit {
      let loginDetails = this.loginForm.value;
      this.authService.login(loginDetails).subscribe((res:any)=>{
       if(res){
+      localStorage.setItem('token', JSON.stringify(res.token));
        const token = this.getDecodedAccessToken(res.token);
-       console.log("token",token);
+       console.log("logintoken",token);
        localStorage.setItem('loginDetails', JSON.stringify(token));
         this.roles.find((currentrole: any) => {
-          console.log("currentrole",currentrole);
           if (currentrole.RoleId == token.RoleId && currentrole.role == token.role){
            let roleObj = currentrole;
            localStorage.setItem('role', JSON.stringify(roleObj));
