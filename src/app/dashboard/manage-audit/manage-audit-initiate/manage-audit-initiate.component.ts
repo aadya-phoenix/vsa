@@ -16,7 +16,7 @@ export class ManageAuditInitiateComponent implements OnInit {
   }
 
   next(){
-    
+    this.router.navigateByUrl('dashboard/manage-audit/question');
   }
 
   back(){
