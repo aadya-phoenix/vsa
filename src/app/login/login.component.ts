@@ -35,14 +35,13 @@ export class LoginComponent implements OnInit {
      this.authService.login(loginDetails).subscribe((res:any)=>{
       if(res){
        const token = this.getDecodedAccessToken(res.token);
+       console.log("token",token);
        localStorage.setItem('loginDetails', JSON.stringify(token));
         this.roles.find((currentrole: any) => {
-          if (currentrole.RoleId === token.RoleId && currentrole.role == token.role){
+          console.log("currentrole",currentrole);
+          if (currentrole.RoleId == token.RoleId && currentrole.role == token.role){
            let roleObj = currentrole;
            localStorage.setItem('role', JSON.stringify(roleObj));
-          }
-          else{
-            localStorage.setItem('role',''); 
           }
         });
         this.router.navigateByUrl('dashboard');

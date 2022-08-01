@@ -19,6 +19,7 @@ export class SidebarComponent implements OnInit {
     private authService: AuthenticationService,
   ) { 
     this.getUserrole = this.authService.getRolefromlocal();
+    console.log("userrole",this.getUserrole,this.isSuperAdmin);
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
     this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
   }
