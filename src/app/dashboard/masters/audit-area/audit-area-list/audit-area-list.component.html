@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Audit Area Details</h3>
-                <a (click)="addAuditArea()" class="btn btn-blue"> <img src="../../../../../assets/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
+                <a *ngIf="isSuperAdmin" (click)="addAuditArea()" class="btn btn-blue"> <img src="../../../../../assets/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
               </div>
             </div>
             <div class="card-body">
@@ -16,14 +16,14 @@
                   <tr class="sticky_header">
                     <th>Audit Area Name </th>
                     <th>Category </th>
-                    <th>Action</th>
+                    <th *ngIf="isSuperAdmin">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Regarding implementation rule of production preparation </td>
                     <td>Production preparation</td>
-                    <td>
+                    <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
                         <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                         <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
@@ -33,7 +33,7 @@
                   <tr>
                     <td>Regarding management /implementation by production preparation plan/report (master plan) </td>
                     <td>Production preparation </td>
-                    <td>
+                    <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
                         <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                         <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
@@ -43,7 +43,7 @@
                   <tr>
                     <td>Regarding implementation rule of production preparation </td>
                     <td>Standards management</td>
-                    <td>
+                    <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
                         <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                         <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
@@ -53,7 +53,7 @@
                   <tr>
                     <td>Regarding management /implementation by production preparation plan/report (master plan) </td>
                     <td>Supplier control </td>
-                    <td>
+                    <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
                         <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                         <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>

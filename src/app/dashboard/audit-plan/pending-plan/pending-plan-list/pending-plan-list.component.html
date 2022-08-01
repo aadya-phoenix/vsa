@@ -28,7 +28,7 @@
                       <th>Planned Start Date </th>
                       <th>Planned End Date</th> 
                       <th>Status </th>
-                      <th>Action </th>
+                      <th *ngIf="isVendor">Action </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -43,7 +43,7 @@
                       <td>
                         <p class="pend_coloe backgr_blue">Pending </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">  
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>
@@ -59,7 +59,7 @@
                       <td>
                         <p class="pend_coloe backgr_blue">Pending </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>
@@ -75,7 +75,7 @@
                       <td>
                         <p class="pend_coloe backgr_blue">Pending </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>
@@ -91,7 +91,7 @@
                       <td>
                         <p class="pend_coloe backgr_blue">Pending </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>

@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Categories Details</h3>
-                <a (click)="addCategory()" class="btn btn-blue"> <img src="../../../../../assets/icons/admin.png" class="side_imgmaster mr-1">Add Categories</a>
+                <a *ngIf="isSuperAdmin" (click)="addCategory()" class="btn btn-blue"> <img src="../../../../../assets/icons/admin.png" class="side_imgmaster mr-1">Add Categories</a>
               </div>
             </div>
             <div class="card-body">
@@ -17,7 +17,7 @@
                       <th>S.No</th>
                       <th>Category Code </th>
                       <th>Category Name</th>
-                      <th>Action</th>
+                      <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -28,7 +28,7 @@
                         Regulation for
                         initial production control
                       </td>
-                      <td>
+                      <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
@@ -39,7 +39,7 @@
                       <td>1</td>
                       <td>CH1234</td>
                       <td>Production preparation</td>
-                      <td>
+                      <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
@@ -50,7 +50,7 @@
                       <td>1</td>
                       <td>CH1234</td>
                       <td>Changing management</td>
-                      <td>
+                      <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>

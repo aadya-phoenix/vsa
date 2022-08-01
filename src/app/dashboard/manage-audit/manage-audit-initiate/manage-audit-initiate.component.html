@@ -1,0 +1,103 @@
+<section class="content pt-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header_card d-flex justify-content-between">
+                            <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form_label">Vendor Name</label>
+                                    <input type="text" class="form-control inputbox_css" placeholder="Dummy Industries,
+                                    Hypothetical City, Kodaikanal" maxlength="200" >
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form_label">Start Date</label>
+                                    <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
+                                        >
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form_label">End Date</label>
+                                    <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
+                                        >
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form_label">Department Head </label>
+                                    <select class="form-control">
+                                        <option>Department Head 1</option>
+                                        <option>Department Head 2</option>
+                                        <option>Department Head 3</option>
+                                        <option>Department Head 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form_label">Part Name</label>
+                                    <input type="text" class="form-control inputbox_css"
+                                        placeholder="Enter Part Name"
+                                        maxlength="200">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="form_label">Date</label>
+                                    <input type="date" class="form-control inputbox_css">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="mb-0">Auditor</label>
+                                    <p class="form_label">Auditor1, Auditor2, Auditor3</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="sticky_header">
+                                            <th scope="col">S.No</th>
+                                            <th scope="col">Vendor Attendees</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                <input type="text" class="form-control inputbox_css"
+                                                    placeholder="Enter Vendor Attendees" maxlength="200">
+                                            </td>
+                                            <td>
+                                                <div class="d-flex add_minus_mar">
+                                                    <button class="btn btn-primary">+</button>
+                                                    <button class="btn btn-danger">-</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button (click)="next()" class="btn btn-primary">Next</button>
+                        <button (click)="back()" class="btn btn-default">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

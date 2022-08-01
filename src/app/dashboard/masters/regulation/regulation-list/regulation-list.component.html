@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Regulation Master</h3>
-                <a (click)="addRegulation()" class="btn btn-blue"> <img src="../../../../../assets/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
+                <a *ngIf="isSuperAdmin" (click)="addRegulation()" class="btn btn-blue"> <img src="../../../../../assets/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
               </div>
             </div>
             <div class="card-body">
@@ -19,7 +19,7 @@
                       <th>Categories</th>
                       <th>Audit Area</th>
                       <th>Regulation Creation Date</th>
-                      <th>Action</th>
+                      <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -29,7 +29,7 @@
                       <td>Production preparation</td>
                       <td>Regarding implementation rule of production preparation</td>
                       <td>12-2-2022</td>
-                      <td>
+                      <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addRegulation()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
@@ -42,7 +42,7 @@
                       <td>Production preparation</td>
                       <td>Regarding implementation rule of production preparation</td>
                       <td>12-2-2022</td>
-                      <td>
+                      <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addRegulation()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>

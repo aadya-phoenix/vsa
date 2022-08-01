@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Employee Master</h3>
-                <a (click)="addEmployee()" class="btn btn-blue"> 
+                <a *ngIf="isSuperAdmin" (click)="addEmployee()" class="btn btn-blue"> 
                     <img src="../../../../../assets/icons/group.png" class="side_imgmaster mr-1">Add Employee</a>
               </div>
             </div>
@@ -19,7 +19,7 @@
                       <th>Employee Code</th>
                       <th>Employee Role</th>
                       <th>Employee Creation Date</th>
-                      <th>Action</th>
+                      <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
                   <tr>
@@ -27,9 +27,9 @@
                     <td>12345</td>
                     <td>Manager</td>
                     <td>12-2-2022</td>
-                    <td>
+                    <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
-                        <a (click)="addEmployee()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                        <a  (click)="addEmployee()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                         <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                       </div>
                     </td>
