@@ -15,10 +15,10 @@ export class VendorEditComponent implements OnInit {
     private router:Router
   ) {
     this.vendorForm = this.fb.group({
-      vendor_name: new FormControl('',[Validators.required]),
-      vendor_code: new FormControl('',[Validators.required]),
-      vendor_email: new FormControl('',[Validators.required]),
-      vendor_creation_date: new FormControl('',[Validators.required]),
+      name: new FormControl('',[Validators.required]),
+      code: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required]),
+      createdDate: new FormControl('',[Validators.required]),
       vendor_location: this.fb.array([]),
     });
    }

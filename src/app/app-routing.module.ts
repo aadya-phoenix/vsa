@@ -5,7 +5,7 @@ import { DefaultLayoutComponent } from './default-layout/default-layout.componen
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
