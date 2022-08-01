@@ -53410,8 +53410,10 @@
     width: 100% !important;
   }
   .pend_coloe {
-    padding: 4px 14px; color: #fff;
+    padding: 4px 14px;
+     color: #fff;
     margin-bottom: 10px;
+    cursor: pointer;
   }
   .backgr_green {
     background: green;
@@ -53451,6 +53453,7 @@
     font-size: 18px;
     color: red;
   }
+
     /*# sourceMappingURL=adminlte.css.map */
 
 

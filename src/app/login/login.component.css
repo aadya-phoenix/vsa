@@ -1,10 +1,9 @@
 body, html {
-    height: 100%;
+    height: 100%  !important;
   }
    .backr_img {
     background-image: url('../../assets/img/login_mage.png');
- 
-    height: 100%;
+  height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -28,7 +27,7 @@ body, html {
   
   }
   .main {
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: space-around;
   }
