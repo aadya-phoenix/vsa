@@ -4,23 +4,24 @@
             <div class="card card-default">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3 offset-md-9">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form_label">Filter</label>
-                                <select class="form-control" name="actionfilter" [(ngModel)]="selectedActionFilter"
+                                <select class="form-control" name="filter" [(ngModel)]="selectedFilter"
                                     (change)='onFilterSelected()'>
-                                    <option value="year">Year</option>
-                                    <option value="month">Month</option>
-                                    <option value="auditor">Auditor</option>
-                                    <option value="date">Date</option>
-                                    <option value="code">Vendor Code</option>
+                                    <option value="vendor">Vendor Name/Code</option>
+                                    <option value="commodity">Commodity</option>
+                                    <option value="category">Category – R/Y/G</option>
+                                    <option value="defects">No. of Defects</option>
+                                    <option value="location">Location</option>
+                                    <option value="score">Total Score</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <canvas baseChart [data]="actionPlanData" height="100%" [type]="'bar'" [options]="actionPlanOptions">
+                            <canvas baseChart [data]="salesData" height="100%" [type]="'bar'" [options]="chartOptions">
                             </canvas>
                         </div>
                     </div>

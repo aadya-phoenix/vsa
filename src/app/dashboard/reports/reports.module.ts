@@ -12,6 +12,9 @@ import { VsaTrendComponent } from './vsa-trend/vsa-trend.component';
 import { ActionPlanVendorComponent } from './action-plan-vendor/action-plan-vendor.component';
 import { ActionPlanObservationComponent } from './action-plan-observation/action-plan-observation.component';
 import { AverageDefectComponent } from './average-defect/average-defect.component';
+import { PendingStatusComponent } from './pending-status/pending-status.component';
+import { AverageDefectSupplierComponent } from './average-defect-supplier/average-defect-supplier.component';
+import { VendorSummaryComponent } from './vendor-summary/vendor-summary.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { AverageDefectComponent } from './average-defect/average-defect.componen
     VsaTrendComponent,
     ActionPlanVendorComponent,
     ActionPlanObservationComponent,
-    AverageDefectComponent
+    AverageDefectComponent,
+    PendingStatusComponent,
+    AverageDefectSupplierComponent,
+    VendorSummaryComponent
   ],
   imports: [
     CommonModule,

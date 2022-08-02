@@ -1,0 +1,83 @@
+<section class="content p-3">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="card card-default">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form_label">Filter</label>
+                                <select class="form-control" name="filter" [(ngModel)]="selectedFilter"
+                                    (change)='onFilterSelected()'>
+                                    <option value="month">VSA done in Fiscal Year</option>
+                                    <option value="year">Year</option>
+                                    <option value="location">Location</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form_label">Filter</label>
+                                <select class="form-control" name="filter" [(ngModel)]="selectedFilter"
+                                    (change)='onFilterSelected()'>
+                                    <option value="month">Defect Reported In</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <canvas baseChart [data]="salesData" height="100%" [type]="'bar'" [options]="chartOptions">
+                            </canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive max_hei_table">
+                                <table id="example2" class="table table-bordered table-hover">
+
+                                    <thead>
+                                        <tr class="now_rap text-center sticky_header">
+                                            <th>Supplier Declared</th>
+                                            <th>No. of Supplier</th>
+                                            <th>No. of Defects(20-21)</th>
+                                            <th>Avg. Defect / Supplier / Month</th>
+                                            <th>No. of Defects 21-22 (Till Dec)</th>
+                                            <th>Avg. Defect / Supplier / Month</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="tbody_data">
+                                            <td>VSA Green</td>
+                                            <td>161</td>
+                                            <td>972</td>
+                                            <td>0.55</td>
+                                            <td>519</td>
+                                            <td>0.36</td>
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>VSA Yellow</td>
+                                            <td>104</td>
+                                            <td>955</td>
+                                            <td>0.83</td>
+                                            <td>509</td>
+                                            <td>0.54</td>
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>VSA Red</td>
+                                            <td>5</td>
+                                            <td>4</td>
+                                            <td>0.98</td>
+                                            <td>24</td>
+                                            <td>0.53</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

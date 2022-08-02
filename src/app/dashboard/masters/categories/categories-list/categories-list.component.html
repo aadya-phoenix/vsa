@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Categories Details</h3>
-                <a *ngIf="isSuperAdmin" (click)="addCategory()" class="btn btn-blue"> <img src="../../../../../assets/icons/admin.png" class="side_imgmaster mr-1">Add Categories</a>
+                <a *ngIf="isSuperAdmin" (click)="addCategory()" class="btn btn-primary"> <img src="../../../../../assets/icons/admin.png" class="side_imgmaster mr-1">Add Categories</a>
               </div>
             </div>
             <div class="card-body">
@@ -15,8 +15,9 @@
                   <thead>
                     <tr class="sticky_header">
                       <th>S.No</th>
-                      <th>Category Code </th>
+                      <!-- <th>Category Code </th> -->
                       <th>Category Name</th>
+                      <th>Status</th>
                       <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
@@ -28,6 +29,7 @@
                         Regulation for
                         initial production control
                       </td>
+                      <td><button class="btn btn-success">Active</button></td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
@@ -37,8 +39,9 @@
                     </tr>
                     <tr>
                       <td>1</td>
-                      <td>CH1234</td>
+                      <!-- <td>CH1234</td> -->
                       <td>Production preparation</td>
+                      <td><button class="btn btn-danger">Inactive</button></td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
@@ -48,8 +51,9 @@
                     </tr>
                     <tr>
                       <td>1</td>
-                      <td>CH1234</td>
+                     
                       <td>Changing management</td>
+                      <td><button class="btn btn-success">Active</button></td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
