@@ -1,26 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartData, ChartOptions } from 'chart.js';
+import { Chart, ChartData, ChartOptions } from 'chart.js';
 
 @Component({
-  selector: 'app-action-plan-observation',
-  templateUrl: './action-plan-observation.component.html',
-  styleUrls: ['./action-plan-observation.component.css']
+  selector: 'app-pending-status',
+  templateUrl: './pending-status.component.html',
+  styleUrls: ['./pending-status.component.css']
 })
-export class ActionPlanObservationComponent implements OnInit {
-
+export class PendingStatusComponent implements OnInit {
   selectedActionFilter = 'year';
+  
   actionPlanData: ChartData<'bar'> = {
     labels: [
-      'Total Observation Raised',
-      'Actction Plan Submitted',
-      'Action Plan Pending',
-      'Observation Closed',
-      'Observation closure Pending',
-      'Observation Exceeded Target Date',
-      'Observation Verified by Auditor',
-      'Observation verification pending'],
+      'Report Pending',
+      'Review Pending',
+      'Report Released'],
     datasets: [
-      { label: 'No of Observation', data: [100,90,10,70,20,10,60,10], backgroundColor:['rgb(127 127 127)','rgb(0 32 96)','rgb(0 32 96)','rgb(46 117 182)','rgb(46 117 182)', 'rgb(47 85 151)','rgb(47 85 151)','rgb(0 32 96)'], hoverBackgroundColor:['rgb(127 127 127)','rgb(0 32 96)','rgb(0 32 96)','rgb(46 117 182)','rgb(46 117 182)', 'rgb(47 85 151)','rgb(47 85 151)','rgb(0 32 96)'] },
+      { label: 'Request', data: [30,40,60], backgroundColor:['rgb(46 117 182)','rgb(0 32 96)','rgb(255 102 0)'], hoverBackgroundColor:['rgb(46 117 182)','rgb(0 32 96)','rgb(255 102 0)'] },
     ],
   };
 
@@ -29,9 +24,29 @@ export class ActionPlanObservationComponent implements OnInit {
     plugins: {
       title: {
         display: true,
-        text: 'Action Plan / Evidence PPT Pending/ Verification Pending',
+        text: 'Report Pending Status',
       },
+      tooltip:{
+        enabled: true
+      }
     },
+    animation:{
+      duration: 2000
+    },
+    scales: {
+      xAxes: {
+        stacked: true
+      },
+      yAxes: {
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback(this, tickValue) {
+            return tickValue
+          },
+        },
+        stacked: true
+      }
+    }
   };
   constructor() { }
 
