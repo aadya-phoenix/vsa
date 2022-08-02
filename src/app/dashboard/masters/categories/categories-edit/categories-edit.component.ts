@@ -22,12 +22,10 @@ export class CategoriesEditComponent implements OnInit {
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
-      console.log("id",Id);
       this.category_id = Id ? Id : 0;
     });
     this.categoryForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
-      code: new FormControl('', [Validators.required])
     });
    }
 
@@ -41,15 +39,9 @@ export class CategoriesEditComponent implements OnInit {
         if(res){
          this.categoryDetails = res;
          this.categoryForm.controls['name'].setValue(this.categoryDetails.name);
-         this.categoryForm.controls['code'].setValue(this.categoryDetails.code);
         }
        },
       error: (e) => console.error(e), 
-     /*  (res:any)=>{
-      if(res){
-        this.CategoryObj = res;
-        console.log("Category",res);
-      } */
      });
   }
   

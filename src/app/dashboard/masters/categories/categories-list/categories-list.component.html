@@ -15,49 +15,21 @@
                   <thead>
                     <tr class="sticky_header">
                       <th>S.No</th>
-                      <!-- <th>Category Code </th> -->
                       <th>Category Name</th>
                       <th>Status</th>
                       <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of categoryObj; let i = index;">
+                    <tr *ngFor="let item of categoryObj; let i = index;" class="text-center">
                       <td>{{i + 1}}</td>
-                      <td>CH1235</td>
-                      <td>
-                        Regulation for
-                        initial production control
-                      </td>
-                      <td><button class="btn btn-success">Active</button></td>
+                      <td>{{item.name}}</td>
+                      <td >
+                        <button [ngClass]="item.active  ? 'btn btn-success' : 'btn btn-danger'">{{item.active ? 'Active' : 'Inactive'}}</button> </td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
-                          <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <!-- <td>CH1234</td> -->
-                      <td>Production preparation</td>
-                      <td><button class="btn btn-danger">Inactive</button></td>
-                      <td *ngIf="isSuperAdmin">
-                        <div class="d-flex">
-                          <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                     
-                      <td>Changing management</td>
-                      <td><button class="btn btn-success">Active</button></td>
-                      <td *ngIf="isSuperAdmin">
-                        <div class="d-flex">
-                          <a (click)="addCategory()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                          <a (click)="update(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                          <a (click)="delete(item.id)"><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                         </div>
                       </td>
                     </tr>
