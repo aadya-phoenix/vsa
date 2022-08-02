@@ -27,10 +27,11 @@ export class CategoriesListComponent implements OnInit {
     this.getUserrole = this.authService.getRolefromlocal();
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
     this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
+    this.getCategoryList();
   }
 
   ngOnInit(): void {
-    this.getCategoryList();
+    
   }
 
   
@@ -69,7 +70,11 @@ export class CategoriesListComponent implements OnInit {
         })
        }
      }) 
- }
+  }
+
+  update(item:any){
+    this.router.navigateByUrl(`dashboard/category/edit/${item.id}`);  
+  }
 
   addCategory(){
     this.router.navigateByUrl('dashboard/category/add');
