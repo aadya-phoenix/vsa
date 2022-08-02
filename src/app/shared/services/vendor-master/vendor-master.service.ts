@@ -26,8 +26,15 @@ export class VendorMasterService {
       .pipe(catchError(this.commmonService.Errorhandling));
   }
    
-  postVendor(data:any){
+  addVendor(data:any){
     const url = `${this.basePath}api/Vendor`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getVendorDetails(id:any){
+    const url = `${this.basePath}api/Vendor/${id}`;
+    return this.http
+      .get(url, this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));  
   }
 }

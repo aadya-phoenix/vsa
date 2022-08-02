@@ -24,16 +24,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Arvind</td>
-                      <td>12345</td>
+                    <tr *ngFor="let item of vendorObj; let i = index;">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.code}}</td>
                       <td></td>
-                      <td>arvin@gmial.com</td>
-                      <td>abchshhhss</td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.location}}</td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
-                          <a (click)="addVendor()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                          <a (click)="editVendor(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                         </div>
                       </td>

@@ -12,6 +12,7 @@ import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendo
 export class VendorListComponent implements OnInit {
  
   getUserrole: any;
+  vendorObj:any;
   isSuperAdmin = false;
   isPlanner = false;
   SuperAdmin = dataConstants.SuperAdmin;
@@ -31,21 +32,32 @@ export class VendorListComponent implements OnInit {
     this.getVendor();
   }
 
-  save(){}
   close(){
  
   }
   addVendor(){
-    this.router.navigateByUrl('dashboard/vendor/edit');
+    this.router.navigateByUrl('dashboard/vendor/add');
+  }
+
+  editVendor(item:any){
+    this.router.navigateByUrl(`dashboard/vendor/edit/${item.id}`);  
   }
 
   getVendor(){
-    this.vendorService.getVendor().subscribe((res:any)=>{
+    this.vendorService.getVendor().subscribe({
+      next: (res) => {
+        if(res){
+         this.vendorObj = res;
+        }
+       },
+      error: (e) => console.error(e), 
+     /*  (res:any)=>{
       if(res){
+        this.vendorObj = res;
         console.log("vendor",res);
-        //this.router.navigateByUrl('dashboard');
-      }
+      } */
      });
   }
+
 
 }
