@@ -10,10 +10,13 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 export class SidebarComponent implements OnInit {
 
   getUserrole: any;
-  isSuperAdmin ;
-  isPlanner ;
+  isSuperAdmin =false;
+  isPlanner =false;
+  isAuditor= false;
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.Planner;
+  Auditor = dataConstants.Auditor;
+
 
   constructor(
     private authService: AuthenticationService,
@@ -21,7 +24,7 @@ export class SidebarComponent implements OnInit {
     this.getUserrole = this.authService.getRolefromlocal();
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
     this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
-    console.log("planner",this.isPlanner,this.getUserrole, this.Planner,this.isSuperAdmin)
+    this.isAuditor = this.getUserrole.RoleId === this.Auditor.RoleId && this.getUserrole.role === this.Auditor.role; 
   }
 
   ngOnInit(): void {

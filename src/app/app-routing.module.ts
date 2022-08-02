@@ -58,7 +58,7 @@ const routes: Routes = [
           import('./dashboard/masters/employee/employee.module').then((m) => m.EmployeeModule),
       },
       {
-        path: 'dashboard/categories',
+        path: 'dashboard/category',
         loadChildren: () =>
           import('./dashboard/masters/categories/categories.module').then((m) => m.CategoriesModule),
       },

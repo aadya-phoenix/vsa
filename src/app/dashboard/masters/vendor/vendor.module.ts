@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
@@ -12,6 +12,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
     VendorListComponent,
     VendorEditComponent
   ],
+  providers:[DatePipe],
   imports: [
     CommonModule,
     ReactiveFormsModule,

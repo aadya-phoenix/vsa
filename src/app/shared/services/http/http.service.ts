@@ -39,8 +39,8 @@ export class HttpService {
     return this.httpClient.put(url, payload, { headers });
   }
 
-  public delete(urlString: string, headers: HttpHeaders): Observable<any> {
+  public delete(urlString: string, headers: HttpHeaders, params:HttpParams): Observable<any> {
     const url = urlString;
-    return this.httpClient.delete(url, { headers });
+    return this.httpClient.delete(url, { headers, params });
   }
 }

@@ -15,16 +15,15 @@ export class ViewPlanListComponent implements OnInit {
   isPlanner = false;
   isVendor = false;
   SuperAdmin = dataConstants.SuperAdmin;
-  Planner = dataConstants.SuperAdmin;
+  Planner = dataConstants.Planner;
   Vendor = dataConstants.Vendor;
 
   constructor(
     private router:Router,
     private authService: AuthenticationService,) { 
     this.getUserrole = this.authService.getRolefromlocal();
-    console.log("isvendor, userrole",this.isVendor,this.getUserrole);
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
-    this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
+    this.isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
     this.isVendor = this.getUserrole.RoleId === this.Vendor.RoleId && this.getUserrole.role === this.Vendor.role;
   }
 

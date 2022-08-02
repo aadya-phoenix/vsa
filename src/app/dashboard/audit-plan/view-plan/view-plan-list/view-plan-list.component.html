@@ -81,7 +81,7 @@
                       <th>Planned Start Date </th>
                       <th>Planned End Date</th>
                       <th>Status </th>
-                      <th>Action </th>
+                      <th *ngIf="isSuperAdmin || isPlanner">Action </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -94,7 +94,7 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td><p class="pend_coloe  backgr_blue">Pending </p></td>
-                      <td>
+                      <td *ngIf="isSuperAdmin || isPlanner">
                         <a (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                       </td>
                     </tr>
@@ -107,8 +107,8 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td><p class="pend_coloe  backgr_green">Approve </p></td>
-                      <td>
-                        <a (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
+                      <td *ngIf="isSuperAdmin || isPlanner">
+                        <a *ngIf="isSuperAdmin || isPlanner" (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                         <a *ngIf="isSuperAdmin" (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
                       </td>
                     </tr>
@@ -121,8 +121,8 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td><p class="pend_coloe  backgr_yellow">Auditor Assigend </p></td>
-                      <td>
-                        <a (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
+                      <td *ngIf="isSuperAdmin || isPlanner">
+                        <a *ngIf="isSuperAdmin || isPlanner" (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                         <a *ngIf="isSuperAdmin" (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
                       </td>
                     </tr>
