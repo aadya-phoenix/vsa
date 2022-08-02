@@ -4,14 +4,20 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">
+                        <div class="d-flex justif_space_betwen">
                         <h3 class="card-title">Create Plan Details</h3>
+                        <button class="btn btn-success d-flex align-items-center">
+                            <i class="fas fa-upload mr-1 upload_ico"></i>
+                            <span class="now_rap">Upload Plan</span>
+                          </button>
+                          </div>
                     </div>
                       <form [formGroup]="createPlanForm">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="form_label">Vendor Code <span class="start_css">*</span></label>
+                                        <label class="form_label">Vendor Code & Vendor Name <span class="start_css">*</span></label>
                                         <select class="form-control" formControlName="vendor_code">
                                             <option>Select Vendor Code</option>
                                             <option>Vendor1</option>
@@ -21,9 +27,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                        <!--         <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="form_label">Vendor Name <span class="start_css">*</span></label>
+                                        <label class="form_label">Vendor Name & <span class="start_css">*</span></label>
                                         <select class="form-control" formControlName="vendor_name">
                                             <option>Select Vendor Name</option>
                                             <option>Vendor1</option>
@@ -32,7 +38,7 @@
                                             <option>Vendor4</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Location <span class="start_css">*</span></label>

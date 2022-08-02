@@ -1,1 +1,1583 @@
-<p>manage-audit works!</p>
+<section class="content pt-2">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <div  ng-show="Auditarea==true">
+        <div class="d-flex justify-content-center mb-2 flex_direction_media">
+          <a href="">
+            <div class="child_counter gradien_plan">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/user.png" class="counter_img">
+                <p class="color_white mb-0 fon_13">Total Auditor(MTD)</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">8</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+          <a href="">
+            <div class="child_counter gradien_approve">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/operation.png" class="counter_img">
+                <p class="color_white mb-0 fon_13">In Progress</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">6</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+          <a href="">
+            <div class="child_counter gradien_pending">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/complete.png" class="counter_img">
+                <p class="color_white mb-0 fon_13">Completed</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">6</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+          <a href="">
+            <div class="child_counter gradien_auditor_assign">
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="dist/img/icons/counter/pastdue.png" class="counter_img">
+                <p class="color_white mb-0 fon_13">Past Due</p>
+
+              </div>
+              <div>
+                <p class="counter_digit">6</p>
+                <a href=""></a>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Audit Area Details</h3>
+            
+              <div class="d-flex">
+
+                <input type="text" class="form-control mr-1" placeholder="search ...">
+                <button class="btn btn-success d-flex  align-items-center">
+                  <i class="fas fa-upload mr-1 upload_ico"></i>
+                  <span class="now_rap">Upload Plan</span>
+                </button>
+              </div>
+              <!--<a href="" ng-click="AddAuditArea()" class="btn btn-blue"> <img src="dist/img/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>-->
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <div class="table-responsive max_hei_table">
+              <table id="" class="table table-bordered table-hover">
+
+                <thead>
+                  <tr class=" text-center sticky_header">
+                    <th>Audit No</th>
+                    <th>Vendor Code </th>
+                    <th>Vendor Name</th>
+                    <th>Location</th>
+                    <th>Any Other Location</th>
+                    <th>Planned Start Date </th>
+                    <th>Planned End Date</th>
+
+                    <th>Status </th>
+                    <th>View</th>
+
+                    <th>Initiate Audit </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="tbody_data">
+
+                    <td>AU1</td>
+                    <td>VN123</td>
+                    <td>Vendor</td>
+                    <td>Location</td>
+                    <td>Any Location</td>
+                    <td>12-2-2022</td>
+                    <td>12-4-2022</td>
+                    <td><p class="pend_coloe backgr_blue">Complete </p></td>
+                    <td>
+                      <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
+                      <a ng-click="ManageScreenView('AuditArea1')"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+
+                    </td>
+
+                    <td>
+                      <!--<a ng-click="myVar1=false"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>-->
+
+                      <a ng-click="ManageScreenView('AuditArea2')"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
+
+                    </td>
+
+                  </tr>
+                  <tr class="tbody_data">
+
+
+                    <td>AU1</td>
+                    <td>VN123</td>
+                    <td>Vendor</td>
+                    <td>Location</td>
+                    <td>Any Location</td>
+                    <td>12-2-2022</td>
+                    <td>12-4-2022</td>
+                    <td><p class="pend_coloe  backgr_green">Approve </p></td>
+
+                    <td>
+                      <a ng-click="AddAuditArea()"><img src="dist/img/icon/view.png" class="viwe_iamge"></a>
+
+
+                    </td>
+                    <td>
+                      <a ng-click="AddAuditArea()"><img src="dist/img/icons/auditini.png" class="viwe_iamge"></a>
+
+
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justift_end">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        </div>
+        <!-- /.card -->
+        <div class="card" ng-show="Auditarea1==true">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Audit Area Details</h3>
+
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Vendor Code <span class="start_css">*</span></label>
+                  <input list="europe-countries" placeholder="Search Vendor Code" class="form-control" disabled>
+                  <datalist id="europe-countries">
+
+                    <option>VCNH1231</option>
+
+                  </datalist>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Vendor Name <span class="start_css">*</span></label>
+                  <select class="form-control" disabled>
+
+                    <option>Vendor1</option>
+
+                  </select>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Location <span class="start_css">*</span></label>
+                  <select class="form-control" disabled>
+
+                    <option>Location2</option>
+
+                  </select>
+
+                </div>
+
+
+              </div><!--row-->
+
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Any Other location <span class="start_css">*</span></label>
+                  <input type="text" class="form-control" placeholder="XXXXXXXX" disabled>
+
+                </div>
+
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Any Other Code <span class="start_css">*</span></label>
+                  <input type="text" class="form-control" placeholder="XXXXXX" disabled>
+
+                </div>
+
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type Code</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type Name</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Type location</label>
+                  <input type="text" class="form-control" placeholder="XXXXX" disabled>
+                </div>
+
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned Start Date <span class="start_css">*</span></label>
+                  <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+
+
+                <div class="form-group">
+                  <label class="form_label">Planned End Date <span class="start_css">*</span></label>
+                  <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                </div>
+
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="form_label">
+                    Additional MSIL email
+                  </label>
+                  <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                         placeholder="XXXXX" disabled>
+
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="form_label">
+                    Auditee email id <span class="start_css">*</span>
+                  </label>
+                  <input type="text" class="form-control" ng-model="driverObj.DriverName"
+                         placeholder="xyz@gmail.com" disabled>
+
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="form_label">
+                    Upload File
+
+                  </label>
+
+
+                  <a href="http://localhost:64604/index.html#/ViewPlan/">http://localhost:64604/index.html#/ViewPlan/</a>
+
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+
+            <!--<button type="button" class="btn btn-primary" ng-click="Submit()">Submit</button>-->
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ManageScreenView('Main')">Close</button>
+          </div>
+        </div>
+        <div class="card" ng-show="Auditarea2==true">
+          <div class="card-header">
+            <div class="header_card d-flex justify-content-between">
+              <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="form_label">Vendor Name</label>
+                  <input type="text" class="form-control inputbox_css"
+                         placeholder="Dummy Industries,
+Hypothetical City, Kodaikanal" maxlength="200" disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="form_label">Start Date</label>
+                  <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
+                         disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="form_label">End Date</label>
+                  <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
+                         disabled>
+                </div>
+
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="form_label">Department Head </label>
+                  <select class="form-control">
+
+                    <option>Department Head 1</option>
+                    <option>Department Head 2</option>
+                    <option>Department Head 3</option>
+                    <option>Department Head 4</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="form_label">Part Name</label>
+                  <input type="text" class="form-control inputbox_css" ng-model="influencerObj.FirstName"
+                         placeholder="Enter Part Name" maxlength="200">
+                </div>
+
+              </div>
+
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="form_label">Date</label>
+                  <input type="date" class="form-control inputbox_css">
+                </div>
+
+              </div>
+              <div class="col-sm-4">
+
+
+                <div class="form-group">
+                  <label class="mb-0">Auditor</label>
+                  <p class="form_label">Auditor1, Auditor2, Auditor3</p>
+
+
+
+                </div>
+
+              </div>
+
+
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr class="sticky_header">
+                      <th scope="col">S.No</th>
+                      <th scope="col">Vendor Attendees</th>
+                      <th scope="col">Action</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>
+                        <input type="text" class="form-control inputbox_css" ng-model="influencerObj.FirstName"
+                               placeholder="Enter Vendor Attendees" maxlength="200">
+                      </td>
+                      <td>
+                        <div class="d-flex add_minus_mar">
+                          <button class="btn btn-primary">+</button>
+                          <button class="btn btn-danger">-</button>
+                        </div>
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div><!--ro wenx-->
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <div class="card-footer text-right">
+            <button ng-click="Next()" class="btn btn-primary">Next</button>
+            <button ng-click="ManageScreenView('Main')" class="btn btn-default">Back</button>
+
+          </div>
+        </div>
+        <div class="card" ng-show="Auditarea3==true">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+              <button class="btn btn-success">Download PDF</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+                  <div class="c100 p12 small">
+                    <span>12%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button ng-click="Page3()" class="btn  btn-blue fon_12">  Production preparation</button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>20%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Regulation for
+                    initial production control
+                  </button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+                  <div class="c100 p12 small">
+                    <span>30%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12"> Changing management</button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>20%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Standards management
+                  </button>
+
+                </div>
+              </div>
+
+
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>60%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Education and training
+                  </button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>60%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Quality audit and process verification
+                  </button>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row mb-2">
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+                  <div class="c100 p12 small">
+                    <span>12%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">  Production preparation</button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>20%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Regulation for
+                    initial production control
+                  </button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+                  <div class="c100 p12 small">
+                    <span>30%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12"> Changing management</button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>20%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Standards management
+                  </button>
+
+                </div>
+              </div>
+
+
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>60%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Education and training
+                  </button>
+
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="box box_css">
+
+
+                  <div class="c100 p12 small">
+                    <span>60%</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn  btn-blue fon_12">
+                    Quality audit and process verification
+                  </button>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- /.card-body -->
+          </div>
+          <div class="card-footer">
+            <div class="flex_direction_media">
+              <button class="btn btn-primary" ng-click="ManageScreenView('Summary')">View Summary Details</button>
+              <button class="btn btn-primary">Save as draft</button>
+              <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"> Critical Observation</button>
+              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Submit</button>
+
+              <button ng-click="Back1()" class="btn btn-default">Back</button>
+            </div>
+          </div>
+
+        </div>
+        <div class="card" ng-show="ViewSummary==true">
+          <div class="card-header">
+            <div class="header_card">
+              <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+              <button class="btn btn-success">Download PDF</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="accordion" id="accordionExample">
+              <div class="d-flex justify-content-center align-content-center mb-2">
+                <button class="btn btn-primary mr-1" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Check Sheet</button>
+                <button class="btn btn-primary mr-1" id="heading2" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">Executive Summary</button>
+                <button class="btn btn-primary mr-1" id="heading3" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapseOne">C'measure Report Format</button>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="header_card">
+                      <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                      <button class="btn btn-success">Download PDF</button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead class="bac_table_white">
+                          <tr class="now_rap text-center sticky_header">
+                            <th> Category</th>
+                            <th></th>
+                            <th> Audit Area</th>
+                            <th></th>
+                            <th> Concerning regulation</th>
+                            <th> Judgment</th>
+                            <th> Remarks</th>
+                            <th>Follow</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-center">
+                          <tr>
+                            <th rowspan="5">
+                              １.Production preparation
+                            </th>
+
+                          </tr>
+                          <tr>
+                            <th>
+                              1
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>
+                              2
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>
+                              3
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>
+                              4
+                            </th>
+                            <td>Regarding implementation rule of production preparation</td>
+                            <td>①</td>
+                            <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
+                            <td>△</td>
+                            <td>
+                              -APQP matrix activity and time plan activity are not matching.
+                              - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                            </td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="header_card">
+                      <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                      <button class="btn btn-success">Download PDF</button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead class="bac_table_white">
+                          <tr class="text-center ">
+                            <th rowspan="2" class="ver_midd"> Vendor Quality System Audit Report</th>
+                            <th>Issue Deptt</th>
+                            <td>QA-VSA</td>
+                            <th>Prepared</th>
+                            <th>Verified</th>
+                            <th>Approved</th>
+
+                          </tr>
+
+                          <tr class="text-center">
+
+                            <th>Date of Issue
+
+                            <td>01-03-2015</td>
+                            <td>Ravi Mehta</td>
+                            <td>Paramjit Singh</td>
+                            <td>DVM San</td>
+
+                          </tr>
+
+                        </thead>
+                        <tbody class="text-center">
+                          <tr>
+                            <th colspan="2">Copy to</th>
+                            <th>Supplier name</th>
+                            <th>Supplier Attendant Name</th>
+                            <th colspan="2">Audit Date</th>
+
+                          </tr>
+                          <tr>
+                            <td>Vendor</td>
+
+                            <td>1</td>
+                            <td rowspan="2" class="ver_midd">Dummy Industries</td>
+
+                            <td>Mr. X - Director</td>
+                            <td colspan="2">28th - 29th Feb'15</td>
+
+                          </tr>
+                          <tr>
+                            <td>QAPQ</td>
+
+                            <td>1</td>
+
+                            <td rowspan="2">Mr. Y - Plant Head</td>
+
+
+                            <th colspan="2">Audit Person</th>
+
+                          </tr>
+                          <tr>
+                            <td>SC</td>
+                            <td>1</td>
+                            <th>Supplier code:DD01</th>
+
+                            <td colspan="2">Ravi Mehta</td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th>(Audit Score)</th>
+                          </tr>
+                          <tr>
+                            <td>Total</td>
+                            <td>3</td>
+                            <td>62</td>
+                          </tr>
+                        </tbody>
+                        <tbody class="text-center">
+                        </tbody>
+                      </table>
+
+
+                    </div>
+                    <table class="table table-borderd">
+                      <thead>
+                        <tr class="now_rap text-center sticky_header">
+                          <th rowspan="2" class="ver_midd"><b>Subject:</b> Vendor System Audit</th>
+                          <th>Part Number：</th>
+                          <td></td>
+                        </tr>
+                        <tr class="text-center">
+                          <th>Part Name:</th>
+                          <td>Alpha Beta Gamma</td>
+                        </tr>
+                      </thead>
+                    </table>
+
+                    <p class="mb-1 mt-2"><b>Supplier category is "Yellow". Major improvement areas are as follows:-</b></p>
+                    <p>
+                      1- New product development planning needs improvement.  All relevant activities to be included in preparation of APQP plan.<br>
+                      2- Review of APQP plan to be adequately recorded and Process FMEAs to be made in accordance with the defined standards.<br>
+                      3- Initial flow control process implementation to be improved. Extension criteria of the activity to be clearly defined..<br>
+                      4- 4M change management to be defined and implemented effectively on shop floor with proper recording and quality checks of parts..<br>
+                      5- Tier - 2 supplier controls needs strengthening. Supplier rating and auditing system to be standardized..<br>
+                      6- Skill Evaluation criteria to be defined for operators and adherence to be strengthened. Monitoring of annual training plan to be improved..<br>
+                      7- Quality abnormality handling process needs effective implementation with focus on root cause analysis and standardization of countermeasure actions..<br>
+                      8- Implementation of updated standards on shop floor and actual working as per defined PCS / WI to be ensured..<br>
+                      9- Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
+                      10- Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
+                    </p>
+                    <img src="dist/img/graph.png" class="w_100">
+                  </div>
+
+                </div>
+              </div>
+              <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="header_card">
+                      <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                      <button class="btn btn-success">Download PDF</button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <td rowspan="5">
+                                  <p class="rota_css">Planning</p>
+                                </td>
+                                <td>RECEIVING DATE</td>
+
+                                <td rowspan="5">
+                                  <p class="rota_css">Planning</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+
+                              </tr>
+                              <tr>
+                                <td rowspan="4"></td>
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td>Total</td>
+                                <td>0</td>
+
+
+                              </tr>
+                              <tr class="">
+                                <td rowspan="5">
+                                  <p class="rota_css">Verification</p>
+                                </td>
+                                <td>RECEIVING DATE</td>
+
+                                <td rowspan="5">
+                                  <p class="rota_css">Verification</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+
+                              </tr>
+                              <tr>
+                                <td rowspan="4"></td>
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td></td>
+                                <td></td>
+
+
+                              </tr>
+                              <tr>
+
+                                <td>Total</td>
+                                <td>0</td>
+
+
+                              </tr>
+
+                            </thead>
+                          </table>
+                        </div>
+
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <th>Audit Point</th>
+                                <td></td>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <td rowspan="2">VENDOR NAME</td>
+                                <td rowspan="2"></td>
+                                <td></td>
+                                <td>PLANNED</td>
+                                <td>CHECKED</td>
+                                <td>APPROVED</td>
+                              </tr>
+                              <tr class="">
+                                <td rowspan="2">VENDOR NAME</td>
+
+                                <td>PLANNED</td>
+                                <td>CHECKED</td>
+                                <td>APPROVED</td>
+                              </tr>
+
+                            </thead>
+                          </table>
+                        </div>
+                        <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead class="bac_table_white">
+                              <tr class="">
+                                <th>DEADLINE FOR SUBMISSION OF PLAN</th>
+                                <td></td>
+                                <th>DEADLINE FOR SUBMISSION OF ACTUAL RESULT</th>
+                                <td></td>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead class="bac_table_white">
+                          <tr class="">
+                            <th>ITEM NO.</th>
+                            <th>SUB ITEM NO.</th>
+                            <th>DESIRED IMPROVEMENT POINTS</th>
+                            <th>DETAIL OF IMPROVEMENT PLAN</th>
+                            <th>IN-CHARGE</th>
+                            <th>DATE</th>
+                            <th>RESULT OF VERIFICATION</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+
+            <!--<button type="button" class="btn btn-primary" ng-click="Submit()">Submit</button>-->
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ManageScreenView('Main')">Close</button>
+          </div>
+        </div>
+
+        <!--view summary sho div-->
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card card-default" ng-show="Auditarea4==true">
+          <div class="card-header">
+            <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+
+          </div>
+
+
+          <form>
+            <div class="card-body">
+
+              <div id="accordion">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="d-flex flex_colum mt_17" id="myDIV">
+                      <div id="headingOne" class="div_main_active">
+
+
+                        <button class="btn btn-link mb-2 active" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Regarding implementation rule of production preparation
+                        </button>
+
+
+                      </div>
+                      <div class="div_main_active" id="headingTwo">
+
+                        <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Regarding management /implementation by production preparation plan/report (master plan)
+                        </button>
+
+                      </div>
+                      <div id="headingThree" class="div_main_active">
+
+                        <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Defect prevention on the stage of process design by using FMEA/Matrix diagram
+                        </button>
+
+                      </div>
+                      <div id="heading4" class="div_main_active">
+
+                        <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                          Defect prevention on the stage of process design by using FMEA/Matrix diagram
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="mt-2 p-2">
+                      <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4 class="fon_14"><b>1.</b>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department-control contents/items?</h4>
+                          </div>
+
+                          <div class="card-body">
+
+                            <div class="row">
+                              <div class="col-sm-12">
+
+                                <div class="jugme_css">
+                                  <label class="mb-0">Judgment</label>
+                                  <div class="d-flex">
+                                    <div class="mr-3">
+                                      <input type="radio" id="html" name="fav_language" value="HTML" class="chek_box"><img src="dist/img/icons/triangle.png" class="diacisq_css">
+                                    </div>
+
+                                    <div class="mr-3">
+                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript" class="chek_box"><img src="dist/img/icons/square.png" class="diacisq_css">
+                                    </div>
+                                    <div class="mr-3">
+                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img src="dist/img/icons/new-moon.png" class="diacisq_css">
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <table class="table table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Remarks</th>
+                                      <th scope="col">Upload File</th>
+                                      <th>Action</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">    <textarea class="form-control"></textarea></th>
+                                      <td>
+                                        <div class="input-group">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                          </div>
+
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-primary">+</button>
+                                        <button class="btn btn-danger">-</button>
+
+                                      </td>
+
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div><!--row end-->
+                          </div>
+                          <div class="card-footer">
+                            <button ng-click="SaveAsDraft()" class="btn btn-primary">Save as draft</button>
+                            <button ng-click="AuditCreate()" class="btn btn-success">Submit</button>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <h4 class="fon_14"><b>2.</b>Do you define importance level during production preparation for each product and clarify control items based on it ? </h4>
+                          </div>
+
+                          <div class="card-body">
+
+                            <div class="row">
+                              <div class="col-sm-12">
+
+                                <div class="jugme_css">
+                                  <label class="mb-0">Judgment</label>
+                                  <div class="d-flex">
+                                    <div class="mr-3">
+                                      <input type="radio" id="html" name="fav_language" value="HTML" class="chek_box"><img src="dist/img/icons/triangle.png" class="diacisq_css">
+                                    </div>
+
+                                    <div class="mr-3">
+                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript" class="chek_box"><img src="dist/img/icons/square.png" class="diacisq_css">
+                                    </div>
+                                    <div class="mr-3">
+                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img src="dist/img/icons/new-moon.png" class="diacisq_css">
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <table class="table table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Remarks</th>
+                                      <th scope="col">Upload File</th>
+                                      <th>Action</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">    <textarea class="form-control"></textarea></th>
+                                      <td>
+                                        <div class="input-group">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                          </div>
+
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-primary">+</button>
+                                        <button class="btn btn-danger">-</button>
+
+                                      </td>
+
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div><!--row end-->
+                          </div>
+                          <div class="card-footer">
+                            <button ng-click="AddData()" class="btn btn-primary">Save as draft</button>
+                            <button ng-click="init()" class="btn btn-success">Submit</button>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4 class="fon_14"><b>1.</b>Do you implement follow-up to control the schedule and progress of production preparation items?</h4>
+                          </div>
+
+                          <div class="card-body">
+
+                            <div class="row">
+                              <div class="col-sm-12">
+
+                                <div class="jugme_css">
+                                  <label class="mb-0">Judgment</label>
+                                  <div class="d-flex">
+                                    <div class="mr-3">
+                                      <input type="radio" id="html" name="fav_language" value="HTML" class="chek_box"><img src="dist/img/icons/triangle.png" class="diacisq_css">
+                                    </div>
+
+                                    <div class="mr-3">
+                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript" class="chek_box"><img src="dist/img/icons/square.png" class="diacisq_css">
+                                    </div>
+                                    <div class="mr-3">
+                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img src="dist/img/icons/new-moon.png" class="diacisq_css">
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <table class="table table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Remarks</th>
+                                      <th scope="col">Upload File</th>
+                                      <th>Action</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">    <textarea class="form-control"></textarea></th>
+                                      <td>
+                                        <div class="input-group">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                          </div>
+
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-primary">+</button>
+                                        <button class="btn btn-danger">-</button>
+
+                                      </td>
+
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div><!--row end-->
+                          </div>
+                          <div class="card-footer">
+                            <button ng-click="AddData()" class="btn btn-primary">Save as draft</button>
+                            <button ng-click="init()" class="btn btn-success">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4 class="fon_14">
+                              <b>1.</b>Do you consider following items and reflect them to the processes and standards beforehand?<br>
+                              -Troubles in the past; -Defect items expected;<br>
+                              -Defect items unable to capture at customer;<br>
+                              -Defect items difficult to repair;
+                            </h4>
+                          </div>
+
+                          <div class="card-body">
+
+                            <div class="row">
+                              <div class="col-sm-12">
+
+                                <div class="jugme_css">
+                                  <label class="mb-0">Judgment</label>
+                                  <div class="d-flex">
+                                    <div class="mr-3">
+                                      <input type="radio" id="html" name="fav_language" value="HTML" class="chek_box"><img src="dist/img/icons/triangle.png" class="diacisq_css">
+                                    </div>
+
+                                    <div class="mr-3">
+                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript" class="chek_box"><img src="dist/img/icons/square.png" class="diacisq_css">
+                                    </div>
+                                    <div class="mr-3">
+                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img src="dist/img/icons/new-moon.png" class="diacisq_css">
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <table class="table table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Remarks</th>
+                                      <th scope="col">Upload File</th>
+                                      <th>Action</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">    <textarea class="form-control"></textarea></th>
+                                      <td>
+                                        <div class="input-group">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                          </div>
+
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-primary">+</button>
+                                        <button class="btn btn-danger">-</button>
+
+                                      </td>
+
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div><!--row end-->
+                          </div>
+                          <div class="card-footer">
+                            <button ng-click="AddData()" class="btn btn-primary">Save as draft</button>
+                            <button ng-click="init()" class="btn btn-success">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="collapse" id="collapse4" aria-labelledby="heading4" data-parent="#accordion">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4 class="fon_14">
+                              <b>1.</b>Do you prevent defects by quality improving activities of cross-function team to evaluate quality performance?
+                            </h4>
+                          </div>
+
+                          <div class="card-body">
+
+                            <div class="row">
+                              <div class="col-sm-12">
+
+                                <div class="jugme_css">
+                                  <label class="mb-0">Judgment</label>
+                                  <div class="d-flex">
+                                    <div class="mr-3">
+                                      <input type="radio" id="html" name="fav_language" value="HTML" class="chek_box"><img src="dist/img/icons/triangle.png" class="diacisq_css">
+                                    </div>
+
+                                    <div class="mr-3">
+                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript" class="chek_box"><img src="dist/img/icons/square.png" class="diacisq_css">
+                                    </div>
+                                    <div class="mr-3">
+                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img src="dist/img/icons/new-moon.png" class="diacisq_css">
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <table class="table table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Remarks</th>
+                                      <th scope="col">Upload File</th>
+                                      <th>Action</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">    <textarea class="form-control"></textarea></th>
+                                      <td>
+                                        <div class="input-group">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                          </div>
+
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-primary">+</button>
+                                        <button class="btn btn-danger">-</button>
+
+                                      </td>
+
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div><!--row end-->
+                          </div>
+                          <div class="card-footer">
+                            <button ng-click="AddData()" class="btn btn-primary">Save as draft</button>
+                            <button ng-click="init()" class="btn btn-success">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+            <div class="card-footer">
+              <button ng-click="ManageScreenView('Main')" class="btn btn-default">Back</button>
+            </div>
+
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remarks</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" rows="3" placeholder="Enter Your Remark"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Audit Type</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <select class="form-control">
+
+          <option>Provisional</option>
+          <option>Final</option>
+          
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

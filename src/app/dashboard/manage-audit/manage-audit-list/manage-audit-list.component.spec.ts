@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PendingPlanComponent } from './pending-plan.component';
+import { ManageAuditListComponent } from './manage-audit-list.component';
 
-describe('PendingPlanComponent', () => {
-  let component: PendingPlanComponent;
-  let fixture: ComponentFixture<PendingPlanComponent>;
+describe('ManageAuditListComponent', () => {
+  let component: ManageAuditListComponent;
+  let fixture: ComponentFixture<ManageAuditListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PendingPlanComponent ]
+      declarations: [ ManageAuditListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PendingPlanComponent);
+    fixture = TestBed.createComponent(ManageAuditListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

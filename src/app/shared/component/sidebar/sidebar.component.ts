@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { dataConstants } from '../../constants/dataConstants';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
@@ -9,15 +10,21 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 export class SidebarComponent implements OnInit {
 
   getUserrole: any;
+  isSuperAdmin ;
+  isPlanner ;
+  SuperAdmin = dataConstants.SuperAdmin;
+  Planner = dataConstants.Planner;
 
   constructor(
     private authService: AuthenticationService,
   ) { 
     this.getUserrole = this.authService.getRolefromlocal();
+    this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
+    this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
+    console.log("planner",this.isPlanner,this.getUserrole, this.Planner,this.isSuperAdmin)
   }
 
   ngOnInit(): void {
-    console.log("user role",this.getUserrole)
   }
 
 }

@@ -5,7 +5,7 @@ import { DefaultLayoutComponent } from './default-layout/default-layout.componen
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -63,7 +63,7 @@ const routes: Routes = [
           import('./dashboard/masters/categories/categories.module').then((m) => m.CategoriesModule),
       },
       {
-        path: 'dashboard/audit-area',
+        path: 'dashboard/audit',
         loadChildren: () =>
           import('./dashboard/masters/audit-area/audit-area.module').then((m) => m.AuditAreaModule),
       },

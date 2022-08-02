@@ -5,7 +5,8 @@ import { VendorListComponent } from './vendor-list/vendor-list.component';
 
 const routes: Routes = [
   {path:'',component:VendorListComponent},
-  {path:'edit',component:VendorEditComponent}
+  {path:'add',component:VendorEditComponent},
+  {path:'edit/:id',component:VendorEditComponent}
 ];
 
 @NgModule({

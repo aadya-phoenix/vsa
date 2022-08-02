@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Vendor Master</h3>
-                <a (click)="addVendor()" class="btn btn-blue">   <img src="../../../../../assets/icons/owner copy.png" class="side_imgmaster mr-1">Add Vendor</a>
+                <a *ngIf="isSuperAdmin" (click)="addVendor()" class="btn btn-primary">   <img src="../../../../../assets/icons/owner copy.png" class="side_imgmaster mr-1">Add Vendor</a>
               </div>
             </div>
             <div class="card-body">
@@ -20,20 +20,20 @@
                       <th>Image</th>
                       <th>Vendor Email</th>
                       <th>Location </th>
-                      <th>Action</th>
+                      <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Arvind</td>
-                      <td>12345</td>
+                    <tr *ngFor="let item of vendorObj; let i = index;">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.code}}</td>
                       <td></td>
-                      <td>arvin@gmial.com</td>
-                      <td>abchshhhss</td>
-                      <td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.location}}</td>
+                      <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
-                          <a (click)="addVendor()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                          <a (click)="editVendor(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                         </div>
                       </td>
@@ -43,15 +43,15 @@
                 <nav aria-label="Page navigation example">
                   <ul class="pagination justift_end">
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
+                      <a class="page-link" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                       </a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link">1</a></li>
+                    <li class="page-item"><a class="page-link">2</a></li>
+                    <li class="page-item"><a class="page-link">3</a></li>
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
+                      <a class="page-link" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                       </a>
                     </li>

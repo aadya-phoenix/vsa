@@ -1,1 +1,52 @@
-<p>employee-edit works!</p>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card card-default">
+                <div class="card-header">
+                  <h3 class="card-title">Employee Details</h3>
+                </div>
+                <form [formGroup]="employeeForm">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form_label">Employee Name</label>
+                          <input type="text" class="form-control inputbox_css" 
+                                 placeholder="Enter Employee Name" 
+                                 formControlName="employee_name" maxlength="200">
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form_label">Employee Code</label>
+                          <input type="text" class="form-control inputbox_css" 
+                                 placeholder="Enter Employee Code"
+                                 formControlName="employee_code" maxlength="200">
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form_label">Employee Role</label>
+                          <select class="form-control" formControlName="employee_role">
+                            <option>Select</option>
+                            
+                            <option>Auditor</option>
+                            <option>Planner</option>
+                            <option>View Only</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button (click)="save()" class="btn btn-primary">Save</button>
+                    <button (click)="close()" class="btn btn-default">Close</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+

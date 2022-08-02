@@ -56,12 +56,15 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">View Plan Details</h3>
-                <div class="d-flex">
-                  <input type="text" class="form-control mr-1" placeholder="search ...">
-                  <button class="btn btn-success d-flex  align-items-center">
+                <div class="d-flex align-items-center">
+                  <h6 class="mr-1 mb-0">Filters:-</h6>
+                  <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
+                  <input type="text" class="form-control mr-1 filter_css" placeholder="Date ">
+                  <input type="text" class="form-control mr-1 filter_css" placeholder="Status ">
+                  <!-- <button class="btn btn-success d-flex  align-items-center">
                     <i class="fas fa-upload mr-1 upload_ico"></i>
                     <span class="now_rap">Upload Plan</span>
-                  </button>
+                  </button> -->
                 </div>
               </div>
             </div>
@@ -106,7 +109,7 @@
                       <td><p class="pend_coloe  backgr_green">Approve </p></td>
                       <td>
                         <a (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
-                        <a (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
+                        <a *ngIf="isSuperAdmin" (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
                       </td>
                     </tr>
                     <tr class="tbody_data">
@@ -118,13 +121,10 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td><p class="pend_coloe  backgr_yellow">Auditor Assigend </p></td>
-
                       <td>
                         <a (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
-  
-                        <a (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
+                        <a *ngIf="isSuperAdmin" (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
                       </td>
-  
                     </tr>
                   </tbody>
                 </table>
@@ -132,15 +132,15 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination justift_end">
                   <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
+                    <a class="page-link"  aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                     </a>
                   </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" >1</a></li>
+                  <li class="page-item"><a class="page-link" >2</a></li>
+                  <li class="page-item"><a class="page-link" >3</a></li>
                   <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
+                    <a class="page-link"  aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                     </a>
                   </li>

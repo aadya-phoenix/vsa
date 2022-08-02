@@ -1,9 +1,12 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="index3.html" class="brand-link">
-      <img src="../../assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-        style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+  <div class="user-panel">
+
+    <img src="../../../../assets/img/maruti-logo.png" class="w_190">
+
+    <div class="info">
+      <a href="#" class="d-block"></a>
+    </div>
+  </div>
     <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -15,8 +18,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link">
+          <li class="nav-item" >
+            <a class="nav-link" *ngIf="isSuperAdmin || isPlanner">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Setup
@@ -75,7 +78,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item" *ngIf="isSuperAdmin || isPlanner">
                 <a routerLink="/dashboard/create" class="nav-link">
                   <img src="../../assets/icons/lightbulb.png" class="side_img">
                   <p>

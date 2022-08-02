@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+    .nav_bar_space {
+      margin-left: 0px !important;
+    }
+    .main-header{
+        margin-left: 0px !important;
+    }
+}

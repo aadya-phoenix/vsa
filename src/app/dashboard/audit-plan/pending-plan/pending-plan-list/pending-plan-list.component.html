@@ -2,16 +2,63 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
+          <div class="d-flex justify-content-center mb-2 flex_direction_media" *ngIf="isVendor">
+            <a class="child_counter">
+                <div class=" p-2 gradien_plan">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <img src="../../../../assets/icons/counter/user.png" class="counter_img">
+                        <p class="color_white mb-0 fon_13">Total Auditor(MTD)</p>
+                    </div>
+                    <div>
+                        <p class="counter_digit">8</p>
+                        <a></a>
+                    </div>
+                </div>
+            </a>
+            <a class="child_counter">
+                <div class="p-2 gradien_approve">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <img src="../../../../assets/icons/counter/operation.png" class="counter_img">
+                        <p class="color_white mb-0 fon_13">In Progress</p>
+                    </div>
+                    <div>
+                        <p class="counter_digit">6</p>
+                        <a></a>
+                    </div>
+                </div>
+            </a>
+            <a class="child_counter">
+                <div class="p-2 gradien_pending">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <img src="../../../../assets/icons/counter/complete.png" class="counter_img">
+                        <p class="color_white mb-0 fon_13">Completed</p>
+                    </div>
+                    <div>
+                        <p class="counter_digit">6</p>
+                        <a></a>
+                    </div>
+                </div>
+            </a>
+            <a class="child_counter">
+                <div class="p-2 gradien_auditor_assign">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <img src="../../../../assets/icons/counter/pastdue.png" class="counter_img">
+                        <p class="color_white mb-0 fon_13">Past Due</p>
+                    </div>
+                    <div>
+                        <p class="counter_digit">6</p>
+                        <a></a>
+                    </div>
+                </div>
+            </a>
+        </div>
           <div class="card" >
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Pending Plan Details</h3>
                 <div class="d-flex">
                   <input type="text" class="form-control mr-1" placeholder="search ...">
-                  <button class="btn btn-success d-flex align-items-center">
-                    <i class="fas fa-upload mr-1 upload_ico"></i>
-                    <span class="now_rap">Upload Plan</span>
-                  </button>
+                  
                 </div>
               </div>
             </div>
@@ -28,7 +75,7 @@
                       <th>Planned Start Date </th>
                       <th>Planned End Date</th> 
                       <th>Status </th>
-                      <th>Action </th>
+                      <th *ngIf="isVendor">Action </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -41,9 +88,9 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td>
-                        <p class="pend_coloe backgr_blue">Pending </p>
+                        <p class="pend_coloe backgr_blue" data-toggle="tooltip" data-placement="top" title="pending">Pending </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">  
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>
@@ -57,9 +104,9 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td>
-                        <p class="pend_coloe backgr_blue">Pending </p>
+                        <p class="pend_coloe backgr_green" data-toggle="tooltip" data-placement="top" title="Approve">Approve </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>
@@ -73,9 +120,9 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td>
-                        <p class="pend_coloe backgr_blue">Pending </p>
+                        <p class="pend_coloe backgr_red" data-toggle="tooltip" data-placement="top" title="Rejected">Rejected </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>
@@ -89,9 +136,9 @@
                       <td>12-2-2022</td>
                       <td>12-4-2022</td>
                       <td>
-                        <p class="pend_coloe backgr_blue">Pending </p>
+                        <p class="pend_coloe backgr_yellow" data-toggle="tooltip" data-placement="top" title="Inprocess">Inprocess </p>
                       </td>
-                      <td>
+                      <td *ngIf="isVendor">
                         <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
                         <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>

@@ -14,7 +14,7 @@ export class CreatePlanComponent implements OnInit {
   ) { 
     this.createPlanForm = this.formBuilder.group({
       vendor_code: new FormControl('', [Validators.required]),
-      vendor_name: new FormControl('', [Validators.required]),
+     // vendor_name: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
       other_location: new FormControl('', [Validators.required]),
       other_code: new FormControl('', [Validators.required]),

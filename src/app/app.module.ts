@@ -7,6 +7,8 @@ import { DefaultLayoutComponent } from './default-layout/default-layout.componen
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
 import { NgChartsModule } from 'ng2-charts';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { TokenInterceptorService } from './shared/services/token-interceptor/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,14 @@ import { NgChartsModule } from 'ng2-charts';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NgChartsModule
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

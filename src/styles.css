@@ -1,6 +1,10 @@
 .nav_bar_space {
-  display: flex;
-  justify-content: space-between;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.filter_css{
+  height: 30px !important;
+    font-size: 13px !important;
 }
 .fon_17{
     font-size:17px;
@@ -117,10 +121,7 @@
   width: 100%;
 }
 
-  .active, .btn-link:hover {
-    background-color: #666;
-    color: white;
-  }
+  
 
 .box_css {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -138,7 +139,7 @@
 }
 
 .diacisq_css {
-  width: 15px;
+  width: 20px;
   margin-left: 2px
 }
 
@@ -179,28 +180,42 @@
   position: relative !important;
   top: 2px !important;
 }
-
-.btn-primary {
-  padding: 2px 14px;
-  font-size: 17px;
-  background-color: #1a65a3;
-  border-color: #1a65a3;
-}
-
 .btn-danger {
-  padding: 2px 14px;
-  font-size: 17px;
+  padding: 2px 14px !important;
+  font-size: 15px !important;
+  color: #fff !important;
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
 }
-
-.btn-default {
-  padding: 7px 14px;
-  font-size: 17px;
-}
-
 .btn-success {
-  padding: 2px 14px;
-  font-size: 17px;
+  padding: 2px 14px !important;
+  font-size: 15px !important;
+  color: #fff !important;
+    background-color: #218838 !important;
+    border-color: #1e7e34 !important;
 }
+.btn-primary {
+  padding: 2px 14px !important;
+  font-size: 15px !important;
+  background-color: #1a65a3 !important;
+  border-color: #1a65a3 !important;
+}
+.btn-default {
+  padding: 2px 14px !important;
+  font-size: 15px !important;
+  background-color: #e9ecef !important;
+  border-color: #e9ecef !important;
+  color: #2b2b2b !important;
+}
+.btn-secondary {
+  padding: 2px 14px !important;
+  font-size: 15px !important;
+  background-color: #5a6268 !important;
+  border-color: #5a6268 !important;
+  color: #fff !important;
+}
+
+
 
 .card-footer {
   text-align: right;
@@ -252,47 +267,7 @@
 .w_100{
     width:100%;
 }
-@media (max-width: 768px) {
-  .nav_bar_space {
-    margin-left: 0px !IMPORTANT;
-  }
 
-  .content-wrapper {
-    margin-left: 0px !important;
-  }
-  .header_card {
-  flex-direction:column;}
-  .box_css{
-      margin-bottom:10px;
-  }
-  .modal-content {
-    max-width: 100%;
-  }
-
-  .modal-dialog {
-    width: 100%;
-    margin: 0px;
-  }
-  .flex_direction_media{
-      flex-direction:column;
-      display:flex;
-  }
-  .flex_direction_media .btn{
-   margin-bottom:10px;
-  }
-  .child_counter {
-    padding: 10px;
-    width: 100%;
-  
-    margin-bottom: 10px;
-  }
-  .counter_img {
-    width: 70px;
-  }
-  .fon_17{
-      font-size:27px;
-  }
-  }
  body, html {
     height: 100%;
   }
@@ -2865,12 +2840,7 @@
     pointer-events: none;
   }
   
-  .btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    box-shadow: none;
-  }
+ 
   
   .btn-primary:hover {
     color: #fff;
@@ -3435,7 +3405,9 @@
     color: #0056b3;
     text-decoration: none;
   }
-  
+  .w_15{
+    width:15px;
+  }
   .btn-link:focus, .btn-link.focus {
     text-decoration: none;
   }
@@ -32304,12 +32276,7 @@
   .text-sm .btn {
     font-size: 0.875rem !important;
   }
-  
-  .btn-default {
-    background-color: #f8f9fa;
-    border-color: #ddd;
-    color: #444;
-  }
+
   
   .btn-default:hover, .btn-default:active, .btn-default.hover {
     background-color: #e9ecef;
@@ -53426,9 +53393,7 @@
     vertical-align: middle !important;
     font-size: 14px;
   }
-  .btn-default{
-      font-size:12px !important;
-  }
+ 
   .img_logo {
     height: 36px;
     margin-left: 39px;
@@ -53450,8 +53415,10 @@
     width: 100% !important;
   }
   .pend_coloe {
-    padding: 4px 14px; color: #fff;
+    padding: 4px 14px;
+     color: #fff;
     margin-bottom: 10px;
+    cursor: pointer;
   }
   .backgr_green {
     background: green;
@@ -53491,4 +53458,50 @@
     font-size: 18px;
     color: red;
   }
+
     /*# sourceMappingURL=adminlte.css.map */
+
+
+    @media (max-width: 768px) {
+      .nav_bar_space {
+        margin-left: 0px !important;
+      }
+      .main-header {
+        margin-left: 0px !important;
+    }
+      .content-wrapper {
+        margin-left: 0px !important;
+      }
+      .header_card {
+      flex-direction:column;}
+      .box_css{
+          margin-bottom:10px;
+      }
+      .modal-content {
+        max-width: 100%;
+      }
+    
+      .modal-dialog {
+        width: 100%;
+        margin: 0px;
+      }
+      .flex_direction_media{
+          flex-direction:column;
+          display:flex;
+      }
+      .flex_direction_media .btn{
+       margin-bottom:10px;
+      }
+      .child_counter {
+        padding: 10px;
+        width: 100%;
+      
+        margin-bottom: 10px;
+      }
+      .counter_img {
+        width: 70px;
+      }
+      .fon_17{
+          font-size:27px;
+      }
+      }
