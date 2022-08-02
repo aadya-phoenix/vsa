@@ -1,0 +1,48 @@
+.modal-content {
+    margin: auto !important;
+  }
+  .execuit_popp{
+    justify-content: space-evenly;
+    align-items: center;
+    background: aliceblue;
+    padding: 11px;
+  }
+  .execuit_popp .btn-primary{
+    width: 49%;
+  }
+  .progress {
+   
+    border-radius: 10px !important;
+}
+  .progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px !important;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #218838;
+    transition: width .6s ease;
+}
+.progress-bar1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px !important;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  background-color:yellow;
+  transition: width .6s ease;
+}
+.complition_status{
+  background: #1a65a3;
+    width: 60px;
+    text-align: center;
+    margin: auto;
+    border-radius: 14px;
+    color: #fff;
+}
