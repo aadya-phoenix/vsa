@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vendor-list',
@@ -12,7 +13,7 @@ import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendo
 export class VendorListComponent implements OnInit {
  
   getUserrole: any;
-  vendorObj:any;
+  vendorObj:any=[];
   isSuperAdmin = false;
   isPlanner = false;
   SuperAdmin = dataConstants.SuperAdmin;
@@ -29,7 +30,7 @@ export class VendorListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getVendor();
+    this.getVendorList();
   }
 
   close(){
@@ -43,7 +44,7 @@ export class VendorListComponent implements OnInit {
     this.router.navigateByUrl(`dashboard/vendor/edit/${item.id}`);  
   }
 
-  getVendor(){
+  getVendorList(){
     this.vendorService.getVendor().subscribe({
       next: (res) => {
         if(res){
@@ -59,5 +60,30 @@ export class VendorListComponent implements OnInit {
      });
   }
 
+  delete(item_id: any){
+    Swal.fire({
+       title: 'Are you sure want to remove?',
+       text: 'You will not be able to recover this request!',
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonText: 'Yes, delete it!',
+       cancelButtonText: 'No, keep it'
+     }).then((result) => {
+       if (result.value) {
+         this.vendorService.delete(item_id).subscribe({
+          next :(res:any)=>{
+          this.getVendorList();
+           Swal.fire(
+             'Deleted!',
+             'Your request has been deleted.',
+             'success'
+           )
+         },
+         error:  (err:any)=>{
+         }
+        })
+       }
+     }) 
+ }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 
 @Component({
   selector: 'app-view-plan-edit',
@@ -9,10 +11,25 @@ import { Router } from '@angular/router';
 })
 export class ViewPlanEditComponent implements OnInit {
   public viewPlanForm: FormGroup;
+  getUserrole: any;
+  isSuperAdmin = false;
+  isPlanner = false;
+  isVendor = false;
+  SuperAdmin = dataConstants.SuperAdmin;
+  Planner = dataConstants.Planner;
+  Vendor = dataConstants.Vendor;
+
+
   constructor(
+    private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private router:Router
   ) { 
+    this.getUserrole = this.authService.getRolefromlocal();
+    this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
+    this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
+    this.isVendor = this.getUserrole.RoleId === this.Vendor.RoleId && this.getUserrole.role === this.Vendor.role;
+    
     this.viewPlanForm = this.formBuilder.group({
       vendor_code: new FormControl('', [Validators.required]),
       vendor_name: new FormControl('', [Validators.required]),

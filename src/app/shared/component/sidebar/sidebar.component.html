@@ -19,7 +19,7 @@
             </a>
           </li>
           <li class="nav-item" >
-            <a class="nav-link" *ngIf="isSuperAdmin || isPlanner">
+            <a class="nav-link" *ngIf="isSuperAdmin">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Setup
@@ -44,7 +44,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/dashboard/categories" class="nav-link">
+                <a routerLink="/dashboard/category" class="nav-link">
                   <img src="../../assets/icons/admin.png" class="side_img">
                   <p>
                     Categories
@@ -94,14 +94,14 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
+             <!--  <li class="nav-item">
                 <a routerLink="/dashboard/pending-plan" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
                   <p>
                     Pending Plan
                   </p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li class="nav-item">
@@ -113,7 +113,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!isAuditor">
             <a class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>

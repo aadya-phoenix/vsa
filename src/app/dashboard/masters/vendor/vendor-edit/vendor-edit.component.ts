@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -19,11 +20,12 @@ export class VendorEditComponent implements OnInit {
     private vendorService:VendorMasterService,
     private router:Router,
     private route: ActivatedRoute,
+    private datepipe:DatePipe
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
       console.log("id",Id);
-      this.vendor_id = Id ? parseInt(Id) : 0;
+      this.vendor_id = Id ? Id : 0;
     });
     this.vendorForm = this.fb.group({
       name: new FormControl('',[Validators.required]),
@@ -61,7 +63,11 @@ export class VendorEditComponent implements OnInit {
       next: (res) => {
         if(res){
          this.vendorDetails = res;
-         console.log("vendor",res);
+         this.vendorForm.controls['name'].setValue(this.vendorDetails.name);
+         this.vendorForm.controls['code'].setValue(this.vendorDetails.code);
+         this.vendorForm.controls['email'].setValue(this.vendorDetails.email);
+         this.vendorForm.controls['createdDate'].setValue(this.dateFormat(this.vendorDetails.createdDate));
+      //   this.vendorForm.controls['email'].setValue(this.vendorDetails.email);
         }
        },
       error: (e) => console.error(e), 
@@ -78,15 +84,39 @@ export class VendorEditComponent implements OnInit {
       return;
     }
     const body = this.vendorForm.value;
-    this.vendorService.addVendor(body).subscribe(
-      (res: any) => {
-        console.log("res",res)
-      }
-    ); 
+    this.vendor_id ?  this.editVendor(body) : this.addVendor(body); 
   }
+
+  editVendor(body:any){
+    body.id = this.vendor_id;
+    console.log("body",body);
+    this.vendorService.edit(body).subscribe({
+      next:(res: any) => {
+        this.router.navigateByUrl('dashboard/vendor'); 
+      },
+      error:(err:any) =>{
+      }
+    }); 
+  }
+
+  addVendor(body:any){
+    this.vendorService.add(body).subscribe({
+      next:(res: any) => {
+        this.router.navigateByUrl('dashboard/vendor'); 
+      },
+      error:(err:any) =>{
+      }
+    }); 
+  }
+
 
   close(){
    this.router.navigateByUrl('dashboard/vendor'); 
+  }
+
+  dateFormat(date:any){
+    const newdate = new Date(date);
+    return this.datepipe.transform(newdate,'yyyy-MM-dd');
   }
   
 }

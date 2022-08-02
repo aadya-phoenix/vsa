@@ -34,7 +34,7 @@
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="editVendor(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                          <a (click)="delete(item.id)"><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                         </div>
                       </td>
                     </tr>

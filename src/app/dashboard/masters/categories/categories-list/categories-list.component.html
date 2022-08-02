@@ -21,8 +21,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
+                    <tr *ngFor="let item of categoryObj; let i = index;">
+                      <td>{{i + 1}}</td>
                       <td>CH1235</td>
                       <td>
                         Regulation for
