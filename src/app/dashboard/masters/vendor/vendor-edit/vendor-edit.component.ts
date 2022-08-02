@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -10,10 +11,20 @@ import { Router } from '@angular/router';
 export class VendorEditComponent implements OnInit {
 
   vendorForm:FormGroup;
+  vendor_id:any;
+  vendorDetails:any;
+
   constructor(
     private fb:FormBuilder,
-    private router:Router
+    private vendorService:VendorMasterService,
+    private router:Router,
+    private route: ActivatedRoute,
   ) {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const Id = params.get('id');
+      console.log("id",Id);
+      this.vendor_id = Id ? parseInt(Id) : 0;
+    });
     this.vendorForm = this.fb.group({
       name: new FormControl('',[Validators.required]),
       code: new FormControl('',[Validators.required]),
@@ -24,6 +35,7 @@ export class VendorEditComponent implements OnInit {
    }
 
   ngOnInit(): void {
+   this.vendor_id ? this.getVendorDetails() : '';
   }
 
   get vendorLocationArray(): FormArray {
@@ -44,7 +56,35 @@ export class VendorEditComponent implements OnInit {
     this.vendorLocationArray.removeAt(i);
   }
 
-  save(){}
+  getVendorDetails(){
+    this.vendorService.getVendorDetails(this.vendor_id).subscribe({
+      next: (res) => {
+        if(res){
+         this.vendorDetails = res;
+         console.log("vendor",res);
+        }
+       },
+      error: (e) => console.error(e), 
+     /*  (res:any)=>{
+      if(res){
+        this.vendorObj = res;
+        console.log("vendor",res);
+      } */
+     });
+  }
+  
+  save(){
+    if (this.vendorForm.invalid) {
+      return;
+    }
+    const body = this.vendorForm.value;
+    this.vendorService.addVendor(body).subscribe(
+      (res: any) => {
+        console.log("res",res)
+      }
+    ); 
+  }
+
   close(){
    this.router.navigateByUrl('dashboard/vendor'); 
   }
