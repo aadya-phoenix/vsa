@@ -37,7 +37,6 @@ export class RegulationListComponent implements OnInit {
     this.router.navigateByUrl('dashboard/regulation/add');
   }
 
-  
   editRegulation(item:any){
     this.router.navigateByUrl(`dashboard/regulation/edit/${item.id}`);  
   }
