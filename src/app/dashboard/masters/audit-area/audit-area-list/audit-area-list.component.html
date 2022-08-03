@@ -14,13 +14,15 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr class="sticky_header">
+                   <!--  <th>S.No</th> -->
                     <th>Audit Area Name </th>
                     <th>Category </th>
                     <th *ngIf="isSuperAdmin">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let item of auditAreaObj;let i =index;">
+                    <!-- <td>{{i+1}}</td> -->
                     <td>Regarding implementation rule of production preparation </td>
                     <td>Production preparation</td>
                     <td *ngIf="isSuperAdmin">

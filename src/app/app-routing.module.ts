@@ -63,7 +63,7 @@ const routes: Routes = [
           import('./dashboard/masters/categories/categories.module').then((m) => m.CategoriesModule),
       },
       {
-        path: 'dashboard/audit',
+        path: 'dashboard/audit-area',
         loadChildren: () =>
           import('./dashboard/masters/audit-area/audit-area.module').then((m) => m.AuditAreaModule),
       },

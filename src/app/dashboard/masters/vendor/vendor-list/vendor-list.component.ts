@@ -52,11 +52,6 @@ export class VendorListComponent implements OnInit {
         }
        },
       error: (e) => console.error(e), 
-     /*  (res:any)=>{
-      if(res){
-        this.vendorObj = res;
-        console.log("vendor",res);
-      } */
      });
   }
 
