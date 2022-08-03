@@ -73,6 +73,11 @@ const routes: Routes = [
           import('./dashboard/masters/regulation/regulation.module').then((m) => m.RegulationModule),
       },
       {
+        path: 'dashboard/action-plan',
+        loadChildren: () =>
+          import('./dashboard/action-plan/action-plan.module').then((m) => m.ActionPlanModule),
+      },
+      {
         path: 'report',
         loadChildren: () =>
           import('./dashboard/reports/reports.module').then((m) => m.ReportsModule),
