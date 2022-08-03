@@ -27,17 +27,7 @@
                         <div class="form-group">
                           <label class="form_label">Categories</label>
                           <select class="form-control" formControlName="categories">
-                            <option>Select</option>
-                            <option>Education and training</option>
-                            <option>Supplier control</option>
-                            <option>
-                              Regulation for
-                              initial production control
-                            </option>
-                            <option>
-                              Regulation for
-                              initial production control
-                            </option>
+                            <option *ngFor="let item of categoryObj" [value]="item.id">{{item.name}}</option>
                           </select>
                         </div>
                       </div>
@@ -45,9 +35,7 @@
                         <div class="form-group">
                           <label class="form_label">Audit Area</label>
                           <select class="form-control" formControlName="audit_area">
-                            <option>Select</option>
-                            <option>Regarding implementation rule of production preparation </option>
-                            <option>Regarding implementation rule of production preparation </option>
+                            <option *ngFor="let item of auditAreaObj" [value]="item.id">{{item.name}}</option>
                           </select>
                         </div>
                       </div>
