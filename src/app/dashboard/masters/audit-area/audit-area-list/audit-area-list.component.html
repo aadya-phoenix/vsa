@@ -14,7 +14,7 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr class="sticky_header">
-                   <!--  <th>S.No</th> -->
+                    <th>S.No</th>
                     <th>Audit Area Name </th>
                     <th>Category </th>
                     <th *ngIf="isSuperAdmin">Action</th>
@@ -22,43 +22,13 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of auditAreaObj;let i =index;">
-                    <!-- <td>{{i+1}}</td> -->
-                    <td>Regarding implementation rule of production preparation </td>
-                    <td>Production preparation</td>
+                    <td>{{i+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.categoryName}}</td>
                     <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
-                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Regarding management /implementation by production preparation plan/report (master plan) </td>
-                    <td>Production preparation </td>
-                    <td *ngIf="isSuperAdmin">
-                      <div class="d-flex">
-                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Regarding implementation rule of production preparation </td>
-                    <td>Standards management</td>
-                    <td *ngIf="isSuperAdmin">
-                      <div class="d-flex">
-                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Regarding management /implementation by production preparation plan/report (master plan) </td>
-                    <td>Supplier control </td>
-                    <td *ngIf="isSuperAdmin">
-                      <div class="d-flex">
-                        <a (click)="addAuditArea()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                        <a (click)="editAuditArea(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                        <a (click)="delete(item.id)"><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                       </div>
                     </td>
                   </tr>

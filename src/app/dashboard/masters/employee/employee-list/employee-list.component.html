@@ -15,6 +15,7 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                     <tr class="sticky_header">
+                      <th>S.No</th>
                       <th>Employee Name </th>
                       <th>Employee Code</th>
                       <th>Employee Role</th>
@@ -22,15 +23,16 @@
                       <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
-                  <tr>
-                    <td>Arvind</td>
-                    <td>12345</td>
-                    <td>Manager</td>
+                  <tr *ngFor="let item of employeeObj;let i =index;">
+                    <td>{{i+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.code}}</td>
+                    <td>{{item.roleId}}</td>
                     <td>12-2-2022</td>
                     <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
-                        <a  (click)="addEmployee()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                        <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                        <a  (click)="editEmployee(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                        <a (click)="delete(item.id)"><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                       </div>
                     </td>
                   </tr>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuditAreaMasterService } from 'src/app/shared/services/audit-area-master/audit-area-master.service';
+import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { RegulationMasterService } from 'src/app/shared/services/regulation-master/regulation-master.service';
 
 @Component({
@@ -13,10 +15,14 @@ export class RegulationEditComponent implements OnInit {
   regulationForm: FormGroup;
   regulation_id:any;
   regulationDetails:any;
-
+  auditAreaObj:any=[];
+  categoryObj:any=[];
+  
   constructor(
     private formBuilder: FormBuilder,
     private regulationService:RegulationMasterService,
+    private categoryService:CategoryMasterService,
+    private auditAreaService:AuditAreaMasterService,
     private router:Router
   ) { 
     this.regulationForm = this.formBuilder.group({
@@ -28,6 +34,9 @@ export class RegulationEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCategoryList();
+    this. getAuditAreaList();
+
     this.regulation_id ? this.getRegulationDetails() : '';
   }
 
@@ -67,6 +76,28 @@ export class RegulationEditComponent implements OnInit {
          this.regulationDetails = res;
          this.regulationForm.controls['name'].setValue(this.regulationDetails.name);
          this.regulationForm.controls['code'].setValue(this.regulationDetails.code);
+        }
+       },
+      error: (e) => console.error(e), 
+     });
+  }
+
+  getCategoryList(){
+    this.categoryService.getCategory().subscribe({
+      next: (res) => {
+        if(res){
+         this.categoryObj = res;
+        }
+       },
+      error: (e) => console.error(e), 
+     });
+  }
+
+  getAuditAreaList(){
+    this.auditAreaService.getAuditArea().subscribe({
+      next: (res) => {
+        if(res){
+         this.auditAreaObj = res;
         }
        },
       error: (e) => console.error(e), 

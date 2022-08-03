@@ -42,7 +42,7 @@ export class AuditAreaListComponent implements OnInit {
   }
 
   editAuditArea(item:any){
-    this.router.navigateByUrl(`dashboard/AuditArea/edit/${item.id}`);  
+    this.router.navigateByUrl(`dashboard/audit-area/edit/${item.id}`);  
   }
 
   getAuditAreaList(){
