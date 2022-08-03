@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div>
                    
-                    <div class="card">
+                    <div class="card" *ngIf="gridOne">
                         <div class="card-header">
                             <div class="header_card">
                                 <h3 class="card-title">Audit Area Details</h3>
@@ -52,7 +52,7 @@
                                             <td>TestCategory</td>
                                             <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">59%</button></td>
                                             <td>
-                                                <button class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
+                                                <button (click)="gridView1()" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
                                             </td>
                                            
                                         </tr>
@@ -84,7 +84,7 @@
                                             <td>TestCategory</td>
                                             <td><button class="btn btn-warning"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
                                             <td>
-                                                <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Overdue</button>
+                                                <button (click)="gridView1()" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Overdue</button>
                                             </td>
                                            
                                         </tr>
@@ -110,7 +110,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" *ngIf="gridTwo">
                         <div class="card-header">
                             <div class="header_card">
                                 <h3 class="card-title">Audit Area Details</h3>
@@ -139,7 +139,7 @@
                                             <td>Regulation for 
                                                 initial production control</td>
                                             <td>
-                                                <button class="btn btn-primary">2</button>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
                                             </td>
                                             
                                         </tr>
@@ -177,7 +177,7 @@
                                             <td>C7</td>
                                             <td>Quality audit and process verification</td>
                                             <td>
-                                                <button class="btn btn-primary">2</button>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
                                             </td>
                                             
                                         </tr>
@@ -199,7 +199,7 @@
                                             <td>C10</td>
                                             <td>Equipment/ Inspection equipment's managemen</td>
                                             <td>
-                                                <button class="btn btn-primary">2</button>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
                                             </td>
                                             
                                         </tr>
@@ -207,7 +207,7 @@
                                             <td>C11</td>
                                             <td>Implementation of standards</td>
                                             <td>
-                                                <button class="btn btn-primary">2</button>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
                                             </td>
                                             
                                         </tr>
@@ -229,7 +229,7 @@
                                             <td>C14</td>
                                             <td>Critical parts Management </td>
                                             <td>
-                                                <button class="btn btn-primary">2</button>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
                                             </td>
                                             
                                         </tr>
@@ -256,7 +256,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" *ngIf="gridThree">
                         <div class="card-header">
                             <div class="header_card">
                                 <h3 class="card-title">Regulation for initial production control </h3>
