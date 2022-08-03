@@ -6,7 +6,7 @@ import { RegulationListComponent } from './regulation-list/regulation-list.compo
 const routes: Routes = [
   {path:'',component:RegulationListComponent},
   {path:'add',component:RegulationEditComponent},
-  {path:'edit/:',component:RegulationEditComponent}
+  {path:'edit/:id',component:RegulationEditComponent}
 ];
 
 @NgModule({
