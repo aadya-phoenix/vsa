@@ -24,7 +24,6 @@ export class VendorEditComponent implements OnInit {
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
-      console.log("id",Id);
       this.vendor_id = Id ? Id : 0;
     });
     this.vendorForm = this.fb.group({
@@ -67,15 +66,9 @@ export class VendorEditComponent implements OnInit {
          this.vendorForm.controls['code'].setValue(this.vendorDetails.code);
          this.vendorForm.controls['email'].setValue(this.vendorDetails.email);
          this.vendorForm.controls['createdDate'].setValue(this.dateFormat(this.vendorDetails.createdDate));
-      //   this.vendorForm.controls['email'].setValue(this.vendorDetails.email);
         }
        },
       error: (e) => console.error(e), 
-     /*  (res:any)=>{
-      if(res){
-        this.vendorObj = res;
-        console.log("vendor",res);
-      } */
      });
   }
   

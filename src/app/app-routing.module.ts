@@ -63,7 +63,7 @@ const routes: Routes = [
           import('./dashboard/masters/categories/categories.module').then((m) => m.CategoriesModule),
       },
       {
-        path: 'dashboard/audit',
+        path: 'dashboard/audit-area',
         loadChildren: () =>
           import('./dashboard/masters/audit-area/audit-area.module').then((m) => m.AuditAreaModule),
       },
@@ -71,6 +71,11 @@ const routes: Routes = [
         path: 'dashboard/regulation',
         loadChildren: () =>
           import('./dashboard/masters/regulation/regulation.module').then((m) => m.RegulationModule),
+      },
+      {
+        path: 'dashboard/action-plan',
+        loadChildren: () =>
+          import('./dashboard/action-plan/action-plan.module').then((m) => m.ActionPlanModule),
       },
       {
         path: 'report',
