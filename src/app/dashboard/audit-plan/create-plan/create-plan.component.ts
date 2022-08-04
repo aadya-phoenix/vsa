@@ -57,6 +57,7 @@ export class CreatePlanComponent implements OnInit {
     }
     const body = this.createPlanForm.value as any ;
     const formData = new FormData(); 
+    /* formData.append() */
 
     for ( var key in body ) {
       console.log("key1",key)
