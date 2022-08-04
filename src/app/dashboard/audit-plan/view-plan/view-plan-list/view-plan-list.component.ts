@@ -18,6 +18,7 @@ export class ViewPlanListComponent implements OnInit {
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.Planner;
   Vendor = dataConstants.Vendor;
+  viewPlanObj:any;
 
   constructor(
     private router:Router,
@@ -30,6 +31,18 @@ export class ViewPlanListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getViewPlanList();
+  }
+
+  getViewPlanList(){
+    this.auditPlanService.getAuditPlan().subscribe({
+      next: (res) => {
+        if(res){
+         this.viewPlanObj = res;
+        }
+       },
+      error: (e) => console.error(e), 
+     });
   }
 
   viewPlan(){

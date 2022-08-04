@@ -46,11 +46,27 @@ export class CreatePlanComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
+  getFormData(object:any) {
+   
+  }
+
+
   submit(){
     if (this.createPlanForm.invalid) {
       return;
     }
-    const body = this.createPlanForm.value;
+    const body = this.createPlanForm.value as any ;
+    const formData = new FormData(); 
+
+    for ( var key in body ) {
+      console.log("key1",key)
+      console.log("key",body[key])
+      formData.append(key, body[key]);
+    //  console.log("form",key,formData,body)
+  }
+  
+
+    console.log("body",formData);
     this.auditPlanService.add(body).subscribe({
       next:(res: any) => {
         //this.router.navigateByUrl('dashboard/vendor'); 
