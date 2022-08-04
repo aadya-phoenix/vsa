@@ -226,7 +226,17 @@
   font-size: 9px !important;
 }
 
-
+.sidebar-mini.sidebar-collapse .main-sidebar {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 50px !important;
+    z-index: 850;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu>li>a>p{
+  display: none !important;
+}
 .card-footer {
   text-align: right;
 }
