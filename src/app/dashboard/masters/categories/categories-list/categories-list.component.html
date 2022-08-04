@@ -13,7 +13,7 @@
               <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                    <tr class="sticky_header">
+                    <tr class="sticky_header text-center">
                       <th>S.No</th>
                       <th>Category Name</th>
                       <th>Status</th>
@@ -27,7 +27,7 @@
                       <td >
                         <button [ngClass]="item.active  ? 'btn btn-success' : 'btn btn-danger'">{{item.active ? 'Active' : 'Inactive'}}</button> </td>
                       <td *ngIf="isSuperAdmin">
-                        <div class="d-flex">
+                        <div class="d-flex align-items-center justify-content-center">
                           <a (click)="update(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
                           <a (click)="delete(item.id)"><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                         </div>
