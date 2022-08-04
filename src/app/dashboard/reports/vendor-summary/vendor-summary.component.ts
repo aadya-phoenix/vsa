@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartData, ChartOptions } from 'chart.js';
+import { Chart, ChartData, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-vendor-summary',
@@ -21,11 +21,44 @@ export class VendorSummaryComponent implements OnInit {
 
   chartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       title: {
         display: true,
-        text: 'Vendor Summary',
+        text: 'Vendor Summary'
       },
+    },
+    scales:{
+      y:{
+        grid:{
+          display: false
+        },
+        title:{ text:"NO. OF VENDORS", display:true},
+      },
+      x:{
+        grid:{
+          display: false
+        },
+        title:{ text:"Audit Year", display:true},
+      }
+    },
+    animation: {
+      duration:1,
+      onComplete: function(e){
+        var chartInstance = e.chart,
+        ctx = chartInstance.ctx;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        this.data.datasets.forEach(function(dataset:any, i) {
+          var meta = chartInstance.getDatasetMeta(i);
+            meta.data.forEach(function(bar:any, index:number) {
+              if (dataset.data && dataset.data[index] > 0) {
+                  var data = dataset.data[index];
+                  ctx.fillText(data, bar.x, bar.y);
+              }
+          });
+        });
+      }
     },
   };
   
