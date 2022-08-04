@@ -23,7 +23,6 @@ export class EmployeeEditComponent implements OnInit {
   ) { 
     this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
-      console.log("id",Id)
       this.employee_id = Id ? Id : 0;
     });
     this.employeeForm = this.formBuilder.group({

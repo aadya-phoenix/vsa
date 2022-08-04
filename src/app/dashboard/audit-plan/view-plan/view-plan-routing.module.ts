@@ -7,7 +7,7 @@ import { ViewPlanListComponent } from './view-plan-list/view-plan-list.component
 
 const routes: Routes = [
   {path:'',component:ViewPlanListComponent},
-  {path:'edit',component:ViewPlanEditComponent},
+  {path:'edit/:id',component:ViewPlanEditComponent},
   {path:'assign',component:ViewPlanAssignComponent},
 ];
 

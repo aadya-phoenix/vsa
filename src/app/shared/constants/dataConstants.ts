@@ -5,6 +5,8 @@ export const dataConstants = {
         {RoleId: "87161db0-fadc-40f1-a9e0-b9c62e70583b", role: "Auditor"},
         {RoleId: "1dbfda66-6e5b-4950-ba03-cb599cba79cd", role: "Planner 1"}
     ],
+    dateFormate: 'dd-MM-yyyy',
+    dateTimeFormate: 'dd-MM-yyyy HH:mm a',
     
     SuperAdmin :{RoleId:'e822bfb4-b016-4408-bbb5-7690de1754a1', role:'Admin'},
     Planner :{RoleId:'1dbfda66-6e5b-4950-ba03-cb599cba79cd', role: "Planner 1"},

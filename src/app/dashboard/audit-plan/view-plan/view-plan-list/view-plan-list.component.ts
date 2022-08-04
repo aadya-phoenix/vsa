@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/shared/services/auth/authenticati
   styleUrls: ['./view-plan-list.component.css']
 })
 export class ViewPlanListComponent implements OnInit {
-
+  dateFormate= dataConstants.dateFormate;
   getUserrole: any;
   isSuperAdmin = false;
   isPlanner = false;
@@ -45,9 +45,9 @@ export class ViewPlanListComponent implements OnInit {
      });
   }
 
-  viewPlan(){
-   this.router.navigateByUrl('dashboard/view-plan/edit');
-  }
+  viewPlan(item:any){
+    this.router.navigateByUrl(`dashboard/view-plan/edit/${item.id}`);
+   }
 
   assign(){
     this.router.navigateByUrl('dashboard/view-plan/assign');

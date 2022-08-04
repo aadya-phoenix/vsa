@@ -52,7 +52,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <div class="card" ng-show="myVar==true">
+          <div class="card">
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">View Plan Details</h3>
@@ -73,7 +73,6 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                     <tr class="now_rap text-center sticky_header">
-                      <th>Audit No</th>
                       <th>Vendor Code </th>
                       <th>Vendor Name</th>
                       <th>Location</th>
@@ -85,44 +84,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="tbody_data">
-                      <td>AU1</td>
-                      <td>VN123</td>
-                      <td>Vendor</td>
-                      <td>Location</td>
-                      <td>Any Location</td>
-                      <td>12-2-2022</td>
-                      <td>12-4-2022</td>
-                      <td><p class="pend_coloe  backgr_blue">Pending </p></td>
+                    <tr class="tbody_data" *ngFor="let item of viewPlanObj  ">
+                      <td>{{item.vendorCode}}</td>
+                      <td>{{item.vendorName}}</td>
+                      <td>{{item.locationName}}</td>
+                      <td>{{item.otherLocation}}</td>
+                      <td>{{item.plannedStartDate | date:dateFormate}}</td>
+                      <td>{{item.plannedEndDate | date:dateFormate}}</td>
+                      <td><p class="pend_coloe  backgr_blue">{{item.status}} </p></td>
                       <td *ngIf="isSuperAdmin || isPlanner">
-                        <a (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
-                      </td>
-                    </tr>
-                    <tr class="tbody_data">
-                      <td>AU1</td>
-                      <td>VN123</td>
-                      <td>Vendor</td>
-                      <td>Location</td>
-                      <td>Any Location</td>
-                      <td>12-2-2022</td>
-                      <td>12-4-2022</td>
-                      <td><p class="pend_coloe  backgr_green">Approve </p></td>
-                      <td *ngIf="isSuperAdmin || isPlanner">
-                        <a *ngIf="isSuperAdmin || isPlanner" (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
-                        <a *ngIf="isSuperAdmin" (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
-                      </td>
-                    </tr>
-                    <tr class="tbody_data">
-                      <td>AU1</td>
-                      <td>VN123</td>
-                      <td>Vendor</td>
-                      <td>Location</td>
-                      <td>Any Location</td>
-                      <td>12-2-2022</td>
-                      <td>12-4-2022</td>
-                      <td><p class="pend_coloe  backgr_yellow">Auditor Assigend </p></td>
-                      <td *ngIf="isSuperAdmin || isPlanner">
-                        <a *ngIf="isSuperAdmin || isPlanner" (click)="viewPlan()"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
+                        <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                         <a *ngIf="isSuperAdmin" (click)="assign()" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>
                       </td>
                     </tr>

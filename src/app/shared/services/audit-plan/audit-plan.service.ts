@@ -27,12 +27,12 @@ export class AuditPlanService {
       .pipe(catchError(this.commmonService.Errorhandling));
   }
    
-  add(data:any){
+  add(data:FormData){
     const url = `${this.basePath}api/AuditPlan`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
 
-  getCategoryDetails(id:any){
+  getPlanDetails(id:any){
     const url = `${this.basePath}api/AuditPlan/${id}`;
     return this.http
       .get(url, this.http.headers)

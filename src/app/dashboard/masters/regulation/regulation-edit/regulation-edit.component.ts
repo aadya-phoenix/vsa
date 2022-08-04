@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditAreaMasterService } from 'src/app/shared/services/audit-area-master/audit-area-master.service';
 import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { RegulationMasterService } from 'src/app/shared/services/regulation-master/regulation-master.service';
@@ -23,8 +23,13 @@ export class RegulationEditComponent implements OnInit {
     private regulationService:RegulationMasterService,
     private categoryService:CategoryMasterService,
     private auditAreaService:AuditAreaMasterService,
-    private router:Router
+    private router:Router,
+    private route: ActivatedRoute
   ) { 
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const Id = params.get('id');
+      this.regulation_id = Id ? Id : 0;
+    });
     this.regulationForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
      // code: new FormControl('', [Validators.required]),
@@ -75,7 +80,8 @@ export class RegulationEditComponent implements OnInit {
         if(res){
          this.regulationDetails = res;
          this.regulationForm.controls['name'].setValue(this.regulationDetails.name);
-         this.regulationForm.controls['code'].setValue(this.regulationDetails.code);
+         this.regulationForm.controls['categoryId'].setValue(this.regulationDetails.categoryId);
+         this.regulationForm.controls['auditAreaId'].setValue(this.regulationDetails.auditAreaId);
         }
        },
       error: (e) => console.error(e), 
