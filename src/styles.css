@@ -240,7 +240,9 @@
 .card-footer {
   text-align: right;
 }
-
+.content{
+  padding-top: 10px;
+}
 .user-panel {
   background: #fff !important;
 }
