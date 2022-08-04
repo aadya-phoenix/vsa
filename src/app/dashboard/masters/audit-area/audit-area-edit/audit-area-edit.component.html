@@ -13,25 +13,15 @@
                                     <div class="form-group">
                                         <label class="form_label">Audit Area Name</label>
                                         <input type="text" class="form-control inputbox_css"
-                                            placeholder="Enter Audit Area Name" formControlName="auditAreaName" maxlength="200">
+                                            placeholder="Enter Audit Area Name" formControlName="name" maxlength="200">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="form_label">Category</label>
                                         <select class="form-control" 
-                                        formControlName="category">
-                                            <option>Select</option>
-                                            <option>Education and training</option>
-                                            <option>Supplier control</option>
-                                            <option>
-                                                Regulation for
-                                                initial production control
-                                            </option>
-                                            <option>
-                                                Regulation for
-                                                initial production control
-                                            </option>
+                                        formControlName="categoryId" >
+                                            <option *ngFor="let item of categoryObj" [value]="item.id">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>

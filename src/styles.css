@@ -215,6 +215,16 @@
   color: #fff !important;
 }
 
+.btn-warning {
+  padding: 2px 14px !important;
+  font-size: 15px !important;
+  background-color: yellow !important;
+  border-color: yellow !important;
+  color: #000 !important;
+}
+.fon_9{
+  font-size: 9px !important;
+}
 
 
 .card-footer {

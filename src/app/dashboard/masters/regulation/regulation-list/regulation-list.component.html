@@ -14,8 +14,8 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                     <tr class="sticky_header">
+                      <th>S.No</th>
                       <th>Regulation Name </th>
-                      <!-- <th>Regulation Code</th> -->
                       <th>Categories</th>
                       <th>Audit Area</th>
                       <th>Regulation Creation Date</th>
@@ -23,29 +23,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
-                      <!-- <td>12345</td> -->
-                      <td>Production preparation</td>
-                      <td>Regarding implementation rule of production preparation</td>
-                      <td>12-2-2022</td>
+                    <tr *ngFor="let item of regulationObj; let i = index;">
+                      <td>{{i+1}}</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.categoryName}}</td>
+                      <td>{{item.auditArea}}</td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
-                          <a (click)="addRegulation()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
-                      <!-- <td>12345</td> -->
-                      <td>Production preparation</td>
-                      <td>Regarding implementation rule of production preparation</td>
-                      <td>12-2-2022</td>
-                      <td *ngIf="isSuperAdmin">
-                        <div class="d-flex">
-                          <a (click)="addRegulation()"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
-                          <a><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
+                          <a (click)="editRegulation(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                          <a (click)="delete(item.id)"><img src="../../../../../assets/icons/delete.png" class="w_25"></a>
                         </div>
                       </td>
                     </tr>

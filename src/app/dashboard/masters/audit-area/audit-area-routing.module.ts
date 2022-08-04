@@ -5,7 +5,8 @@ import { AuditAreaListComponent } from './audit-area-list/audit-area-list.compon
 
 const routes: Routes = [
   {path:'',component:AuditAreaListComponent},
-  {path:'edit',component:AuditAreaEditComponent}
+  {path:'add',component:AuditAreaEditComponent},
+  {path:'edit/:id',component:AuditAreaEditComponent}
 ];
 
 @NgModule({

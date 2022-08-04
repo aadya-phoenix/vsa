@@ -1,0 +1,336 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                   
+                    <div class="card" *ngIf="gridOne">
+                        <div class="card-header">
+                            <div class="header_card">
+                                <h3 class="card-title">Audit Area Details</h3>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mr-1 mb-0">Filters:-</h6>
+                                    <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
+                                    <input type="text" class="form-control mr-1 filter_css" placeholder="Date ">
+                                    <!-- <input type="text" class="form-control mr-1 filter_css" placeholder="Score "> -->
+                                    <!-- <button class="btn btn-success d-flex  align-items-center">
+                                        <i class="fas fa-upload mr-1 upload_ico"></i>
+                                        <span class="now_rap">Upload Plan</span>
+                                    </button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive max_hei_table">
+                                <table id="" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr class=" text-center sticky_header">
+                                            <th>Audit No</th>
+                                            <th>Vendor Code </th>
+                                            <th>Vendor Name</th>
+                                            <!-- <th>Location</th>
+                                            <th>Any Other Location</th> -->
+                                            <th>Planned Start Date </th>
+                                            <th>Planned End Date</th>
+                                            <th>No Of Observation</th>
+                                            <th>Categories</th>
+                                            <th>Score</th>
+                                            <th>Action Plan </th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="tbody_data">
+                                            <td>AU1</td>
+                                            <td>VN123</td>
+                                            <td>Vendor</td>
+                                            <!-- <td>Location</td>
+                                            <td>Any Location</td> -->
+                                            <td>12-2-2022</td>
+                                            <td>12-4-2022</td>
+                                            <td>1</td>
+                                            <td>TestCategory</td>
+                                            <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">59%</button></td>
+                                            <td>
+                                                <button (click)="gridView1()" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
+                                            </td>
+                                           
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>AU1</td>
+                                            <td>VN123</td>
+                                            <td>Vendor</td>
+                                            <!-- <td>Location</td>
+                                            <td>Any Location</td> -->
+                                            <td>12-2-2022</td>
+                                            <td>12-4-2022</td>
+                                            <td>1</td>
+                                            <td>TestCategory</td>
+                                            <td><button class="btn btn-danger"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
+                                            <td>
+                                                <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Submitted</button>
+                                            </td>
+                                           
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>AU1</td>
+                                            <td>VN123</td>
+                                            <td>Vendor</td>
+                                            <!-- <td>Location</td>
+                                            <td>Any Location</td> -->
+                                            <td>12-2-2022</td>
+                                            <td>12-4-2022</td>
+                                            <td>1</td>
+                                            <td>TestCategory</td>
+                                            <td><button class="btn btn-warning"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
+                                            <td>
+                                                <button (click)="gridView1()" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Overdue</button>
+                                            </td>
+                                           
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justift_end">
+                                    <li class="page-item">
+                                        <a class="page-link"  aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" >1</a></li>
+                                    <li class="page-item"><a class="page-link" >2</a></li>
+                                    <li class="page-item"><a class="page-link" >3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link"  aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="gridTwo">
+                        <div class="card-header">
+                            <div class="header_card">
+                                <h3 class="card-title">Audit Area Details</h3>
+                                
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive max_hei_table">
+                                <table id="" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr class=" text-center sticky_header">
+                                            <th>S.No</th>
+                                            <th>Categories </th>
+                                            <th>Observation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="tbody_data">
+                                            <td>C1</td>
+                                            <td>Production preparation</td>
+                                          <td>  <button class="btn btn-primary">1</button></td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C2</td>
+                                            <td>Regulation for 
+                                                initial production control</td>
+                                            <td>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C3</td>
+                                            <td>Changing management</td>
+                                            <td>
+                                                <button class="btn btn-primary">3</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C4</td>
+                                            <td>Changing management</td>
+                                            <td>
+                                                <button class="btn btn-primary">0</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C5</td>
+                                            <td>Changing management</td>
+                                          <td>  <button class="btn btn-primary">1</button></td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C6</td>
+                                            <td>Quality audit and process verification</td>
+                                            <td>
+                                                <button class="btn btn-primary">5</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C7</td>
+                                            <td>Quality audit and process verification</td>
+                                            <td>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C8</td>
+                                            <td>Handling abnormality in quality</td>
+                                            <td>
+                                                <button class="btn btn-primary">4</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C9</td>
+                                            <td>Handling abnormality in quality</td>
+                                          <td>  <button class="btn btn-primary">1</button></td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C10</td>
+                                            <td>Equipment/ Inspection equipment's managemen</td>
+                                            <td>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C11</td>
+                                            <td>Implementation of standards</td>
+                                            <td>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C12</td>
+                                            <td>Products management</td>
+                                            <td>
+                                                <button class="btn btn-primary">8</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C13</td>
+                                            <td>Handling Management</td>
+                                          <td>  <button class="btn btn-primary">1</button></td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>C14</td>
+                                            <td>Critical parts Management </td>
+                                            <td>
+                                                <button (click)="gridView2()" class="btn btn-primary">2</button>
+                                            </td>
+                                            
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justift_end">
+                                    <li class="page-item">
+                                        <a class="page-link"  aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" >1</a></li>
+                                    <li class="page-item"><a class="page-link" >2</a></li>
+                                    <li class="page-item"><a class="page-link" >3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link"  aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="gridThree">
+                        <div class="card-header">
+                            <div class="header_card">
+                                <h3 class="card-title">Regulation for initial production control </h3>
+                                
+                            </div>
+                        </div>
+                        <div class="card-body">
+                           
+                               
+                            <div class="table-responsive max_hei_table" >
+                                <table id="" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th colspan="8">Observation(2)</th>
+                                        </tr>
+                                        <tr class=" text-center sticky_header fon_9">
+                                            <th>Observation</th>
+                                            <th>ITEM NO.</th>
+                                            <th>SUB ITEM NO. </th>
+                                            <th>DESIRED IMPROVEMENT POINTS</th>
+                                            <th>DETAIL OF IMPROVEMENT PLAN</th>
+                                            <th>IN-CHARGE</th>
+                                            <th>DATE</th>
+                                            <th>RESULT OF VERIFICATION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="tbody_data ">
+                                            <td>1</td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            
+                                        </tr>
+                                        <tr class="tbody_data">
+                                            <td>2</td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control"></textarea></td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justift_end">
+                                    <li class="page-item">
+                                        <a class="page-link"  aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" >1</a></li>
+                                    <li class="page-item"><a class="page-link" >2</a></li>
+                                    <li class="page-item"><a class="page-link" >3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link"  aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

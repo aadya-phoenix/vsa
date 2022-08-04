@@ -12,10 +12,12 @@ export class SidebarComponent implements OnInit {
   getUserrole: any;
   isSuperAdmin =false;
   isPlanner =false;
+  isVendor =false;
   isAuditor= false;
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.Planner;
   Auditor = dataConstants.Auditor;
+  Vendor = dataConstants.Vendor;
 
 
   constructor(
@@ -25,6 +27,7 @@ export class SidebarComponent implements OnInit {
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
     this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
     this.isAuditor = this.getUserrole.RoleId === this.Auditor.RoleId && this.getUserrole.role === this.Auditor.role; 
+    this.isVendor = this.getUserrole.RoleId === this.Vendor.RoleId && this.getUserrole.role === this.Vendor.role; 
   }
 
   ngOnInit(): void {
