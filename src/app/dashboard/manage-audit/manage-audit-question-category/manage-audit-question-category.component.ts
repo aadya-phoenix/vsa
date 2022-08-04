@@ -19,8 +19,12 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     this.router.navigateByUrl('dashboard/manage-audit/question-details');
   }
 
-  viewSummary(){}
+  viewSummary(){
+    this.router.navigateByUrl('dashboard/manage-audit/summary');
+  }
 
-  back(){}
+  back(){
+    this.router.navigateByUrl('dashboard/manage-audit/initiate');
+  }
 
 }
