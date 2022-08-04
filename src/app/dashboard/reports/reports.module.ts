@@ -15,6 +15,9 @@ import { AverageDefectComponent } from './average-defect/average-defect.componen
 import { PendingStatusComponent } from './pending-status/pending-status.component';
 import { AverageDefectSupplierComponent } from './average-defect-supplier/average-defect-supplier.component';
 import { VendorSummaryComponent } from './vendor-summary/vendor-summary.component';
+import { ClauseWiseScoreComponent } from './clause-wise-score/clause-wise-score.component';
+import { VendorWiseScoreComponent } from './vendor-wise-score/vendor-wise-score.component';
+import { TradeRepeatComponent } from './trade-repeat/trade-repeat.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { VendorSummaryComponent } from './vendor-summary/vendor-summary.componen
     AverageDefectComponent,
     PendingStatusComponent,
     AverageDefectSupplierComponent,
-    VendorSummaryComponent
+    VendorSummaryComponent,
+    ClauseWiseScoreComponent,
+    VendorWiseScoreComponent,
+    TradeRepeatComponent
   ],
   imports: [
     CommonModule,

@@ -21,8 +21,8 @@ export class VsaStatusComponent implements OnInit {
         pointHoverRadius: 10,
         pointBackgroundColor: 'rgb(75 192 192)',
         pointHoverBackgroundColor: 'rgb(75 192 192)',
-        pointHoverBorderColor:  'rgb(75 192 192)',
-        pointBorderColor:  'rgb(75 192 192)',
+        pointHoverBorderColor: 'rgb(75 192 192)',
+        pointBorderColor: 'rgb(75 192 192)',
       },
       {
         label: 'VSA Yellow',
@@ -32,8 +32,8 @@ export class VsaStatusComponent implements OnInit {
         pointHoverRadius: 10,
         pointBackgroundColor: 'rgb(255, 205, 86)',
         pointHoverBackgroundColor: 'rgb(255, 205, 86)',
-        pointHoverBorderColor:  'rgb(255, 205, 86)',
-        pointBorderColor:  'rgb(255, 205, 86)',
+        pointHoverBorderColor: 'rgb(255, 205, 86)',
+        pointBorderColor: 'rgb(255, 205, 86)',
         pointStyle: 'triangle',
         borderColor: 'rgb(255, 205, 86)'
       },
@@ -47,8 +47,8 @@ export class VsaStatusComponent implements OnInit {
         pointHoverRadius: 10,
         pointBackgroundColor: 'rgb(255 99 132)',
         pointHoverBackgroundColor: 'rgb(255 99 132)',
-        pointHoverBorderColor:  'rgb(255 99 132)',
-        pointBorderColor:  'rgb(255 99 132)',
+        pointHoverBorderColor: 'rgb(255 99 132)',
+        pointBorderColor: 'rgb(255 99 132)',
       },
     ],
   };
@@ -57,18 +57,39 @@ export class VsaStatusComponent implements OnInit {
     responsive: true,
     scales: {
       y: {
-        display: true,
-        pointLabels:{
-          callback: function (value) {
-            return value + '%'
-          }
+        grid: {
+          display: false
         },
+        title: { text: "% of total audited vendors", display: true },
         ticks: {
           callback: function (value, index, ticks) {
             return value + '%'
           }
         }
       },
+      x: {
+        grid: {
+          display: false
+        },
+      }
+    },
+    animation: {
+      duration: 1,
+      onComplete: function (e) {
+        const chartInstance = e.chart,
+          ctx = chartInstance.ctx;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        this.data.datasets.forEach((dataset: any, i) => {
+          const meta = chartInstance.getDatasetMeta(i);
+          meta.data.forEach((bar: any, index: number) => {
+            if (dataset.data && dataset.data[index] > 0) {
+              const data = dataset.data[index];
+              ctx.fillText(data + "%", bar.x, bar.y);
+            }
+          });
+        });
+      }
     },
     plugins: {
       title: {
