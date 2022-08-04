@@ -4,11 +4,7 @@
 
 export const environment = {
   production: true,
- // baseUrl:'http://localhost:8085/',
   baseUrl:'http://3.130.154.203:8085/',
-  //apiVersion:'v4',
- // clientId:'1',
-  //clientSecret:'daBIcLqqwIOYrtdSJ6xT5i6omb75LSB5XCRhG9eG',
   lang:'english'
 };
 /*
