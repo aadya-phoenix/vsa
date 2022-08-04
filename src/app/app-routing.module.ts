@@ -78,6 +78,11 @@ const routes: Routes = [
           import('./dashboard/action-plan/action-plan.module').then((m) => m.ActionPlanModule),
       },
       {
+        path: 'dashboard/action-pending-plan',
+        loadChildren: () =>
+          import('./dashboard/audit-plan/pending-action-plan/pending-action-plan.module').then((m) => m.PendingActionPlanModule),
+      },
+      {
         path: 'report',
         loadChildren: () =>
           import('./dashboard/reports/reports.module').then((m) => m.ReportsModule),
