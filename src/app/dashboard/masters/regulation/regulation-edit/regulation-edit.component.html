@@ -13,7 +13,7 @@
                         <div class="form-group">
                           <label class="form_label">Regulation Name</label>
                           <textarea class="form-control" 
-                          formControlName="regulation_name"></textarea>
+                          formControlName="name"></textarea>
                         </div>
                       </div>
                       <!-- <div class="col-sm-4">
@@ -26,7 +26,7 @@
                       <div class="col-sm-4">
                         <div class="form-group">
                           <label class="form_label">Categories</label>
-                          <select class="form-control" formControlName="categories">
+                          <select class="form-control" formControlName="categoryId">
                             <option *ngFor="let item of categoryObj" [value]="item.id">{{item.name}}</option>
                           </select>
                         </div>
@@ -34,7 +34,7 @@
                       <div class="col-sm-4">
                         <div class="form-group">
                           <label class="form_label">Audit Area</label>
-                          <select class="form-control" formControlName="audit_area">
+                          <select class="form-control" formControlName="auditAreaId">
                             <option *ngFor="let item of auditAreaObj" [value]="item.id">{{item.name}}</option>
                           </select>
                         </div>

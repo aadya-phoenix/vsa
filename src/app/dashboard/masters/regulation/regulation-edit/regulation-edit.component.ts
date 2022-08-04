@@ -26,10 +26,10 @@ export class RegulationEditComponent implements OnInit {
     private router:Router
   ) { 
     this.regulationForm = this.formBuilder.group({
-      regulation_name: new FormControl('', [Validators.required]),
-      regulation_code: new FormControl('', [Validators.required]),
-      categories: new FormControl('', [Validators.required]),
-      audit_area: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+     // code: new FormControl('', [Validators.required]),
+      categoryId: new FormControl('', [Validators.required]),
+      auditAreaId: new FormControl('', [Validators.required]),
    });
   }
 
