@@ -33,7 +33,7 @@ export class CreatePlanComponent implements OnInit {
       plannedEndDate: new FormControl('', [Validators.required]),
       additionalMSILEmail: new FormControl('', [Validators.required]),
       auditeeEmail: new FormControl('', [Validators.required]),
-      attachment: new FormControl('', [Validators.required]),
+      attachment: new FormControl('', []),
    });
   }
 
