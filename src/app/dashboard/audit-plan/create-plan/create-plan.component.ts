@@ -43,36 +43,38 @@ export class CreatePlanComponent implements OnInit {
   }
 
   onFileSelected(event:any){
+    console.log("file",event)
     this.selectedFile = event.target.files[0];
+    console.log("file",this.selectedFile);
   }
-
-  getFormData(object:any) {
-   
-  }
-
 
   submit(){
     if (this.createPlanForm.invalid) {
       return;
     }
-    const body = this.createPlanForm.value as any ;
+    const body = this.createPlanForm.value ;
+
     const formData = new FormData(); 
+     console.log("attachmentFile",this.selectedFile);
 
-    for ( var key in body ) {
-      console.log("key1",key)
-      console.log("key",body[key])
-      formData.append(key, body[key]);
-    //  console.log("form",key,formData,body)
-  }
-  
-
-    console.log("body",formData);
-    this.auditPlanService.add(body).subscribe({
+     formData.append('AttachmentFile', this.selectedFile);
+     formData.append('vendorId', body.vendorId); 
+     formData.append('locationId', body.locationId);
+     formData.append('otherLocation', body.otherLocation);
+     formData.append('otherCode', body.otherCode);
+     formData.append('typeCode', body.typeCode);
+     formData.append('typeName', body.typeName);
+     formData.append('typeLocation', body.typeLocation);
+     formData.append('plannedStartDate', body.plannedStartDate);
+     formData.append('plannedEndDate', body.plannedEndDate);
+     formData.append('additionalMSILEmail', body.additionalMSILEmail);
+     formData.append('auditeeEmail', body.auditeeEmail);
+     
+    this.auditPlanService.add(formData).subscribe({
       next:(res: any) => {
-        //this.router.navigateByUrl('dashboard/vendor'); 
       },
       error:(err:any) =>{
-      }
+      } 
     }); 
   }
 

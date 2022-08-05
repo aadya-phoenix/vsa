@@ -1,0 +1,23 @@
+<div class="card mb-0">
+    <div class="card-header color-orange">
+        <div class="d-flex justify-content-between">
+            Remarks
+            <a (click)="closeModal()"><i class="fa fa-times color-black" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="publishBackOfficeForm">
+            <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Comment</label>
+                  <textarea class="form-control form_width-textarea" rows="3" placeholder="Enter Comments"
+                  formControlName="status_comment"></textarea>
+                </div>
+              </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary mr-1" type="submit" (click)="submit()">Submit</button>
+        <button class="btn btn-secondary" type="submit" (click)="close()">Cancel</button>
+    </div>
+</div>

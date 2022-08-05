@@ -48,7 +48,6 @@ export class AuditAreaEditComponent implements OnInit {
 
   editAuditArea(body:any){
     body.id = this.audit_id;
-    console.log("body",body);
     this.auditAreaService.edit(body).subscribe({
       next:(res: any) => {
         this.router.navigateByUrl('dashboard/audit-area'); 

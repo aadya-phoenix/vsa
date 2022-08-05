@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Regulation Master</h3>
-                <a *ngIf="isSuperAdmin" (click)="addRegulation()" class="btn btn-blue"> <img src="../../../../../assets/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
+                <a *ngIf="isSuperAdmin" (click)="addRegulation()" class="btn btn-primary"> <img src="../../../../../assets/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
               </div>
             </div>
             <div class="card-body">
@@ -27,8 +27,8 @@
                       <td>{{i+1}}</td>
                       <td>{{item.name}}</td>
                       <td>{{item.categoryName}}</td>
-                      <td>{{item.auditArea}}</td>
-                      <td></td>
+                      <td>{{item.auditAreaName}}</td>
+                      <td>{{item.createdDate | date: dateFormate }}</td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex">
                           <a (click)="editRegulation(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>

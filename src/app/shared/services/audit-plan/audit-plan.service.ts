@@ -27,16 +27,27 @@ export class AuditPlanService {
       .pipe(catchError(this.commmonService.Errorhandling));
   }
    
-  add(data:any){
+  add(data:FormData){
+     this.headers.append(
+      'Content-Type' , 'multipart/form-data'
+    ) 
     const url = `${this.basePath}api/AuditPlan`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
 
-  getCategoryDetails(id:any){
+  getPlanDetails(id:any){
     const url = `${this.basePath}api/AuditPlan/${id}`;
     return this.http
       .get(url, this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling));  
+  }
+
+  getAttachment(id:any){
+    const params = new HttpParams().set('id',id);
+    const url = `${this.basePath}api/AuditPlan/attachment`;
+    return this.http
+      .getParams(url, this.http.headers,params)
+      .pipe(catchError(this.commmonService.Errorhandling));
   }
 
   delete(id: any){
@@ -51,10 +62,16 @@ export class AuditPlanService {
     const url = `${this.basePath}api/AuditPlan`;
     return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
   }
+
   getLocation(){
     const url = `${this.basePath}api/Location`;
     return this.http
       .get(url, this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  vendorAction(data:any){
+    const url = `${this.basePath}api/AuditPlan/RejectAuditPlan`;
+    return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
   }
 }

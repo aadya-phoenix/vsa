@@ -18,6 +18,7 @@ export class RegulationListComponent implements OnInit {
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.SuperAdmin;
   regulationObj:any = [];
+  dateFormate = dataConstants.dateFormate;
 
   constructor(
     private router:Router,
