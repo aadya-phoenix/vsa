@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthenticationService } from 'src/app/shared/services/auth/authenticati
   styleUrls: ['./pending-plan-list.component.css']
 })
 export class PendingPlanListComponent implements OnInit {
-
+  dateFormate= dataConstants.dateFormate;
   getUserrole: any;
   isSuperAdmin = false;
   isPlanner = false;
@@ -17,18 +18,47 @@ export class PendingPlanListComponent implements OnInit {
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.SuperAdmin;
   Vendor = dataConstants.Vendor;
+  viewPlanObj:any=[];
+  accept=false;
+  reject=true;
 
   constructor(
     private router:Router,
-    private authService: AuthenticationService,) { 
+    private authService: AuthenticationService,
+    private auditPlanService:AuditPlanService,) { 
     this.getUserrole = this.authService.getRolefromlocal();
-    console.log("isvendor, userrole",this.isVendor,this.getUserrole);
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
     this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
     this.isVendor = this.getUserrole.RoleId === this.Vendor.RoleId && this.getUserrole.role === this.Vendor.role;
   }
 
   ngOnInit(): void {
+    this.getViewPlanList();
+  }
+
+  getViewPlanList(){
+    this.auditPlanService.getAuditPlan().subscribe({
+      next: (res) => {
+        if(res){
+         this.viewPlanObj = res;
+        }
+       },
+      error: (e) => console.error(e), 
+     });
+  }
+
+  getVendorAction(status:any,item:any){
+    const body = {
+    auditPlanId: item.id,
+    comment: "test",
+    isRejected : status
+    };
+     this.auditPlanService.vendorAction(body).subscribe({
+     next:(res: any) => {
+      },
+      error:(err:any) =>{
+      } 
+    });  
   }
 
 }

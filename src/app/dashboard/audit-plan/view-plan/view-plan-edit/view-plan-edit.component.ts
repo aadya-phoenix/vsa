@@ -47,8 +47,7 @@ export class ViewPlanEditComponent implements OnInit {
     });
     
     this.viewPlanForm = this.formBuilder.group({
-      vendor_code: new FormControl('', []),
-     // vendor_name: new FormControl('', []),
+      vendorId: new FormControl('', []),
       locationId: new FormControl('', [Validators.required]),
       otherLocation: new FormControl('', [Validators.required]),
       otherCode: new FormControl('', [Validators.required]),
@@ -66,7 +65,10 @@ export class ViewPlanEditComponent implements OnInit {
   ngOnInit(): void {
     this.getLocation();
     this.getVendorList();
-    this.viewPlanId ? this.getViewPlanDetails() : '';
+    if(this.viewPlanId){
+      this.getViewPlanDetails();
+      this.getAttachment();
+    }
   }
 
   submit(){
@@ -75,9 +77,23 @@ export class ViewPlanEditComponent implements OnInit {
     }
     const body = this.viewPlanForm.value;
     body.id = this.viewPlanId;
-    this.auditPlanService.edit(body).subscribe({
+    
+    const formData = new FormData();
+     formData.append('Id', body.id);  
+     formData.append('vendorId', body.vendorId); 
+     formData.append('locationId', body.locationId);
+     formData.append('otherLocation', body.otherLocation);
+     formData.append('otherCode', body.otherCode);
+     formData.append('typeCode', body.typeCode);
+     formData.append('typeName', body.typeName);
+     formData.append('typeLocation', body.typeLocation);
+     formData.append('plannedStartDate', body.plannedStartDate);
+     formData.append('plannedEndDate', body.plannedEndDate);
+     formData.append('additionalMSILEmail', body.additionalMSILEmail);
+     formData.append('auditeeEmail', body.auditeeEmail);
+    this.auditPlanService.edit(formData).subscribe({
       next:(res: any) => {
-        //this.router.navigateByUrl('dashboard/audit-area'); 
+        this.router.navigateByUrl('dashboard/view-plan'); 
       },
       error:(err:any) =>{
       }
@@ -93,6 +109,7 @@ export class ViewPlanEditComponent implements OnInit {
       next: (res) => {
         if(res){
          this.viewPlanDetails = res;
+         this.viewPlanForm.controls['vendorId'].setValue(this.viewPlanDetails.vendorId);
          this.viewPlanForm.controls['locationId'].setValue(this.viewPlanDetails.locationId);
          this.viewPlanForm.controls['otherLocation'].setValue(this.viewPlanDetails.otherLocation);
          this.viewPlanForm.controls['otherCode'].setValue(this.viewPlanDetails.otherCode);
@@ -109,6 +126,17 @@ export class ViewPlanEditComponent implements OnInit {
        },
       error: (e) => console.error(e), 
      });
+  }
+
+  getAttachment(){
+    this.auditPlanService.getAttachment(this.viewPlanId).subscribe({
+      next: (res) => {
+        if(res){
+          console.log("attachment",res)
+        }
+      },
+     error: (e) => console.error(e), 
+    });
   }
 
   getLocation(){

@@ -43,7 +43,9 @@ export class CreatePlanComponent implements OnInit {
   }
 
   onFileSelected(event:any){
+    console.log("file",event)
     this.selectedFile = event.target.files[0];
+    console.log("file",this.selectedFile);
   }
 
   submit(){
@@ -53,6 +55,9 @@ export class CreatePlanComponent implements OnInit {
     const body = this.createPlanForm.value ;
 
     const formData = new FormData(); 
+     console.log("attachmentFile",this.selectedFile);
+
+     formData.append('AttachmentFile', this.selectedFile);
      formData.append('vendorId', body.vendorId); 
      formData.append('locationId', body.locationId);
      formData.append('otherLocation', body.otherLocation);
@@ -64,12 +69,9 @@ export class CreatePlanComponent implements OnInit {
      formData.append('plannedEndDate', body.plannedEndDate);
      formData.append('additionalMSILEmail', body.additionalMSILEmail);
      formData.append('auditeeEmail', body.auditeeEmail);
-
-     //console.lo0g()
-
+     
     this.auditPlanService.add(formData).subscribe({
       next:(res: any) => {
-        //this.router.navigateByUrl('dashboard/vendor'); 
       },
       error:(err:any) =>{
       } 

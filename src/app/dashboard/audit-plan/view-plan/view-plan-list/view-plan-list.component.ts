@@ -18,7 +18,7 @@ export class ViewPlanListComponent implements OnInit {
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.Planner;
   Vendor = dataConstants.Vendor;
-  viewPlanObj:any;
+  viewPlanObj:any=[];
 
   constructor(
     private router:Router,

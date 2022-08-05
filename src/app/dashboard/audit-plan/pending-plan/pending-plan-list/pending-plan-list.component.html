@@ -66,7 +66,7 @@
               <div class="table-responsive max_hei_table">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                    <tr class="now_rap text-center sticky_header">
+                    <tr class="now_rap text-center sticky_header" >
                       <th>Audit No</th>
                       <th>Vendor Code </th>
                       <th>Vendor Name</th>
@@ -79,68 +79,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="tbody_data">
+                    <tr class="tbody_data" *ngFor="let item of viewPlanObj  ">
                       <td>AU1</td>
-                      <td>VN123</td>
-                      <td>Vendor</td>
-                      <td>Location</td>
-                      <td>Any Location</td>
-                      <td>12-2-2022</td>
-                      <td>12-4-2022</td>
-                      <td>
-                        <p class="pend_coloe backgr_blue" data-toggle="tooltip" data-placement="top" title="pending">Pending </p>
-                      </td>
+                      <td>{{item.vendorCode}}</td>
+                      <td>{{item.vendorName}}</td>
+                      <td>{{item.locationName}}</td>
+                      <td>{{item.otherLocation}}</td>
+                      <td>{{item.plannedStartDate | date:dateFormate}}</td>
+                      <td>{{item.plannedEndDate | date:dateFormate}}</td>
+                      <td><p class="pend_coloe  backgr_blue">{{item.status}} </p></td>
                       <td *ngIf="isVendor">  
-                        <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
-                        <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
-                      </td>
-                    </tr>
-                    <tr class="tbody_data">
-                      <td>AU1</td>
-                      <td>VN123</td>
-                      <td>Vendor</td>
-                      <td>Location</td>
-                      <td>Any Location</td>
-                      <td>12-2-2022</td>
-                      <td>12-4-2022</td>
-                      <td>
-                        <p class="pend_coloe backgr_green" data-toggle="tooltip" data-placement="top" title="Approve">Approve </p>
-                      </td>
-                      <td *ngIf="isVendor">
-                        <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
-                        <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
-                      </td>
-                    </tr>
-                    <tr class="tbody_data">
-                      <td>AU1</td>
-                      <td>VN123</td>
-                      <td>Vendor</td>
-                      <td>Location</td>
-                      <td>Any Location</td>
-                      <td>12-2-2022</td>
-                      <td>12-4-2022</td>
-                      <td>
-                        <p class="pend_coloe backgr_red" data-toggle="tooltip" data-placement="top" title="Rejected">Rejected </p>
-                      </td>
-                      <td *ngIf="isVendor">
-                        <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
-                        <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
-                      </td>
-                    </tr>
-                    <tr class="tbody_data">
-                      <td>AU1</td>
-                      <td>VN123</td>
-                      <td>Vendor</td>
-                      <td>Location</td>
-                      <td>Any Location</td>
-                      <td>12-2-2022</td>
-                      <td>12-4-2022</td>
-                      <td>
-                        <p class="pend_coloe backgr_yellow" data-toggle="tooltip" data-placement="top" title="Inprocess">Inprocess </p>
-                      </td>
-                      <td *ngIf="isVendor">
-                        <p class="pend_coloe backgr_green" data-toggle="modal" data-target="#exampleModal">Accept </p>
-                        <p class="pend_coloe backgr_red" data-toggle="modal" data-target="#exampleModal">Reject </p>
+                        <p class="pend_coloe backgr_green" data-toggle="modal" 
+                        (click)="getVendorAction(accept,item)" data-target="#exampleModal">Accept </p>
+                        <p class="pend_coloe backgr_red" (click)="getVendorAction(reject,item)"  data-toggle="modal" data-target="#exampleModal">Reject </p>
                       </td>
                     </tr>
                   </tbody>
@@ -149,15 +100,15 @@
               <nav aria-label="Page navigation example">
                 <ul class="pagination justift_end">
                   <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
+                    <a class="page-link"  aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                     </a>
                   </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" >1</a></li>
+                  <li class="page-item"><a class="page-link" >2</a></li>
+                  <li class="page-item"><a class="page-link" >3</a></li>
                   <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
+                    <a class="page-link"  aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                     </a>
                   </li>

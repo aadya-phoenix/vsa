@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { dataConstants } from '../shared/constants/dataConstants';
 import jwt_decode from "jwt-decode";
 import { AuthenticationService } from '../shared/services/auth/authentication.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -35,11 +36,12 @@ export class LoginComponent implements OnInit {
   login(){
     if(this.loginForm.valid){
      let loginDetails = this.loginForm.value;
-     this.authService.login(loginDetails).subscribe((res:any)=>{
+     this.authService.login(loginDetails).subscribe({
+      next:(res:any)=>{
       if(res){
+        console.log("res",res)
       localStorage.setItem('token', JSON.stringify(res.token));
        const token = this.getDecodedAccessToken(res.token);
-       console.log("logintoken",token);
        localStorage.setItem('loginDetails', JSON.stringify(token));
         this.roles.find((currentrole: any) => {
           if (currentrole.RoleId == token.RoleId && currentrole.role == token.role){
@@ -49,7 +51,15 @@ export class LoginComponent implements OnInit {
         });
         this.router.navigateByUrl('dashboard');
       }
-     });
+     },
+     error:(err:any) =>{
+      Swal.fire({
+        title: 'Incorrect Username or Password',
+        text: 'Please login again!',
+        icon: 'error',
+      })
+    } 
+    });
    } 
   }
   getDecodedAccessToken(token: string): any {
