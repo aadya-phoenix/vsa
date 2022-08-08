@@ -8,7 +8,7 @@ import { ViewPlanListComponent } from './view-plan-list/view-plan-list.component
 const routes: Routes = [
   {path:'',component:ViewPlanListComponent},
   {path:'edit/:id',component:ViewPlanEditComponent},
-  {path:'assign',component:ViewPlanAssignComponent},
+  {path:'assign/:id',component:ViewPlanAssignComponent},
 ];
 
 @NgModule({

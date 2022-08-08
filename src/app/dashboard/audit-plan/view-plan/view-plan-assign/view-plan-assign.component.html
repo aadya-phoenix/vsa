@@ -24,16 +24,8 @@
                     <tr *ngFor="let obje of assignAuditorArray.controls;let i = index;">
                       <td>{{i+1}}</td>
                       <td class="p-1" [formGroupName]="i">
-                        <select class="form-control">
-                          <option value="Select">Select</option>
-                          <option value="Auditor1 ">Auditor1 </option>
-                          <option value="Auditor2">Auditor2</option>
-                          <option value="Auditor3 ">Auditor3 </option>
-                          <option value="Auditor4">Auditor4</option>
-  
-                          <option value="Auditor5 ">Auditor5 </option>
-                          <option value="Auditor6">Auditor6</option>
-  
+                        <select class="form-control" formControlName="auditorId">
+                          <option *ngFor="let item of auditorList" [value]="item.id">{{item.name}}</option>
                         </select>
                       </td>
                       <td class="btn-width p-1">

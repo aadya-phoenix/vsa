@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthenticationService } from 'src/app/shared/services/auth/authenticati
   styleUrls: ['./manage-audit-list.component.css']
 })
 export class ManageAuditListComponent implements OnInit {
-
+  dateFormate= dataConstants.dateFormate;
   getUserrole: any;
   isSuperAdmin =false;
   isPlanner =false;
@@ -18,9 +19,11 @@ export class ManageAuditListComponent implements OnInit {
   Planner = dataConstants.Planner;
   Auditor = dataConstants.Auditor;
   Vendor = dataConstants.Vendor;
+  viewPlanObj:any=[];
   
   constructor(
     private authService: AuthenticationService,
+    private auditPlanService:AuditPlanService,
     private router:Router
   ) { 
     this.getUserrole = this.authService.getRolefromlocal();
@@ -31,15 +34,28 @@ export class ManageAuditListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getViewPlanList();
   }
 
+  getViewPlanList(){
+    this.auditPlanService.getAuditPlan().subscribe({
+      next: (res) => {
+        if(res){
+         this.viewPlanObj = res;
+        }
+       },
+      error: (e) => console.error(e), 
+     });
+  }
+
+
   viewManageAudit(){
-    this.router.navigateByUrl('dashboard/manage-audit/view');
+    this.router.navigateByUrl(`dashboard/manage-audit/view`);
   }
 
   addAuditArea(){}
 
-  initiateAudit(){
-    this.router.navigateByUrl('dashboard/manage-audit/initiate');  
+  initiateAudit(item:any){
+    this.router.navigateByUrl(`dashboard/manage-audit/initiate/${item.id}`);  
   }
 }

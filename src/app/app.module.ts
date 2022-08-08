@@ -9,6 +9,7 @@ import { SidebarComponent } from './shared/component/sidebar/sidebar.component';
 import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TokenInterceptorService } from './shared/services/token-interceptor/token-interceptor.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TokenInterceptorService } from './shared/services/token-interceptor/tok
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgChartsModule
+    NgChartsModule,
+    ModalModule.forRoot()
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

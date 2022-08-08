@@ -74,7 +74,7 @@
                                 <table id="" class="table table-bordered table-hover">
                                     <thead>
                                         <tr class=" text-center sticky_header">
-                                            <th>Audit No</th>
+                                          <!--   <th>Audit No</th> -->
                                             <th>Vendor Code </th>
                                             <th>Vendor Name</th>
                                             <th>Location</th>
@@ -87,27 +87,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="tbody_data">
-                                            <td>AU1</td>
-                                            <td>VN123</td>
-                                            <td>Vendor</td>
-                                            <td>Location</td>
-                                            <td>Any Location</td>
-                                            <td>12-2-2022</td>
-                                            <td>12-4-2022</td>
-                                            <td>
+                                        <tr class="tbody_data" *ngFor="let item of viewPlanObj ">
+                                         <!--    <td>AU1</td> -->
+                                         <td>{{item.vendorCode}}</td>
+                                         <td>{{item.vendorName}}</td>
+                                         <td>{{item.locationName}}</td>
+                                         <td>{{item.otherLocation}}</td>
+                                         <td>{{item.plannedStartDate | date:dateFormate}}</td>
+                                         <td>{{item.plannedEndDate | date:dateFormate}}</td>
+                                         <td><p class="pend_coloe  backgr_blue">{{item.status}} </p></td>
+                                           <!--  <td>
                                                 <p class="pend_coloe backgr_blue">Complete </p>
-                                            </td>
+                                            </td> -->
                                             <td *ngIf="isAuditor || isPlanner">
                                                 <a (click)="viewManageAudit()"><img
                                                         src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                                             </td>
                                             <td *ngIf="isAuditor">
-                                                <a (click)="initiateAudit()"><img
+                                                <a (click)="initiateAudit(item)"><img
                                                         src="../../../../assets/icons/auditini.png" class="viwe_iamge"></a>
                                             </td>
                                         </tr>
-                                        <tr class="tbody_data">
+                                        <!-- <tr class="tbody_data">
                                             <td>AU1</td>
                                             <td>VN123</td>
                                             <td>Vendor</td>
@@ -126,7 +127,7 @@
                                                 <a (click)="addAuditArea()"><img src="../../../../assets/icons/auditini.png"
                                                         class="viwe_iamge"></a>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 
 @Component({
   selector: 'app-view-plan-assign',
@@ -10,21 +12,40 @@ import { Router } from '@angular/router';
 export class ViewPlanAssignComponent implements OnInit {
 
   assignAuditorForm:FormGroup;
+  auditorId:any;
+  auditorList:any=[];
 
   constructor(
     private fb:FormBuilder,
-    private router:Router
+    private employeeService:EmployeeMasterService,
+    private auditPlanService:AuditPlanService,
+    private router:Router,
+    private route:ActivatedRoute
   ) { 
+    this.route.paramMap.subscribe((params:ParamMap)=>{
+      const Id = params.get('id');
+      this.auditorId = Id ? Id : 0;
+    })
+
     this.assignAuditorForm=this.fb.group({
       assignAuditor: this.fb.array([]),
-   });
+    });
    this.assignAuditorArray.push(this.addMoreAuditor(''));
   }
 
   ngOnInit(): void {
+    this.getEmployeeList(); 
   }
 
-  assign(){}
+  assign(){
+    const body = this.assignAuditorForm.value;
+    this.auditPlanService.assignAuditor(body).subscribe({
+      next:(res: any) => {
+      },
+      error:(err:any) =>{
+      } 
+    });
+  }
 
  
   close(){
@@ -41,12 +62,27 @@ export class ViewPlanAssignComponent implements OnInit {
 
   addMoreAuditor(auditorVal: string) {
     return this.fb.group({
-      auditor: new FormControl(auditorVal, [Validators.required]),
+      auditorId: new FormControl(auditorVal, [Validators.required]),
+      auditPlanId: new FormControl(this.auditorId)
     });
   }
 
   removeAuditor(i: any) {
     this.assignAuditorArray.removeAt(i);
+  }
+
+  getEmployeeList(){
+    this.employeeService.getEmployee().subscribe({
+      next: (res) => {
+        if(res){
+        let employees = res;
+         this.auditorList = employees.filter((a:any) => {
+          return a.roleId == "87161db0-fadc-40f1-a9e0-b9c62e70583b" ;
+        });
+        }
+       },
+      error: (e) => console.error(e), 
+     });
   }
 
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ManageAuditRoutingModule } from './manage-audit-routing.module';
 import { ManageAuditComponent } from './manage-audit.component';
@@ -8,6 +8,7 @@ import { ManageAuditViewComponent } from './manage-audit-view/manage-audit-view.
 import { ManageAuditInitiateComponent } from './manage-audit-initiate/manage-audit-initiate.component';
 import { ManageAuditQuestionCategoryComponent } from './manage-audit-question-category/manage-audit-question-category.component';
 import { ManageAuditQuestionDetailsComponent } from './manage-audit-question-details/manage-audit-question-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,9 +21,10 @@ import { ManageAuditQuestionDetailsComponent } from './manage-audit-question-det
     ManageAuditQuestionCategoryComponent,
     ManageAuditQuestionDetailsComponent
   ],
+  providers:[DatePipe],
   imports: [
     CommonModule,
-   // NgbModule,
+    ReactiveFormsModule,
     ManageAuditRoutingModule
   ]
 })

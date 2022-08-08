@@ -1,23 +1,21 @@
-<div class="card mb-0">
-    <div class="card-header color-orange">
-        <div class="d-flex justify-content-between">
-            Remarks
-            <a (click)="closeModal()"><i class="fa fa-times color-black" aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <div class="card-body">
-        <form [formGroup]="publishBackOfficeForm">
-            <div class="col-sm-12">
-                <div class="form-group">
-                  <label>Comment</label>
-                  <textarea class="form-control form_width-textarea" rows="3" placeholder="Enter Comments"
-                  formControlName="status_comment"></textarea>
-                </div>
-              </div>
-        </form>
-    </div>
-    <div class="card-footer">
-        <button class="btn btn-primary mr-1" type="submit" (click)="submit()">Submit</button>
-        <button class="btn btn-secondary" type="submit" (click)="close()">Cancel</button>
-    </div>
-</div>
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Remarks</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="createPlanForm">
+        <div class="col-sm-12">
+            <div class="form-group">
+              <label>Comment</label>
+              <textarea class="form-control form_width-textarea" rows="3" placeholder="Enter Comments"
+              formControlName="comment"></textarea>
+            </div>
+          </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary mr-1" type="submit" (click)="submit()">Submit</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+  </div>
