@@ -18,7 +18,12 @@ export class ViewPlanListComponent implements OnInit {
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.Planner;
   Vendor = dataConstants.Vendor;
-  viewPlanObj:any=[];
+  viewPlanList:any=[];
+  viewPlanListToShow:any = [];
+
+  vendorName:string='';
+  plannedStartDate:any;
+  statusName:string='';
 
   constructor(
     private router:Router,
@@ -38,7 +43,8 @@ export class ViewPlanListComponent implements OnInit {
     this.auditPlanService.getAuditPlan().subscribe({
       next: (res) => {
         if(res){
-         this.viewPlanObj = res;
+         this.viewPlanList = res;
+         this.viewPlanListToShow = res;
         }
        },
       error: (e) => console.error(e), 
@@ -49,8 +55,33 @@ export class ViewPlanListComponent implements OnInit {
     this.router.navigateByUrl(`dashboard/view-plan/edit/${item.id}`);
    }
 
-  assign(){
-    this.router.navigateByUrl('dashboard/view-plan/assign');
+  assign(item:any){
+    this.router.navigateByUrl(`dashboard/view-plan/assign/${item.id}`);
+  }
+
+  filter(){
+    const body={} as any;
+    body.vendorName= this.vendorName;
+    body.plannedStartDate = this.plannedStartDate;
+    body.statusName= this.statusName;
+
+    this.auditPlanService.filter(body).subscribe({
+      next:(res: any) => {
+        this.viewPlanListToShow = res;
+      },
+      error:(err:any) =>{
+      } 
+    }); 
+
+  }
+
+  reset(){
+    this.viewPlanListToShow = this.viewPlanList;
+     this. vendorName = ' ';
+     this.plannedStartDate = '';
+     this.statusName ='';
+ 
+     
   }
 
 }

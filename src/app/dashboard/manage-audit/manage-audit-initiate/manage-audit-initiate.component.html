@@ -8,26 +8,28 @@
                             <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <form [formGroup]="initiateForm">
+                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form_label">Vendor Name</label>
-                                    <input type="text" class="form-control inputbox_css" placeholder="Dummy Industries,
-                                    Hypothetical City, Kodaikanal" maxlength="200" >
+                                    <select class="form-control" formControlName="vendorId">
+                                        <option *ngFor="let item of vendorObj" [value]="item.id"> {{item.name }}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form_label">Start Date</label>
-                                    <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
+                                    <input type="date" class="form-control inputbox_css" formControlName="startDate"
                                         >
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form_label">End Date</label>
-                                    <input type="text" class="form-control inputbox_css" placeholder="12/2/2022"
+                                    <input type="date" class="form-control inputbox_css" formControlName="endDate"
                                         >
                                 </div>
                             </div>
@@ -47,19 +49,20 @@
                                     <label class="form_label">Part Name</label>
                                     <input type="text" class="form-control inputbox_css"
                                         placeholder="Enter Part Name"
-                                        maxlength="200">
+                                        maxlength="200" formControlName="partName">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form_label">Actual Start Date</label>
-                                    <input type="date" class="form-control inputbox_css">
+                                    <input type="date" class="form-control inputbox_css" formControlName="actualStartDate">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form_label">Actual End Date</label>
-                                    <input type="date" class="form-control inputbox_css">
+                                    <input type="date" class="form-control inputbox_css" 
+                                    formControlName="actualEndDate">
                                 </div>
                             </div>
                             <!-- <div class="col-sm-4">
@@ -97,7 +100,8 @@
                                 </table>
                             </div>
                         </div> -->
-                    </div>
+                     </div>
+                    </form>
                     <div class="card-footer text-right">
                         <button (click)="next()" class="btn btn-primary mr-1">Next</button>
                         <button (click)="back()" class="btn btn-default">Back</button>

@@ -74,4 +74,19 @@ export class AuditPlanService {
     const url = `${this.basePath}api/AuditPlan/RejectAuditPlan`;
     return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  assignAuditor(data:any){
+    const url = `${this.basePath}api/AuditPlan/AssignAuditee`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  updateInitiatePlan(data:any){
+    const url = `${this.basePath}api/AuditPlan/UpdateAuditPlanProcess`;
+    return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  filter(data:any){
+    const url = `${this.basePath}api/AuditPlan/GetWithFilterAsync`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
 }

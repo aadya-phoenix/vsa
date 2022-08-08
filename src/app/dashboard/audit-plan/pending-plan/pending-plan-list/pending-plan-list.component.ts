@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { PendingPlanRejectComponent } from '../pending-plan-reject/pending-plan-reject.component';
 
 @Component({
   selector: 'app-pending-plan-list',
@@ -21,9 +23,11 @@ export class PendingPlanListComponent implements OnInit {
   viewPlanObj:any=[];
   accept=false;
   reject=true;
+  bsModalRef ?: BsModalRef;
 
   constructor(
     private router:Router,
+    private modalService: BsModalService,
     private authService: AuthenticationService,
     private auditPlanService:AuditPlanService,) { 
     this.getUserrole = this.authService.getRolefromlocal();
@@ -59,6 +63,18 @@ export class PendingPlanListComponent implements OnInit {
       error:(err:any) =>{
       } 
     });  
+  }
+
+  openModal(status:any,item:any){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:item,
+       status:status,
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(PendingPlanRejectComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
 }
