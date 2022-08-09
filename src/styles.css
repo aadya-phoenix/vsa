@@ -42,9 +42,7 @@
     color: #000;
   }
 
-.fon_16 {
-  font-size: 16px;
-}
+
 
 .w_25 {
   width: 25px;
@@ -53408,7 +53406,7 @@
   .sticky_header {
     position: sticky;
     top: -7px;
-    font-size: 13px;
+    font-size: 12px;
     background: #f6f6f6;
   }
   .tbody_data{
@@ -53489,6 +53487,7 @@
 
 
     @media (max-width: 768px) {
+      .fon_16 { font-size: 16px;  }
       .nav_bar_space {
         margin-left: 0px !important;
       }
