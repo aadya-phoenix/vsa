@@ -53350,7 +53350,9 @@
     margin-right: 5px;
   }
   .nav-link p {
-    color:#fff
+    color:#fff;
+    font-size: 14px;
+
   }
   tr:nth-child(even) {
     background-color: #80808012;
@@ -53400,12 +53402,14 @@
   /*.max_hei_table {
     max-height: 450px;
   }*/
-  
+  .max_hei_table{
+    max-height: 400px;
+  }
   .sticky_header {
     position: sticky;
-    top: -3px;
+    top: -7px;
     font-size: 13px;
-    background: #93bcd68a;
+    background: #f6f6f6;
   }
   .tbody_data{
    white-space: nowrap;
