@@ -113,11 +113,12 @@
                        Critical Observation
                       </button>
                     </div>
+                    <form [formGroup]="executiveSummaryForm">
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                           <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" formArrayName="vendorAttendee">
                                     <thead>
                                         <tr class="sticky_header">
                                             <th scope="col">S.No</th>
@@ -126,7 +127,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr *ngFor="let obj of vendorAttendeeArray.controls;let i = index;">
+                                            <th scope="row">{{i+1}}</th>
+                                            <td class="p-1" [formGroupName]="i">
+                                                <input type="text" class="form-control inputbox_css"
+                                                placeholder="Enter Vendor Attendees" maxlength="200"
+                                                formControlName="vendorAttendee">
+                                            </td>
+                                            <td class="btn-width p-1">
+                                              <button class="btn btn-success mr-2 py-1" (click)="addVendorAttendee('')">
+                                                +
+                                              </button>
+                                              <button class="btn btn-danger py-1" *ngIf="i > 0" (click)="removeVendorAttendee(i)">
+                                                <i class="fa fa-trash"></i>
+                                              </button>
+                                            </td>
+                                          </tr>
+                                        
+<!--                                         <tr>
                                             <th scope="row">1</th>
                                             <td>
                                                 <input type="text" class="form-control inputbox_css"
@@ -138,7 +156,7 @@
                                                     <button class="btn btn-danger">-</button>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -148,7 +166,7 @@
                       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
                          <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" formArrayName="criticalObservation">
                                 <thead>
                                     <tr class="sticky_header">
                                         <th>S.No</th>
@@ -157,17 +175,33 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor="let obj of criticalObservationArray.controls;let i = index;">
+                                                <th scope="row">{{i+1}}</th>
+                                                <td class="p-1" [formGroupName]="i">
+                                                    <textarea class="form-control" rows="3" placeholder="Enter Your Remark" spellcheck="false" formControlName="criticalObservation"></textarea>
+                                                </td>
+                                                <td class="btn-width p-1">
+                                                  <button class="btn btn-success mr-2 py-1" (click)="addCriticalObservation('')">
+                                                    +
+                                                  </button>
+                                                  <button class="btn btn-danger py-1" *ngIf="i > 0" (click)="removeCriticalObservation(i)">
+                                                    <i class="fa fa-trash"></i>
+                                                  </button>
+                                                </td>
+                                              </tr>
+                  <!--                           <tr>
                                             <td>1.</td>
                                             <td><textarea class="form-control" rows="3" placeholder="Enter Your Remark" spellcheck="false"></textarea></td>
                                             <td><button class="btn btn-primary mr-1">+</button></td>
-                                            </tr>
+                                            </tr> -->
                                             
                                             </tbody>
                                         </table>
                             </div>
                         </div>
                       </div>
+
+                    </form>
                 </div>
         </div>
         <div class="modal-footer">
