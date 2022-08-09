@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 
 @Component({
@@ -11,28 +11,50 @@ import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.
 export class ManageAuditQuestionCategoryComponent implements OnInit {
 
   executiveSummaryForm:FormGroup;
-  auditorId:any;
+  auditPlanId:any;
+
+  categoryScoreList:any;
 
   constructor(
     private fb:FormBuilder,
     private auditPlanService:AuditPlanService,
-    private router:Router
+    private router:Router,
+    private route:ActivatedRoute
   ) { 
     this.executiveSummaryForm=this.fb.group({
       criticalObservation: this.fb.array([]),
       vendorAttendee: this.fb.array([])
     });
+
+    this.route.paramMap.subscribe((params:ParamMap)=>{
+      const Id = params.get('id');
+      this.auditPlanId = Id ? Id : 0;
+    })
    this.criticalObservationArray.push(this.addMoreCriticalObservation(''));
    this.vendorAttendeeArray.push(this.addMoreVendorAttendee(''));
   }
 
   ngOnInit(): void {
+    this.getCategoryList();
+  }
+
+  getCategoryList(){
+    this.auditPlanService.getScoreAndCategoryList(this.auditPlanId).subscribe({
+      next: (res) => {
+        if(res){
+         this.categoryScoreList = res;
+        }
+       },
+      error: (e) => console.error(e), 
+     });
   }
 
   saveCriticalObservation(){
-    const body = this.executiveSummaryForm.controls['criticalObservation'].value;
-    const data = body.criticalObservation;
-    this.auditPlanService.saveCriticalObservation(body).subscribe({
+    const body = this.executiveSummaryForm.value;
+    const data ={
+      criticalObservation:body.criticalObservation
+    } ;
+    this.auditPlanService.saveCriticalObservation(data).subscribe({
       next:(res: any) => {
       },
       error:(err:any) =>{
@@ -43,7 +65,9 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
 
   saveVendorAttendee(){
     const body = this.executiveSummaryForm.value;
-    const data = body.vendorAttendee;
+    const data = {
+      vendorAttendee: body.vendorAttendee
+    };
     this.auditPlanService.saveVendorAttendees(data).subscribe({
       next:(res: any) => {
       },
@@ -63,7 +87,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   addMoreCriticalObservation(auditorVal: string) {
     return this.fb.group({
       criticalObservation: new FormControl(auditorVal, [Validators.required]),
-      auditPlanId: new FormControl(this.auditorId)
+      auditPlanId: new FormControl(this.auditPlanId)
     });
   }
 
@@ -82,7 +106,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   addMoreVendorAttendee(auditorVal: string) {
     return this.fb.group({
       vendorAttendee: new FormControl(auditorVal, [Validators.required]),
-      auditPlanId: new FormControl(this.auditorId)
+      auditPlanId: new FormControl(this.auditPlanId)
     });
   }
 

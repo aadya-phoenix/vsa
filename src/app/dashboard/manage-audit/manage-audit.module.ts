@@ -8,7 +8,7 @@ import { ManageAuditViewComponent } from './manage-audit-view/manage-audit-view.
 import { ManageAuditInitiateComponent } from './manage-audit-initiate/manage-audit-initiate.component';
 import { ManageAuditQuestionCategoryComponent } from './manage-audit-question-category/manage-audit-question-category.component';
 import { ManageAuditQuestionDetailsComponent } from './manage-audit-question-details/manage-audit-question-details.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers:[DatePipe],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     ManageAuditRoutingModule
   ]

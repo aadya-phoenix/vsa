@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'',component:ManageAuditListComponent},
   {path:'view',component:ManageAuditViewComponent},
   {path:'initiate/:id',component:ManageAuditInitiateComponent},
-  {path:'question',component:ManageAuditQuestionCategoryComponent},
+  {path:'question/:id',component:ManageAuditQuestionCategoryComponent},
   {path:'question-details',component:ManageAuditQuestionDetailsComponent},
   {path:'summary',component:ManageAuditComponent}
 ];

@@ -76,7 +76,7 @@ export class ManageAuditInitiateComponent implements OnInit {
     body.id = this.initiateId;
     this.auditPlanService.updateInitiatePlan(body).subscribe({
       next:(res: any) => {
-        this.router.navigateByUrl('dashboard/manage-audit/question');
+        this.router.navigateByUrl(`dashboard/manage-audit/question/${this.initiateId}`);
       },
       error:(err:any) =>{
       }
