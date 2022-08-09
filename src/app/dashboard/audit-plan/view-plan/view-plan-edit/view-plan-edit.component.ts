@@ -113,7 +113,6 @@ export class ViewPlanEditComponent implements OnInit {
          this.viewPlanForm.controls['locationId'].setValue(this.viewPlanDetails.locationId);
          this.viewPlanForm.controls['otherLocation'].setValue(this.viewPlanDetails.otherLocation);
          this.viewPlanForm.controls['otherCode'].setValue(this.viewPlanDetails.otherCode);
-       //  this.viewPlanForm.controls['code'].setValue(this.viewPlanDetails.code);
          this.viewPlanForm.controls['typeCode'].setValue(this.viewPlanDetails.typeCode);
          this.viewPlanForm.controls['typeName'].setValue(this.viewPlanDetails.typeName);
          this.viewPlanForm.controls['typeLocation'].setValue(this.viewPlanDetails.typeLocation);
@@ -121,7 +120,6 @@ export class ViewPlanEditComponent implements OnInit {
          this.viewPlanForm.controls['plannedStartDate'].setValue(this.dateFormat(this.viewPlanDetails.plannedStartDate));
          this.viewPlanForm.controls['additionalMSILEmail'].setValue(this.viewPlanDetails.additionalMSILEmail);
          this.viewPlanForm.controls['auditeeEmail'].setValue(this.viewPlanDetails.auditeeEmail);
-        // this.viewPlanForm.controls['plannedEndDate'].setValue(this.viewPlanDetails.plannedEndDate);
         }
        },
       error: (e) => console.error(e), 

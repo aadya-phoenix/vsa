@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 
 @Component({
   selector: 'app-manage-audit-question-category',
@@ -14,6 +15,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
+    private auditPlanService:AuditPlanService,
     private router:Router
   ) { 
     this.executiveSummaryForm=this.fb.group({
@@ -25,6 +27,29 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  saveCriticalObservation(){
+    const body = this.executiveSummaryForm.controls['criticalObservation'].value;
+    const data = body.criticalObservation;
+    this.auditPlanService.saveCriticalObservation(body).subscribe({
+      next:(res: any) => {
+      },
+      error:(err:any) =>{
+      } 
+    }); 
+
+  }
+
+  saveVendorAttendee(){
+    const body = this.executiveSummaryForm.value;
+    const data = body.vendorAttendee;
+    this.auditPlanService.saveVendorAttendees(data).subscribe({
+      next:(res: any) => {
+      },
+      error:(err:any) =>{
+      } 
+    }); 
   }
 
   get criticalObservationArray(): FormArray {
@@ -64,7 +89,6 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   removeVendorAttendee(i: any) {
     this.vendorAttendeeArray.removeAt(i);
   } 
-
 
   details(){
     this.router.navigateByUrl('dashboard/manage-audit/question-details');

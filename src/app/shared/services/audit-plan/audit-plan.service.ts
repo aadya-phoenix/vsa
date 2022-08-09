@@ -90,5 +90,19 @@ export class AuditPlanService {
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
   }
 
+  saveCriticalObservation(data:any){
+    const url = `${this.basePath}api/AuditPlan/SaveCriticalObservations`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  saveVendorAttendees(data:any){
+    const url = `${this.basePath}api/AuditPlan/SaveVendorAttendees`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  getScoreAndCategoryList(){
+    const url = `${this.basePath}api/Category/GetScoreAndStatusCategory`;
+    return this.http.post(url, {}).pipe(catchError(this.commmonService.Errorhandling));
+  }
   
 }
