@@ -1,4 +1,4 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,14 +10,15 @@ import { HttpService } from '../http/http.service';
 })
 export class AuditPlanService {
   public basePath = environment.baseUrl;
-  public headers = new Headers({
-
-  });
+  public headers = new HttpHeaders({});
   
   constructor(private http: HttpService, private commmonService: CommonService) {
     this.headers.append(
       'Access-Control-Allow-Origin', '*',
       );
+      this.headers.append(
+        'Content-Type', 'application/json'
+        );
   }
 
   getAuditPlan(){
@@ -90,5 +91,22 @@ export class AuditPlanService {
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
   }
 
+  saveCriticalObservation(data:any){
+    const url = `${this.basePath}api/AuditPlan/SaveCriticalObservations`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  saveVendorAttendees(data:any){
+    const url = `${this.basePath}api/AuditPlan/SaveVendorAttendees`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  getScoreAndCategoryList(id:any){
+    this.http.headers.append(
+      'Content-Type', 'application/json'
+    );
+    const url = `${this.basePath}api/Category/GetScoreAndStatusCategory`;
+    return this.http.post(url, id,  this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
+  }
   
 }

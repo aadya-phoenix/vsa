@@ -23,6 +23,7 @@ export class ViewPlanListComponent implements OnInit {
 
   vendorName:string='';
   plannedStartDate:any;
+  plannedEndDate:any;
   statusName:string='';
 
   constructor(
@@ -80,8 +81,11 @@ export class ViewPlanListComponent implements OnInit {
      this. vendorName = ' ';
      this.plannedStartDate = '';
      this.statusName ='';
- 
-     
+    this.plannedEndDate =''
+  }
+
+  pendingAction(){
+    this.router.navigateByUrl(`dashboard/action-pending-plan`); 
   }
 
 }

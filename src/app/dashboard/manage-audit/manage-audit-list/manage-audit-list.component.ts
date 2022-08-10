@@ -19,7 +19,12 @@ export class ManageAuditListComponent implements OnInit {
   Planner = dataConstants.Planner;
   Auditor = dataConstants.Auditor;
   Vendor = dataConstants.Vendor;
-  viewPlanObj:any=[];
+  viewPlanList:any=[];
+  viewPlanListToShow :any=[];
+
+  vendorName:string='';
+  plannedStartDate:any;
+  statusName:string='';
   
   constructor(
     private authService: AuthenticationService,
@@ -41,7 +46,8 @@ export class ManageAuditListComponent implements OnInit {
     this.auditPlanService.getAuditPlan().subscribe({
       next: (res) => {
         if(res){
-         this.viewPlanObj = res;
+         this.viewPlanList = res;
+         this.viewPlanListToShow = res;
         }
        },
       error: (e) => console.error(e), 
@@ -57,5 +63,28 @@ export class ManageAuditListComponent implements OnInit {
 
   initiateAudit(item:any){
     this.router.navigateByUrl(`dashboard/manage-audit/initiate/${item.id}`);  
+  }
+
+  filter(){
+    const body={} as any;
+    body.vendorName= this.vendorName;
+    body.plannedStartDate = this.plannedStartDate;
+    body.statusName= this.statusName;
+
+    this.auditPlanService.filter(body).subscribe({
+      next:(res: any) => {
+        this.viewPlanListToShow = res;
+      },
+      error:(err:any) =>{
+      } 
+    }); 
+
+  }
+
+  reset(){
+    this.viewPlanListToShow = this.viewPlanList;
+     this. vendorName = ' ';
+     this.plannedStartDate = '';
+     this.statusName ='';
   }
 }

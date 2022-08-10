@@ -83,7 +83,11 @@ export class EmployeeEditComponent implements OnInit {
     this.employeeService.getRoles().subscribe({
       next: (res) => {
         if(res){
-         this.rolesObj = res;
+         let roles = res;
+         this.rolesObj = roles.filter((a:any) => {
+          console.log("a",a)
+          return (a.name != "Admin" &&  a.name != "Vendor" );
+        });
         }
        },
       error: (e) => console.error(e), 

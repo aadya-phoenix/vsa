@@ -70,7 +70,7 @@
 
                <div class=" mr-1">
                     <label class="filter_label">To Date</label>
-                  <input type="date" [(ngModel)]="plannedStartDate" class="form-control filter_css" placeholder="Date ">
+                  <input type="date" [(ngModel)]="plannedEndDate" class="form-control filter_css" placeholder="Date ">
                 </div>
 
                <div class=" mr-1">
@@ -112,8 +112,8 @@
                       <td>{{item.otherLocation}}</td>
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
-                      <td><button class="btn btn-primary">To be Received</button></td>
-                      <td><p class="pend_coloe  backgr_blue">{{item.status}} </p></td>
+                      <td><button class="btn btn-primary" (click)="pendingAction()">To be Received</button></td>
+                      <td><p [ngClass]="item.status">{{item.status}} </p></td>
                       <td *ngIf="isSuperAdmin || isPlanner">
                         <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                         <a *ngIf="isSuperAdmin" (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a>

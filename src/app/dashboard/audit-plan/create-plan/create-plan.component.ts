@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-plan',
@@ -43,9 +44,7 @@ export class CreatePlanComponent implements OnInit {
   }
 
   onFileSelected(event:any){
-    console.log("file",event)
     this.selectedFile = event.target.files[0];
-    console.log("file",this.selectedFile);
   }
 
   submit(){
@@ -72,6 +71,11 @@ export class CreatePlanComponent implements OnInit {
      
     this.auditPlanService.add(formData).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: 'Plan Created Successfully',
+         // text: 'Please login again!',
+          icon: 'success',
+        })
       },
       error:(err:any) =>{
       } 

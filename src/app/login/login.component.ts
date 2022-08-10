@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
      this.authService.login(loginDetails).subscribe({
       next:(res:any)=>{
       if(res){
-        console.log("res",res)
       localStorage.setItem('token', JSON.stringify(res.token));
        const token = this.getDecodedAccessToken(res.token);
        localStorage.setItem('loginDetails', JSON.stringify(token));

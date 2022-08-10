@@ -28,10 +28,10 @@
                                             </th>
                                             </tr>
                                         </thead>
-                                        <tbody  (click)="details()" >
-                                            <tr class="text-center">
+                                        <tbody   >
+                                            <tr class="text-center" *ngFor="let item of categoryScoreList; let i =index;" (click)="details()">
                                             <td>
-                                                1. 
+                                                {{i+1}}
                                             </td>
                                             <td>
                                                 Production preparation
@@ -166,7 +166,7 @@
                         </div>
                         <div class="card-footer">
                          
-                          <button type="button" class="btn btn-primary mr-1">Save changes</button>
+                          <button type="button" (click)="saveVendorAttendee()" class="btn btn-primary mr-1">Save changes</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div> 
                         </div>
@@ -209,7 +209,7 @@
                         </div>
                         <div class="card-footer">
                          
-                          <button type="button" class="btn btn-primary mr-1">Save changes</button>
+                          <button type="button" (click)="saveCriticalObservation()" class="btn btn-primary mr-1">Save changes</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                       </div>
