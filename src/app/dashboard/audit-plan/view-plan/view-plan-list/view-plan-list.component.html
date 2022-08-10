@@ -58,11 +58,32 @@
                 <h3 class="card-title">View Plan Details</h3>
                 <div class="d-flex align-items-center">
                   <h6 class="mr-1 mb-0">Filters:-</h6>
-                  <input type="text" [(ngModel)]="vendorName" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
-                  <input type="date" [(ngModel)]="plannedStartDate" class="form-control mr-1 filter_css" placeholder="Date ">
-                  <input type="text" [(ngModel)]="statusName" class="form-control mr-1 filter_css" placeholder="Status ">
-                  <button type="button" (click)="filter()" class="form-control mr-1 filter_css btn btn-primary">Submit </button>
-                  <button type="button" (click)="reset()" class="form-control mr-1 filter_css btn btn-secondary">Reset</button>
+                  <div class=" mr-1">
+                    <label class="filter_label">Vendor Name</label>
+                  <input type="text" [(ngModel)]="vendorName" class="form-control  filter_css" placeholder="Vendor Name ">
+                  </div>
+
+                  <div class=" mr-1">
+                    <label class="filter_label">From Date</label>
+                  <input type="date" [(ngModel)]="plannedStartDate" class="form-control  filter_css" placeholder="Date ">
+                </div>
+
+               <div class=" mr-1">
+                    <label class="filter_label">To Date</label>
+                  <input type="date" [(ngModel)]="plannedStartDate" class="form-control filter_css" placeholder="Date ">
+                </div>
+
+               <div class=" mr-1">
+                    <label class="filter_label">Status</label>
+                  <input type="text" [(ngModel)]="statusName" class="form-control filter_css" placeholder="Status ">
+                </div>
+ <div class="mt_22">
+                  <button type="button" (click)="filter()" class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
+                  <button type="button" (click)="reset()" class="form-control mr-1 filter_css heigh_60 btn btn-secondary"><span>Reset</span></button>
+                </div>  <!-- <button class="btn btn-success d-flex  align-items-center">
+                    <i class="fas fa-upload mr-1 upload_ico"></i>
+                    <span class="now_rap">Upload Plan</span>
+                  </button> -->
                 </div>
               </div>
             </div>
@@ -77,7 +98,9 @@
                       <th>Any Other Location</th>
                       <th>Planned Start Date </th>
                       <th>Planned End Date</th>
+                      <th>Pending Action Plan</th>
                       <th>Status </th>
+
                       <th *ngIf="isSuperAdmin || isPlanner">Action </th>
                     </tr>
                   </thead>
@@ -89,6 +112,7 @@
                       <td>{{item.otherLocation}}</td>
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
+                      <td><button class="btn btn-primary">To be Received</button></td>
                       <td><p [ngClass]="item.status">{{item.status}} </p></td>
                       <td *ngIf="isSuperAdmin || isPlanner">
                         <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>

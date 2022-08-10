@@ -21,3 +21,16 @@
     margin-bottom: 10px;
    cursor: pointer;
 }
+.heigh_60{
+    width: 67px;
+}
+.heigh_60 span{
+  font-size: 11px;
+}
+.filter_label{
+    font-size: 10px;
+    margin-bottom: 2px;
+}
+.mt_22{
+    margin-top: 22px;
+}
