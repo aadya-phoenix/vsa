@@ -7,9 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class HttpService {
   public headers = new HttpHeaders({});
-  public headersContent = new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
   public params = new HttpParams({});
 
   constructor(private httpClient: HttpClient) {}
@@ -31,16 +28,6 @@ export class HttpService {
   ): Observable<any> {
     const url = urlString;
     return this.httpClient.post(url, payload, { headers });
-  }
-
-  public postContent(
-    urlString: string,
-    payload: any,
-    headers?: HttpHeaders
-  ): Observable<any> {
-    const url = urlString;
-    return this.httpClient.post(url, payload, { 
-      headers });
   }
 
 

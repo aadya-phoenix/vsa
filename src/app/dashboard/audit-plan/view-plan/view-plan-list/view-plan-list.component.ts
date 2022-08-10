@@ -26,6 +26,10 @@ export class ViewPlanListComponent implements OnInit {
   plannedEndDate:any;
   statusName:string='';
 
+  isClosure1 = true;
+  isClosure2 = false;
+  isClosure3 = false;
+
   constructor(
     private router:Router,
     private authService: AuthenticationService,
@@ -86,6 +90,18 @@ export class ViewPlanListComponent implements OnInit {
 
   pendingAction(){
     this.router.navigateByUrl(`dashboard/action-pending-plan`); 
+  }
+
+  closure1(){
+    this.isClosure2 = true;
+    this.isClosure1 = false;
+    this.isClosure3 = false;
+  }
+
+  closure2(){
+    this.isClosure1 = false;
+    this.isClosure2 = false;
+    this.isClosure3 = true;
   }
 
 }
