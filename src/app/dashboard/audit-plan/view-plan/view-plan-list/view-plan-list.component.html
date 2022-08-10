@@ -52,7 +52,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card"  *ngIf="isClosure1">
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">View Plan Details</h3>
@@ -122,7 +122,7 @@
                       </td>
                       <td><p [ngClass]="item.status">{{item.status}} </p></td>
                       <td><button class="btn btn-primary" (click)="pendingAction()">To be Received</button></td>
-                      <td>20%</td>
+                      <td (click)="closure1()">20%</td>
                     </tr>
                   </tbody>
                 </table>
@@ -151,7 +151,7 @@
             <div class="card-header">
               </div>
               <div class="card-body">
-                <div class="table-responsive max_hei_table">
+                <div class="table-responsive max_hei_table" *ngIf="isClosure2">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr class="now_rap text-center sticky_header">
@@ -162,14 +162,12 @@
                         <th>Partailly Closed</th>
                         <th>Open</th>
                         <th>Point Pending from Vendor</th>
-  
-  
                         </tr>
                         </thead>
                         <tbody class="text-center">
                           <tr>
                             <td>10</td>
-                            <td>6</td>
+                            <td (click)="closure2()">6</td>
                             <td>4</td>
                             <td>2</td>
                             <td>1</td>
@@ -179,7 +177,7 @@
                           </tbody>
                         </table>
                   </div>
-                  <div class="table-responsive max_hei_table">
+                  <div class="table-responsive max_hei_table"  *ngIf="isClosure3">
                     <table id="example2" class="table table-bordered table-hover">
                       <thead>
                         <tr class="now_rap text-center sticky_header">

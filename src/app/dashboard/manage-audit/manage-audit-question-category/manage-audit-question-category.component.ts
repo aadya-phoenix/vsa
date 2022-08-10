@@ -39,7 +39,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   }
 
   getCategoryList(){
-    this.auditPlanService.getScoreAndCategoryList(this.auditPlanId).subscribe({
+    this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
          this.categoryScoreList = res;

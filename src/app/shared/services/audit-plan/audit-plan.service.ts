@@ -106,7 +106,12 @@ export class AuditPlanService {
       'Content-Type', 'application/json'
     );
     const url = `${this.basePath}api/Category/GetScoreAndStatusCategory`;
-    return this.http.post(url, id,  this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
+    return this.http.post(url, id).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getPlanRegulation(data:any){
+    const url = `${this.basePath}api/AuditExecution/GetAuditPlanRegulations`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
   
 }
