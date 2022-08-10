@@ -85,7 +85,6 @@ export class EmployeeEditComponent implements OnInit {
         if(res){
          let roles = res;
          this.rolesObj = roles.filter((a:any) => {
-          console.log("a",a)
           return (a.name != "Admin" &&  a.name != "Vendor" );
         });
         }

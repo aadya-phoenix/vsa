@@ -28,8 +28,8 @@
                                             </th>
                                             </tr>
                                         </thead>
-                                        <tbody   >
-                                            <tr class="text-center" *ngFor="let item of categoryScoreList; let i =index;" (click)="details()">
+                                        <tbody (click)="details()"  >
+                                            <tr class="text-center" *ngFor="let item of categoryScoreList; let i =index;" >
                                             <td>
                                                 {{i+1}}
                                             </td>
