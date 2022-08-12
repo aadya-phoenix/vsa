@@ -7,6 +7,7 @@ import { AverageDefectSupplierComponent } from './average-defect-supplier/averag
 import { AverageDefectComponent } from './average-defect/average-defect.component';
 import { ClauseWiseScoreComponent } from './clause-wise-score/clause-wise-score.component';
 import { DistStatusComponent } from './dist-status/dist-status.component';
+import { ExecutiveSummaryComponent } from './executive-summary/executive-summary.component';
 import { PendingStatusComponent } from './pending-status/pending-status.component';
 import { TradeRepeatComponent } from './trade-repeat/trade-repeat.component';
 import { VendorDistStatusComponent } from './vendor-dist-status/vendor-dist-status.component';
@@ -57,6 +58,9 @@ const routes: Routes = [
   },
   {
     path: 'trade-repeat', component: TradeRepeatComponent
+  },
+  {
+    path: 'executive-summary', component: ExecutiveSummaryComponent
   }
 ];
 

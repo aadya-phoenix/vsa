@@ -18,6 +18,7 @@ import { VendorSummaryComponent } from './vendor-summary/vendor-summary.componen
 import { ClauseWiseScoreComponent } from './clause-wise-score/clause-wise-score.component';
 import { VendorWiseScoreComponent } from './vendor-wise-score/vendor-wise-score.component';
 import { TradeRepeatComponent } from './trade-repeat/trade-repeat.component';
+import { ExecutiveSummaryComponent } from './executive-summary/executive-summary.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { TradeRepeatComponent } from './trade-repeat/trade-repeat.component';
     VendorSummaryComponent,
     ClauseWiseScoreComponent,
     VendorWiseScoreComponent,
-    TradeRepeatComponent
+    TradeRepeatComponent,
+    ExecutiveSummaryComponent
   ],
   imports: [
     CommonModule,
