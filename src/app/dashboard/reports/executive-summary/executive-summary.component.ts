@@ -8,6 +8,22 @@ import { ChartData, ChartOptions } from 'chart.js';
 })
 export class ExecutiveSummaryComponent implements OnInit {
 
+  data : any = [
+    {judgment:12, total:24},
+    {judgment:9, total:15},
+    {judgment:12, total:18},
+    {judgment:15, total:18},
+    {judgment:-3, total:18},
+    {judgment:9, total:15},
+    {judgment:9, total:21},
+    {judgment:15, total:21},
+    {judgment:15, total:18},
+    {judgment:9, total:15},
+    {judgment:12, total:15},
+    {judgment:15, total:18},
+    {judgment:9, total:12},
+    {judgment:9, total:9}
+  ]
 
   reportData: ChartData<'radar'> = {
     labels: ["1.Production preparation","2.Regulation for initial production control", "3.Changing management ©" , "4.Standards management",

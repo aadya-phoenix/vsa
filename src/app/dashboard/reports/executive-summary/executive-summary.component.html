@@ -4,7 +4,28 @@
             <div class="card card-default">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6 offset-md-3">
+                        <div class="col-md-3">
+                            <div class="table-responsive">
+                                <table id="example2" class="table table-bordered table-hover">
+
+                                    <thead>
+                                        <tr class="now_rap text-center sticky_header">
+                                            <th colspan="3">Total Achived</th>
+                                            <th colspan="3">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="tbody_data" *ngFor="let item of data;let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item.judgment}}</td>
+                                            <td>{{item.total}}</td>
+                                            <td>{{(item.judgment/item.total*100) > 0 ? (item.judgment/item.total*100) : 0 | number:'1.0-2'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <canvas baseChart [data]="reportData" [type]="'radar'"
                                 [options]="reportOptions">
                             </canvas>
