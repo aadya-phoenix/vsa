@@ -102,6 +102,22 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item" *ngIf="isVendor"> 
+                <a routerLink="/dashboard/evidence" class="nav-link">
+                  <img src="../../assets/icons/planning.png" class="side_img">
+                  <p>
+                    Evidence Submittion
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item" *ngIf="isAuditor"> 
+                <a routerLink="/dashboard/evidence/receive" class="nav-link">
+                  <img src="../../assets/icons/planning.png" class="side_img">
+                  <p>
+                    Evidence Received
+                  </p>
+                </a>
+              </li>
               <!-- <li class="nav-item" *ngIf="isAuditor"> 
                 <a routerLink="/dashboard/action-pending-plan" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">

@@ -59,12 +59,41 @@
                                 <h3 class="card-title">Audit Area Details</h3>
                                 <div class="d-flex align-items-center">
                                     <h6 class="mr-1 mb-0">Filters:-</h6>
+                                    <div class=" mr-1">
+                                      <label class="filter_label">Vendor Name</label>
+                                      <input type="text" [(ngModel)]="vendorName" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
+                                    </div>
+                  
+                                    <div class=" mr-1">
+                                      <label class="filter_label">From Date</label>
+                                      <input type="date" [(ngModel)]="plannedStartDate" class="form-control mr-1 filter_css" placeholder="Date ">
+                                  </div>
+                  
+                                 <div class=" mr-1">
+                                      <label class="filter_label">To Date</label>
+                                      <input type="date" [(ngModel)]="plannedStartDate" class="form-control mr-1 filter_css" placeholder="Date ">
+                                  </div>
+                  
+                                 <div class=" mr-1">
+                                      <label class="filter_label">Status</label>
+                                      <input type="text" [(ngModel)]="statusName" class="form-control mr-1 filter_css" placeholder="Status ">
+                                  </div>
+                   <div class="mt_22">
+                    <button type="button" (click)="filter()" class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
+                    <button type="button" (click)="reset()" class="form-control mr-1 filter_css heigh_60 btn btn-secondary"><span>Reset</span></button>
+                                  </div>  <!-- <button class="btn btn-success d-flex  align-items-center">
+                                      <i class="fas fa-upload mr-1 upload_ico"></i>
+                                      <span class="now_rap">Upload Plan</span>
+                                    </button> -->
+                                  </div>
+                                <!-- <div class="d-flex align-items-center">
+                                    <h6 class="mr-1 mb-0">Filters:-</h6>
                                     <input type="text" [(ngModel)]="vendorName" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
                                     <input type="date" [(ngModel)]="plannedStartDate" class="form-control mr-1 filter_css" placeholder="Date ">
                                     <input type="text" [(ngModel)]="statusName" class="form-control mr-1 filter_css" placeholder="Status ">
                                     <button type="button" (click)="filter()" class="form-control mr-1 filter_css btn btn-primary">Submit </button>
                                     <button type="button" (click)="reset()" class="form-control mr-1 filter_css btn btn-secondary">Reset</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-body">
@@ -78,6 +107,7 @@
                                             <th>Any Other Location</th>
                                             <th>Planned Start Date </th>
                                             <th>Planned End Date</th>
+                                           
                                             <th>Status </th>
                                             <th *ngIf="isAuditor || isPlanner">View</th>
                                             <th *ngIf="isAuditor">Initiate Audit </th>
@@ -91,13 +121,14 @@
                                          <td>{{item.otherLocation}}</td>
                                          <td>{{item.plannedStartDate | date:dateFormate}}</td>
                                          <td>{{item.plannedEndDate | date:dateFormate}}</td>
-                                         <td><p [ngClass]="item.status">{{item.status}} </p></td>
+                                       
+                                         <td><p [ngClass]="item.status" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.status}} </p></td>
                                             <td *ngIf="isAuditor || isPlanner">
-                                                <a (click)="viewManageAudit()"><img
+                                                <a (click)="viewManageAudit()" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img
                                                         src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                                             </td>
                                             <td *ngIf="isAuditor">
-                                                <a (click)="initiateAudit(item)"><img
+                                                <a (click)="initiateAudit(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img
                                                         src="../../../../assets/icons/auditini.png" class="viwe_iamge"></a>
                                             </td>
                                         </tr>

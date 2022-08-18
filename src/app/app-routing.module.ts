@@ -83,6 +83,11 @@ const routes: Routes = [
           import('./dashboard/audit-plan/pending-action-plan/pending-action-plan.module').then((m) => m.PendingActionPlanModule),
       },
       {
+        path: 'dashboard/evidence',
+        loadChildren: () =>
+          import('./dashboard/evidence/evidence.module').then((m) => m.EvidenceModule),
+      },
+      {
         path: 'report',
         loadChildren: () =>
           import('./dashboard/reports/reports.module').then((m) => m.ReportsModule),

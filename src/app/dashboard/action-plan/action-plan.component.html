@@ -33,9 +33,11 @@
                                             <th>Planned Start Date </th>
                                             <th>Planned End Date</th>
                                             <th>No Of Observation</th>
+                                            <th>Report release date</th>
                                             <th>Categories</th>
                                             <th>Score</th>
                                             <th>Action Plan </th>
+                                            <th>Evidences Recieved</th>
                                             
                                         </tr>
                                     </thead>
@@ -49,11 +51,13 @@
                                             <td>12-2-2022</td>
                                             <td>12-4-2022</td>
                                             <td>1</td>
+                                            <td>12-4-2022</td>
                                             <td>TestCategory</td>
                                             <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">59%</button></td>
                                             <td>
                                                 <button (click)="gridView1()" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
                                             </td>
+                                            <td>20%</td>
                                            
                                         </tr>
                                         <tr class="tbody_data">
@@ -65,11 +69,13 @@
                                             <td>12-2-2022</td>
                                             <td>12-4-2022</td>
                                             <td>1</td>
+                                            <td>12-4-2022</td>
                                             <td>TestCategory</td>
                                             <td><button class="btn btn-danger"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
                                             <td>
                                                 <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Submitted</button>
                                             </td>
+                                            <td>20%</td>
                                            
                                         </tr>
                                         <tr class="tbody_data">
@@ -81,11 +87,13 @@
                                             <td>12-2-2022</td>
                                             <td>12-4-2022</td>
                                             <td>1</td>
+                                            <td>12-4-2022</td>
                                             <td>TestCategory</td>
                                             <td><button class="btn btn-warning"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
                                             <td>
                                                 <button (click)="gridView1()" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Overdue</button>
                                             </td>
+                                            <td data-toggle="tooltip" data-placement="top" title="Tooltip on top">20%</td>
                                            
                                         </tr>
                                     </tbody>
@@ -272,7 +280,7 @@
                                         <tr class="text-center">
                                             <th colspan="8">Observation(2)</th>
                                         </tr>
-                                        <tr class=" text-center sticky_header fon_9">
+                                        <tr class=" text-center sticky_header">
                                             <th>Observation</th>
                                             <th>ITEM NO.</th>
                                             <th>SUB ITEM NO. </th>
@@ -286,8 +294,8 @@
                                     <tbody>
                                         <tr class="tbody_data ">
                                             <td>1</td>
-                                            <td><textarea class="form-control"></textarea></td>
-                                            <td><textarea class="form-control"></textarea></td>
+                                            <td><textarea class="form-control">Prefield Data</textarea></td>
+                                            <td><textarea class="form-control">Prefield Data</textarea></td>
                                             <td><textarea class="form-control"></textarea></td>
                                             <td><textarea class="form-control"></textarea></td>
                                             <td><textarea class="form-control"></textarea></td>
@@ -332,6 +340,36 @@
                             <button class="btn btn-success">Submit</button>
                             </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header">
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive max_hei_table">
+                              <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                  <tr class="now_rap text-center sticky_header">
+                                   
+                                 
+                                    <th>Fully Closed</th>
+                                    <th>Closed</th>
+                                    <th>Partailly Closed</th>
+                                   
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                      <tr>
+                                        
+                                        <td>4</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                        
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                              
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
