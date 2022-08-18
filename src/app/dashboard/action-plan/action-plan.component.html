@@ -57,7 +57,7 @@
                                             <td>
                                                 <button (click)="gridView1()" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
                                             </td>
-                                            <td>20%</td>
+                                            <td (click)="showgrid()">20%</td>
                                            
                                         </tr>
                                         <tr class="tbody_data">
@@ -263,6 +263,10 @@
                                 </ul>
                             </nav>
                         </div>
+                        <div class="card-footer">
+                           
+                            <button class="btn btn-default" (click)="Closeogrid2()">Close</button>
+                            </div>
                     </div>
                     <div class="card" *ngIf="gridThree">
                         <div class="card-header">
@@ -337,10 +341,11 @@
                             </nav>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-success">Submit</button>
+                            <button class="btn btn-success mr-1">Submit</button>
+                            <button class="btn btn-default" (click)="Closeobser()">Close</button>
                             </div>
                     </div>
-                    <div class="card">
+                    <div class="card" *ngIf="gridFour">
                         <div class="card-header">
                           </div>
                           <div class="card-body">
@@ -369,6 +374,9 @@
                               </div>
                               
                             </div>
+                            <div class="card-footer">
+                                <button class="btn btn-default" (click)="close()">Close</button>
+                                </div>
                         </div>
                 </div>
             </div>

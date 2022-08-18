@@ -104,4 +104,22 @@ export class ViewPlanListComponent implements OnInit {
     this.isClosure3 = true;
   }
 
+  back(){
+   // this.router.navigateByUrl(`dashboard/view-plan`); 
+   this.isClosure1 = true;
+   this.isClosure2 = false;
+   this.isClosure3 = false;
+  }
+  backevi(){
+    // this.router.navigateByUrl(`dashboard/view-plan`); 
+    this.isClosure1 = false;
+    this.isClosure2 = true;
+    this.isClosure3 = false;
+   }
+   backclose1(){
+    // this.router.navigateByUrl(`dashboard/view-plan`); 
+    this.isClosure1 = true;
+    this.isClosure2 = false;
+    this.isClosure3 = false;
+   }
 }
