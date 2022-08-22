@@ -54,37 +54,42 @@
         <div class="col-12">
           <div class="card"  *ngIf="isClosure1">
             <div class="card-header">
-              <div class="header_card">
+              <div class="header_card  justify-content-center mb-1">
                 <h3 class="card-title">View Plan Details</h3>
-                <div class="d-flex align-items-center">
-                  <h6 class="mr-1 mb-0">Filters:-</h6>
-                  <div class=" mr-1">
-                    <label class="filter_label">Vendor Name</label>
-                  <input type="text" [(ngModel)]="vendorName" class="form-control  filter_css" placeholder="Vendor Name ">
-                  </div>
-
-                  <div class=" mr-1">
-                    <label class="filter_label">From Date</label>
-                  <input type="date" [(ngModel)]="plannedStartDate" class="form-control  filter_css" placeholder="Date ">
+               
+              </div>
+              <div class="d-flex align-items-center justify-content-center">
+                <h6 class="mr-1 mb-0">Filters:-</h6>
+                <div class=" mr-1">
+                  <label class="filter_label">Vendor Code</label>
+                <input type="text"  class="form-control  filter_css" placeholder="Vendor Code ">
+                </div>
+                <div class=" mr-1">
+                  <label class="filter_label">Vendor Name</label>
+                <input type="text" [(ngModel)]="vendorName" class="form-control  filter_css" placeholder="Vendor Name ">
                 </div>
 
-               <div class=" mr-1">
-                    <label class="filter_label">To Date</label>
-                  <input type="date" [(ngModel)]="plannedEndDate" class="form-control filter_css" placeholder="Date ">
-                </div>
+                <div class=" mr-1">
+                  <label class="filter_label">From Date</label>
+                <input type="date" [(ngModel)]="plannedStartDate" class="form-control  filter_css" placeholder="Date ">
+              </div>
 
-               <div class=" mr-1">
-                    <label class="filter_label">Status</label>
-                  <input type="text" [(ngModel)]="statusName" class="form-control filter_css" placeholder="Status ">
-                </div>
- <div class="mt_22">
-                  <button type="button" (click)="filter()" class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
-                  <button type="button" (click)="reset()" class="form-control mr-1 filter_css heigh_60 btn btn-secondary"><span>Reset</span></button>
-                </div>  <!-- <button class="btn btn-success d-flex  align-items-center">
-                    <i class="fas fa-upload mr-1 upload_ico"></i>
-                    <span class="now_rap">Upload Plan</span>
-                  </button> -->
-                </div>
+             <div class=" mr-1">
+                  <label class="filter_label">To Date</label>
+                <input type="date" [(ngModel)]="plannedEndDate" class="form-control filter_css" placeholder="Date ">
+              </div>
+
+             <div class=" mr-1">
+                  <label class="filter_label">Status</label>
+                <input type="text" [(ngModel)]="statusName" class="form-control filter_css" placeholder="Status ">
+              </div>
+<div class="mt_22">
+                <button type="button" (click)="filter()" class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
+                <button type="button" (click)="reset()" class="form-control mr-1 filter_css heigh_60 btn btn-secondary"><span>Reset</span></button>
+              </div>  <!-- <button class="btn btn-success d-flex  align-items-center">
+                  <i class="fas fa-upload mr-1 upload_ico"></i>
+                  <span class="now_rap">Upload Plan</span>
+                </button> -->
               </div>
             </div>
             <div class="card-body">
@@ -106,7 +111,7 @@
                       <th *ngIf="isSuperAdmin || isPlanner">Add Auditor</th>
                       <th >Status </th>
                      
-                      <th>Pending Action Plan</th>
+                      <th> Action Plan</th>
                      
 
                      
