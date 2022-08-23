@@ -26,9 +26,11 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Name <span class="start_css">*</span></label>
+                                    
                                         <select class="form-control" formControlName="vendorId">
                                             <option *ngFor="let item of vendorObj" [value]="item.id">   {{item.name }}</option>
                                         </select>
+                                      
                                     </div>
                                 </div>
                         <!--         <div class="col-sm-3">
