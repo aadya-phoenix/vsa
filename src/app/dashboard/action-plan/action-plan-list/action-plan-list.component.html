@@ -1,0 +1,97 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header_card">
+                            <h3 class="card-title">Audit Area Details</h3>
+                            <div class="d-flex align-items-center">
+                                <h6 class="mr-1 mb-0">Filters:-</h6>
+                                <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
+                                <input type="text" class="form-control mr-1 filter_css" placeholder="Date ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive max_hei_table">
+                            <table id="" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class=" text-center sticky_header">
+                                        <th>Audit No</th>
+                                        <th>Vendor Code </th>
+                                        <th>Vendor Name</th>
+                                        <th>Planned Start Date </th>
+                                        <th>Planned End Date</th>
+                                        <th>No Of Observation</th>
+                                        <th>Categories</th>
+                                        <th>Score</th>
+                                        <th>Action Plan </th>    
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tbody_data" *ngFor="let item of auditPlanList; let i = index;">
+                                        <td>AU{{i+1}}</td>
+                                        <td>{{item.vendorCode}}</td>
+                                        <td>{{item.vendorName}}</td>
+                                        <td>{{item.plannedStartDate}}</td>
+                                        <td>{{item.plannedEndDate}}</td>
+                                        <td>{{item.observationCount}}</td>
+                                        <td>{{item.categories}}</td>
+                                        <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">59%</button></td>
+                                        <td>
+                                            <button (click)="goToCategory(item.id)" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="tbody_data">
+                                        <td>AU1</td>
+                                        <td>VN123</td>
+                                        <td>Vendor</td>
+                                        <td>12-2-2022</td>
+                                        <td>12-4-2022</td>
+                                        <td>1</td>
+                                        <td>TestCategory</td>
+                                        <td><button class="btn btn-danger"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
+                                        <td>
+                                            <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Submitted</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="tbody_data">
+                                        <td>AU1</td>
+                                        <td>VN123</td>
+                                        <td>Vendor</td>
+                                        <td>12-2-2022</td>
+                                        <td>12-4-2022</td>
+                                        <td>1</td>
+                                        <td>TestCategory</td>
+                                        <td><button class="btn btn-warning"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
+                                        <td>
+                                            <button (click)="gridView1()" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Overdue</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justift_end">
+                                <li class="page-item">
+                                    <a class="page-link"  aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" >1</a></li>
+                                <li class="page-item"><a class="page-link" >2</a></li>
+                                <li class="page-item"><a class="page-link" >3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link"  aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

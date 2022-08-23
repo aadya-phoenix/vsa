@@ -10,30 +10,12 @@
             <div class="card-body">
               <div id="accordion">
                 <div class="row">
-                  <div class="col-sm-4">
-                    <div class="d-flex flex_colum mt_17" id="myDIV">
+                  <div class="col-sm-4" >
+                    <div class="d-flex flex_colum mt_17" id="myDIV" *ngFor="let item of auditAreaList">
                       <div id="headingOne" class="div_main_active">
-                        <button class="btn btn-link mb-2 active" data-toggle="collapse" data-target="#collapseOne"
+                        <button class="btn btn-link mb-2 active" data-toggle="collapse" data-target="#collapseOne" (click)="getRegulation(item.id)"
                           aria-expanded="true" aria-controls="collapseOne">
-                          Regarding implementation rule of production preparation
-                        </button>
-                      </div>
-                      <div class="div_main_active" id="headingTwo">
-                        <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapseTwo"
-                          aria-expanded="false" aria-controls="collapseTwo">
-                          Regarding management /implementation by production preparation plan/report (master plan)
-                        </button>
-                      </div>
-                      <div id="headingThree" class="div_main_active">
-                        <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapseThree"
-                          aria-expanded="false" aria-controls="collapseThree">
-                          Defect prevention on the stage of process design by using FMEA/Matrix diagram
-                        </button>
-                      </div>
-                      <div id="heading4" class="div_main_active">
-                        <button class="btn btn-link collapsed mb-2" data-toggle="collapse" data-target="#collapse4"
-                          aria-expanded="false" aria-controls="collapse4">
-                          Defect prevention on the stage of process design by using FMEA/Matrix diagram
+                          {{item.name}}
                         </button>
                       </div>
                     </div>
@@ -41,36 +23,40 @@
                   <div class="col-sm-8">
                     <div class="mt-2 p-2">
                       <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card">
+                        <form [formGroup]="questionForm">
+                        <!--   <ng-container *ngFor="let object of regulationList"></ng-container> -->
+                          <ng-container formArrayName="metadata">
+                        <div class="card"  *ngFor="let obj of metadataArray.controls; let i = index">
                           <div class="card-header">
-                            <h4 class="fon_14"><b>1.</b>Do you define in regulation following items for production
-                              preparation?-scope of parts,-responsibility of each department-control contents/items?
+                              <h4 class="fon_14"><b>{{i+1}}</b>
+                                {{regulationList[i]?.name}}
                             </h4>
                           </div>
-                          <div class="card-body">
+                          <div class="card-body"  >
                             <div class="row">
-                              <div class="col-sm-12">
+                              <div class="col-sm-12" [formGroupName]="i">
+                             
                                 <div class="jugme_css">
                                   <label class="mb-0">Judgment</label>
                                   <div class="d-flex">
                                     <div class="mr-3">
-                                      <input type="radio" id="html" name="fav_language" value="HTML"
+                                      <input type="radio" formControlName="JudgementId" id="html" name="fav_language" value="70d2109a-1bb4-46ff-ad68-25b00efdce33"
                                         class="chek_box"><img src="../../../../assets/icons/triangle.png"
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript"
+                                      <input type="radio" id="javascript" formControlName="JudgementId" name="fav_language" value="0c12ff85-a88e-4f05-a4f8-8115ead3e379"
                                         class="chek_box"><img src="../../../../assets/icons/square.png"
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img
+                                      <input type="radio" id="css" formControlName="JudgementId" name="fav_language" value="4a616c17-5038-4b50-b437-5a781c09ffc0" class="chek_box"><img
                                         src="../../../../assets/icons/new-moon.png" class="diacisq_css">
                                     </div>
                                   </div>
                                 </div>
                                 <div class="table-responsive max_hei_table">
-                                  <table class="table table-bordered">
+                                  <table class="table table-bordered" formArrayName="ObservationList">
                                     <thead>
                                       <tr>
                                         <th scope="col">Remarks</th>
@@ -78,19 +64,19 @@
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr>
-                                        <th scope="row"> <textarea class="form-control"></textarea></th>
-                                        <td>
+                                      <tr *ngFor="let item of obsArray(i).controls; let j = index;">
+                                        <th scope="row" [formGroupName]="j"> <textarea formControlName="remark" class="form-control"></textarea></th>
+                                        <td [formGroupName]="j" >
                                           <div class="d-flex">
                                             <div class="image-upload mr-1">
                                               <label for="file-input">
                                                 <img src="../../../../assets/icons/up-arrow.png" data-toggle="tooltip"
                                                   data-placement="top" title="Uplaod File" class="upload_file_css">
                                               </label>
-                                              <input id="file-input" type="file" />
+                                              <input id="file-input" type="file" formControlName="file" (input)="fileInput($event,i,j)"/>
                                             </div>
-                                            <button class="btn btn-primary mr-1">+</button>
-                                            <button class="btn btn-danger">-</button>
+                                            <button class="btn btn-primary mr-1"  (click)="addJudge(i,'')">+</button>
+                                            <button class="btn btn-danger" *ngIf="j > 0" (click)="removeJudge(i,j)">-</button>
                                           </div>
                                         </td>
                                       </tr>
@@ -101,274 +87,13 @@
                             </div>
                           </div>
                           <div class="card-footer">
-                            <button (click)="auditCreate()" class="btn btn-success">Submit</button>
+                            <button (click)="submit(i,regulationList[i].id)" class="btn btn-success">Submit</button>
                           </div>
                         </div>
-                        <div class="card">
-                          <div class="card-header">
-                            <h4 class="fon_14"><b>2.</b>Do you define importance level during production preparation for
-                              each product and clarify control items based on it ? </h4>
-                          </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <form [formGroup]="questionForm">
-                                <div class="jugme_css">
-                                  <label class="mb-0">Judgment</label>
-                                  <div class="d-flex">
-                                    <div class="mr-3">
-                                      <input type="radio" formControlName="triangle" id="html" name="fav_language" value="HTML"
-                                        class="chek_box"><img src="../../../../assets/icons/triangle.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="javascript" formControlName="square" name="fav_language" value="JavaScript"
-                                        class="chek_box"><img src="../../../../assets/icons/square.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="css" formControlName="moon" name="fav_language" value="CSS" class="chek_box"><img
-                                        src="../../../../assets/icons/new-moon.png" class="diacisq_css">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="table-responsive max_hei_table">
-                                  <table class="table table-bordered" formArrayName="judge">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Remarks</th>
-                                        <th class="w_15">Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr *ngFor="let obj of judgeArray.controls;let i = index;">
-                                        <th scope="row" [formGroupName]="i"> <textarea class="form-control" formControlName="remarks"></textarea></th>
-                                        <th scope="row"> <textarea class="form-control"></textarea></th>
-                                        <td [formGroupName]="i">
-                                          <div class="d-flex">
-                                            <div class="image-upload mr-1">
-                                              <label for="file-input">
-                                                <img src="../../../../assets/icons/up-arrow.png" data-toggle="tooltip"
-                                                  data-placement="top" title="Uplaod File" class="upload_file_css">
-                                              </label>
-                                              <input id="file-input" formControlName="fileJ" type="file" />
-                                            </div>
-                                            <button class="btn btn-primary mr-1" (click)="addJudge('')">+</button>
-                                            <button class="btn btn-danger" *ngIf="i > 0" (click)="removeJudge(i)">-</button>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </form>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-footer">
-                            <button (click)="init()" class="btn btn-success">Submit</button>
-                          </div>
+                      </ng-container>
+                    
+                      </form>
                         </div>
-                      </div>
-                      <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card">
-                          <div class="card-header">
-                            <h4 class="fon_14"><b>1.</b>Do you implement follow-up to control the schedule and progress
-                              of production preparation items?</h4>
-                          </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="jugme_css">
-                                  <label class="mb-0">Judgment</label>
-                                  <div class="d-flex">
-                                    <div class="mr-3">
-                                      <input type="radio" id="html" name="fav_language" value="HTML"
-                                        class="chek_box"><img src="../../../../assets/icons/triangle.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript"
-                                        class="chek_box"><img src="../../../../assets/icons/square.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img
-                                        src="../../../../assets/icons/new-moon.png" class="diacisq_css">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="table-responsive max_hei_table">
-                                  <table class="table table-bordered">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Remarks</th>
-                                        <th class="w_15">Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <th scope="row"> <textarea class="form-control"></textarea></th>
-                                        <td>
-                                          <div class="d-flex">
-                                            <div class="image-upload mr-1">
-                                              <label for="file-input">
-                                                <img src="../../../../assets/icons/up-arrow.png" data-toggle="tooltip"
-                                                  data-placement="top" title="Uplaod File" class="upload_file_css">
-                                              </label>
-                                              <input id="file-input" type="file" />
-                                            </div>
-                                            <button class="btn btn-primary mr-1">+</button>
-                                            <button class="btn btn-danger">-</button>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-footer">
-                            <button (click)="init()" class="btn btn-success">Submit</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card">
-                          <div class="card-header">
-                            <h4 class="fon_14">
-                              <b>1.</b>Do you consider following items and reflect them to the processes and standards
-                              beforehand?<br>
-                              -Troubles in the past; -Defect items expected;<br>
-                              -Defect items unable to capture at customer;<br>
-                              -Defect items difficult to repair;
-                            </h4>
-                          </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="jugme_css">
-                                  <label class="mb-0">Judgment</label>
-                                  <div class="d-flex">
-                                    <div class="mr-3">
-                                      <input type="radio" id="html" name="fav_language" value="HTML"
-                                        class="chek_box"><img src="../../../../assets/icons/triangle.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript"
-                                        class="chek_box"><img src="../../../../assets/icons/square.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img
-                                        src="../../../../assets/icons/new-moon.png" class="diacisq_css">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="table-responsive max_hei_table">
-                                  <table class="table table-bordered">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Remarks</th>
-                                        <th class="w_15">Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <th scope="row"> <textarea class="form-control"></textarea></th>
-                                        <td>
-                                          <div class="d-flex">
-                                            <div class="image-upload mr-1">
-                                              <label for="file-input">
-                                                <img src="../../../../assets/icons/up-arrow.png" data-toggle="tooltip"
-                                                  data-placement="top" title="Uplaod File" class="upload_file_css">
-                                              </label>
-                                              <input id="file-input" type="file" />
-                                            </div>
-                                            <button class="btn btn-primary mr-1">+</button>
-                                            <button class="btn btn-danger">-</button>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-footer">
-                            <button (click)="init()" class="btn btn-success">Submit</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="collapse" id="collapse4" aria-labelledby="heading4" data-parent="#accordion">
-                        <div class="card">
-                          <div class="card-header">
-                            <h4 class="fon_14">
-                              <b>1.</b>Do you prevent defects by quality improving activities of cross-function team to
-                              evaluate quality performance?
-                            </h4>
-                          </div>
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="jugme_css">
-                                  <label class="mb-0">Judgment</label>
-                                  <div class="d-flex">
-                                    <div class="mr-3">
-                                      <input type="radio" id="html" name="fav_language" value="HTML"
-                                        class="chek_box"><img src="../../../../assets/icons/triangle.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="javascript" name="fav_language" value="JavaScript"
-                                        class="chek_box"><img src="../../../../assets/icons/square.png"
-                                        class="diacisq_css">
-                                    </div>
-                                    <div class="mr-3">
-                                      <input type="radio" id="css" name="fav_language" value="CSS" class="chek_box"><img
-                                        src="../../../../assets/icons/new-moon.png" class="diacisq_css">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="table-responsive max_hei_table">
-                                  <table class="table table-bordered">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Remarks</th>
-                                        <th class="w_15">Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <th scope="row"> <textarea class="form-control"></textarea></th>
-                                        <td>
-                                          <div class="d-flex">
-                                            <div class="image-upload mr-1">
-                                              <label for="file-input">
-                                                <img src="../../../../assets/icons/up-arrow.png" data-toggle="tooltip"
-                                                  data-placement="top" title="Uplaod File" class="upload_file_css">
-                                              </label>
-                                              <input id="file-input" type="file" />
-                                            </div>
-                                            <button class="btn btn-primary mr-1">+</button>
-                                            <button class="btn btn-danger">-</button>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-footer">
-                            <button (click)="init()" class="btn btn-success">Submit</button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

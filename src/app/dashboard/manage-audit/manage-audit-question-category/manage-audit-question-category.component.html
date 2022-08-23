@@ -28,10 +28,16 @@
                                             </th>
                                             </tr>
                                         </thead>
-                                        <tbody (click)="details()"  >
-                                            <tr class="text-center" *ngFor="let item of categoryScoreList; let i =index;" >
+                                        <tbody  >
+                                          <tr class="text-center" *ngFor="let item of categoryScoreList; let i =index;">
+                                            <td (click)="details(item.categoryId)">{{i+1}}</td>
+                                            <td (click)="details(item.categoryId)">{{item.name}}</td>
+                                            <td (click)="details(item.categoryId)">{{item.totalCount}}</td>
+                                            <td (click)="details(item.categoryId)">{{item.percentageCompletion}}</td>
+                                          </tr>
+                                            <tr >
                                             <td>
-                                                {{i+1}}
+                                                
                                             </td>
                                             <td>
                                                 Production preparation

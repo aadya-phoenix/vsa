@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-action-plan',
@@ -11,7 +12,9 @@ export class ActionPlanComponent implements OnInit {
   gridTwo = false;
   gridThree= false;
 
-  constructor() { }
+  constructor(
+    private router:Router,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -22,9 +25,10 @@ export class ActionPlanComponent implements OnInit {
   }
 
   gridView2(){
-  this.gridOne = false;
+    this.router.navigateByUrl(`dashboard/action-plan/observe`);
+ /*  this.gridOne = false;
   this.gridTwo = false;
-  this.gridThree = true;
+  this.gridThree = true; */
   }
 
 }

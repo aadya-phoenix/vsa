@@ -29,9 +29,9 @@ export class AuditPlanService {
   }
    
   add(data:FormData){
-     this.headers.append(
-      'Content-Type' , 'multipart/form-data'
-    ) 
+      this.headers.append(
+        'Content-Type' , 'multipart/form-data'
+      ) 
     const url = `${this.basePath}api/AuditPlan`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
@@ -77,7 +77,7 @@ export class AuditPlanService {
   }
 
   assignAuditor(data:any){
-    const url = `${this.basePath}api/AuditPlan/AssignAuditee`;
+    const url = `${this.basePath}api/AuditPlan/AssignAuditors`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
 
@@ -112,6 +112,33 @@ export class AuditPlanService {
   getPlanRegulation(data:any){
     const url = `${this.basePath}api/AuditExecution/GetAuditPlanRegulations`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getPlanObservation(data:any){
+    const url = `${this.basePath}api/AuditExecution/GetAuditPlanObservation`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getAuditAreaByCategory(id:any){
+    const url = `${this.basePath}api/AuditArea/${id}`;
+    return this.http
+      .get(url, this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  getJudgement(){
+    const url = `${this.basePath}api/Common`;
+    return this.http
+      .get(url, this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  saveObservation(data:any){
+    this.headers.append(
+      'Content-Type' , 'multipart/form-data'
+    ) 
+    const url = `${this.basePath}api/AuditExecution/SaveAuditPlanExecutionObservation`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
   }
   
 }

@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'view',component:ManageAuditViewComponent},
   {path:'initiate/:id',component:ManageAuditInitiateComponent},
   {path:'question/:id',component:ManageAuditQuestionCategoryComponent},
-  {path:'question-details',component:ManageAuditQuestionDetailsComponent},
+  {path:'question-details/:id/:cid',component:ManageAuditQuestionDetailsComponent},
   {path:'summary',component:ManageAuditComponent}
 ];
 

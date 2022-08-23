@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ActionPlanComponent } from './action-plan.component';
+import { ActionPlanDetailsComponent } from './action-plan-details/action-plan-details.component';
+import { ActionPlanListComponent } from './action-plan-list/action-plan-list.component';
+import { ActionPlanObservationComponent } from './action-plan-observation/action-plan-observation.component';
 
 const routes: Routes = [
-  {path:'',component:ActionPlanComponent},
+  {path:'',component:ActionPlanListComponent},
+  {path:'category/:id',component:ActionPlanDetailsComponent},
+  {path:'observe/:id/:cid',component:ActionPlanObservationComponent},
 ];
 
 @NgModule({
