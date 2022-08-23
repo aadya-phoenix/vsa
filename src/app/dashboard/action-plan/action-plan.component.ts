@@ -8,27 +8,30 @@ import { Router } from '@angular/router';
 })
 export class ActionPlanComponent implements OnInit {
 
+  screenOne = true;
+  gridFour = false;
   gridOne =true;
   gridTwo = false;
   gridThree= false;
 
-  constructor(
-    private router:Router,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
+  showgrid(){
+   this.gridOne  = false;
+   this.gridFour = true;
+ }
   gridView1(){
    this.gridOne = false;
    this.gridTwo = true;
   }
 
   gridView2(){
-    this.router.navigateByUrl(`dashboard/action-plan/observe`);
- /*  this.gridOne = false;
+  this.gridOne = false;
   this.gridTwo = false;
-  this.gridThree = true; */
+  this.gridThree = true;
   }
 
 }

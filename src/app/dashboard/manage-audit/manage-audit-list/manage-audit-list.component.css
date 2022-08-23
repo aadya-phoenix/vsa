@@ -21,3 +21,9 @@
     margin-bottom: 10px;
    cursor: pointer;
 }
+.heigh_60{
+    width: 67px;
+}
+.heigh_60 span{
+  font-size: 11px;
+}

@@ -5,6 +5,7 @@ import { dataConstants } from '../shared/constants/dataConstants';
 import jwt_decode from "jwt-decode";
 import { AuthenticationService } from '../shared/services/auth/authentication.service';
 import Swal from 'sweetalert2';
+import { CommonService } from '../shared/services/common/common.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     private authService:AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private commonService: CommonService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required]),
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(this.loginForm.valid){
+      this.commonService.showLoading();
      let loginDetails = this.loginForm.value;
      this.authService.login(loginDetails).subscribe({
       next:(res:any)=>{
@@ -49,9 +52,11 @@ export class LoginComponent implements OnInit {
           }
         });
         this.router.navigateByUrl('dashboard');
+        this.commonService.hideLoading();
       }
      },
      error:(err:any) =>{
+      this.commonService.hideLoading();
       Swal.fire({
         title: 'Incorrect Username or Password',
         text: 'Please login again!',

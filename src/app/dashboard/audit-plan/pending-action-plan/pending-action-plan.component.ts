@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending-action-plan',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendingActionPlanComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
   }
+  closeobser(){
+    this.router.navigateByUrl(`dashboard/view-plan`); 
+   }
 
 }
