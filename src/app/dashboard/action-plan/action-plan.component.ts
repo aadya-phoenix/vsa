@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-action-plan',
@@ -12,7 +13,6 @@ export class ActionPlanComponent implements OnInit {
   gridOne =true;
   gridTwo = false;
   gridThree= false;
-
 
   constructor() { }
 
@@ -33,21 +33,5 @@ export class ActionPlanComponent implements OnInit {
   this.gridTwo = false;
   this.gridThree = true;
   }
-
-  close(){
-    this.gridOne  = true;
-    this.gridFour = false;
-  }
-  Closeobser(){
-    this.gridOne = false;
-    this.gridTwo = true;
-    this.gridThree = false;
-    }
-
-    Closeogrid2(){
-      this.gridOne = true;
-      this.gridTwo = false;
-      this.gridThree = false;
-      }
 
 }

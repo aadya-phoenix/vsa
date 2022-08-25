@@ -114,8 +114,8 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     this.vendorAttendeeArray.removeAt(i);
   } 
 
-  details(){
-    this.router.navigateByUrl('dashboard/manage-audit/question-details');
+  details(id:any){
+    this.router.navigateByUrl(`dashboard/manage-audit/question-details/${this.auditPlanId}/${id}`);
   }
 
   viewSummary(){

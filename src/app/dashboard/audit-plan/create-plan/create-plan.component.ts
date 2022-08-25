@@ -54,8 +54,7 @@ export class CreatePlanComponent implements OnInit {
     const body = this.createPlanForm.value ;
 
     const formData = new FormData(); 
-     console.log("attachmentFile",this.selectedFile);
-
+    
      formData.append('AttachmentFile', this.selectedFile);
      formData.append('vendorId', body.vendorId); 
      formData.append('locationId', body.locationId);
