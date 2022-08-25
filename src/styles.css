@@ -132,9 +132,15 @@
   cursor: pointer;
   font-size: 13px;
   width: 100%;
+}.w_60{
+  width:60%;
 }
-
-  
+.fon_17{
+  font-size: 17px !important;
+}
+  .w_20{
+    width:20%;
+  }
 
 .box_css {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;

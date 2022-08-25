@@ -1,0 +1,35 @@
+.he_bar{
+    height: 487px;
+}
+.mt_7{
+    margin-top: 7%;
+}
+.mt_35{
+    margin-top: 35px;
+}
+.counter_img {
+    width: 46px;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.child_counter {
+    padding: 15px 30px;
+    width: 30%;
+    margin-right: 10px;
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px !important;
+}
+
+.counter_digit {
+    font-size: 32px;
+    font-weight: 600;
+    color: #000 !important;
+    margin-bottom: 0px;
+    text-align: center;
+}.col_20{
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+}
+.font_wei_500{
+font-weight: 500;
+}

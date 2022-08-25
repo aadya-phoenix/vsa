@@ -8,18 +8,28 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Dashboard</h3>
+              <div class="form-group mb-0 w_20">
+                
+                <select class="form-control">
+                  <option>Select Year</option>
+                <option>2019</option>
+                <option>2021</option>
+                <option>2022</option>
+               
+                </select>
+                </div>
              
             </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-           
-<div class="d-flex justify-content-center mb-2 flex_direction_media">
-  <a href="" class="child_counter gradien_plan">
+          
+<div class="d-flex justify-content-center mb-4 flex_direction_media">
+  <a href="" class="child_counter ">
     <div class="">
       <div class="d-flex justify-content-between align-items-center">
-        <img src="../../../../assets/icons/counter/shield.png" class="counter_img">
-        <p class="color_white mb-0 fon_13">Total Plan</p>
+        <img src="../../../../assets/icons/counter/shield.png" class="counter_img gradien_plan">
+        <p class="color_black mb-0 fon_17 font_wei_500">Total Audits</p>
       </div>
       <div>
         <p class="counter_digit">8</p>
@@ -27,11 +37,11 @@
       </div>
     </div>
   </a>
-  <a href="" class="child_counter gradien_approve">
+  <a href="" class="child_counter ">
     <div class="">
       <div class="d-flex justify-content-between align-items-center">
-        <img src="../../../../assets/icons/counter/approve.png" class="counter_img">
-        <p class="color_white mb-0 fon_13">Approve Task</p>
+        <img src="../../../../assets/icons/counter/approve.png" class="counter_img gradien_approve">
+        <p class="color_black mb-0 fon_17 font_wei_500">Approve Audits</p>
       </div>
       <div>
         <p class="counter_digit">6</p>
@@ -39,11 +49,11 @@
       </div>
     </div>
   </a>
-  <a href="" class="child_counter gradien_pending">
+  <a href="" class="child_counter ">
     <div class="">
       <div class="d-flex justify-content-between align-items-center">
-        <img src="../../../../assets/icons/counter/pending.png" class="counter_img">
-        <p class="color_white mb-0 fon_13">Pending Plan</p>
+        <img src="../../../../assets/icons/counter/pending.png" class="counter_img gradien_pending">
+        <p class="color_black mb-0 fon_17 font_wei_500">Pending Audits</p>
       </div>
       <div>
         <p class="counter_digit">6</p>
@@ -51,11 +61,11 @@
       </div>
     </div>
   </a>
-  <a href="" class="child_counter gradien_auditor_assign">
+  <a href="" class="child_counter">
     <div class="">
       <div class="d-flex justify-content-between align-items-center">
-        <img src="../../../../assets/icons/counter/auditor.png" class="counter_img">
-        <p class="color_white mb-0 fon_13">Auditor Assign</p>
+        <img src="../../../../assets/icons/counter/auditor.png" class="counter_img gradien_auditor_assign">
+        <p class="color_black mb-0 fon_17 font_wei_500">Rejected Audits</p>
       </div>
       <div>
         <p class="counter_digit">6</p>
@@ -64,26 +74,174 @@
     </div>
   </a>
 </div>
+
+<div class="row mb-4">
+  <div class="col-sm-2 col_20">
+    <div class="form-group mb-0">
+      <label>From Date</label>
+      <input type="date" class="form-control">
+      
+    
+      </div>
+  </div><!--colend-->
+  <div class="col-sm-2 col_20">
+    <div class="form-group mb-0">
+      <label>To Date</label>
+      <input type="date" class="form-control">
+      
+    
+      </div>
+  </div><!--colend-->
+  <div class="col-sm-2 col_20">
+    <div class="form-group mb-0">
+      <label>Vendor Name</label>
+      <select class="form-control">
+        <option>Select Vendor Name</option>
+      <option></option>
+      <option></option>
+      <option></option>
+     
+      </select>
+      </div>
+    </div><!--colend-->
+    <div class="col-sm-2 col_20">
+      <div class="form-group mb-0">
+        <label>Vendor Code</label>
+        <select class="form-control">
+          <option>Select Vendor Code</option>
+        <option></option>
+        <option></option>
+        <option></option>
+       
+        </select>
+        </div>
+    </div><!--colend-->
+    <div class="col-sm-2 col_20">
+      <div class="form-group mb-0">
+        <label>Location</label>
+        <select class="form-control">
+          <option>Select Location</option>
+        <option></option>
+        <option></option>
+        <option></option>
+       
+        </select>
+        </div>
+    </div><!--colend-->
+  
+    <div class="col-sm-2 col_20 mt_35">
+      <button class="btn btn-primary w_60">Search</button>
+    </div><!--colend-->
+
+  </div><!--row end-->
+  
+
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-header border-0">
         <div class="d-flex justify-content-between">
-          <h3 class="card-title">Sales</h3>
-          <a href="javascript:void(0);">View Report</a>
+          <h3 class="card-title">Total number of Audit</h3>
+         
         </div>
       </div>
       <div class="card-body">
-      
+      <div class="">
+        <img src="../../assets/img/bar.png" class="w_100 he_bar">
+        </div>
       </div>
     </div>
     <!-- /.card -->
 </div>
+<div class="col-sm-6">
+    
+  <div class="card">
+    <div class="card-header border-0">
+      <div class="d-flex justify-content-between">
+        <h3 class="card-title">Total Number of scroe</h3>
+       
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+      <div class="col-sm-12">
+    
+      <img src="../../assets/img/bar1.png" class="w_100 he_bar">
+      </div>
+    
+    </div>
+    </div>
+  </div>
+  </div>
+<!-- <div class="col-sm-6">
+  <div class="card">
+    <div class="card-header border-0">
+      <div class="d-flex justify-content-between">
+        <h3 class="card-title">Audit Calender</h3>
+       
+      </div>
+    </div>
+    <div class="card-body">
+    <div class="">
+      <img src="../../assets/img/calender.png" class="w_100">
+      </div>
+    </div>
+  </div>
+  
+</div> -->
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
-      </div>
+   
+      <div class="col-sm-6">
+    
+        <div class="card">
+          <div class="card-header border-0">
+            <div class="d-flex justify-content-between">
+              <h3 class="card-title">Audit Report</h3>
+             
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+         
+            <div class="col-sm-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Vendor Name</th>
+                    <th scope="col">Auditor</th>
+                    <th scope="col">Starting Date</th>
+                    <th>Average Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Vendor 1</td>
+                    <td>Auditor 1</td>
+                    <td>12-2-2022</td>
+                    <td>20%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Vendor 1</td>
+                    <td>Auditor 1</td>
+                    <td>12-2-2022</td>
+                    <td>60%</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+              </div>
+          </div>
+          </div>
+        </div>
+        </div>
+      <!-- /.card -->
+   
+   
     </div><!--row-->
 
           </div>
