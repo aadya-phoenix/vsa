@@ -86,6 +86,7 @@
 <div class="mt_22">
                 <button type="button" (click)="filter()" class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
                 <button type="button" (click)="reset()" class="form-control mr-1 filter_css heigh_60 btn btn-secondary"><span>Reset</span></button>
+             
               </div>  <!-- <button class="btn btn-success d-flex  align-items-center">
                   <i class="fas fa-upload mr-1 upload_ico"></i>
                   <span class="now_rap">Upload Plan</span>
@@ -110,12 +111,13 @@
                       <th *ngIf="isSuperAdmin || isPlanner">Action </th>
                       <th *ngIf="isSuperAdmin || isPlanner">Add Auditor</th>
                       <th >Status </th>
-                     
+                    
                       <th> Action Plan</th>
                      
 
                      
                       <th >Evidences Recieved</th>
+                      <th> Log</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -140,6 +142,7 @@
                       <td><p [ngClass]="item.status" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.status}} </p></td>
                       <td><button class="btn btn-primary" (click)="pendingAction()" data-toggle="tooltip" data-placement="top" title="Tooltip on top" >To be Received</button></td>
                       <td (click)="closure1()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">20%</td>
+                      <td>  <button type="button" class="form-control mr-1 btn btn-secondary" data-toggle="modal" data-target="#exampleModal"><span>Auditor Log</span></button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -253,4 +256,35 @@
         </div>
       </div>
     </div>
-  </section>
+  </section><div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Request Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Vendor Code</th>
+                <th scope="col">Vendor Nmae</th>
+                <th scope="col">Auditor Nmae</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+            
+              
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

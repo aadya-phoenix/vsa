@@ -69,7 +69,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!isSectionHead">
             <a class="nav-link">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
@@ -118,14 +118,7 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item" *ngIf="isSectionHead"> 
-                <a routerLink="/dashboard/evidence/section-data" class="nav-link">
-                  <img src="../../assets/icons/planning.png" class="side_img">
-                  <p>
-                    SectionHead Data
-                  </p>
-                </a>
-              </li>
+             
               <!-- <li class="nav-item" *ngIf="isAuditor"> 
                 <a routerLink="/dashboard/action-pending-plan" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
@@ -136,7 +129,15 @@
               </li> -->
             </ul>
           </li>
-          <li class="nav-item" *ngIf="!isVendor">
+          <li class="nav-item" *ngIf="isSectionHead"> 
+            <a routerLink="/dashboard/evidence/section-data" class="nav-link">
+              <img src="../../assets/icons/planning.png" class="side_img">
+              <p>
+                SectionHead Data
+              </p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="!isVendor && !isSectionHead">
             <a routerLink="/dashboard/manage-audit" class="nav-link">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
