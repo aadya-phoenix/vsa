@@ -34,4 +34,10 @@ export class ActionPlanComponent implements OnInit {
   this.gridThree = true;
   }
 
+  close(){}
+  
+  Closeobser(){}
+
+  Closeogrid2(){}
+
 }
