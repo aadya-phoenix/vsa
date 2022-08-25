@@ -19,7 +19,5 @@ export const dataConstants = {
     VerticalHead:{RoleId:'d08d548c-5905-4e39-81a7-03034dd7f73e',role:'VerticalHead'},
     DPM:{RoleId:'8160b1b5-92c3-42cb-9122-6f1394dfa4b2',role:'DPM'},
     SectionHead:{RoleId:'aa1b2adc-e205-451e-8b2f-5b184df9e4f4', role:'SectionHead'}
-
-       
     
 }

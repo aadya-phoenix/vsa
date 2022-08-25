@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
       if(res){
       localStorage.setItem('token', JSON.stringify(res.token));
        const token = this.getDecodedAccessToken(res.token);
-       console.log("token",token);
        localStorage.setItem('loginDetails', JSON.stringify(token));
         this.roles.find((currentrole: any) => {
           if (currentrole.RoleId == token.RoleId && currentrole.role == token.role){

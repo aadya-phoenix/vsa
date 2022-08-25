@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { EvidenceRoutingModule } from './evidence-routing.module';
 import { EvidenceSubmissionComponent } from './evidence-submission/evidence-submission.component';
 import { EvidenceReceivedComponent } from './evidence-received/evidence-received.component';
+import { SectionHeadDataComponent } from './section-head-data/section-head-data.component';
 
 
 @NgModule({
   declarations: [
     EvidenceSubmissionComponent,
-    EvidenceReceivedComponent
+    EvidenceReceivedComponent,
+    SectionHeadDataComponent
   ],
   imports: [
     CommonModule,
