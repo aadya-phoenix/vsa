@@ -14,10 +14,17 @@ export class SidebarComponent implements OnInit {
   isPlanner =false;
   isVendor =false;
   isAuditor= false;
+  isSectionHead = false;
+  isVerticalHead = false;
+  isDPM = false;
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.Planner;
   Auditor = dataConstants.Auditor;
   Vendor = dataConstants.Vendor;
+  SectionHead = dataConstants.SectionHead;
+  VerticalHead = dataConstants.VerticalHead;
+  DPM = dataConstants.DPM;
+
 
 
   constructor(
@@ -28,6 +35,9 @@ export class SidebarComponent implements OnInit {
     this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
     this.isAuditor = this.getUserrole.RoleId === this.Auditor.RoleId && this.getUserrole.role === this.Auditor.role; 
     this.isVendor = this.getUserrole.RoleId === this.Vendor.RoleId && this.getUserrole.role === this.Vendor.role; 
+    this.isSectionHead = this.getUserrole.RoleId === this.SectionHead.RoleId && this.getUserrole.role === this.SectionHead.role;
+    this.isVerticalHead = this.getUserrole.RoleId === this.VerticalHead.RoleId && this.getUserrole.role === this.VerticalHead.role;
+    this.isDPM = this.getUserrole.RoleId === this.DPM.RoleId && this.getUserrole.role === this.DPM.role;
   }
 
   ngOnInit(): void {
