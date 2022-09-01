@@ -69,7 +69,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" *ngIf="!isSectionHead">
+          <li class="nav-item">
             <a class="nav-link">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
@@ -110,7 +110,7 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item" *ngIf="isAuditor || isSectionHead"> 
+              <li class="nav-item" *ngIf="isAuditor"> 
                 <a routerLink="/dashboard/evidence/receive" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
                   <p>
@@ -137,7 +137,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item" *ngIf="!isVendor && !isSectionHead">
+          <li class="nav-item" *ngIf="!isVendor">
             <a routerLink="/dashboard/manage-audit" class="nav-link">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
