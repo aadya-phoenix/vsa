@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-manage-audit-list',
@@ -29,6 +30,7 @@ export class ManageAuditListComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private auditPlanService:AuditPlanService,
+    private commonService: CommonService,
     private router:Router
   ) { 
     this.getUserrole = this.authService.getRolefromlocal();
@@ -43,14 +45,19 @@ export class ManageAuditListComponent implements OnInit {
   }
 
   getViewPlanList(){
+    this.commonService.showLoading();
     this.auditPlanService.getAuditPlan().subscribe({
       next: (res) => {
         if(res){
          this.viewPlanList = res;
          this.viewPlanListToShow = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) =>   {
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
      });
   }
 
@@ -66,6 +73,7 @@ export class ManageAuditListComponent implements OnInit {
   }
 
   filter(){
+    this.commonService.showLoading();
     const body={} as any;
     body.vendorName= this.vendorName;
     body.plannedStartDate = this.plannedStartDate;
@@ -74,8 +82,11 @@ export class ManageAuditListComponent implements OnInit {
     this.auditPlanService.filter(body).subscribe({
       next:(res: any) => {
         this.viewPlanListToShow = res;
+        this.commonService.hideLoading();
       },
-      error:(err:any) =>{
+      error:(err:any) =>   {
+        console.error(err);
+        this.commonService.hideLoading();
       } 
     }); 
 

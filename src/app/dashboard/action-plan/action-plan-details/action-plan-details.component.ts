@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-action-plan-details',
@@ -15,6 +16,7 @@ export class ActionPlanDetailsComponent implements OnInit {
   constructor(
     private route:ActivatedRoute,
     private router:Router,
+    private commonService: CommonService,
     private auditPlanService:AuditPlanService
   ) { 
     this.route.paramMap.subscribe((params:ParamMap)=>{
@@ -28,13 +30,19 @@ export class ActionPlanDetailsComponent implements OnInit {
   }
 
   getCategoryList(){
+    this.commonService.showLoading();
     this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
          this.categoryScoreList = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => 
+      {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
 import Swal from 'sweetalert2';
 
@@ -22,7 +23,8 @@ export class VendorListComponent implements OnInit {
   constructor(
     private router:Router,
     private authService: AuthenticationService,
-    private vendorService:VendorMasterService
+    private vendorService:VendorMasterService,
+    private commonService: CommonService, 
     ) { 
     this.getUserrole = this.authService.getRolefromlocal();
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
@@ -45,13 +47,18 @@ export class VendorListComponent implements OnInit {
   }
 
   getVendorList(){
+    this.commonService.showLoading();  
     this.vendorService.getVendor().subscribe({
       next: (res) => {
         if(res){
          this.vendorObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
      });
   }
 

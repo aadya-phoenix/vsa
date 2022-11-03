@@ -33,10 +33,11 @@ export class AuditAreaMasterService {
   }
 
   getAuditAreaDetails(id:any){
-    const url = `${this.basePath}api/AuditArea/${id}`;
+    const params = new HttpParams().set('id',id);
+    const url = `${this.basePath}api/AuditArea/get`;
     return this.http
-      .get(url, this.http.headers)
-      .pipe(catchError(this.commmonService.Errorhandling));  
+    .getParams(url, this.http.headers,params)
+    .pipe(catchError(this.commmonService.Errorhandling)); 
   }
 
   delete(id: any){

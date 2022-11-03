@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'initiate/:id',component:ManageAuditInitiateComponent},
   {path:'question/:id',component:ManageAuditQuestionCategoryComponent},
   {path:'question-details/:id/:cid',component:ManageAuditQuestionDetailsComponent},
-  {path:'summary',component:ManageAuditComponent}
+  {path:'summary/:id',component:ManageAuditComponent}
 ];
 
 @NgModule({

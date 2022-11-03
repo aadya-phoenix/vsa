@@ -106,7 +106,7 @@
                 <a routerLink="/dashboard/evidence" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
                   <p>
-                    Evidence Submittion
+                    Evidence Submission
                   </p>
                 </a>
               </li>
@@ -126,8 +126,17 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item" *ngIf="isSectionHead 
+              || isDPM"> 
+                <a routerLink="/dashboard/evidence/dpm" class="nav-link">
+                  <img src="../../assets/icons/planning.png" class="side_img">
+                  <p>
+                    Report Approval
+                  </p>
+                </a>
+              </li>
               <!-- <li class="nav-item" *ngIf="isAuditor"> 
-                <a routerLink="/dashboard/action-pending-plan" class="nav-link">
+                <a routerLink="/dashboard/action-plan/action-pending-plan" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
                   <p>
                     RESULT OF VERIFICATION

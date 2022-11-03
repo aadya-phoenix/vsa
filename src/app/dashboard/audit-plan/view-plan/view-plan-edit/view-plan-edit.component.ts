@@ -5,6 +5,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
+import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
 
 @Component({
@@ -30,9 +32,10 @@ export class ViewPlanEditComponent implements OnInit {
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private auditPlanService:AuditPlanService,
-    private vendorService:VendorMasterService,
+    private employeeService:EmployeeMasterService,
     private router:Router,
     private route: ActivatedRoute,
+    private commonService: CommonService, 
     private datepipe:DatePipe
     
   ) { 
@@ -64,7 +67,7 @@ export class ViewPlanEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocation();
-    this.getVendorList();
+    this.getEmployeeList();
     if(this.viewPlanId){
       this.getViewPlanDetails();
       this.getAttachment();
@@ -105,6 +108,7 @@ export class ViewPlanEditComponent implements OnInit {
   }
 
   getViewPlanDetails(){
+    this.commonService.showLoading();  
     this.auditPlanService.getPlanDetails(this.viewPlanId).subscribe({
       next: (res) => {
         if(res){
@@ -120,9 +124,13 @@ export class ViewPlanEditComponent implements OnInit {
          this.viewPlanForm.controls['plannedStartDate'].setValue(this.dateFormat(this.viewPlanDetails.plannedStartDate));
          this.viewPlanForm.controls['additionalMSILEmail'].setValue(this.viewPlanDetails.additionalMSILEmail);
          this.viewPlanForm.controls['auditeeEmail'].setValue(this.viewPlanDetails.auditeeEmail);
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 
@@ -148,11 +156,14 @@ export class ViewPlanEditComponent implements OnInit {
      });
   }
 
-  getVendorList(){
-    this.vendorService.getVendor().subscribe({
+  getEmployeeList(){
+    this.employeeService.getEmployee().subscribe({
       next: (res) => {
         if(res){
-         this.vendorObj = res;
+          this.vendorObj = res.filter((x:any)=>{
+            return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
+            x.roleName == 'Vendor';
+           });
         }
        },
       error: (e) => console.error(e), 

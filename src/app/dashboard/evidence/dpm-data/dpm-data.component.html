@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-header">
+        <div class="header_card">
+            <h3 class="card-title">Regulation for initial production control </h3> 
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive max_hei_table" >
+            <table id="" class="table table-bordered table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th colspan="9">Observation({{actionPlanList.length}})
+                            <button class="btn btn-success mr-1" (click)="submit('accept')">Accept</button>
+                            <button class="btn btn-danger" (click)="submit('reject')">Reject</button>
+                        </th>
+                    </tr>
+                    <tr class=" text-center sticky_header fon_9">
+                        <th>Observation</th>
+                        <th>ITEM NO.</th>
+                        <th>SUB ITEM NO. </th>
+                        <th>DETAIL OF IMPROVEMENT PLAN</th>
+                        <th>IN-CHARGE</th>
+                        <th>DATE</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tbody_data" *ngFor="let item of actionPlanList; let i = index;">
+                        <td>{{i+1}}</td>
+                        <td>{{i+1}}</td>
+                        <td>{{i+1}}.1</td>
+                        <td>{{item.detailOfImprovement}}</td>
+                        <td>{{item.incharge}}</td>
+                        <td>{{item.dateOfSubmission | date:dateFormat}}</td> 
+                        <td>
+                           <textarea [(ngModel)]="item.remarkOfAuditor" class="form-control" placeholder="Enter your Remarks"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justift_end">
+                <li class="page-item">
+                    <a class="page-link"  aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" >1</a></li>
+                <li class="page-item"><a class="page-link" >2</a></li>
+                <li class="page-item"><a class="page-link" >3</a></li>
+                <li class="page-item">
+                    <a class="page-link"  aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-default" (click)="close()">Back</button>
+    </div>
+</div>

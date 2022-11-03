@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-manage-audit-question-category',
@@ -18,6 +19,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private auditPlanService:AuditPlanService,
+    private commonService: CommonService,
     private router:Router,
     private route:ActivatedRoute
   ) { 
@@ -39,13 +41,18 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   }
 
   getCategoryList(){
+    this.commonService.showLoading();
     this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
          this.categoryScoreList = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) =>{
+        console.error(e),
+        this.commonService.hideLoading();
+      } , 
      });
   }
 
@@ -119,7 +126,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   }
 
   viewSummary(){
-    this.router.navigateByUrl('dashboard/manage-audit/summary');
+    this.router.navigateByUrl(`dashboard/manage-audit/summary/${this.auditPlanId}`);
   }
 
   back(){

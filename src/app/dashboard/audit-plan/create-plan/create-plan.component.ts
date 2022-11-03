@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { zip } from 'rxjs';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
+import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
 import Swal from 'sweetalert2';
 
@@ -19,7 +22,8 @@ export class CreatePlanComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private auditPlanService:AuditPlanService,
-    private vendorService:VendorMasterService
+    private commonService: CommonService, 
+    private employeeService:EmployeeMasterService
   ) { 
     this.createPlanForm = this.formBuilder.group({
       vendorId: new FormControl('', [Validators.required]),
@@ -39,7 +43,7 @@ export class CreatePlanComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getVendorList();
+    this.getEmployeeList();
     this.getLocation();
   }
 
@@ -48,9 +52,11 @@ export class CreatePlanComponent implements OnInit {
   }
 
   submit(){
+    
     if (this.createPlanForm.invalid) {
       return;
     }
+    this.commonService.showLoading();  
     const body = this.createPlanForm.value ;
 
     const formData = new FormData(); 
@@ -74,20 +80,25 @@ export class CreatePlanComponent implements OnInit {
           title: 'Plan Created Successfully',
          // text: 'Please login again!',
           icon: 'success',
-        })
+        });
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       } 
     }); 
   }
 
   close(){}
 
-  getVendorList(){
-    this.vendorService.getVendor().subscribe({
+  getEmployeeList(){
+    this.employeeService.getEmployee().subscribe({
       next: (res) => {
         if(res){
-         this.vendorObj = res;
+         this.vendorObj = res.filter((x:any)=>{
+          return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
+          x.roleName == 'Vendor';
+         });
         }
        },
       error: (e) => console.error(e), 

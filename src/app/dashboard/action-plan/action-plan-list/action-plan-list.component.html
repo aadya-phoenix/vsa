@@ -34,8 +34,8 @@
                                         <td>AU{{i+1}}</td>
                                         <td>{{item.vendorCode}}</td>
                                         <td>{{item.vendorName}}</td>
-                                        <td>{{item.plannedStartDate}}</td>
-                                        <td>{{item.plannedEndDate}}</td>
+                                        <td>{{item.plannedStartDate | date:dateFormat}}</td>
+                                        <td>{{item.plannedEndDate | date:dateFormat}}</td>
                                         <td>{{item.observationCount}}</td>
                                         <td>{{item.categories}}</td>
                                         <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">59%</button></td>

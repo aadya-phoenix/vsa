@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -26,4 +26,39 @@ export class AuditExecutionService {
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
 
+  getEvidenceObservation(id:any){
+    const params = new HttpParams().set('AuditplanId',id);
+    const url = `${this.basePath}api/AuditExecution/GetAuditplanActionplanObservationCount`;
+    return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  saveActionPlan(data:any){
+  const url = `${this.basePath}api/AuditExecution/SaveOrUpdateAuditplanActionplan`;
+  return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  actionPlanApproval(data:any){
+    const url = `${this.basePath}api/AuditExecution/UpdateAuditActionPlanApproval`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  actionPlanRemarks(data:any){
+    const url = `${this.basePath}api/AuditExecution/UpdateAuditplanActionplanRemarks`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  updateEvidenceReceived(data:any){
+    const url = `${this.basePath}api/AuditExecution/UpdateAuditActionPlanObservationAction`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  saveEvidence(data:any){
+    const url = `${this.basePath}api/AuditExecution/SaveAuditPlanActionEvidence`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  saveHeadApproval(data:any){
+    const url = `${this.basePath}api/AuditPlan/HeadApproval`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));   
+  }
 }

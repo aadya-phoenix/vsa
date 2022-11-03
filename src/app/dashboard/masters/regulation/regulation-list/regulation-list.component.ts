@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { RegulationMasterService } from 'src/app/shared/services/regulation-master/regulation-master.service';
 import Swal from 'sweetalert2';
 
@@ -23,6 +24,7 @@ export class RegulationListComponent implements OnInit {
   constructor(
     private router:Router,
     private authService: AuthenticationService,
+    private commonService: CommonService, 
     private regulationService:RegulationMasterService
     ) { 
     this.getUserrole = this.authService.getRolefromlocal();
@@ -43,13 +45,18 @@ export class RegulationListComponent implements OnInit {
   }
 
   getRegulationList(){
+    this.commonService.showLoading();  
     this.regulationService.getRegulation().subscribe({
       next: (res) => {
         if(res){
          this.regulationObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 
