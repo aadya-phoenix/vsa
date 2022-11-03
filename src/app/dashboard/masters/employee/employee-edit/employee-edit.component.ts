@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-edit',
@@ -19,6 +21,7 @@ export class EmployeeEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private commonService: CommonService,
     private employeeService:EmployeeMasterService
   ) { 
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -45,27 +48,44 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   editEmployee(body:any){
+    this.commonService.showLoading();  
     body.id = this.employee_id;
     this.employeeService.edit(body).subscribe({
       next:(res: any) => {
+        this.commonService.hideLoading();
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        })
         this.router.navigateByUrl('dashboard/employee'); 
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }
 
   addEmployee(body:any){
+    this.commonService.showLoading();  
     this.employeeService.add(body).subscribe({
       next:(res: any) => {
         this.router.navigateByUrl('dashboard/employee'); 
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        })
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }
 
   getEmployeeDetails(){
+    this.commonService.showLoading();  
     this.employeeService.getEmployeeDetails(this.employee_id).subscribe({
       next: (res) => {
         if(res){
@@ -73,9 +93,13 @@ export class EmployeeEditComponent implements OnInit {
          this.employeeForm.controls['name'].setValue(this.employeeDetails.name);
          this.employeeForm.controls['code'].setValue(this.employeeDetails.code);
          this.employeeForm.controls['roleId'].setValue(this.employeeDetails.roleId);
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
      });
   }
  
@@ -94,6 +118,6 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   close(){
-    this.router.navigateByUrl("dashboard/employee")
+    this.router.navigateByUrl("dashboard/employee");
   }
 }

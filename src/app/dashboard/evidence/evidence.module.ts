@@ -5,16 +5,22 @@ import { EvidenceRoutingModule } from './evidence-routing.module';
 import { EvidenceSubmissionComponent } from './evidence-submission/evidence-submission.component';
 import { EvidenceReceivedComponent } from './evidence-received/evidence-received.component';
 import { SectionHeadDataComponent } from './section-head-data/section-head-data.component';
+import { EvidenceScoreCategoryComponent } from './evidence-score-category/evidence-score-category.component';
+import { FormsModule } from '@angular/forms';
+import { DpmDataComponent } from './dpm-data/dpm-data.component';
 
 
 @NgModule({
   declarations: [
     EvidenceSubmissionComponent,
     EvidenceReceivedComponent,
-    SectionHeadDataComponent
+    SectionHeadDataComponent,
+    EvidenceScoreCategoryComponent,
+    DpmDataComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     EvidenceRoutingModule
   ]
 })

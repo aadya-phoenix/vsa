@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-plan-assign',
@@ -20,6 +22,7 @@ export class ViewPlanAssignComponent implements OnInit {
     private employeeService:EmployeeMasterService,
     private auditPlanService:AuditPlanService,
     private router:Router,
+    private commonService: CommonService,
     private route:ActivatedRoute
   ) { 
     this.route.paramMap.subscribe((params:ParamMap)=>{
@@ -38,11 +41,18 @@ export class ViewPlanAssignComponent implements OnInit {
   }
 
   assign(){
+    this.commonService.showLoading();
     const body = this.assignAuditorForm.value;
     this.auditPlanService.assignAuditor(body).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+        });
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       } 
     });
   }

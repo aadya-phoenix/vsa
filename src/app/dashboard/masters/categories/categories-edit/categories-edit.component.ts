@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categories-edit',
@@ -17,6 +19,7 @@ export class CategoriesEditComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private categoryService:CategoryMasterService,
+    private commonService: CommonService, 
     private router:Router,
     private route: ActivatedRoute
   ) {
@@ -34,14 +37,20 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   getCategoryDetails(){
+    this.commonService.showLoading();  
     this.categoryService.getCategoryDetails(this.category_id).subscribe({
       next: (res) => {
         if(res){
          this.categoryDetails = res;
          this.categoryForm.controls['name'].setValue(this.categoryDetails.name);
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
      });
   }
   
@@ -54,10 +63,17 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   editCategory(body:any){
+    this.commonService.showLoading();  
     body.id = this.category_id;
     this.categoryService.edit(body).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        });
         this.router.navigateByUrl('dashboard/category'); 
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
       }
@@ -65,11 +81,19 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   addCategory(body:any){
+    this.commonService.showLoading();  
     this.categoryService.add(body).subscribe({
       next:(res: any) => {
-        this.router.navigateByUrl('dashboard/category'); 
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        });
+        this.router.navigateByUrl('dashboard/category');
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }

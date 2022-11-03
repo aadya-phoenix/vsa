@@ -4,6 +4,8 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
+import Swal from 'sweetalert2';
 import { PendingPlanRejectComponent } from '../pending-plan-reject/pending-plan-reject.component';
 
 @Component({
@@ -29,7 +31,8 @@ export class PendingPlanListComponent implements OnInit {
     private router:Router,
     private modalService: BsModalService,
     private authService: AuthenticationService,
-    private auditPlanService:AuditPlanService,) { 
+    private auditPlanService:AuditPlanService,
+    private commonService: CommonService) { 
     this.getUserrole = this.authService.getRolefromlocal();
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
     this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
@@ -41,17 +44,23 @@ export class PendingPlanListComponent implements OnInit {
   }
 
   getViewPlanList(){
+    this.commonService.showLoading();
     this.auditPlanService.getAuditPlan().subscribe({
       next: (res) => {
         if(res){
          this.viewPlanObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 
   getVendorAction(status:any,item:any){
+    this.commonService.showLoading();
     const body = {
     auditPlanId: item.id,
     comment: "test",
@@ -59,8 +68,15 @@ export class PendingPlanListComponent implements OnInit {
     };
      this.auditPlanService.vendorAction(body).subscribe({
      next:(res: any) => {
+      Swal.fire({
+        title: res.message,
+        icon: 'success',
+      });
+      this.getViewPlanList();
+      this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       } 
     });  
   }

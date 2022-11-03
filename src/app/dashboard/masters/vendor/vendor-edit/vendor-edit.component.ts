@@ -2,7 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -20,6 +22,7 @@ export class VendorEditComponent implements OnInit {
     private vendorService:VendorMasterService,
     private router:Router,
     private route: ActivatedRoute,
+    private commonService: CommonService, 
     private datepipe:DatePipe
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -58,6 +61,7 @@ export class VendorEditComponent implements OnInit {
   }
 
   getVendorDetails(){
+    this.commonService.showLoading();  
     this.vendorService.getVendorDetails(this.vendor_id).subscribe({
       next: (res) => {
         if(res){
@@ -66,9 +70,13 @@ export class VendorEditComponent implements OnInit {
          this.vendorForm.controls['code'].setValue(this.vendorDetails.code);
          this.vendorForm.controls['email'].setValue(this.vendorDetails.email);
          this.vendorForm.controls['createdDate'].setValue(this.dateFormat(this.vendorDetails.createdDate));
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
   
@@ -81,23 +89,39 @@ export class VendorEditComponent implements OnInit {
   }
 
   editVendor(body:any){
+    this.commonService.showLoading();  
     body.id = this.vendor_id;
     console.log("body",body);
     this.vendorService.edit(body).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        });
         this.router.navigateByUrl('dashboard/vendor'); 
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }
 
   addVendor(body:any){
+    this.commonService.showLoading();  
     this.vendorService.add(body).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        });
+        this.commonService.hideLoading();
         this.router.navigateByUrl('dashboard/vendor'); 
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }

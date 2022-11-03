@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
   selector: 'app-view-plan-list',
@@ -33,7 +34,8 @@ export class ViewPlanListComponent implements OnInit {
   constructor(
     private router:Router,
     private authService: AuthenticationService,
-    private auditPlanService:AuditPlanService,) { 
+    private auditPlanService:AuditPlanService,
+    private commonService: CommonService) { 
     this.getUserrole = this.authService.getRolefromlocal();
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
     this.isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
@@ -45,14 +47,20 @@ export class ViewPlanListComponent implements OnInit {
   }
 
   getViewPlanList(){
+    this.commonService.showLoading();
     this.auditPlanService.getAuditPlan().subscribe({
       next: (res) => {
         if(res){
          this.viewPlanList = res;
          this.viewPlanListToShow = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => 
+      {
+        console.error(e);
+        this.commonService.hideLoading();
+      } 
      });
   }
 
@@ -69,13 +77,16 @@ export class ViewPlanListComponent implements OnInit {
     body.vendorName= this.vendorName;
     body.plannedStartDate = this.plannedStartDate;
     body.statusName= this.statusName;
-
+    this.commonService.showLoading();
     this.auditPlanService.filter(body).subscribe({
       next:(res: any) => {
         this.viewPlanListToShow = res;
+        this.commonService.hideLoading();
       },
-      error:(err:any) =>{
-      } 
+      error:(err:any) =>  {
+        console.error(err);
+        this.commonService.hideLoading();
+      }
     }); 
 
   }
@@ -88,14 +99,12 @@ export class ViewPlanListComponent implements OnInit {
     this.plannedEndDate =''
   }
 
-  pendingAction(){
-    this.router.navigateByUrl(`dashboard/action-pending-plan`); 
+  pendingAction(item:any){
+    this.router.navigateByUrl(`dashboard/action-plan/action-pending-plan/${item.id}`); 
   }
 
-  closure1(){
-    this.isClosure2 = true;
-    this.isClosure1 = false;
-    this.isClosure3 = false;
+  evidence(id:any){
+    this.router.navigateByUrl(`dashboard/view-plan/evidence/${id}`); 
   }
 
   closure2(){
@@ -110,16 +119,18 @@ export class ViewPlanListComponent implements OnInit {
    this.isClosure2 = false;
    this.isClosure3 = false;
   }
+
   backevi(){
     // this.router.navigateByUrl(`dashboard/view-plan`); 
     this.isClosure1 = false;
     this.isClosure2 = true;
     this.isClosure3 = false;
-   }
-   backclose1(){
+  }
+
+  backclose1(){
     // this.router.navigateByUrl(`dashboard/view-plan`); 
     this.isClosure1 = true;
     this.isClosure2 = false;
     this.isClosure3 = false;
-   }
+  }
 }

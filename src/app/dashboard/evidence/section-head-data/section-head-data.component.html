@@ -1,3 +1,73 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header_card">
+                            <h3 class="card-title">Audit Area Details</h3>
+                            <div class="d-flex align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive max_hei_table">
+                            <table id="" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class=" text-center sticky_header">
+                                        <th>Audit Complition Date</th>
+                                        <th>Vendor Code </th>
+                                        <th>Vendor Name</th>
+                                        <th>Auditor Name </th>
+                                        <th>View Report</th>
+                                        <th>No Of Observation</th>
+                                        <th>Accept</th>
+                                        <th>Reject</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tbody_data" *ngFor="let item of viewPlanList;">
+                                        <td></td>
+                                        <td>{{item.vendorCode}}</td>
+                                        <td>{{item.vendorName}}</td>
+                                        <td></td>
+                                        <td><a><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
+                                        <td>{{item.observationCount}}</td>
+                                        <td>
+                                            <button class="btn btn-success" (click)="submit(accept,
+                                            item.id)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Accept</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger" data-toggle="tooltip" (click)="submit(reject,item.id)" data-placement="top" title="Tooltip on top">Reject</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justift_end">
+                                <li class="page-item">
+                                    <a class="page-link"  aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" >1</a></li>
+                                <li class="page-item"><a class="page-link" >2</a></li>
+                                <li class="page-item"><a class="page-link" >3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link"  aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+=======
 <div class="card">
     <div class="card-header">
         <div class="header_card">

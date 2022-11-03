@@ -30,6 +30,16 @@ export class HttpService {
     return this.httpClient.post(url, payload, { headers });
   }
 
+  public postParams(
+    urlString: string,
+    payload: any,
+    params:HttpParams,
+    headers?: HttpHeaders
+  ): Observable<any> {
+    const url = urlString;
+    return this.httpClient.post(url, payload, { headers, params });
+  }
+
 
   public put(
     urlString: string,

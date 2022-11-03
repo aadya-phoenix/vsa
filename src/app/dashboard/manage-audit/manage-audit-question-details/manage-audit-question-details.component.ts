@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-audit-question-details',
@@ -29,7 +31,9 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     private auditPlanService:AuditPlanService,
     private fb:FormBuilder,
     private route:ActivatedRoute,
+    private commonService: CommonService,
     private authService: AuthenticationService,
+    private router:Router
   ) { 
     this.getUserDetails = this.authService.getLoginDetails();
     this.userId = this.getUserDetails.UserId;
@@ -62,11 +66,31 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       next: (res) => {
         if(res){
          this.regulationList = res;
-         this.regulationList.forEach((obs: any) => {
+         this.observationList.forEach((obs: any) => {
+          let regulation = this.regulationList.find((x:any) => 
+          x.id == obs.regulationId);
+          this.judgeDetails.JudgementId ='';
+          this.judgeDetails.ObservationList = [];
+          if (regulation) {
+            console.log("obs.remark",obs.remark)
+            this.judgeDetails.ObservationList.push(this.fb.group({remark:
+              obs.remark,file:''}));
+             // console.log("obs.remark",obs.remark,regulation.judgementId)
+            this.judgeDetails.JudgementId = regulation.judgementId;
+            console.log("this.judgeDetails",this.judgeDetails);
+            this.metadataArray.push(this.metaDataUpdateGroup(this.judgeDetails)); 
+         //this.updateMeta(this.judgeDetails);
+          }
+          else{
+            this.addMetadata();
+           }
+         });
+          this.regulationList.forEach((obs: any) => {
           if(obs.issubmitted == true){
           let observation = this.observationList.find((x:any) => 
           x.regulationId == obs.id);
            if (observation) {
+            console.log("observation list",observation);
             this.judgeDetails.ObservationList.push(this.fb.group({remark:
               observation?.remark,file:''}));
             this.judgeDetails.JudgementId = obs.judgementId;
@@ -77,7 +101,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
           else{
             this.addMetadata();
            }
-          });
+        }); 
    /*       if(this.regulationList.length !=0){
          this.regulationList.forEach((x:any)=>{
           if(x.issubmitted == true){
@@ -194,10 +218,11 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   submit(index:any,id:any){
+    this.commonService.showLoading();
     const body = this.questionForm.controls['metadata'].value;
     body[index].ObservationList.forEach((x:any)=> {
       x.regulationId = id;
-  });
+    });
     body[index].isSubmitted = true;
     const data = body[index];
     const formData :any = new FormData();
@@ -214,26 +239,34 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         formData.append(dataKey, data[dataKey]);
       }
     }
-   /* 
-    this.auditPlanService.saveObservation(formData).subscribe({
+    this.commonService.hideLoading();
+      this.auditPlanService.saveObservation(formData).subscribe({
       next: (res) => {
         if(res){
+          this.commonService.hideLoading();
+          Swal.fire({
+            title: res.message,
+            icon: 'success',
+          });
         }
        },
-      error: (e) => console.error(e), 
-     });*/   
+      error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
+     });  
   }
 
   addData(){}
 
   init(){}
 
-  back(){}
+  back(){
+    this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);;
+  }
 
   fileInput(event:any,i:any,j:any){
     console.log("event",event.target.files[0],i,j);
   }
-
-  saveAsDraft(){}
 
 }

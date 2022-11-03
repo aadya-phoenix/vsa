@@ -79,8 +79,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="tbody_data" *ngFor="let item of viewPlanObj  ">
-                      <td>AU1</td>
+                    <tr class="tbody_data" *ngFor="let item of viewPlanObj;let i = index;">
+                      <td>AU{{i+1}}</td>
                       <td>{{item.vendorCode}}</td>
                       <td>{{item.vendorName}}</td>
                       <td>{{item.locationName}}</td>

@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-header">
+        <div class="header_card">
+            <h3 class="card-title">Audit Area Details</h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive max_hei_table">
+            <table id="" class="table table-bordered table-hover">
+                <thead>
+                    <tr class=" text-center sticky_header">
+                        <th>S.No</th>
+                        <th>Categories </th>
+                        <th>Observation</th>
+                        <th>Submitted</th>
+                        <th>Pending</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tbody_data" *ngFor="let item of categoryScoreList; let i = index;">
+                        <td (click)="submit(item.categoryId)">C{{i+1}}</td>
+                        <td (click)="submit(item.categoryId)">{{item.name}}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="submit(item.categoryId)">{{item.observationCount}}</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-success" (click)="submit(item.categoryId)">{{item.submittedCount}}</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" (click)="submit(item.categoryId)">{{item.pendingCount}}</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

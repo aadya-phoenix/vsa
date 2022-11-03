@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label class="form_label">Vendor Code</label>
                                     <select class="form-control" formControlName="vendorId">
-                                        <option> NPH1234</option>
+                                        <option *ngFor="let item of vendorObj" [value]="item.id"> {{item.code }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -76,13 +76,13 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form_label">Any Other location </label>
-                                    <input type="text" class="form-control" placeholder="Enter other location">
+                                    <input type="text" class="form-control" formControlName="otherLocation" placeholder="Enter other location">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form_label">Part Number </label>
-                                    <input type="text" class="form-control" placeholder="Enter other location">
+                                    <input type="text" class="form-control" formControlName="partNumber" placeholder="Enter other location">
                                 </div>
                             </div>
                             <!-- <div class="col-sm-4">

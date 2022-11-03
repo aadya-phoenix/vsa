@@ -3,7 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditAreaMasterService } from 'src/app/shared/services/audit-area-master/audit-area-master.service';
 import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { RegulationMasterService } from 'src/app/shared/services/regulation-master/regulation-master.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-regulation-edit',
@@ -23,6 +25,7 @@ export class RegulationEditComponent implements OnInit {
     private regulationService:RegulationMasterService,
     private categoryService:CategoryMasterService,
     private auditAreaService:AuditAreaMasterService,
+    private commonService: CommonService, 
     private router:Router,
     private route: ActivatedRoute
   ) { 
@@ -54,27 +57,44 @@ export class RegulationEditComponent implements OnInit {
   }
 
   editRegulation(body:any){
+    this.commonService.showLoading();  
     body.id = this.regulation_id;
     this.regulationService.edit(body).subscribe({
       next:(res: any) => {
-        this.router.navigateByUrl('dashboard/regulation'); 
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        })
+        this.router.navigateByUrl('dashboard/regulation');
+        this.commonService.hideLoading(); 
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }
 
   addRegulation(body:any){
+    this.commonService.showLoading();  
     this.regulationService.add(body).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: res.message,
+        //  text: 'Please login again!',
+          icon: 'success',
+        })
         this.router.navigateByUrl('dashboard/regulation'); 
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }
 
   getRegulationDetails(){
+    this.commonService.showLoading();  
     this.regulationService.getRegulationDetails(this.regulation_id).subscribe({
       next: (res) => {
         if(res){
@@ -82,31 +102,45 @@ export class RegulationEditComponent implements OnInit {
          this.regulationForm.controls['name'].setValue(this.regulationDetails.name);
          this.regulationForm.controls['categoryId'].setValue(this.regulationDetails.categoryId);
          this.regulationForm.controls['auditAreaId'].setValue(this.regulationDetails.auditAreaId);
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 
   getCategoryList(){
+    this.commonService.showLoading();  
     this.categoryService.getCategory().subscribe({
       next: (res) => {
         if(res){
          this.categoryObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) =>  {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 
   getAuditAreaList(){
+    this.commonService.showLoading();  
     this.auditAreaService.getAuditArea().subscribe({
       next: (res) => {
         if(res){
          this.auditAreaObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 

@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
+import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-audit-initiate',
@@ -13,7 +16,7 @@ import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendo
 export class ManageAuditInitiateComponent implements OnInit {
 
   initiateForm:FormGroup;
-  initiateId:any;
+  auditPlanId:any;
   initiateDetails:any;
   vendorObj:any=[];
   
@@ -21,32 +24,36 @@ export class ManageAuditInitiateComponent implements OnInit {
     private fb: FormBuilder,
     private router:Router,
     private route: ActivatedRoute,
-    private vendorService:VendorMasterService,
+    private employeeService:EmployeeMasterService,
     private auditPlanService:AuditPlanService,
+    private commonService: CommonService,
     private datepipe:DatePipe
   ) { 
     this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
-      this.initiateId = Id ? Id : 0;
+      this.auditPlanId = Id ? Id : 0;
     });
 
     this.initiateForm = this.fb.group({
-      vendorId:new FormControl('',[Validators.required]),
+      vendorId:new FormControl('',[]),
       startDate:new FormControl('',[Validators.required]),
       endDate:new FormControl('',[Validators.required]),
       partName: new FormControl('',[Validators.required]),
       actualStartDate: new FormControl('',[Validators.required]),
       actualEndDate: new FormControl('',[Validators.required]),
+      otherLocation: new FormControl('',[]),
+      partNumber:  new FormControl('',[]),
     })
   }
 
   ngOnInit(): void {
-    this.getVendorList();
+    this.getEmployeeList();
     this.getinitiateDetails();
   }
 
   getinitiateDetails(){
-    this.auditPlanService.getPlanDetails(this.initiateId).subscribe({
+    this.commonService.showLoading();
+    this.auditPlanService.getPlanDetails(this.auditPlanId).subscribe({
       next: (res) => {
         if(res){
          this.initiateDetails = res;
@@ -54,17 +61,25 @@ export class ManageAuditInitiateComponent implements OnInit {
          this.initiateForm.controls['startDate'].setValue(this.dateFormat(this.initiateDetails.plannedStartDate));
          this.initiateForm.controls['endDate'].setValue(this.dateFormat(this.initiateDetails.plannedEndDate));
         // this.initiateForm.controls['partName'].setValue(this.dateFormat(this.initiateDetails.partName));
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+        , 
      });
   }
 
-  getVendorList(){
-    this.vendorService.getVendor().subscribe({
+  getEmployeeList(){
+    this.employeeService.getEmployee().subscribe({
       next: (res) => {
         if(res){
-         this.vendorObj = res;
+          this.vendorObj = res.filter((x:any)=>{
+            return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
+            x.roleName == 'Vendor';
+           });
         }
        },
       error: (e) => console.error(e), 
@@ -72,19 +87,30 @@ export class ManageAuditInitiateComponent implements OnInit {
   }
 
   next(){
+    this.commonService.showLoading();
+    if(this.initiateForm.invalid){
+      Swal.fire({
+        title: 'Please fill all fields.',
+        icon: 'error',
+      });
+      this.commonService.hideLoading();
+    }
     const body = this.initiateForm.value;
-    body.id = this.initiateId;
+    body.id = this.auditPlanId;
+ 
     this.auditPlanService.updateInitiatePlan(body).subscribe({
       next:(res: any) => {
-        this.router.navigateByUrl(`dashboard/manage-audit/question/${this.initiateId}`);
+        this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       }
     }); 
   }
 
   back(){
-    this.router.navigateByUrl('dashboard/manage-audit');
+    this.router.navigateByUrl(`dashboard/manage-audit/initiate/${this.auditPlanId}`);  
   }
 
   dateFormat(date:any){

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditAreaMasterService } from 'src/app/shared/services/audit-area-master/audit-area-master.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,6 +24,7 @@ export class AuditAreaListComponent implements OnInit {
   constructor(
     private router:Router,
     private authService: AuthenticationService,
+    private commonService: CommonService, 
     private auditAreaService:AuditAreaMasterService
     ) { 
     this.getUserrole = this.authService.getRolefromlocal();
@@ -46,13 +48,18 @@ export class AuditAreaListComponent implements OnInit {
   }
 
   getAuditAreaList(){
+    this.commonService.showLoading();  
     this.auditAreaService.getAuditArea().subscribe({
       next: (res) => {
         if(res){
          this.auditAreaObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 
@@ -76,7 +83,7 @@ export class AuditAreaListComponent implements OnInit {
            )},
          error:  (err:any)=>{
          }
-        })
+        });
        }
      }) 
   }

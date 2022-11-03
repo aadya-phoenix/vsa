@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import Swal from 'sweetalert2';
 
@@ -21,6 +22,7 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private router:Router,
+    private commonService: CommonService, 
     private authService: AuthenticationService,
     private employeeService:EmployeeMasterService) { 
     this.getUserrole = this.authService.getRolefromlocal();
@@ -42,13 +44,18 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getEmployeeList(){
+    this.commonService.showLoading();  
     this.employeeService.getEmployee().subscribe({
       next: (res) => {
         if(res){
          this.employeeObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 

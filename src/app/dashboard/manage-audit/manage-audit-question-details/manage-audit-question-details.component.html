@@ -28,7 +28,7 @@
                           <ng-container formArrayName="metadata">
                         <div class="card"  *ngFor="let obj of metadataArray.controls; let i = index">
                           <div class="card-header">
-                              <h4 class="fon_14"><b>{{i+1}}</b>
+                              <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
                           </div>
@@ -91,7 +91,6 @@
                           </div>
                         </div>
                       </ng-container>
-                    
                       </form>
                         </div>
                     </div>
@@ -100,7 +99,7 @@
               </div>
             </div>
             <div class="card-footer">
-              <button (click)="back" class="btn btn-default">Back</button>
+              <button (click)="back()" class="btn btn-default">Back</button>
             </div>
           </form>
         </div>

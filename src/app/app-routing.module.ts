@@ -77,11 +77,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./dashboard/action-plan/action-plan.module').then((m) => m.ActionPlanModule),
       },
-      {
+      /* {
         path: 'dashboard/action-pending-plan',
         loadChildren: () =>
           import('./dashboard/audit-plan/pending-action-plan/pending-action-plan.module').then((m) => m.PendingActionPlanModule),
-      },
+      }, */
       {
         path: 'dashboard/evidence',
         loadChildren: () =>
