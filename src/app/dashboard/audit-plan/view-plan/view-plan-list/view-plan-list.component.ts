@@ -133,4 +133,5 @@ export class ViewPlanListComponent implements OnInit {
     this.isClosure2 = false;
     this.isClosure3 = false;
   }
+  closure1(){}
 }
