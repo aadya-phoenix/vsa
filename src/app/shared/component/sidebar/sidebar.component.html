@@ -145,6 +145,14 @@
               </li> -->
             </ul>
           </li>
+          <li class="nav-item" *ngIf="isSectionHead"> 
+            <a routerLink="/dashboard/evidence/section-data" class="nav-link">
+              <img src="../../assets/icons/planning.png" class="side_img">
+              <p>
+              Pending For Approval
+              </p>
+            </a>
+          </li>
           <li class="nav-item" *ngIf="!isVendor">
             <a routerLink="/dashboard/manage-audit" class="nav-link">
               <img src="../../assets/icons/management.png" class="side_img">

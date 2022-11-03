@@ -8,6 +8,7 @@ import { ActionPlanListComponent } from './action-plan-list/action-plan-list.com
 import { ActionPlanDetailsComponent } from './action-plan-details/action-plan-details.component';
 import { FormsModule } from '@angular/forms';
 import { PendingActionPlanComponent } from './pending-action-plan/pending-action-plan.component';
+import { ActionPlanAuditorComponent } from './action-plan-auditor/action-plan-auditor.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PendingActionPlanComponent } from './pending-action-plan/pending-action
     ActionPlanObservationComponent,
     ActionPlanListComponent,
     ActionPlanDetailsComponent,
-    PendingActionPlanComponent
+    PendingActionPlanComponent,
+    ActionPlanAuditorComponent
   ],
   imports: [
     CommonModule,
