@@ -8,7 +8,7 @@ import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
