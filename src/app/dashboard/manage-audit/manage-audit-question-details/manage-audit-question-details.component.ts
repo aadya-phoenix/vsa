@@ -240,7 +240,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       }
     }
     this.commonService.hideLoading();
-      this.auditPlanService.saveObservation(formData).subscribe({
+     /*  this.auditPlanService.saveObservation(formData).subscribe({
       next: (res) => {
         if(res){
           this.commonService.hideLoading();
@@ -254,7 +254,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         console.error(e);
         this.commonService.hideLoading();
       } , 
-     });  
+     });  */ 
   }
 
   addData(){}

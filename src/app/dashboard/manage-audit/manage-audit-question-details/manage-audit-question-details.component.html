@@ -6,7 +6,7 @@
           <div class="card-header">
             <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
          </div>
-          <form>
+          <form [formGroup]="questionForm" enctype="multipart/form-data">
             <div class="card-body">
               <div id="accordion">
                 <div class="row">
@@ -23,8 +23,8 @@
                   <div class="col-sm-8">
                     <div class="mt-2 p-2">
                       <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
-                        <form [formGroup]="questionForm">
-                        <!--   <ng-container *ngFor="let object of regulationList"></ng-container> -->
+                       <!-- <form >
+                           <ng-container *ngFor="let object of regulationList"></ng-container> -->
                           <ng-container formArrayName="metadata">
                         <div class="card"  *ngFor="let obj of metadataArray.controls; let i = index">
                           <div class="card-header">
@@ -91,7 +91,7 @@
                           </div>
                         </div>
                       </ng-container>
-                      </form>
+                      <!-- </form> -->
                         </div>
                     </div>
                   </div>

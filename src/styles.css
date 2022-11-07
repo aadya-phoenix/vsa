@@ -282,7 +282,7 @@
     max-width:700px;
 }
 .modal-dialog{
-    width:700px;
+    width:700px  !important;
 }
 .justift_end{
   justify-content: end;
@@ -6319,7 +6319,9 @@
     overflow: hidden;
     outline: 0;
   }
-  
+  .btn-primary{
+    color: #fff !important;
+  }
   .modal-dialog {
     position: relative;
     width: auto;
