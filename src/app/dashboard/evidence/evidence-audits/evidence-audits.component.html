@@ -74,13 +74,13 @@
                       <th>Any Other Location</th>
                       <th>Planned Start Date </th>
                       <th>Planned End Date</th> 
-                      <th>Status </th>
-                      <th *ngIf="isVendor">Action </th>
+                      <th>Status</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="tbody_data" *ngFor="let item of viewPlanObj| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                      <td>AU{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>  
+                    <tr class="tbody_data" *ngFor="let item of viewPlanObj| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index"> 
+                      <td *ngIf="isVendor" (click)="goToScore(item.id)">AU{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}}</td>
                       <td>{{item.vendorCode}}</td>
                       <td>{{item.vendorName}}</td>
                       <td>{{item.locationName}}</td>
@@ -88,11 +88,6 @@
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
                       <td><p class="pend_coloe  backgr_blue">{{item.status}} </p></td>
-                      <td *ngIf="isVendor">  
-                        <p class="pend_coloe backgr_green" 
-                        (click)="getVendorAction(accept,item)" >Accept </p>
-                        <p class="pend_coloe backgr_red" (click)="openModal(reject,item)">Reject </p>
-                      </td>
                     </tr>
                   </tbody>
                 </table>

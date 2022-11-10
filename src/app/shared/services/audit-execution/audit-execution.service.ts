@@ -61,4 +61,14 @@ export class AuditExecutionService {
     const url = `${this.basePath}api/AuditPlan/HeadApproval`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));   
   }
+
+  submitReport(data:any){
+    const url = `${this.basePath}api/AuditPlan/UpdateAuditPlanTypeOfReport`;
+    return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  assignSectionHead(data:any){
+    const url = `${this.basePath}api/AuditPlan/UpdateAuditPlanTypeOfReport`;
+    return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
+  }
 }

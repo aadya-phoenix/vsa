@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { zip } from 'rxjs';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
-import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -43,8 +41,7 @@ export class CreatePlanComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEmployeeList();
-    this.getLocation();
+   this.getEmployeeList();
   }
 
   onFileSelected(event:any){
@@ -52,7 +49,6 @@ export class CreatePlanComponent implements OnInit {
   }
 
   submit(){
-    
     if (this.createPlanForm.invalid) {
       return;
     }
@@ -60,7 +56,6 @@ export class CreatePlanComponent implements OnInit {
     const body = this.createPlanForm.value ;
 
     const formData = new FormData(); 
-    
      formData.append('AttachmentFile', this.selectedFile);
      formData.append('vendorId', body.vendorId); 
      formData.append('locationId', body.locationId);
@@ -78,7 +73,6 @@ export class CreatePlanComponent implements OnInit {
       next:(res: any) => {
         Swal.fire({
           title: 'Plan Created Successfully',
-         // text: 'Please login again!',
           icon: 'success',
         });
         this.commonService.hideLoading();
@@ -89,9 +83,8 @@ export class CreatePlanComponent implements OnInit {
     }); 
   }
 
-  close(){}
-
   getEmployeeList(){
+    this.commonService.showLoading();  
     this.employeeService.getEmployee().subscribe({
       next: (res) => {
         if(res){
@@ -99,21 +92,38 @@ export class CreatePlanComponent implements OnInit {
           return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
           x.roleName == 'Vendor';
          });
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
      });
   }
 
-  getLocation(){
-    this.auditPlanService.getLocation().subscribe({
+  getVendor(event:any){
+    let vendorId = event.target.value;
+    this.createPlanForm.controls['vendorId'].setValue(vendorId);
+    this.getLocation(vendorId);
+  }
+
+  getLocation(id:any){
+    this.commonService.showLoading(); 
+    this.auditPlanService.getLocationByVendor(id).subscribe({
       next: (res) => {
         if(res){
          this.locationObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+       error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
      });
   }
+
+  close(){}
 
 }

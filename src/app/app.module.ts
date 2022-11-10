@@ -12,16 +12,16 @@ import { TokenInterceptorService } from './shared/services/token-interceptor/tok
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DefaultLayoutComponent,
-    HeaderComponent,
-    SidebarComponent
+    DefaultLayoutComponent
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,

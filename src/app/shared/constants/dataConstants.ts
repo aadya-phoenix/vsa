@@ -18,6 +18,11 @@ export const dataConstants = {
     Auditor :{RoleId:'87161db0-fadc-40f1-a9e0-b9c62e70583b', role:'Auditor'},
     VerticalHead:{RoleId:'d08d548c-5905-4e39-81a7-03034dd7f73e',role:'VerticalHead'},
     DPM:{RoleId:'8160b1b5-92c3-42cb-9122-6f1394dfa4b2',role:'DPM'},
-    SectionHead:{RoleId:'aa1b2adc-e205-451e-8b2f-5b184df9e4f4', role:'SectionHead'}
+    SectionHead:{RoleId:'aa1b2adc-e205-451e-8b2f-5b184df9e4f4', role:'SectionHead'},
+
+    ReportType :{
+        Provisional : "0022B01E-1880-4C87-9592-A73E64163681",
+        Final : "3A56C727-CFE4-44BD-8DD1-184CA71EC6EF"
+    },
     
 }

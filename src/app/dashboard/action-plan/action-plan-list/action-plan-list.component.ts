@@ -13,6 +13,12 @@ export class ActionPlanListComponent implements OnInit {
 
   auditPlanList:any=[];
   dateFormat = dataConstants.dateFormate;
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
+
 
   constructor(
     private router:Router,
@@ -45,5 +51,9 @@ export class ActionPlanListComponent implements OnInit {
   }
 
   gridView1(){}
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  }
 
 }

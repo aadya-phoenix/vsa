@@ -24,7 +24,8 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code <span class="start_css">*</span></label>
-                                        <select class="form-control" formControlName="vendorId">
+                                        <select class="form-control" formControlName="vendorId" 
+                                        (change)="getVendor($event)">
                                             <option *ngFor="let item of vendorObj" [value]="item.id"> {{item.code}}  </option>
                                         </select>
                                     </div>
@@ -132,13 +133,16 @@
                                         <label class="form_label">
                                             Upload File
                                         </label>
-                                        <div class="input-group">
+                                        <!-- <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="exampleInputFile" formControlName="attachment">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose
+                                                <input type="file" class="custom-file-input" 
+                                                (change)="onFileSelected($event)" id="exampleInputFile" formControlName="attachment">
+                                                <label class="custom-file-label" >Choose
                                                     file</label>
                                             </div>
-                                        </div>
+                                        </div> -->
+
+                                        <input type="file" id="exampleInputFile"  (change)="onFileSelected($event)"  formControlName="attachment" class="form-control">
                                     </div>
                                 </div>
                             </div>

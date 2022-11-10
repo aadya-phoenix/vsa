@@ -5,6 +5,7 @@ import { RegulationRoutingModule } from './regulation-routing.module';
 import { RegulationListComponent } from './regulation-list/regulation-list.component';
 import { RegulationEditComponent } from './regulation-edit/regulation-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RegulationRoutingModule
+    RegulationRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class RegulationModule { }

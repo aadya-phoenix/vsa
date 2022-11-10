@@ -5,6 +5,7 @@ import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    VendorRoutingModule
+    VendorRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class VendorModule { }

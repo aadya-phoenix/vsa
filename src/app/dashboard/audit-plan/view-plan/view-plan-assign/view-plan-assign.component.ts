@@ -82,6 +82,7 @@ export class ViewPlanAssignComponent implements OnInit {
   }
 
   getEmployeeList(){
+    this.commonService.showLoading();
     this.employeeService.getEmployee().subscribe({
       next: (res) => {
         if(res){
@@ -89,9 +90,12 @@ export class ViewPlanAssignComponent implements OnInit {
          this.auditorList = employees.filter((a:any) => {
           return a.roleId == "87161db0-fadc-40f1-a9e0-b9c62e70583b" ;
         });
+        this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+       error:(err:any) =>{
+        this.commonService.hideLoading();
+      } , 
      });
   }
 

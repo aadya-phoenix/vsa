@@ -6,6 +6,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { PendingPlanListComponent } from './pending-plan-list/pending-plan-list.component';
 import { PendingPlanRejectComponent } from './pending-plan-reject/pending-plan-reject.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    PendingPlanRoutingModule
+    PendingPlanRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class PendingPlanModule { }

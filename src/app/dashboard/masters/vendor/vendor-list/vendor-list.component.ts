@@ -19,6 +19,11 @@ export class VendorListComponent implements OnInit {
   isPlanner = false;
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.SuperAdmin;
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
 
   constructor(
     private router:Router,
@@ -35,9 +40,8 @@ export class VendorListComponent implements OnInit {
     this.getVendorList();
   }
 
-  close(){
- 
-  }
+  close(){}
+
   addVendor(){
     this.router.navigateByUrl('dashboard/vendor/add');
   }
@@ -86,6 +90,10 @@ export class VendorListComponent implements OnInit {
         })
        }
      }) 
- }
+  }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  }
 
 }

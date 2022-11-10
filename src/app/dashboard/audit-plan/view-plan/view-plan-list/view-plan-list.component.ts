@@ -31,6 +31,13 @@ export class ViewPlanListComponent implements OnInit {
   isClosure2 = false;
   isClosure3 = false;
 
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
+
+
   constructor(
     private router:Router,
     private authService: AuthenticationService,
@@ -134,4 +141,9 @@ export class ViewPlanListComponent implements OnInit {
     this.isClosure3 = false;
   }
   closure1(){}
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  }
+
 }

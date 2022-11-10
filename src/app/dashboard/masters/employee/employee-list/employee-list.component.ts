@@ -19,6 +19,11 @@ export class EmployeeListComponent implements OnInit {
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.SuperAdmin;
   employeeObj:any=[];
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
 
   constructor(
     private router:Router,
@@ -38,7 +43,6 @@ export class EmployeeListComponent implements OnInit {
   this.router.navigateByUrl("dashboard/employee/add");
   }
 
-  
   editEmployee(item:any){
     this.router.navigateByUrl(`dashboard/employee/edit/${item.id}`);  
   }
@@ -82,6 +86,10 @@ export class EmployeeListComponent implements OnInit {
         })
        }
      }) 
+  }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
   }
 
 }

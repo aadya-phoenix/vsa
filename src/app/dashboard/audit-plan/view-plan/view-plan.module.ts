@@ -9,6 +9,7 @@ import { ViewPlanAssignComponent } from './view-plan-assign/view-plan-assign.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewEvidenceComponent } from './view-evidence/view-evidence.component';
 import { ViewPlanClosureComponent } from './view-plan-closure/view-plan-closure.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ViewPlanClosureComponent } from './view-plan-closure/view-plan-closure.
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ViewPlanRoutingModule
+    ViewPlanRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class ViewPlanModule { }

@@ -8,6 +8,9 @@ import { SectionHeadDataComponent } from './section-head-data/section-head-data.
 import { EvidenceScoreCategoryComponent } from './evidence-score-category/evidence-score-category.component';
 import { FormsModule } from '@angular/forms';
 import { DpmDataComponent } from './dpm-data/dpm-data.component';
+import { EvidenceAuditsComponent } from './evidence-audits/evidence-audits.component';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -16,12 +19,15 @@ import { DpmDataComponent } from './dpm-data/dpm-data.component';
     EvidenceReceivedComponent,
     SectionHeadDataComponent,
     EvidenceScoreCategoryComponent,
-    DpmDataComponent
+    DpmDataComponent,
+    EvidenceAuditsComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    EvidenceRoutingModule
+    EvidenceRoutingModule,
+    RouterModule,
+    NgxPaginationModule
   ]
 })
 export class EvidenceModule { }

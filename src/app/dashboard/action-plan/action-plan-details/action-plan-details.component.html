@@ -19,40 +19,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="tbody_data" *ngFor="let item of categoryScoreList;let i =index;">
-                                        <td>C{{i + 1}}</td>
+                                    <tr class="tbody_data" *ngFor="let item of categoryScoreList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                                        <td>C{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
                                         <td>{{item.name}}</td>
-                                        <td>  <button (click)="goToObservation(item.categoryId)" class="btn btn-primary">{{item.observationCount}}</button></td>
-                                        
+                                        <td>  <button (click)="goToObservation(item.categoryId)" class="btn btn-primary">{{item.observationCount}}</button></td>               
                                     </tr>
-                                  <!--   <tr class="tbody_data">
-                                        <td>C2</td>
-                                        <td>Regulation for 
-                                            initial production control</td>
-                                        <td>
-                                            <button (click)="gridView2()" class="btn btn-primary">2</button>
-                                        </td>
-                                        
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination justift_end">
-                                <li class="page-item">
-                                    <a class="page-link"  aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" >1</a></li>
-                                <li class="page-item"><a class="page-link" >2</a></li>
-                                <li class="page-item"><a class="page-link" >3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link"  aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="pagination justift_end">
+                              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                            </div>
                         </nav>
                     </div>
                 </div>

@@ -17,6 +17,11 @@ export class ActionPlanObservationComponent implements OnInit {
   categoryId:any;
   auditPlanId:any;
   userId:any;
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
 
   constructor(
     private authService:AuthenticationService,
@@ -78,5 +83,9 @@ export class ActionPlanObservationComponent implements OnInit {
       }, 
      }); 
   }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  } 
 
 }

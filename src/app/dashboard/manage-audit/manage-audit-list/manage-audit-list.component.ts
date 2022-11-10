@@ -26,6 +26,13 @@ export class ManageAuditListComponent implements OnInit {
   vendorName:string='';
   plannedStartDate:any;
   statusName:string='';
+
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
+
   
   constructor(
     private authService: AuthenticationService,
@@ -60,7 +67,6 @@ export class ManageAuditListComponent implements OnInit {
       } , 
      });
   }
-
 
   viewManageAudit(){
     this.router.navigateByUrl(`dashboard/manage-audit/view`);
@@ -97,5 +103,9 @@ export class ManageAuditListComponent implements OnInit {
      this. vendorName = ' ';
      this.plannedStartDate = '';
      this.statusName ='';
+  }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
   }
 }

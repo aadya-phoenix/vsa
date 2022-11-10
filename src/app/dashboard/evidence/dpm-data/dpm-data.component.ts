@@ -15,18 +15,20 @@ export class DpmDataComponent implements OnInit {
   auditPlanId: any="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
   actionPlanList:any = [];
   actionPlanAudi:any=[];
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
+
 
   constructor(
     private auditExeService:AuditExecutionService,
     private commonService: CommonService,
     private router:Router,
     private route:ActivatedRoute
-  ) { 
- /*    this.route.paramMap.subscribe((res:ParamMap)=>{
-      let Id = res.get('id');
-      this.auditPlanId = Id;
-    }) */
-  }
+   ) { 
+    }
 
   ngOnInit(): void {
   this. getActionPlanList();
@@ -93,7 +95,10 @@ export class DpmDataComponent implements OnInit {
      }); 
   }
 
-  close(){
-    
+  close(){}
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
   }
+
 }

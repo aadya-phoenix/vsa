@@ -21,8 +21,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of categoryObj; let i = index;" class="text-center">
-                      <td>{{i + 1}}</td>
+                    <tr *ngFor="let item of categoryObj | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                      <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
                       <td>{{item.name}}</td>
                       <td >
                         <button [ngClass]="item.active  ? 'btn btn-success' : 'btn btn-danger'">{{item.active ? 'Active' : 'Inactive'}}</button> </td>
@@ -37,21 +37,9 @@
                 </table>
               </div>
               <nav aria-label="Page navigation example">
-                <ul class="pagination justift_end">
-                  <li class="page-item">
-                    <a class="page-link" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link">1</a></li>
-                  <li class="page-item"><a class="page-link">2</a></li>
-                  <li class="page-item"><a class="page-link">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
+                <div class="pagination justift_end">
+                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
               </nav>
             </div>
             </div>

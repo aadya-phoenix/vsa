@@ -107,16 +107,14 @@
                       <th>Status Pending at</th>
                       <th *ngIf="isSuperAdmin || isPlanner">Action </th>
                       <th *ngIf="isSuperAdmin || isPlanner">Add Auditor</th>
-                      <th >Status </th>          
+                      <th>Status </th>          
                       <th> Action Plan</th>   
-                      <th >Status </th>
-                      <th> Action Plan</th>
-                      <th >Evidences Recieved</th>
-                      <th> Log</th>
+                      <th> Evidences Recieved </th>
+                      <th> Log </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="tbody_data" *ngFor="let item of viewPlanListToShow">
+                    <tr class="tbody_data" *ngFor="let item of viewPlanListToShow| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index"> 
                       <td>{{item.vendorCode}}</td>
                       <td>{{item.vendorName}}</td>
                       <td>{{item.locationName}}</td>
@@ -124,40 +122,26 @@
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
                       <td>12-2-2022</td>
-                      <td><p class="btn btn-success">{{item.categories}}</p></td>
-                      <td>Provisional</td>
+                      <td><p class="btn btn-success"></p></td>
+                      <td>{{item.typeOfReport}}</td>
                       <td>Admin</td>
                       <td *ngIf="isSuperAdmin || isPlanner">
                         <a (click)="viewPlan(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>             
                       </td>
                       <td *ngIf="isSuperAdmin || isPlanner">   <a *ngIf="isSuperAdmin" (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a></td>
                       <td><p [ngClass]="item.status" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.status}} </p></td>
-                      <td><button class="btn btn-primary" (click)="pendingAction(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top" >To be Received</button></td>
-                      <td (click)="closure1()" data-toggle="tooltip" data-placement="top" title="Tooltip on top">20%</td>
-                      <td>  <button type="button" class="form-control mr-1 btn btn-secondary" data-toggle="modal" data-target="#exampleModal"><span>Auditor Log</span></button></td>
                       <td><button class="btn btn-primary" (click)="pendingAction(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top" >
-                        {{item.actionPlanStatus}}</button></td>
+                      {{item.actionPlanStatus}}</button></td>
                       <td (click)="evidence(item.id)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">20%</td>
+                      <td>  <button type="button" class="form-control mr-1 btn btn-secondary" data-toggle="modal" data-target="#exampleModal"><span>Auditor Log</span></button></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <nav aria-label="Page navigation example">
-                <ul class="pagination justift_end">
-                  <li class="page-item">
-                    <a class="page-link"  aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" >1</a></li>
-                  <li class="page-item"><a class="page-link" >2</a></li>
-                  <li class="page-item"><a class="page-link" >3</a></li>
-                  <li class="page-item">
-                    <a class="page-link"  aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
+                <div class="pagination justift_end">
+                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
               </nav> 
             </div>
           </div>
@@ -254,8 +238,8 @@
             <thead>
               <tr>
                 <th scope="col">Vendor Code</th>
-                <th scope="col">Vendor Nmae</th>
-                <th scope="col">Auditor Nmae</th>
+                <th scope="col">Vendor Name</th>
+                <th scope="col">Auditor Name</th>
                 
               </tr>
             </thead>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -11,14 +11,21 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
 })
 export class EvidenceScoreCategoryComponent implements OnInit {
 
-  auditPlanId = "8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
+  auditPlanId : any;
   categoryScoreList:any=[];
 
   constructor(
     private commonService: CommonService,
     private auditPlanService:AuditPlanService,
-    private router:Router
-  ) { }
+    private router:Router,
+    private route:ActivatedRoute
+  ) { 
+    this.route.paramMap.subscribe((res:ParamMap)=>{
+      let Id = res.get('id');
+      this.auditPlanId = Id;
+
+    })
+  }
 
   ngOnInit(): void {
     this.getCategoryList();

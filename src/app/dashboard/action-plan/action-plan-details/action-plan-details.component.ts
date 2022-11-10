@@ -13,6 +13,13 @@ export class ActionPlanDetailsComponent implements OnInit {
   auditPlanId:any;
   categoryScoreList:any=[];
 
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
+
+
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -51,5 +58,10 @@ export class ActionPlanDetailsComponent implements OnInit {
   }
 
   gridView2(){}
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  }
+
 
 }

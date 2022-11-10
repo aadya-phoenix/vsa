@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './component/header/header.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,7 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
   ],
   imports: [
     CommonModule,
-    
+    RouterModule
   ],
   exports:[
     FormsModule,

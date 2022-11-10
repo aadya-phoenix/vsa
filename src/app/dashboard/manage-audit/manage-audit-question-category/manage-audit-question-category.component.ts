@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
+import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
+import Swal from 'sweetalert2';
+
+
 
 @Component({
   selector: 'app-manage-audit-question-category',
@@ -13,13 +20,19 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
 
   executiveSummaryForm:FormGroup;
   auditPlanId:any;
-
+  sectionHeadObj:any=[];
   categoryScoreList:any;
+  draft = dataConstants.ReportType.Provisional;
+  final = dataConstants.ReportType.Final;
+  getLoginDetails:any;
 
   constructor(
     private fb:FormBuilder,
+    private authService:AuthenticationService,
     private auditPlanService:AuditPlanService,
+    private auditExecuteService:AuditExecutionService,
     private commonService: CommonService,
+    private employeeService:EmployeeMasterService,
     private router:Router,
     private route:ActivatedRoute
   ) { 
@@ -34,6 +47,8 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     })
    this.criticalObservationArray.push(this.addMoreCriticalObservation(''));
    this.vendorAttendeeArray.push(this.addMoreVendorAttendee(''));
+   this.getLoginDetails = this.authService.getLoginDetails();
+   console.log("user",this.getLoginDetails);
   }
 
   ngOnInit(): void {
@@ -129,8 +144,74 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     this.router.navigateByUrl(`dashboard/manage-audit/summary/${this.auditPlanId}`);
   }
 
-  back(){
-    this.router.navigateByUrl('dashboard/manage-audit/initiate');
+  reportSubmit(status:any){
+  const body ={
+    id : this.auditPlanId,
+    typeOfReportId : status,
+    userId:this.getLoginDetails.UserId
+  };
+  status == this.draft ? this.assignSectionHead(body):'';
+  this.commonService.showLoading();
+  this.auditExecuteService.submitReport(body).subscribe({
+    next: (res) => {
+      if(res){
+        this.commonService.hideLoading();
+        Swal.fire({
+          title: 'Report Submitted Successfully',
+          icon: 'success',
+        });
+       
+      }
+     },
+    error: (e) =>{
+      console.error(e),
+      this.commonService.hideLoading();
+    } , 
+   });
   }
+
+  assignSectionHead(body:any){
+    this.commonService.showLoading();
+    this.auditExecuteService.assignSectionHead(body).subscribe({
+      next: (res) => {
+        if(res){
+          this.commonService.hideLoading();        
+        }
+       },
+      error: (e) =>{
+        console.error(e),
+        this.commonService.hideLoading();
+      } , 
+     });
+  }
+
+  getEmployeeList(){
+    this.commonService.showLoading();  
+    this.employeeService.getEmployee().subscribe({
+      next: (res) => {
+        if(res){
+         this.sectionHeadObj = res.filter((x:any)=>{
+          return x.roleId == "aa1b2adc-e205-451e-8b2f-5b184df9e4f4" &&
+          x.roleName == 'SectionHead';
+         });
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
+     });
+  }
+
+  back(){
+    this.router.navigateByUrl(`dashboard/manage-audit/initiate/${this.auditPlanId}`);
+  }
+
+  getSectionHead(event:any){
+    console.log("section ",event.target.value);
+  }
+
+  close(){}
 
 }

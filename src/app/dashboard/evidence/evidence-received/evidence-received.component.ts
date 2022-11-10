@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -12,15 +13,28 @@ import Swal from 'sweetalert2';
 export class EvidenceReceivedComponent implements OnInit {
 
   dateFormat = dataConstants.dateFormate;
-  auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
-  actionPlanList:any;
+  //auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
+  actionPlanList:any=[];
   observationAction:any;
   id:any;
+  auditPlanId :any;
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
+
 
   constructor(
     private commonService: CommonService,
     private auditExeService:AuditExecutionService,
-  ) { }
+    private route:ActivatedRoute
+  ) { 
+    this.route.paramMap.subscribe((res:ParamMap)=>{
+      let Id = res.get('id');
+       Id ? this.auditPlanId = Id : this.auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
+    });
+  }
 
   ngOnInit(): void {
     this. getActionPlanList();
@@ -67,5 +81,10 @@ export class EvidenceReceivedComponent implements OnInit {
       },
      }); 
   }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  }
+
 
 }

@@ -18,8 +18,12 @@ export class AuditAreaListComponent implements OnInit {
   isPlanner = false;
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.SuperAdmin;
-
   auditAreaObj:any=[];
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
 
   constructor(
     private router:Router,
@@ -86,6 +90,10 @@ export class AuditAreaListComponent implements OnInit {
         });
        }
      }) 
+  }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
   }
 
 }

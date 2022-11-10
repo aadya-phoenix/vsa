@@ -5,6 +5,7 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    EmployeeRoutingModule
+    EmployeeRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class EmployeeModule { }

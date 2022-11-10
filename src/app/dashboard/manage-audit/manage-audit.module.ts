@@ -9,6 +9,9 @@ import { ManageAuditInitiateComponent } from './manage-audit-initiate/manage-aud
 import { ManageAuditQuestionCategoryComponent } from './manage-audit-question-category/manage-audit-question-category.component';
 import { ManageAuditQuestionDetailsComponent } from './manage-audit-question-details/manage-audit-question-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ManageAuditSummaryComponent } from './manage-audit-summary/manage-audit-summary.component';
 
 
 
@@ -19,14 +22,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ManageAuditViewComponent,
     ManageAuditInitiateComponent,
     ManageAuditQuestionCategoryComponent,
-    ManageAuditQuestionDetailsComponent
+    ManageAuditQuestionDetailsComponent,
+    ManageAuditSummaryComponent
   ],
   providers:[DatePipe],
   imports: [
     CommonModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    ManageAuditRoutingModule
+    ManageAuditRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class ManageAuditModule { }

@@ -26,8 +26,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="tbody_data" *ngFor="let item of viewPlanList;">
-                                        <td></td>
+                                    <tr class="tbody_data" *ngFor="let item of viewPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                                        <td></td>                    
                                         <td>{{item.vendorCode}}</td>
                                         <td>{{item.vendorName}}</td>
                                         <td></td>
@@ -45,21 +45,9 @@
                             </table>
                         </div>
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination justift_end">
-                                <li class="page-item">
-                                    <a class="page-link"  aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" >1</a></li>
-                                <li class="page-item"><a class="page-link" >2</a></li>
-                                <li class="page-item"><a class="page-link" >3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link"  aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="pagination justift_end">
+                              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                            </div>
                         </nav>
                     </div>
                 </div>

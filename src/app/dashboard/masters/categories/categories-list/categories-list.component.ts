@@ -17,9 +17,12 @@ export class CategoriesListComponent implements OnInit {
   isPlanner = false;
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.SuperAdmin;
-
   categoryObj:any=[];
-
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
   constructor(
     private router:Router,
     private authService: AuthenticationService,
@@ -85,6 +88,10 @@ export class CategoriesListComponent implements OnInit {
 
   addCategory(){
     this.router.navigateByUrl('dashboard/category/add');
+  }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
   }
  
 }

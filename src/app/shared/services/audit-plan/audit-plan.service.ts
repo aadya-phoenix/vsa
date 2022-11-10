@@ -71,6 +71,14 @@ export class AuditPlanService {
       .pipe(catchError(this.commmonService.Errorhandling));
   }
 
+  getLocationByVendor(id:any){
+    const params = new HttpParams().set('vendorid',id);
+    const url = `${this.basePath}api/Location/GetAllLocationbyVendorAsync`;
+    return this.http
+      .getParams(url, this.http.headers, params)
+      .pipe(catchError(this.commmonService.Errorhandling));
+  }
+
   vendorAction(data:any){
     const url = `${this.basePath}api/AuditPlan/RejectAuditPlan`;
     return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling));

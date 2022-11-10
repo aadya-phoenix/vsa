@@ -16,6 +16,11 @@ export class PendingActionPlanComponent implements OnInit {
   auditPlanId: any;
   actionPlanList:any = [];
   actionPlanAudi:any=[];
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
 
   constructor(
     private auditExeService:AuditExecutionService,
@@ -97,5 +102,10 @@ export class PendingActionPlanComponent implements OnInit {
   close(){
     this.router.navigateByUrl(`dashboard/view-plan`); 
   }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  }
+
 
 }

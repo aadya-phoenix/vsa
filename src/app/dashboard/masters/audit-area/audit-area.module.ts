@@ -5,6 +5,7 @@ import { AuditAreaRoutingModule } from './audit-area-routing.module';
 import { AuditAreaListComponent } from './audit-area-list/audit-area-list.component';
 import { AuditAreaEditComponent } from './audit-area-edit/audit-area-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AuditAreaRoutingModule
+    AuditAreaRoutingModule,
+    NgxPaginationModule
   ]
 })
 export class AuditAreaModule { }

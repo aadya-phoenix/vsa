@@ -19,6 +19,11 @@ export class EvidenceSubmissionComponent implements OnInit {
   actionPlanList:any=[];
   selectedFiles:any;
   filesArray:any=[];
+  pagination = {
+    page: 1,
+    pageNumber: 1,
+    pageSize: 10
+  }
 
   constructor(
     private commonService: CommonService,
@@ -31,7 +36,7 @@ export class EvidenceSubmissionComponent implements OnInit {
       let Cid = res.get('cid');
       this.auditPlanId = Id;
       this.categoryId = Cid;
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -49,10 +54,26 @@ export class EvidenceSubmissionComponent implements OnInit {
       categoryId: this.categoryId}).subscribe({
       next: (res) => {
         if(res){
+          var i =1;
+          var j = 1;
          this.actionPlanList = res;
-         this.commonService.hideLoading();
-        }
-       },
+         this.actionPlanList.forEach((item: any) => {
+          this.actionPlanList.forEach((subitem: any) => {
+           if(item.regulationId
+            == subitem.regulationId
+            ){
+              console.log("j",j);
+            subitem.itemno = i;
+            subitem.subitemno = i + '.' + j;
+            j++;
+            console.log("j ++",j);
+           }
+          });
+          i++;
+        });
+        console.log("item",this.actionPlanList);
+        this.commonService.hideLoading();
+       }},
       error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
@@ -90,5 +111,10 @@ export class EvidenceSubmissionComponent implements OnInit {
   back(){
    this.router.navigateByUrl(`dashboard/evidence`);
   }
+
+  pageChanged(event: any) {
+    this.pagination.pageNumber = event;
+  }
+
 
 }

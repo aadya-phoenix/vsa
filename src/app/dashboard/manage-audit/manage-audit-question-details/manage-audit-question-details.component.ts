@@ -102,7 +102,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
             this.addMetadata();
            }
         }); 
-   /*       if(this.regulationList.length !=0){
+         if(this.regulationList.length !=0){
          this.regulationList.forEach((x:any)=>{
           if(x.issubmitted == true){
             this.judgeDetails.JudgementId = x.judgementId
@@ -114,7 +114,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
           }
          }); 
          }
-        this.getJudgement(); */
+        this.getJudgement(); 
         }
        },
       error: (e) => console.error(e), 
@@ -240,7 +240,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       }
     }
     this.commonService.hideLoading();
-     /*  this.auditPlanService.saveObservation(formData).subscribe({
+      this.auditPlanService.saveObservation(formData).subscribe({
       next: (res) => {
         if(res){
           this.commonService.hideLoading();
@@ -254,7 +254,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         console.error(e);
         this.commonService.hideLoading();
       } , 
-     });  */ 
+     });  
   }
 
   addData(){}

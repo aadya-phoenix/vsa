@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PendingActionPlanRoutingModule } from './pending-action-plan-routing.module';
 import { PendingActionPlanComponent } from './pending-action-plan.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PendingActionPlanComponent } from './pending-action-plan.component';
   ],
   imports: [
     CommonModule,
-    PendingActionPlanRoutingModule
+    PendingActionPlanRoutingModule,
+    RouterModule
   ]
 })
 export class PendingActionPlanModule { }

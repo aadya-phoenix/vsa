@@ -9,6 +9,8 @@ import { ActionPlanDetailsComponent } from './action-plan-details/action-plan-de
 import { FormsModule } from '@angular/forms';
 import { PendingActionPlanComponent } from './pending-action-plan/pending-action-plan.component';
 import { ActionPlanAuditorComponent } from './action-plan-auditor/action-plan-auditor.component';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ActionPlanAuditorComponent } from './action-plan-auditor/action-plan-au
   imports: [
     CommonModule,
     FormsModule,
-    ActionPlanRoutingModule
+    ActionPlanRoutingModule,
+    RouterModule,
+    NgxPaginationModule
   ]
 })
 export class ActionPlanModule { }
