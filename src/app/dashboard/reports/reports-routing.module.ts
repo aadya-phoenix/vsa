@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActionPlanObservationComponent } from './action-plan-observation/action-plan-observation.component';
 import { ActionPlanVendorComponent } from './action-plan-vendor/action-plan-vendor.component';
+import { AnualAuditYearlyComponent } from './anual-audit-yearly/anual-audit-yearly.component';
 import { AnualAuditComponent } from './anual-audit/anual-audit.component';
 import { AverageDefectSupplierComponent } from './average-defect-supplier/average-defect-supplier.component';
 import { AverageDefectComponent } from './average-defect/average-defect.component';
@@ -19,6 +20,9 @@ import { VsaTrendComponent } from './vsa-trend/vsa-trend.component';
 const routes: Routes = [
   {
     path: 'anual-audit', component: AnualAuditComponent
+  },
+  {
+    path: 'anual-audit-yearly', component: AnualAuditYearlyComponent
   },
   {
     path: 'dist-status', component: DistStatusComponent

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartData, ChartOptions } from 'chart.js';
+import * as _ from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 import { SwalService } from 'src/app/shared/services/swal.service';
-import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-anual-audit',
-  templateUrl: './anual-audit.component.html',
-  styleUrls: ['./anual-audit.component.css']
+  selector: 'app-anual-audit-yearly',
+  templateUrl: './anual-audit-yearly.component.html',
+  styleUrls: ['./anual-audit-yearly.component.css']
 })
-export class AnualAuditComponent implements OnInit {
+export class AnualAuditYearlyComponent implements OnInit {
+
   subscription: Subscription;
   data: any = []
   selectedFilter = 'month';
@@ -57,9 +58,9 @@ export class AnualAuditComponent implements OnInit {
 
   getData(payload: any) {
     var vMsg = "";
-    if (!payload.year) {
-      vMsg += "Please Select Year.";
-    }
+    // if (!payload.year) {
+    //   vMsg += "Please Select Year.";
+    // }
     if (vMsg.length > 0) {
       this._swalService.infoMessageBox(vMsg);
       return;
@@ -73,10 +74,10 @@ export class AnualAuditComponent implements OnInit {
       if (payload.month) {
         data.month = payload.month
       }
-      this.reportService.getAuditPlanStatusByMonth(data).subscribe({
+      this.reportService.AuditPlanStatusByYearly(data).subscribe({
         next: (res: any) => {
           this.data = res;
-          this.lables = _.map(this.data, 'monthOfaudit');
+          this.lables = _.map(this.data, 'yearOfAudit');
           this.planData = _.map(this.data, 'plannedAudits');
           this.finalData = _.map(this.data, 'finalAudits');
           this.provisionalData = _.map(this.data, 'provisionalAudits');
