@@ -25,6 +25,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   draft = dataConstants.ReportType.Provisional;
   final = dataConstants.ReportType.Final;
   getLoginDetails:any;
+  sectionHeadId:any;
 
   constructor(
     private fb:FormBuilder,
@@ -45,10 +46,9 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
       const Id = params.get('id');
       this.auditPlanId = Id ? Id : 0;
     })
-   this.criticalObservationArray.push(this.addMoreCriticalObservation(''));
-   this.vendorAttendeeArray.push(this.addMoreVendorAttendee(''));
-   this.getLoginDetails = this.authService.getLoginDetails();
-   console.log("user",this.getLoginDetails);
+    this.criticalObservationArray.push(this.addMoreCriticalObservation(''));
+    this.vendorAttendeeArray.push(this.addMoreVendorAttendee(''));
+    this.getLoginDetails = this.authService.getLoginDetails();
   }
 
   ngOnInit(): void {
@@ -150,7 +150,12 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     typeOfReportId : status,
     userId:this.getLoginDetails.UserId
   };
-  status == this.draft ? this.assignSectionHead(body):'';
+  const sectionHeadData ={
+    id: this.auditPlanId,
+    sectionHeadUserId: this.sectionHeadId,
+      isAuditPlanRejected: 1
+  }
+  status == this.final ? this.assignSectionHead(sectionHeadData):'';
   this.commonService.showLoading();
   this.auditExecuteService.submitReport(body).subscribe({
     next: (res) => {
@@ -160,7 +165,6 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
           title: 'Report Submitted Successfully',
           icon: 'success',
         });
-       
       }
      },
     error: (e) =>{
@@ -209,7 +213,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   }
 
   getSectionHead(event:any){
-    console.log("section ",event.target.value);
+    this.sectionHeadId = event.target.value;
   }
 
   close(){}

@@ -62,7 +62,7 @@ export class EvidenceSubmissionComponent implements OnInit {
            if(item.regulationId
             == subitem.regulationId
             ){
-              console.log("j",j);
+             item.itemno = 
             subitem.itemno = i;
             subitem.subitemno = i + '.' + j;
             j++;
@@ -96,7 +96,7 @@ export class EvidenceSubmissionComponent implements OnInit {
      this.auditExeService.saveEvidence(formData).subscribe({
       next:(res: any) => {
         Swal.fire({
-          title: res.message,
+          title: 'Evidence Submitted Successfully',
           icon: 'success',
         });
         this.commonService.hideLoading();

@@ -49,6 +49,7 @@ export class ViewPlanAssignComponent implements OnInit {
           title: res.message,
           icon: 'success',
         });
+        this.router.navigateByUrl('dashboard/view-plan');
         this.commonService.hideLoading();
       },
       error:(err:any) =>{

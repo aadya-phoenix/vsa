@@ -8,8 +8,8 @@
                             <h3 class="card-title">Audit Area Details</h3>
                             <div class="d-flex align-items-center">
                                 <h6 class="mr-1 mb-0">Filters:-</h6>
-                                <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
-                                <input type="text" class="form-control mr-1 filter_css" placeholder="Date ">
+                                <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name">
+                                <input type="text" class="form-control mr-1 filter_css" placeholder="Date">
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                                         <th>No Of Observation</th>
                                         <th>Categories</th>
                                         <th>Score</th>
-                                        <th>Action Plan </th>    
+                                        <th>Action Plan</th>    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,35 +38,9 @@
                                         <td>{{item.plannedEndDate | date:dateFormat}}</td>
                                         <td>{{item.observationCount}}</td>
                                         <td>{{item.categories}}</td>
-                                        <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">59%</button></td>
+                                        <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.score}}</button></td>
                                         <td>
-                                            <button (click)="goToCategory(item.id)" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="tbody_data">
-                                        <td>AU1</td>
-                                        <td>VN123</td>
-                                        <td>Vendor</td>
-                                        <td>12-2-2022</td>
-                                        <td>12-4-2022</td>
-                                        <td>1</td>
-                                        <td>TestCategory</td>
-                                        <td><button class="btn btn-danger"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
-                                        <td>
-                                            <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Submitted</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="tbody_data">
-                                        <td>AU1</td>
-                                        <td>VN123</td>
-                                        <td>Vendor</td>
-                                        <td>12-2-2022</td>
-                                        <td>12-4-2022</td>
-                                        <td>1</td>
-                                        <td>TestCategory</td>
-                                        <td><button class="btn btn-warning"data-toggle="tooltip" data-placement="top" title="Tooltip on top">41%</button></td>
-                                        <td>
-                                            <button (click)="gridView1()" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Overdue</button>
+                                            <button (click)="goToCategory(item.id)" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.actionPlanStatus}}</button>
                                         </td>
                                     </tr>
                                 </tbody>

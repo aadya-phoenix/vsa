@@ -44,11 +44,14 @@
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
                         <td><a href=""><span class="mr-1">Test Link,</span><span>TestLink</span></a></td>
-                        <td><button class="btn btn-success mr-1" data-toggle="modal" data-target="#exampleModal"
+                        <td><button class="btn btn-success mr-1" 
+              
                             (click)="observeAction(1,item.id)">Open</button>
-                           <button class="btn btn-danger  mr-1" data-toggle="modal" data-target="#exampleModal"
+                           <button class="btn btn-danger  mr-1" 
+                
                            (click)="observeAction(3,item.id)">Close</button>
-                           <button class="btn btn-primary" style="color: #fff;"data-toggle="modal" data-target="#exampleModal"
+                           <button class="btn btn-primary" style="color: #fff;"
+                          
                            (click)="observeAction(2,item.id)">Partially Close</button>
                         </td>
                     </tr>
@@ -66,7 +69,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -79,4 +82,4 @@
         </div>
       </div>
     </div>
-</div>
+</div> -->

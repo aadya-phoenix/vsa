@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
@@ -16,12 +17,14 @@ export class CreatePlanComponent implements OnInit {
   vendorObj:any=[];
   locationObj:any=[];
   selectedFile:any;
+  bulkFile:any;
  
   constructor(
     private formBuilder: FormBuilder,
     private auditPlanService:AuditPlanService,
     private commonService: CommonService, 
-    private employeeService:EmployeeMasterService
+    private employeeService:EmployeeMasterService,
+    private router:Router
   ) { 
     this.createPlanForm = this.formBuilder.group({
       vendorId: new FormControl('', [Validators.required]),
@@ -124,6 +127,28 @@ export class CreatePlanComponent implements OnInit {
      });
   }
 
-  close(){}
+  bulkUpload(event:any){
+    this.commonService.showLoading();
+    this.bulkFile = event.target.files[0];
+    console.log("bulk ",this.bulkFile);
+    const formData = new FormData(); 
+    formData.append('File', this.bulkFile);
+    this.auditPlanService.bulkUpload(formData).subscribe({
+      next:(res: any) => {
+        Swal.fire({
+          title: 'Plan Uploaded Successfully',
+          icon: 'success',
+        });
+        this.commonService.hideLoading();
+      },
+      error:(err:any) =>{
+        this.commonService.hideLoading();
+      } 
+    }); 
+  }
+
+  close(){
+    this.router.navigateByUrl('/dashboard');
+  }
 
 }

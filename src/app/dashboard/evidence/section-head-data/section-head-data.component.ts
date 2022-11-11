@@ -69,7 +69,7 @@ export class SectionHeadDataComponent implements OnInit {
     this.auditExeService.saveHeadApproval(body).subscribe({
       next:(res: any) => {
         Swal.fire({
-          title: res.message,
+          title: status == this.accept ? 'Audit Plan Approved' : ' Audit Plan Rejected',
           icon: 'success',
         });
         this.commonService.hideLoading();

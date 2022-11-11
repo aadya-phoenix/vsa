@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -21,7 +22,7 @@ export class ViewPlanListComponent implements OnInit {
   Vendor = dataConstants.Vendor;
   viewPlanList:any=[];
   viewPlanListToShow:any = [];
-
+  counters:any=[];
   vendorName:string='';
   plannedStartDate:any;
   plannedEndDate:any;
@@ -42,6 +43,7 @@ export class ViewPlanListComponent implements OnInit {
     private router:Router,
     private authService: AuthenticationService,
     private auditPlanService:AuditPlanService,
+    private auditExecuteService:AuditExecutionService,
     private commonService: CommonService) { 
     this.getUserrole = this.authService.getRolefromlocal();
     this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
@@ -50,6 +52,7 @@ export class ViewPlanListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getDashboardCounters();
     this.getViewPlanList();
   }
 
@@ -73,7 +76,7 @@ export class ViewPlanListComponent implements OnInit {
 
   viewPlan(item:any){
     this.router.navigateByUrl(`dashboard/view-plan/edit/${item.id}`);
-   }
+  }
 
   assign(item:any){
     this.router.navigateByUrl(`dashboard/view-plan/assign/${item.id}`);
@@ -95,7 +98,6 @@ export class ViewPlanListComponent implements OnInit {
         this.commonService.hideLoading();
       }
     }); 
-
   }
 
   reset(){
@@ -140,10 +142,25 @@ export class ViewPlanListComponent implements OnInit {
     this.isClosure2 = false;
     this.isClosure3 = false;
   }
+
   closure1(){}
 
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
+  }
+
+  getDashboardCounters(){
+    this.commonService.showLoading();
+    this.auditExecuteService.getDashboardCounters().subscribe({
+      next:(res: any) => {
+        this.counters = res[0];
+        this.commonService.hideLoading();
+      },
+      error:(err:any) =>  {
+        console.error(err);
+        this.commonService.hideLoading();
+      }
+    }); 
   }
 
 }

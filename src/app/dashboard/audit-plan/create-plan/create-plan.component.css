@@ -1,0 +1,10 @@
+.button-upload{
+    display: inline-block;
+    background-color: #1a65a3;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-bottom: 0px !important;
+  }

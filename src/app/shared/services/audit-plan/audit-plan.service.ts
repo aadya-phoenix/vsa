@@ -148,5 +148,10 @@ export class AuditPlanService {
     const url = `${this.basePath}api/AuditExecution/SaveAuditPlanExecutionObservation`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling)); 
   }
+
+  bulkUpload(data:any){
+    const url = `${this.basePath}api/AuditPlan/BulkUpload`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
   
 }

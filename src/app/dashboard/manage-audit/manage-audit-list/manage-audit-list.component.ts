@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -26,6 +27,7 @@ export class ManageAuditListComponent implements OnInit {
   vendorName:string='';
   plannedStartDate:any;
   statusName:string='';
+  counters:any;
 
   pagination = {
     page: 1,
@@ -37,6 +39,7 @@ export class ManageAuditListComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private auditPlanService:AuditPlanService,
+    private auditExecuteService:AuditExecutionService,
     private commonService: CommonService,
     private router:Router
   ) { 
@@ -107,5 +110,19 @@ export class ManageAuditListComponent implements OnInit {
 
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
+  }
+
+  getDashboardCounters(){
+    this.commonService.showLoading();
+    this.auditExecuteService.getDashboardCounters().subscribe({
+      next:(res: any) => {
+        this.counters = res[0];
+        this.commonService.hideLoading();
+      },
+      error:(err:any) =>  {
+        console.error(err);
+        this.commonService.hideLoading();
+      }
+    }); 
   }
 }

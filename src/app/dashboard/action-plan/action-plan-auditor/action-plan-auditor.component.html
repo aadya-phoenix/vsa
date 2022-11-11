@@ -91,9 +91,9 @@
                                         <td>{{item.plannedEndDate | date:dateFormat}}</td>
                                         <td>{{item.observationCount}}</td>
                                         <td>{{item.categories}}</td>
-                                        <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">59%</button></td>
+                                        <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.score}}</button></td>
                                         <td>
-                                            <button (click)="goToCategory(item.id)" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">To be Submitted</button>
+                                            <button (click)="goToCategory(item.id)" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.actionPlanStatus}}</button>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
 export class EvidenceReceivedComponent implements OnInit {
 
   dateFormat = dataConstants.dateFormate;
-  //auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
   actionPlanList:any=[];
   observationAction:any;
   id:any;
@@ -46,7 +45,6 @@ export class EvidenceReceivedComponent implements OnInit {
       next: (res) => {
         if(res){
          this.actionPlanList = res;
-       //  this.actionPlanListToShow = res;
          this.commonService.hideLoading();
         }
        },
@@ -60,6 +58,7 @@ export class EvidenceReceivedComponent implements OnInit {
   observeAction(status:number,id:any){
     this.observationAction = status;
     this.id= id;
+    this.save();
   }
 
   save(){
@@ -69,7 +68,6 @@ export class EvidenceReceivedComponent implements OnInit {
         if(res){
           Swal.fire({
             title: res.message,
-          //  text: 'Please login again!',
             icon: 'success',
           })
           this.commonService.hideLoading();

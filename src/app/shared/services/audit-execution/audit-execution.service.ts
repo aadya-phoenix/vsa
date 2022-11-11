@@ -68,7 +68,12 @@ export class AuditExecutionService {
   }
 
   assignSectionHead(data:any){
-    const url = `${this.basePath}api/AuditPlan/UpdateAuditPlanTypeOfReport`;
+    const url = `${this.basePath}api/AuditPlan/AssignSectionHeadOnApproved`;
     return this.http.put(url, data, this.http.headers).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getDashboardCounters(){
+    const url = `${this.basePath}api/AuditReports/VendorDashboardCount`;
+    return this.http.post(url, {}).pipe(catchError(this.commmonService.Errorhandling));
   }
 }
