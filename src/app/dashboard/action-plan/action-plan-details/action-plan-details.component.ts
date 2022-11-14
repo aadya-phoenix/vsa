@@ -63,5 +63,8 @@ export class ActionPlanDetailsComponent implements OnInit {
     this.pagination.pageNumber = event;
   }
 
+  back(){
+    this.router.navigateByUrl(`dashboard/action-plan`);
+   }
 
 }

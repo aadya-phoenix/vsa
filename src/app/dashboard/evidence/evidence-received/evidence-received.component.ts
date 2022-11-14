@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
@@ -27,17 +27,22 @@ export class EvidenceReceivedComponent implements OnInit {
   }
   userId:any;
   bsModalRef ?: BsModalRef;
+  categoryId:any;
 
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
     private modalService: BsModalService,
     private auditExeService:AuditExecutionService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
   ) { 
     this.route.paramMap.subscribe((res:ParamMap)=>{
       let Id = res.get('id');
-       Id ? this.auditPlanId = Id : this.auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
+      // Id ? this.auditPlanId = Id : this.auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
+       let Cid = res.get('cid');
+       this.auditPlanId = Id;
+       this.categoryId = Cid;
     });
     this.userId = this.authService.getLoginDetails().UserId;
   }
@@ -48,7 +53,7 @@ export class EvidenceReceivedComponent implements OnInit {
 
   getActionPlanList(){
     this.commonService.showLoading();
-    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId}).subscribe({
+    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId,categoryId: this.categoryId}).subscribe({
       next: (res) => {
         if(res){
          this.actionPlanList = res;
@@ -102,6 +107,10 @@ export class EvidenceReceivedComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(EvidenceAuditorRemarksComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+  back(){
+    this.router.navigateByUrl(`dashboard/evidence/category/${this.auditPlanId}`);
   }
 
 }

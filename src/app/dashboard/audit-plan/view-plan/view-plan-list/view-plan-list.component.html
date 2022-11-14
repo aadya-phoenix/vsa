@@ -121,10 +121,10 @@
                       <td>{{item.otherLocation}}</td>
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
-                      <td>12-2-2022</td>
+                      <td></td>
                       <td><p class="btn btn-success"></p></td>
                       <td>{{item.typeOfReport}}</td>
-                      <td>Admin</td>
+                      <td></td>
                       <td *ngIf="isSuperAdmin || isPlanner">
                         <a (click)="viewPlan(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>             
                       </td>
@@ -132,7 +132,8 @@
                       <td><p [ngClass]="item.status" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.status}} </p></td>
                       <td><button class="btn btn-primary" (click)="pendingAction(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top" >
                       {{item.actionPlanStatus}}</button></td>
-                      <td (click)="evidence(item.id)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">20%</td>
+                      <td (click)="evidence(item.id)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.evidenceReceived
+                      }}</td>
                       <td>  <button type="button" class="form-control mr-1 btn btn-secondary" data-toggle="modal" data-target="#exampleModal"><span>Auditor Log</span></button></td>
                     </tr>
                   </tbody>

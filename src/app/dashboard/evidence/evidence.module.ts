@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { EvidenceAuditorRemarksComponent } from './evidence-auditor-remarks/evidence-auditor-remarks.component';
+import { EvidenceReceiveCategoryComponent } from './evidence-receive-category/evidence-receive-category.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EvidenceAuditorRemarksComponent } from './evidence-auditor-remarks/evid
     EvidenceScoreCategoryComponent,
     DpmDataComponent,
     EvidenceAuditsComponent,
-    EvidenceAuditorRemarksComponent
+    EvidenceAuditorRemarksComponent,
+    EvidenceReceiveCategoryComponent
   ],
   entryComponents:[EvidenceAuditorRemarksComponent],
   imports: [

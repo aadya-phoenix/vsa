@@ -4,11 +4,11 @@ import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.
 import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
-  selector: 'app-action-plan-category-vendor',
-  templateUrl: './action-plan-category-vendor.component.html',
-  styleUrls: ['./action-plan-category-vendor.component.css']
+  selector: 'app-evidence-receive-category',
+  templateUrl: './evidence-receive-category.component.html',
+  styleUrls: ['./evidence-receive-category.component.css']
 })
-export class ActionPlanCategoryVendorComponent implements OnInit {
+export class EvidenceReceiveCategoryComponent implements OnInit {
   auditPlanId:any;
   categoryScoreList:any=[];
 
@@ -53,17 +53,15 @@ export class ActionPlanCategoryVendorComponent implements OnInit {
   }
 
   goToObservation(id:any){
-   this.router.navigateByUrl(`dashboard/evidence/submit/${this.auditPlanId}/${id}`);
-  }
+    this.router.navigateByUrl(`dashboard/evidence/receive/${this.auditPlanId}/${id}`);}
 
   gridView2(){}
 
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
   }
-
   back(){
-    this.router.navigateByUrl(`dashboard/action-plan/vendor`); 
+    this.router.navigateByUrl('dashboard/action-plan/auditor');
   }
 
 }

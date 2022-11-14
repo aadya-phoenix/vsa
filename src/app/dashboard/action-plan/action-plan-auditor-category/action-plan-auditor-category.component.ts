@@ -63,5 +63,7 @@ export class ActionPlanAuditorCategoryComponent implements OnInit {
     this.pagination.pageNumber = event;
   }
 
-
+  back(){
+    this.router.navigateByUrl(`dashboard/action-plan/receive`); 
+  }
 }

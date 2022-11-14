@@ -55,4 +55,6 @@ export class ActionPlanReceiveComponent implements OnInit {
     this.pagination.pageNumber = event;
   }
 
+ 
+
 }

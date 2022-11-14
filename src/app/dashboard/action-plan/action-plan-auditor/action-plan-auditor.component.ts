@@ -57,7 +57,7 @@ export class ActionPlanAuditorComponent implements OnInit {
   }
 
   goToCategory(id:any){
-    this.router.navigateByUrl(`dashboard/evidence/receive/${id}`);
+    this.router.navigateByUrl(`dashboard/evidence/category/${id}`);
    }
 
    gridView1(){}
