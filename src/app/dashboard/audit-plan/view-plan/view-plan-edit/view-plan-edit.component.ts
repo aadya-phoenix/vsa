@@ -66,11 +66,11 @@ export class ViewPlanEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLocation();
-    this.getEmployeeList();
+   // this.getEmployeeList();
     if(this.viewPlanId){
       this.getViewPlanDetails();
       this.getAttachment();
+      //this.getLocation();
     }
   }
 
@@ -146,27 +146,37 @@ export class ViewPlanEditComponent implements OnInit {
   }
 
   getLocation(){
-    this.auditPlanService.getLocation().subscribe({
+    this.commonService.showLoading(); 
+    this.auditPlanService.getLocationByVendor(this.viewPlanDetails.vendorId).subscribe({
       next: (res) => {
         if(res){
          this.locationObj = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+       error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
      });
   }
 
   getEmployeeList(){
+    this.commonService.showLoading();  
     this.employeeService.getEmployee().subscribe({
       next: (res) => {
         if(res){
-          this.vendorObj = res.filter((x:any)=>{
-            return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
-            x.roleName == 'Vendor';
-           });
+         this.vendorObj = res.filter((x:any)=>{
+          return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
+          x.roleName == 'Vendor';
+         });
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
      });
   }
 

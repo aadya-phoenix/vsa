@@ -5,13 +5,13 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive max_hei_table">
+        <div class="table-responsive max_hei_table" >
             <table id="" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
-                        <th colspan="10">Observation({{actionPlanList.length}})</th>
+                        <th colspan="8">Observation({{actionPlanList.length}})</th>
                     </tr>
-                    <tr class=" text-center sticky_header">
+                    <tr class=" text-center sticky_header fon_9">
                         <th>Observation</th>
                         <th>ITEM NO.</th>
                         <th>SUB ITEM NO. </th>
@@ -19,8 +19,6 @@
                         <th>DETAIL OF IMPROVEMENT PLAN</th>
                         <th>IN-CHARGE</th>
                         <th>DATE</th>
-                        <th>Upload(Multiple Evidence Can be Uploaded)</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,13 +26,12 @@
                         <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
                         <td>{{i+1}}</td>
                         <td>{{i+1}}.1</td>
-                        <td>{{item.remarkOfAuditor}}</td>
+                        <td><textarea [(ngModel)]="item.remarkOfAuditor" class="form-control"></textarea></td>
                         <td>{{item.detailOfImprovement}}</td>
-                        <td>{{item.incharge}}</td>
+                        <td>{{item.incharge}}
+                        </td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
-                        <td><input type="file" id="exampleInputFile" (change)="fileUpload($event)"
-                         class="form-control"  multiple></td>
-                        <td><button class="btn btn-success"  (click)="submit(item)">Submit</button></td>
+                        <!-- <td ><input [(ngModel)]="item.dateOfSubmission" type="date"></td> -->
                     </tr>
                 </tbody>
             </table>
@@ -46,6 +43,6 @@
           </nav>
     </div>
     <div class="card-footer">
-        <button class="btn btn-default" (click)="back()">Back</button>
-    </div>
+        <button (click)="submit()" class="btn btn-success">Submit</button>
+        </div>
 </div>

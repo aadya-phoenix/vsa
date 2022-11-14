@@ -11,6 +11,11 @@ import { PendingActionPlanComponent } from './pending-action-plan/pending-action
 import { ActionPlanAuditorComponent } from './action-plan-auditor/action-plan-auditor.component';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ActionPlanVendorComponent } from './action-plan-vendor/action-plan-vendor.component';
+import { ActionPlanCategoryVendorComponent } from './action-plan-category-vendor/action-plan-category-vendor.component';
+import { ActionPlanUpdateComponent } from './action-plan-update/action-plan-update.component';
+import { ActionPlanAuditorCategoryComponent } from './action-plan-auditor-category/action-plan-auditor-category.component';
+import { ActionPlanReceiveComponent } from './action-plan-receive/action-plan-receive.component';
 
 
 @NgModule({
@@ -20,7 +25,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ActionPlanListComponent,
     ActionPlanDetailsComponent,
     PendingActionPlanComponent,
-    ActionPlanAuditorComponent
+    ActionPlanAuditorComponent,
+    ActionPlanVendorComponent,
+    ActionPlanCategoryVendorComponent,
+    ActionPlanUpdateComponent,
+    ActionPlanAuditorCategoryComponent,
+    ActionPlanReceiveComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,40 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header_card">
+                            <h3 class="card-title">Audit Area Details</h3>   
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive max_hei_table">
+                            <table id="" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class=" text-center sticky_header">
+                                        <th>S.No</th>
+                                        <th>Categories </th>
+                                        <th>Observation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tbody_data" *ngFor="let item of categoryScoreList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                                        <td>C{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>  <button (click)="goToObservation(item.categoryId)" class="btn btn-primary">{{item.observationCount}}</button></td>               
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <div class="pagination justift_end">
+                              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

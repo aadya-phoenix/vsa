@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./action-plan-observation.component.css']
 })
 export class ActionPlanObservationComponent implements OnInit {
-
+  dateFormat = dataConstants.dateFormate;
   actionPlanList :any=[];
   actionPlanListToShow :any;
   categoryId:any;

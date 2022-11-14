@@ -1,57 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
-import { EvidenceAuditorRemarksComponent } from '../evidence-auditor-remarks/evidence-auditor-remarks.component';
 
 @Component({
-  selector: 'app-evidence-received',
-  templateUrl: './evidence-received.component.html',
-  styleUrls: ['./evidence-received.component.css']
+  selector: 'app-action-plan-update',
+  templateUrl: './action-plan-update.component.html',
+  styleUrls: ['./action-plan-update.component.css']
 })
-export class EvidenceReceivedComponent implements OnInit {
-
+export class ActionPlanUpdateComponent implements OnInit {
   dateFormat = dataConstants.dateFormate;
-  actionPlanList:any=[];
-  observationAction:any;
-  id:any;
-  auditPlanId :any;
+  actionPlanList :any=[];
+  actionPlanListToShow :any;
+  categoryId:any;
+  auditPlanId:any;
+  userId:any;
   pagination = {
     page: 1,
     pageNumber: 1,
     pageSize: 10
   }
-  userId:any;
-  bsModalRef ?: BsModalRef;
 
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
-    private modalService: BsModalService,
     private auditExeService:AuditExecutionService,
     private route:ActivatedRoute
   ) { 
-    this.route.paramMap.subscribe((res:ParamMap)=>{
-      let Id = res.get('id');
-       Id ? this.auditPlanId = Id : this.auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
+    this.route.paramMap.subscribe((params:ParamMap)=>{
+      const id = params.get('id');
+      const cid = params.get('cid');
+      id ? this.auditPlanId = id : '';
+      cid ? this.categoryId = cid : '';
     });
     this.userId = this.authService.getLoginDetails().UserId;
   }
 
   ngOnInit(): void {
-    this. getActionPlanList();
+    this.getActionPlanList();
   }
 
   getActionPlanList(){
     this.commonService.showLoading();
-    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId}).subscribe({
+    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId,
+      categoryId: this.categoryId}).subscribe({
       next: (res) => {
         if(res){
          this.actionPlanList = res;
+         this.actionPlanListToShow = res;
          this.commonService.hideLoading();
         }
        },
@@ -62,46 +61,32 @@ export class EvidenceReceivedComponent implements OnInit {
      });
   }
 
-  observeAction(status:number,id:any){
-    this.observationAction = status;
-    this.id= id;
-    this.save();
-  }
-
-  save(){
+  submit(){
     this.commonService.showLoading();
-    this.auditExeService.updateEvidenceReceived({observationAction:this.observationAction,id:this.id}).subscribe({
+    this.actionPlanList.forEach((element:any) => {
+      element.auditPlanId = this.auditPlanId;
+      element.createdBy = this.userId;
+    });
+
+    this.auditExeService.saveActionPlan(this.actionPlanList).subscribe({
       next: (res) => {
         if(res){
           Swal.fire({
             title: res.message,
             icon: 'success',
-          })
+          });
           this.commonService.hideLoading();
         }
        },
        error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
-      },
+      }, 
      }); 
   }
 
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
-  }
-
-  openModal(status:any,item:any){
-    const initialState: ModalOptions = {
-      initialState: {
-       data:item,
-       status:status,
-       userId:this.userId,
-       title: 'Modal with component'
-      }
-    };
-    this.bsModalRef = this.modalService.show(EvidenceAuditorRemarksComponent, initialState);
-    this.bsModalRef.content.closeBtnName = 'Close';
-  }
+  } 
 
 }
