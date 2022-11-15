@@ -32,12 +32,12 @@ export class CreatePlanComponent implements OnInit {
       locationId: new FormControl('', [Validators.required]),
       otherLocation: new FormControl('', [Validators.required]),
       otherCode: new FormControl('', [Validators.required]),
-      typeCode: new FormControl('', [Validators.required]),
-      typeName: new FormControl('', [Validators.required]),
-      typeLocation: new FormControl('', [Validators.required]),
+      typeCode: new FormControl('', []),
+      typeName: new FormControl('', []),
+      typeLocation: new FormControl('', []),
       plannedStartDate: new FormControl('', [Validators.required]),
       plannedEndDate: new FormControl('', [Validators.required]),
-      additionalMSILEmail: new FormControl('', [Validators.required]),
+      additionalMSILEmail: new FormControl('', []),
       auditeeEmail: new FormControl('', [Validators.required]),
       attachment: new FormControl('', []),
    });
@@ -52,10 +52,15 @@ export class CreatePlanComponent implements OnInit {
   }
 
   submit(){
+    this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
+      Swal.fire({
+        title: 'Please fill all mandatory fields.',
+        icon: 'error',
+      });
+      this.commonService.hideLoading();
       return;
     }
-    this.commonService.showLoading();  
     const body = this.createPlanForm.value ;
 
     const formData = new FormData(); 

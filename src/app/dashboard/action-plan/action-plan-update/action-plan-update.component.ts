@@ -13,11 +13,10 @@ import Swal from 'sweetalert2';
 })
 export class ActionPlanUpdateComponent implements OnInit {
   dateFormat = dataConstants.dateFormate;
-  actionPlanList :any=[];
-  actionPlanListToShow :any;
+  auditPlanId: any;
   categoryId:any;
-  auditPlanId:any;
-  userId:any;
+  actionPlanList:any = [];
+  actionPlanAudi:any=[];
   pagination = {
     page: 1,
     pageNumber: 1,
@@ -25,73 +24,91 @@ export class ActionPlanUpdateComponent implements OnInit {
   }
 
   constructor(
-    private authService:AuthenticationService,
-    private commonService: CommonService,
     private auditExeService:AuditExecutionService,
-    private route:ActivatedRoute,
+    private commonService: CommonService,
     private router:Router,
+    private route:ActivatedRoute
   ) { 
-    this.route.paramMap.subscribe((params:ParamMap)=>{
-      const id = params.get('id');
-      const cid = params.get('cid');
-      id ? this.auditPlanId = id : '';
+    this.route.paramMap.subscribe((res:ParamMap)=>{
+      let Id = res.get('id');
+      const cid = res.get('cid');
+      this.auditPlanId = Id;
       cid ? this.categoryId = cid : '';
-    });
-    this.userId = this.authService.getLoginDetails().UserId;
+    })
   }
 
   ngOnInit(): void {
-    this.getActionPlanList();
+  this. getActionPlanList();
   }
 
   getActionPlanList(){
     this.commonService.showLoading();
-    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId,
-      categoryId: this.categoryId}).subscribe({
+    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
          this.actionPlanList = res;
-         this.actionPlanListToShow = res;
-         this.commonService.hideLoading();
+        // this.actionPlanListToShow = res;
+        this.commonService.hideLoading();
         }
        },
-      error: (e) => {
+      error: (e) => 
+      {
         console.error(e);
         this.commonService.hideLoading();
       }, 
      });
   }
 
-  submit(){
+  submit(status:any){
     this.commonService.showLoading();
     this.actionPlanList.forEach((element:any) => {
-      element.auditPlanId = this.auditPlanId;
-      element.createdBy = this.userId;
+      element.remark = element.remarkOfAuditor;
+      this.actionPlanAudi.push({id:element.id,remark:element.remark});
     });
-
-    this.auditExeService.saveActionPlan(this.actionPlanList).subscribe({
+    this.auditExeService.actionPlanRemarks(this.actionPlanAudi).subscribe({
       next: (res) => {
         if(res){
-          Swal.fire({
-            title: res.message,
-            icon: 'success',
-          });
-          this.commonService.hideLoading();
+          const data ={
+            id: this.auditPlanId,
+            isActionPlanRejected: status == 'accept' ? 1 : 0
+           };
+           this.auditExeService.actionPlanApproval(data).subscribe({
+            next: (res) => {
+              if(res){
+                this.commonService.hideLoading();
+                Swal.fire({
+                  title: res.message,
+                //  text: 'Please login again!',
+                  icon: 'success',
+                })
+              }
+             },
+            error: (e) => {
+              console.error(e);
+              this.commonService.hideLoading();
+            }, 
+           }); 
         }
        },
-       error: (e) => {
+      error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
+        Swal.fire({
+          title: e,
+        //  text: 'Please login again!',
+          icon: 'error',
+        })
       }, 
      }); 
   }
 
+  close(){
+    this.router.navigateByUrl(`dashboard/action-plan/auditor/category/${this.auditPlanId}`);
+  }
+
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
-  } 
-
-  back(){
-    this.router.navigateByUrl(`dashboard/action-plan/auditor/category/${this.auditPlanId}`); 
   }
+
 
 }
