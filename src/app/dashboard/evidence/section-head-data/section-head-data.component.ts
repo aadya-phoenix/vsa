@@ -1,6 +1,7 @@
 import { ConditionalExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./section-head-data.component.css']
 })
 export class SectionHeadDataComponent implements OnInit {
-
+  dateFormate = dataConstants.dateFormate;
    accept = 1;
    reject = 0;
    auditPlanId='';

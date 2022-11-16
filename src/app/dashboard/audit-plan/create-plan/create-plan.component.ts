@@ -152,6 +152,29 @@ export class CreatePlanComponent implements OnInit {
     }); 
   }
 
+  download(){
+    this.commonService.showLoading();  
+    this.auditPlanService.downloadTemplate().subscribe({
+      next: (res) => {
+        if(res){
+          //this.downloadFile(res);
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) =>{
+        console.error(e);
+        this.commonService.hideLoading();
+      } , 
+     });
+  }
+
+  downloadFile(data: any) {
+  const blob = new Blob([data], { type: 'application/octet-stream' });
+  const url= window.URL.createObjectURL(blob);
+  console.log("url",url)
+  window.open(url);
+  }
+
   close(){
     this.router.navigateByUrl('/dashboard');
   }

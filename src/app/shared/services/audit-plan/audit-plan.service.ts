@@ -11,6 +11,13 @@ import { HttpService } from '../http/http.service';
 export class AuditPlanService {
   public basePath = environment.baseUrl;
   public headers = new HttpHeaders({});
+  public httpOptions = {
+    headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+    }),
+    observe: 'response' as 'body',
+    responseType: 'blob' as 'json'
+  };
   
   constructor(private http: HttpService, private commmonService: CommonService) {
     this.headers.append(
@@ -152,6 +159,13 @@ export class AuditPlanService {
   bulkUpload(data:any){
     const url = `${this.basePath}api/AuditPlan/BulkUpload`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  downloadTemplate(){
+    const url = `${this.basePath}api/AuditPlan/DownloadTemplate`;
+    return this.http
+      .getBlob(url, this.httpOptions)
+      .pipe(catchError(this.commmonService.Errorhandling));
   }
   
 }

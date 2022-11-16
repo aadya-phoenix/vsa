@@ -121,10 +121,10 @@
                       <td>{{item.otherLocation}}</td>
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
-                      <td></td>
+                      <td>{{item.reportReleaseDate | date:dateFormate}}</td>
                       <td><p class="btn btn-success"></p></td>
                       <td>{{item.typeOfReport}}</td>
-                      <td></td>
+                      <td>{{item.statusPendingAt}}</td>
                       <td *ngIf="isSuperAdmin || isPlanner">
                         <a (click)="viewPlan(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>             
                       </td>

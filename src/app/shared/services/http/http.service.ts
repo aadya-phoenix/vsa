@@ -54,4 +54,10 @@ export class HttpService {
     const url = urlString;
     return this.httpClient.delete(url, { headers, params });
   }
+
+  public getBlob(urlString: string, headers: any): Observable<any> {
+    const url = urlString;
+    return this.httpClient.get(url, { headers });
+  }
+
 }
