@@ -50,8 +50,9 @@ export class ViewPlanEditComponent implements OnInit {
     });
     
     this.viewPlanForm = this.formBuilder.group({
-      vendorId: new FormControl('', []),
-      locationId: new FormControl('', [Validators.required]),
+      vendorCode: new FormControl('', []),
+      vendorName: new FormControl('', []),
+      locationName: new FormControl('', [Validators.required]),
       otherLocation: new FormControl('', [Validators.required]),
       otherCode: new FormControl('', [Validators.required]),
       typeCode: new FormControl('', [Validators.required]),
@@ -66,11 +67,9 @@ export class ViewPlanEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // this.getEmployeeList();
     if(this.viewPlanId){
       this.getViewPlanDetails();
       this.getAttachment();
-      //this.getLocation();
     }
   }
 
@@ -84,7 +83,7 @@ export class ViewPlanEditComponent implements OnInit {
     const formData = new FormData();
      formData.append('Id', body.id);  
      formData.append('vendorId', body.vendorId); 
-     formData.append('locationId', body.locationId);
+     formData.append('locationName', body.locationName);
      formData.append('otherLocation', body.otherLocation);
      formData.append('otherCode', body.otherCode);
      formData.append('typeCode', body.typeCode);
@@ -113,8 +112,9 @@ export class ViewPlanEditComponent implements OnInit {
       next: (res) => {
         if(res){
          this.viewPlanDetails = res;
-         this.viewPlanForm.controls['vendorId'].setValue(this.viewPlanDetails.vendorId);
-         this.viewPlanForm.controls['locationId'].setValue(this.viewPlanDetails.locationId);
+         this.viewPlanForm.controls['vendorCode'].setValue(this.viewPlanDetails.vendorCode);
+         this.viewPlanForm.controls['vendorName'].setValue(this.viewPlanDetails.vendorName);
+         this.viewPlanForm.controls['locationName'].setValue(this.viewPlanDetails.locationName);
          this.viewPlanForm.controls['otherLocation'].setValue(this.viewPlanDetails.otherLocation);
          this.viewPlanForm.controls['otherCode'].setValue(this.viewPlanDetails.otherCode);
          this.viewPlanForm.controls['typeCode'].setValue(this.viewPlanDetails.typeCode);
@@ -143,41 +143,6 @@ export class ViewPlanEditComponent implements OnInit {
       },
      error: (e) => console.error(e), 
     });
-  }
-
-  getLocation(){
-    this.commonService.showLoading(); 
-    this.auditPlanService.getLocationByVendor(this.viewPlanDetails.vendorId).subscribe({
-      next: (res) => {
-        if(res){
-         this.locationObj = res;
-         this.commonService.hideLoading();
-        }
-       },
-       error: (e) =>{
-        console.error(e);
-        this.commonService.hideLoading();
-      } , 
-     });
-  }
-
-  getEmployeeList(){
-    this.commonService.showLoading();  
-    this.employeeService.getEmployee().subscribe({
-      next: (res) => {
-        if(res){
-         this.vendorObj = res.filter((x:any)=>{
-          return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
-          x.roleName == 'Vendor';
-         });
-         this.commonService.hideLoading();
-        }
-       },
-      error: (e) =>{
-        console.error(e);
-        this.commonService.hideLoading();
-      } , 
-     });
   }
 
   dateFormat(date:any){

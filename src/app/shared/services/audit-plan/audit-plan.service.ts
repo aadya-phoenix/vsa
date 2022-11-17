@@ -15,8 +15,8 @@ export class AuditPlanService {
     headers: new HttpHeaders({
     'Content-Type': 'application/json'
     }),
-    observe: 'response' as 'body',
-    responseType: 'blob' as 'json'
+    observe: 'response' ,
+    responseType: 'blob' 
   };
   
   constructor(private http: HttpService, private commmonService: CommonService) {

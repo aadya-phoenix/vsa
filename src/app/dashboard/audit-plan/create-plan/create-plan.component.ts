@@ -28,7 +28,6 @@ export class CreatePlanComponent implements OnInit {
   ) { 
     this.createPlanForm = this.formBuilder.group({
       vendorId: new FormControl('', [Validators.required]),
-     // vendor_name: new FormControl('', [Validators.required]),
       locationId: new FormControl('', [Validators.required]),
       otherLocation: new FormControl('', [Validators.required]),
       otherCode: new FormControl('', [Validators.required]),
@@ -157,7 +156,13 @@ export class CreatePlanComponent implements OnInit {
     this.auditPlanService.downloadTemplate().subscribe({
       next: (res) => {
         if(res){
-          //this.downloadFile(res);
+          let fileName = res.headers.get('content-disposition')?.
+          split(';')[1].split('=')[1];
+          let blob:Blob =res.body as Blob;
+          let a = document.createElement('a');
+          a.download = fileName;
+          a.href =window.URL.createObjectURL(blob);
+          a.click();
          this.commonService.hideLoading();
         }
        },
@@ -166,13 +171,6 @@ export class CreatePlanComponent implements OnInit {
         this.commonService.hideLoading();
       } , 
      });
-  }
-
-  downloadFile(data: any) {
-  const blob = new Blob([data], { type: 'application/octet-stream' });
-  const url= window.URL.createObjectURL(blob);
-  console.log("url",url)
-  window.open(url);
   }
 
   close(){
