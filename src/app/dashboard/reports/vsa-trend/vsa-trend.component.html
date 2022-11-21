@@ -14,64 +14,28 @@
                         <div class="col-md-12">
                             <div class="table-responsive max_hei_table">
                                 <table id="example2" class="table table-bordered table-hover">
-
                                     <thead>
                                         <tr class="now_rap text-center sticky_header">
                                             <th>FY</th>
-                                            <th>15-16</th>
-                                            <th>16-17</th>
-                                            <th>17-18</th>
-                                            <th>18-19</th>
-                                            <th>19-20</th>
-                                            <th>20-21</th>
-                                            <th>21-22</th>
-                                            <th>22-23 Till Apr</th>
+                                            <th *ngFor="let item of tableData">{{item.financialYear}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="tbody_data">
                                             <td>VSA Green</td>
-                                            <td>27</td>
-                                            <td>38</td>
-                                            <td>128</td>
-                                            <td>244</td>
-                                            <td>345</td>
-                                            <td>367</td>
-                                            <td>450</td>
-                                            <td>438</td>
+                                            <td *ngFor="let item of tableData">{{item.green}}</td>
                                         </tr>
                                         <tr class="tbody_data">
                                             <td>VSA Yellow</td>
-                                            <td>27</td>
-                                            <td>38</td>
-                                            <td>128</td>
-                                            <td>244</td>
-                                            <td>345</td>
-                                            <td>367</td>
-                                            <td>450</td>
-                                            <td>438</td>
+                                            <td *ngFor="let item of tableData">{{item.yellow}}</td>
                                         </tr>
                                         <tr class="tbody_data">
                                             <td>VSA Red</td>
-                                            <td>27</td>
-                                            <td>38</td>
-                                            <td>128</td>
-                                            <td>244</td>
-                                            <td>345</td>
-                                            <td>367</td>
-                                            <td>450</td>
-                                            <td>438</td>
+                                            <td *ngFor="let item of tableData">{{item.red}}</td>
                                         </tr>
                                         <tr class="tbody_data">
                                             <td>Total</td>
-                                            <td>27</td>
-                                            <td>38</td>
-                                            <td>128</td>
-                                            <td>244</td>
-                                            <td>345</td>
-                                            <td>367</td>
-                                            <td>450</td>
-                                            <td>438</td>
+                                            <td *ngFor="let item of tableData">{{item.green + item.yellow + item.red}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

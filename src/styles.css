@@ -250,7 +250,7 @@
     -ms-transform: translate(0, 0);
     -o-transform: translate(0, 0);
     transform: translate(0, 0);
-    width: 50px !important;
+    width: 50px;
     z-index: 850;
 }
 .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>p{
@@ -53379,9 +53379,7 @@
     background-color: #80808012;
   }
   .layout-fixed .main-sidebar {
-    
-    top: 3px !important;
-    box-shadow: none !important;
+    box-shadow: none;
   }
   .active, .li_active:hover {
     background-color: #1a65a3;
@@ -53445,16 +53443,16 @@
     height: 36px;
     margin-left: 39px;
   }
-  .main-header{
+  /* .main-header{
       margin-left:200px !important;
-  }
-  .main-sidebar{
+  } */
+  /* .main-sidebar{
     overflow-x:hidden;
-    width: 200px !important;
-  }
-  .content-wrapper {
+    width: 200px;
+  } */
+  /* .content-wrapper {
     margin-left: 200px !important;
-  }
+  } */
   .nav-item {
   width:100%;}
   
