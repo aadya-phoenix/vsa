@@ -40,7 +40,6 @@ export class HttpService {
     return this.httpClient.post(url, payload, { headers, params });
   }
 
-
   public put(
     urlString: string,
     payload: any,
@@ -57,7 +56,7 @@ export class HttpService {
 
   public getBlob(urlString: string, headers: any): Observable<any> {
     const url = urlString;
-    return this.httpClient.get(url, { headers });
+    return this.httpClient.get<Blob>(url, { observe: 'response', responseType: 'blob' as 'json'});
   }
 
 }

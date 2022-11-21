@@ -11,6 +11,7 @@ export const dataConstants = {
     ],
     dateFormate: 'dd-MM-yyyy',
     dateTimeFormate: 'dd-MM-yyyy HH:mm a',
+    NullId: "00000000-0000-0000-0000-000000000000",
     monthList: [{id:1, name:'January'},{id:2, name:'February'},{id:3, name:'March'},{id:4, name:'April'},{id:5, name:'May'},{id:6, name:'June'},{id:7, name:'July'},{id:8, name:'August'},{id:9, name:'September'},{id:10, name:'October'},{id:11, name:'November'},{id:12, name:'December'}],
     SuperAdmin :{RoleId:'e822bfb4-b016-4408-bbb5-7690de1754a1', role:'Admin'},
     Planner :{RoleId:'1dbfda66-6e5b-4950-ba03-cb599cba79cd', role: "Planner"},
@@ -24,5 +25,6 @@ export const dataConstants = {
         Provisional : "0022B01E-1880-4C87-9592-A73E64163681",
         Final : "3A56C727-CFE4-44BD-8DD1-184CA71EC6EF"
     },
+    
     
 }

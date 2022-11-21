@@ -9,6 +9,7 @@ import { ActionPlanObservationComponent } from './action-plan-observation/action
 import { ActionPlanReceiveComponent } from './action-plan-receive/action-plan-receive.component';
 import { ActionPlanUpdateComponent } from './action-plan-update/action-plan-update.component';
 import { ActionPlanVendorComponent } from './action-plan-vendor/action-plan-vendor.component';
+import { ActionPlanComponent } from './action-plan.component';
 import { PendingActionPlanComponent } from './pending-action-plan/pending-action-plan.component';
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'vendor/category/:id', component:ActionPlanCategoryVendorComponent},
   {path:'receive',component:ActionPlanReceiveComponent},
   {path:'auditor/category/:id', component:ActionPlanAuditorCategoryComponent},
-  {path:'update/:id/:cid',component:ActionPlanUpdateComponent}
+  {path:'update/:id/:cid',component:ActionPlanUpdateComponent},
+  {path:'new',component:ActionPlanComponent}
 ];
 
 @NgModule({

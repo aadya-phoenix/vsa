@@ -1,6 +1,6 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CommonService } from '../common/common.service';
 import { HttpService } from '../http/http.service';
@@ -11,12 +11,11 @@ import { HttpService } from '../http/http.service';
 export class AuditPlanService {
   public basePath = environment.baseUrl;
   public headers = new HttpHeaders({});
+
   public httpOptions = {
-    headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-    }),
+    headers: this.headers,
     observe: 'response' ,
-    responseType: 'blob' 
+    responseType: 'blob'  as 'json'
   };
   
   constructor(private http: HttpService, private commmonService: CommonService) {
@@ -161,11 +160,11 @@ export class AuditPlanService {
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
 
-  downloadTemplate(){
+  downloadTemplate(): Observable<HttpResponse<Blob>>{
     const url = `${this.basePath}api/AuditPlan/DownloadTemplate`;
     return this.http
-      .getBlob(url, this.httpOptions)
-      .pipe(catchError(this.commmonService.Errorhandling));
+      .getBlob(url,{ observe: 'response', responseType: 'blob' as 'json'} )
+     
   }
   
 }
