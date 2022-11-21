@@ -40,17 +40,18 @@
                                   <label class="mb-0">Judgment</label>
                                   <div class="d-flex">
                                     <div class="mr-3">
-                                      <input type="radio" formControlName="JudgementId" id="html" name="fav_language" value="70d2109a-1bb4-46ff-ad68-25b00efdce33"
+                                      <input type="radio" formControlName="JudgementId" id="html"    name="fav_language" 
+                                      [value]= "triangle"
                                         class="chek_box"><img src="../../../../assets/icons/triangle.png"
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" id="javascript" formControlName="JudgementId" name="fav_language" value="0c12ff85-a88e-4f05-a4f8-8115ead3e379"
+                                      <input type="radio" id="javascript" formControlName="JudgementId" name="fav_language" [value]="pie"
                                         class="chek_box"><img src="../../../../assets/icons/square.png"
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" id="css" formControlName="JudgementId" name="fav_language" value="4a616c17-5038-4b50-b437-5a781c09ffc0" class="chek_box"><img
+                                      <input type="radio" id="css" formControlName="JudgementId" name="fav_language" [value]="cross" class="chek_box"><img
                                         src="../../../../assets/icons/new-moon.png" class="diacisq_css">
                                     </div>
                                   </div>
@@ -87,7 +88,7 @@
                             </div>
                           </div>
                           <div class="card-footer">
-                            <button (click)="submit(i,regulationList[i].id)" class="btn btn-success">Submit</button>
+                            <button type="button" (click)="submit(i,regulationList[i].id)" class="btn btn-success">Submit</button>
                           </div>
                         </div>
                       </ng-container>

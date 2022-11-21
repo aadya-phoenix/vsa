@@ -30,6 +30,9 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   nullId =dataConstants.NullId;
   judgeNew:any=[];
   regulationId:any;
+  triangle = dataConstants.JudgementValues.Triangle;
+  cross = dataConstants.JudgementValues.X;
+  pie = dataConstants.JudgementValues.Pie;
 
   constructor(
     private auditPlanService:AuditPlanService,
@@ -97,28 +100,18 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   addMetadata(): void {
-    console.log("add");
     this.metadataArray.push(this.metaDataGroup());
   }
 
-  updateMeta(data:any){
-    console.log("update",data);
-    this.metadataArray.push(this.metaDataUpdateGroup(data)); 
+  updateMetadata(data:any){
+    this.metadataArray.push(this.metaUpdateGroup(data)); 
   }
 
-  private metaDataUpdateGroup(data:any): FormGroup {
+  private metaUpdateGroup(data:any): FormGroup {
     console.log("data",data);
     return this.fb.group({
       JudgementId: new FormControl(data.judgementId,[]),
-      ObservationList: this.fb.array(data.ObservationList)
-    })
-  }
-
-  updateMetadata(data:any){
-    console.log("data group",data);
-    return this.fb.group({
-      JudgementId: new FormControl(data.judgementId,[]),
-      ObservationList: this.fb.array(data.judgeArray),
+      ObservationList: this.fb.array(data.judgeNew,[])
     })
   }
 
@@ -146,19 +139,22 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         if(res){
          this.regulationList = res;
          this.regulationList.forEach((reg:any)=>{
-          reg.remarks = [];
           this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
             regulationId:reg.id}).subscribe({
             next: (res) => {
               if(res){
-                res.forEach((x:any)=>{
-                  reg.remarks.push({remark:x.remark, id:x.id});
-                });
-                if(reg.judgementId == this.nullId){
+                this.observationList = res;
+                if(reg.issubmitted == false){
                   this.addMetadata();
-                 }
+                 }                
                  else{
+                  this.judgeNew=[];
+                  reg.remarks = [];
+                  reg.judgeNew = [];
                   this.regulationId = reg.id;
+                  this.observationList.forEach((x:any)=>{
+                    reg.remarks.push({remark:x.remark, id:x.id});
+                  });
                   for(let item of reg.remarks){
                     this.judgeNew.push(this.fb.group({
                      remark: item.remark ,
@@ -169,67 +165,15 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
                      id: item.id
                      }));
                    }
-                   reg.judgeArray = this.judgeNew;
+                   reg.judgeNew = this.judgeNew;
                    this.updateMetadata(reg);
                  }
               }
              },
             error: (e) => console.error(e), 
            });
-           
-         //reg.judgementId != this.nullId ? this.updateMeta(this.judgeDetails): this.addMetadata();
          });
          this.getJudgement();
-
-        /*  this.observationList.forEach((obs: any) => {
-          let regulation = this.regulationList.find((x:any) => 
-          x.id == obs.regulationId);
-          this.judgeDetails.JudgementId ='';
-          this.judgeDetails.ObservationList = [];
-          if (regulation) {
-            console.log("obs.remark",obs.remark)
-            this.judgeDetails.ObservationList.push(this.fb.group({remark:
-              obs.remark,file:''}));
-             // console.log("obs.remark",obs.remark,regulation.judgementId)
-            this.judgeDetails.JudgementId = regulation.judgementId;
-            console.log("this.judgeDetails",this.judgeDetails);
-            this.metadataArray.push(this.metaDataUpdateGroup(this.judgeDetails)); 
-         //this.updateMeta(this.judgeDetails);
-          }
-          else{
-            this.addMetadata();
-           }
-         });
-          this.regulationList.forEach((obs: any) => {
-          if(obs.issubmitted == true){
-          let observation = this.observationList.find((x:any) => 
-          x.regulationId == obs.id);
-           if (observation) {
-            console.log("observation list",observation);
-            this.judgeDetails.ObservationList.push(this.fb.group({remark:
-              observation?.remark,file:''}));
-            this.judgeDetails.JudgementId = obs.judgementId;
-            console.log("details",this.judgeDetails);
-            this.updateMeta(this.judgeDetails);
-           } 
-          } 
-          else{
-            this.addMetadata();
-           }
-        }); 
-         if(this.regulationList.length !=0){
-         this.regulationList.forEach((x:any)=>{
-          if(x.issubmitted == true){
-            this.judgeDetails.JudgementId = x.judgementId
-            this.metadataArray.push(this.metaDataUpdateGroup(data)); 
-            this.updateMeta(this.judgeDetails);
-          }
-          else{
-           this.addMetadata();
-          }
-         }); 
-         }
-        this.getJudgement();  */
         }
        },
       error: (e) => console.error(e), 

@@ -25,6 +25,12 @@ export const dataConstants = {
         Provisional : "0022B01E-1880-4C87-9592-A73E64163681",
         Final : "3A56C727-CFE4-44BD-8DD1-184CA71EC6EF"
     },
+
+    JudgementValues:{
+        Triangle:"70d2109a-1bb4-46ff-ad68-25b00efdce33",
+        X:"4a616c17-5038-4b50-b437-5a781c09ffc0",
+        Pie:"0c12ff85-a88e-4f05-a4f8-8115ead3e379"
+    }
     
     
 }
