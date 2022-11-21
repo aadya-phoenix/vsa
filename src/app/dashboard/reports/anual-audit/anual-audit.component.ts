@@ -22,11 +22,7 @@ export class AnualAuditComponent implements OnInit {
   provisionalData:any = []
   salesData: ChartData<'bar'> = {
     labels: this.lables,
-    datasets: [
-      { label: 'Plan', data: this.planData, stack: '0', backgroundColor: 'rgb(127 127 127)', borderColor: 'rgb(127 127 127)', hoverBackgroundColor: 'rgb(127 127 127)', hoverBorderColor: 'rgb(127 127 127)' },
-      { label: 'Final', data: this.finalData, stack: '1', backgroundColor: 'rgb(0 32 96)', borderColor: 'rgb(0 32 96)', hoverBackgroundColor: 'rgb(0 32 96)', hoverBorderColor: 'rgb(0 32 96)' },
-      { label: 'Provisional', data: this.provisionalData, stack: '1', backgroundColor: 'rgb(255 192 0)', borderColor: 'rgb(255 192 0)', hoverBackgroundColor: 'rgb(255 192 0)', hoverBorderColor: 'rgb(255 192 0)' },
-    ],
+    datasets: [],
   };
 
   chartOptions: ChartOptions = {

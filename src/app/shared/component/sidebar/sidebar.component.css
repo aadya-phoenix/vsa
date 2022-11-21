@@ -6,3 +6,85 @@
         margin-left: 0px !important;
     }
 }
+
+.user-panel{
+  text-align: center;
+}
+
+
+/* define a fixed width for the entire menu */
+
+  
+  /* reset our lists to remove bullet points and padding */
+  .mainmenu, .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* make ALL links (main and submenu) have padding and background color */
+  .mainmenu a {
+    display: flex;
+    font-size: 13px;
+    text-decoration: none;
+    padding: 11px 9px;
+    color: #fff;
+    align-items: center;
+  }
+  
+  /* add hover behaviour */
+  .mainmenu a:hover {
+      background-color: #c5c5c524;
+  }
+  
+  
+  /* when hovering over a .mainmenu item,
+    display the submenu inside it.
+    we're changing the submenu's max-height from 0 to 200px;
+  */
+  
+  .mainmenu li:hover .submenu {
+    display: block;
+    max-height: 400px;
+  }
+  
+  /*
+    we now overwrite the background-color for .submenu links only.
+    CSS reads down the page, so code at the bottom will overwrite the code at the top.
+  */
+  
+  .submenu a {
+    background-color: #c5c5c524;
+  }
+  
+  /* hover behaviour for links inside .submenu */
+  .submenu a:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  /* this is the initial state of all submenus.
+    we set it to max-height: 0, and hide the overflowed content.
+  */
+  .submenu {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
+  }
+
+  .fon_13{
+    font-size: 13px;
+  }
+
+  .btn_active {
+   
+   margin-bottom: 5px;
+    cursor: pointer;
+    
+  }
+  
+  /* Style the active class, and buttons on mouse-over */
+  .active, .btn_active:hover {
+    background-color: #666;
+    color: white;
+  }
