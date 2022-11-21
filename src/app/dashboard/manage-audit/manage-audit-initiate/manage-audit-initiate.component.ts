@@ -36,15 +36,15 @@ export class ManageAuditInitiateComponent implements OnInit {
     });
 
     this.initiateForm = this.fb.group({
-      vendorName:new FormControl('',[]),
-      vendorCode:new FormControl('',[]),
+      vendorName:new FormControl('',[Validators.required]),
+      vendorCode:new FormControl('',[Validators.required]),
       startDate:new FormControl('',[Validators.required]),
       endDate:new FormControl('',[Validators.required]),
       partName: new FormControl('',[Validators.required]),
       actualStartDate: new FormControl('',[Validators.required]),
       actualEndDate: new FormControl('',[Validators.required]),
-      otherLocation: new FormControl('',[]),
-      partNumber:  new FormControl('',[]),
+      otherLocation: new FormControl('',[Validators.required]),
+      partNumber:  new FormControl('',[Validators.required]),
     })
   }
 
@@ -98,6 +98,7 @@ export class ManageAuditInitiateComponent implements OnInit {
         icon: 'error',
       });
       this.commonService.hideLoading();
+      return;
     }
     const body = this.initiateForm.value;
     body.id = this.auditPlanId;

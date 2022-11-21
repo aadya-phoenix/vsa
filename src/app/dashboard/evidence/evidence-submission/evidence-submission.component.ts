@@ -109,7 +109,7 @@ export class EvidenceSubmissionComponent implements OnInit {
   }
 
   back(){
-   this.router.navigateByUrl(`dashboard/evidence`);
+    this.router.navigateByUrl(`dashboard/action-plan/vendor/category/${this.auditPlanId}`);
   }
 
   pageChanged(event: any) {

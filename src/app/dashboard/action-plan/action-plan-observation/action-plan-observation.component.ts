@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./action-plan-observation.component.css']
 })
 export class ActionPlanObservationComponent implements OnInit {
-
+  dateFormat = dataConstants.dateFormate;
   actionPlanList :any=[];
   actionPlanListToShow :any;
   categoryId:any;
@@ -27,7 +28,8 @@ export class ActionPlanObservationComponent implements OnInit {
     private authService:AuthenticationService,
     private commonService: CommonService,
     private auditExeService:AuditExecutionService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
   ) { 
     this.route.paramMap.subscribe((params:ParamMap)=>{
       const id = params.get('id');
@@ -87,5 +89,9 @@ export class ActionPlanObservationComponent implements OnInit {
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
   } 
+
+  back(){
+    this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
+  }
 
 }

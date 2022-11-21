@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 
 @Component({
-  selector: 'app-action-plan-details',
-  templateUrl: './action-plan-details.component.html',
-  styleUrls: ['./action-plan-details.component.css']
+  selector: 'app-action-plan-category-vendor',
+  templateUrl: './action-plan-category-vendor.component.html',
+  styleUrls: ['./action-plan-category-vendor.component.css']
 })
-export class ActionPlanDetailsComponent implements OnInit {
-
+export class ActionPlanCategoryVendorComponent implements OnInit {
   auditPlanId:any;
   categoryScoreList:any=[];
 
@@ -54,7 +53,7 @@ export class ActionPlanDetailsComponent implements OnInit {
   }
 
   goToObservation(id:any){
-   this.router.navigateByUrl(`dashboard/action-plan/observe/${this.auditPlanId}/${id}`);
+   this.router.navigateByUrl(`dashboard/evidence/submit/${this.auditPlanId}/${id}`);
   }
 
   gridView2(){}
@@ -64,7 +63,7 @@ export class ActionPlanDetailsComponent implements OnInit {
   }
 
   back(){
-    this.router.navigateByUrl(`dashboard/action-plan`);
-   }
+    this.router.navigateByUrl(`dashboard/action-plan/vendor`); 
+  }
 
 }

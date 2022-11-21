@@ -28,8 +28,10 @@
                         <td>{{i+1}}.1</td>
                         <td>{{item.remarkOfAuditor}}</td>
                         <td><textarea [(ngModel)]="item.detailOfImprovement" class="form-control"></textarea></td>
-                        <td><textarea [(ngModel)]="item.incharge" class="form-control"></textarea></td>
-                        <td><input [(ngModel)]="item.dateOfSubmission" type="date"></td>
+                        <td><textarea [(ngModel)]="item.incharge" class="form-control"></textarea>
+                        </td>
+                        <!-- <td *ngIf="item.dateOfSubmission">{{item.dateOfSubmission | date:dateFormat}}</td> -->
+                        <td ><input [(ngModel)]="item.dateOfSubmission" type="date"></td>
                     </tr>
                 </tbody>
             </table>
@@ -42,5 +44,7 @@
     </div>
     <div class="card-footer">
         <button (click)="submit()" class="btn btn-success">Submit</button>
-        </div>
+         <button (click)="back()" class="btn btn-default">Back</button>
+
+     </div>
 </div>

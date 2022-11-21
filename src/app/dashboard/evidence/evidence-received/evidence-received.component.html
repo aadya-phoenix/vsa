@@ -43,7 +43,7 @@
                         <td>{{item.detailOfImprovement}}</td>
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
-                        <td><a href=""><span class="mr-1">Test Link,</span><span>TestLink</span></a></td>
+                        <td></td>
                         <td><button class="btn btn-success mr-1" 
               
                             (click)="observeAction(1,item.id)">Open</button>
@@ -65,7 +65,7 @@
         </nav>
     </div>
     <div class="card-footer">
-        <button class="btn btn-success">Submit</button>
+        <button (click)="back()" class="btn btn-default">Back</button>
     </div>
 </div>
 

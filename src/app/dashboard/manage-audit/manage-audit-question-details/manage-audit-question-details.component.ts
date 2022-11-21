@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -26,6 +27,9 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     ObservationList:[]
   };
   observeArray = [];
+  nullId =dataConstants.NullId;
+  judgeNew:any=[];
+  regulationId:any;
 
   constructor(
     private auditPlanService:AuditPlanService,
@@ -52,7 +56,82 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this. getAuditAreaByCategory();
-    this.getPlanObservation();
+  }
+
+  private metaDataGroup(): FormGroup {
+    return this.fb.group({
+      JudgementId: new FormControl('',[]),
+      ObservationList: this.fb.array([this.judgeGroup()])
+    })
+  } 
+
+  private judgeGroup(): FormGroup {
+    return this.fb.group({
+      remark: new FormControl('',[]),
+      file: new FormControl('',[]),
+      auditPlanId: new FormControl(this.auditPlanId,[]),
+      createdBy: new FormControl(this.userId,[]),
+      regulationId: new FormControl('',[]),
+      id:new FormControl('',[])
+    });
+  }
+  
+  get metadataArray(): FormArray {
+    return <FormArray>this.questionForm.get('metadata');
+  }
+ 
+  obsArray(index:number) : FormArray {
+    return <FormArray>this.metadataArray.at(index).get("ObservationList");
+  }
+
+  get judgeArray(): FormArray {
+    return this.questionForm.get("ObservationList") as FormArray;
+  }
+
+  addJudge(index: any,val:any): void {
+    (<FormArray>(<FormGroup>this.metadataArray.controls[index]).controls['ObservationList']).push(this.judgeGroup());
+  }
+
+  removeJudge(sessIndex: any,breakIndex:any): void{
+    (<FormArray>(<FormGroup>this.metadataArray.controls[sessIndex]).controls['ObservationList']).removeAt(breakIndex);
+  }
+
+  addMetadata(): void {
+    console.log("add");
+    this.metadataArray.push(this.metaDataGroup());
+  }
+
+  updateMeta(data:any){
+    console.log("update",data);
+    this.metadataArray.push(this.metaDataUpdateGroup(data)); 
+  }
+
+  private metaDataUpdateGroup(data:any): FormGroup {
+    console.log("data",data);
+    return this.fb.group({
+      JudgementId: new FormControl(data.judgementId,[]),
+      ObservationList: this.fb.array(data.ObservationList)
+    })
+  }
+
+  updateMetadata(data:any){
+    console.log("data group",data);
+    return this.fb.group({
+      JudgementId: new FormControl(data.judgementId,[]),
+      ObservationList: this.fb.array(data.judgeArray),
+    })
+  }
+
+  getAuditAreaByCategory(){
+    this.auditPlanService.getAuditAreaByCategory(this.categoryId).subscribe({
+      next: (res) => {
+        if(res){
+          this.auditAreaList = res;
+          this.getRegulation(this.auditAreaList[0]?.id);
+        }
+       },
+      error: (e) => console.error(e), 
+     }); 
   }
 
   getRegulation(id:any){
@@ -66,7 +145,43 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       next: (res) => {
         if(res){
          this.regulationList = res;
-         this.observationList.forEach((obs: any) => {
+         this.regulationList.forEach((reg:any)=>{
+          reg.remarks = [];
+          this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
+            regulationId:reg.id}).subscribe({
+            next: (res) => {
+              if(res){
+                res.forEach((x:any)=>{
+                  reg.remarks.push({remark:x.remark, id:x.id});
+                });
+                if(reg.judgementId == this.nullId){
+                  this.addMetadata();
+                 }
+                 else{
+                  this.regulationId = reg.id;
+                  for(let item of reg.remarks){
+                    this.judgeNew.push(this.fb.group({
+                     remark: item.remark ,
+                     file:'',
+                     auditPlanId:this.auditPlanId,
+                     createdBy: this.userId,
+                     regulationId:reg.id,
+                     id: item.id
+                     }));
+                   }
+                   reg.judgeArray = this.judgeNew;
+                   this.updateMetadata(reg);
+                 }
+              }
+             },
+            error: (e) => console.error(e), 
+           });
+           
+         //reg.judgementId != this.nullId ? this.updateMeta(this.judgeDetails): this.addMetadata();
+         });
+         this.getJudgement();
+
+        /*  this.observationList.forEach((obs: any) => {
           let regulation = this.regulationList.find((x:any) => 
           x.id == obs.regulationId);
           this.judgeDetails.JudgementId ='';
@@ -114,77 +229,15 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
           }
          }); 
          }
-        this.getJudgement(); 
+        this.getJudgement();  */
         }
        },
       error: (e) => console.error(e), 
      });
   }
 
-  private metaDataGroup(): FormGroup {
-    return this.fb.group({
-      JudgementId: new FormControl('',[]),
-      ObservationList: this.fb.array([this.judgeGroup()])
-    })
-  } 
-  
-  get metadataArray(): FormArray {
-    return <FormArray>this.questionForm.get('metadata');
-  }
- 
-  obsArray(index:number) : FormArray {
-    return <FormArray>this.metadataArray.at(index).get("ObservationList");
-  }
-
-  get judgeArray(): FormArray {
-    return this.questionForm.get("ObservationList") as FormArray;
-  }
-
-  private judgeGroup(): FormGroup {
-    return this.fb.group({
-      remark: new FormControl('',[]),
-      file: new FormControl('',[]),
-      auditPlanId: new FormControl(this.auditPlanId,[]),
-      createdBy: new FormControl(this.userId,[]),
-      regulationId: new FormControl()
-    });
-  }
-
-  addJudge(index: any,val:any): void {
-    (<FormArray>(<FormGroup>this.metadataArray.controls[index]).controls['ObservationList']).push(this.judgeGroup());
-  }
-
-  removeJudge(sessIndex: any,breakIndex:any): void{
-    (<FormArray>(<FormGroup>this.metadataArray.controls[sessIndex]).controls['ObservationList']).removeAt(breakIndex);
-  }
-
-  addMetadata(): void {
-    this.metadataArray.push(this.metaDataGroup());
-  }
-
-  updateMeta(data:any){
-    console.log("meta",data)
-    this.metadataArray.push(this.metaDataUpdateGroup(data)); 
-  }
-
-  private metaDataUpdateGroup(data:any): FormGroup {
-    console.log("data",data);
-    return this.fb.group({
-      JudgementId: new FormControl(data.judgementId,[]),
-      ObservationList: this.fb.array(data.ObservationList)
-    })
-  }
-
-  updateMetadata(data:any){
-    console.log("data group",data);
-    return this.fb.group({
-      JudgementId: new FormControl(data.judgementId,[]),
-      ObservationList: this.fb.array([this.judgeGroup()])
-    })
-  }
-
-  getPlanObservation(){
-    this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, categoryId:this.categoryId}).subscribe({
+  getPlanObservation(id:any){
+    this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, regulationId:id}).subscribe({
       next: (res) => {
         if(res){
          this.observationList = res;    
@@ -194,17 +247,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
      });
   }
 
-  getAuditAreaByCategory(){
-    this.auditPlanService.getAuditAreaByCategory(this.categoryId).subscribe({
-      next: (res) => {
-        if(res){
-          this.auditAreaList = res;
-          this.getRegulation(this.auditAreaList[0]?.id);
-        }
-       },
-      error: (e) => console.error(e), 
-     }); 
-  }
 
   getJudgement(){
     this.auditPlanService.getJudgement().subscribe({

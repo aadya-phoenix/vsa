@@ -98,7 +98,7 @@
                 </a>
               </li>
               <li class="nav-item" *ngIf="isVendor"> 
-                <a routerLink="/dashboard/evidence" class="nav-link">
+                <a routerLink="/dashboard/action-plan/vendor" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
                   <p>
                     Evidence Submission
@@ -106,7 +106,7 @@
                 </a>
               </li>
               <li class="nav-item" *ngIf="isAuditor"> 
-                <a routerLink="/dashboard/evidence/receive" class="nav-link">
+                <a routerLink="/dashboard/action-plan/auditor" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
                   <p>
                     Evidence Received
@@ -159,7 +159,7 @@
             
           </li>
           <li class="nav-item"  *ngIf="isAuditor || isSectionHead">
-            <a routerLink="/dashboard/action-plan/auditor" class="nav-link">
+            <a routerLink="/dashboard/action-plan/receive" class="nav-link">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Action Plan 

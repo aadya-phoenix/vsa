@@ -1,25 +1,26 @@
 <div class="card">
     <div class="card-header">
         <div class="header_card">
-            <h3 class="card-title">Regulation for initial production control </h3>
+            <h3 class="card-title">Regulation for initial production control </h3> 
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive max_hei_table">
+        <div class="table-responsive max_hei_table" >
             <table id="" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
-                        <th colspan="10">Observation({{actionPlanList.length}})</th>
+                        <th colspan="9">Observation({{actionPlanList.length}})
+                            <button class="btn btn-success mr-1" (click)="submit('accept')">Accept</button>
+                            <button class="btn btn-danger" (click)="submit('reject')">Reject</button>
+                        </th>
                     </tr>
-                    <tr class=" text-center sticky_header">
+                    <tr class=" text-center sticky_header fon_9">
                         <th>Observation</th>
                         <th>ITEM NO.</th>
                         <th>SUB ITEM NO. </th>
-                        <th>DESIRED IMPROVEMENT POINTS</th>
                         <th>DETAIL OF IMPROVEMENT PLAN</th>
                         <th>IN-CHARGE</th>
                         <th>DATE</th>
-                        <th>Upload(Multiple Evidence Can be Uploaded)</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -28,13 +29,12 @@
                         <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
                         <td>{{i+1}}</td>
                         <td>{{i+1}}.1</td>
-                        <td>{{item.remarkOfAuditor}}</td>
                         <td>{{item.detailOfImprovement}}</td>
                         <td>{{item.incharge}}</td>
-                        <td>{{item.dateOfSubmission | date:dateFormat}}</td>
-                        <td><input type="file" id="exampleInputFile" (change)="fileUpload($event)"
-                         class="form-control"  multiple></td>
-                        <td><button class="btn btn-success"  (click)="submit(item)">Submit</button></td>
+                        <td>{{item.dateOfSubmission | date:dateFormat}}</td> 
+                        <td>
+                           <textarea [(ngModel)]="item.remarkOfAuditor" class="form-control" placeholder="Enter your Remarks"></textarea>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -46,6 +46,6 @@
           </nav>
     </div>
     <div class="card-footer">
-        <button class="btn btn-default" (click)="back()">Back</button>
+        <button class="btn btn-default" (click)="close()">Back</button>
     </div>
 </div>
