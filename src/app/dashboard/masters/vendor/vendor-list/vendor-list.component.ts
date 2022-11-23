@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
+import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
 import Swal from 'sweetalert2';
 
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./vendor-list.component.css']
 })
 export class VendorListComponent implements OnInit {
- 
+  dateFormat = dataConstants.dateFormate;
   getUserrole: any;
   vendorObj:any=[];
   isSuperAdmin = false;
@@ -24,11 +25,13 @@ export class VendorListComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
+  searchText:any;
 
   constructor(
     private router:Router,
     private authService: AuthenticationService,
     private vendorService:VendorMasterService,
+    private employeeService: EmployeeMasterService,
     private commonService: CommonService, 
     ) { 
     this.getUserrole = this.authService.getRolefromlocal();
@@ -37,7 +40,7 @@ export class VendorListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getVendorList();
+    this.getEmployeeList();
   }
 
   close(){}
@@ -48,6 +51,25 @@ export class VendorListComponent implements OnInit {
 
   editVendor(item:any){
     this.router.navigateByUrl(`dashboard/vendor/edit/${item.id}`);  
+  }
+
+  getEmployeeList() {
+    this.commonService.showLoading();
+    this.employeeService.getEmployee().subscribe({
+      next: (res) => {
+        if (res) {
+          this.vendorObj = res.filter((x: any) => {
+            return x.roleId == "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
+              x.roleName == 'Vendor';
+          });
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      },
+    });
   }
 
   getVendorList(){

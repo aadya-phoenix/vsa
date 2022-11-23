@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                      <div class="header_card">
-                         <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+                         <h3 class="card-title">Audit Area Details</h3>
                          <button class="btn btn-success">Download PDF</button>
                       </div>
                  </div>
@@ -110,18 +110,19 @@
 
                                     <thead>
                                         <tr class="now_rap text-center sticky_header">
-                                            <th colspan="3">Total Achived</th>
-                                            <th colspan="3">Total</th>
+                                            <th colspan="2">Achieved/Total</th>
+                                            <th>○</th>
+                                            <th >△</th>
+                                            <th>×</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="tbody_data" *ngFor="let item of auditReportData?.catergoryWiseScoreModel;let i = index">
                                             <td>{{i+1}}</td>
-                                            <td>{{item.name}}</td>
-                                            <td>{{item.pendingCount}}</td>
-                                            <td>{{item.totalCount}}</td>
-                                            <td>{{item.categoryTotalCount}}</td>
-                                            <!-- <td>{{(item.judgment/item.total*100) > 0 ? (item.judgment/item.total*100) : 0 | number:'1.0-2'}}</td> -->
+                                            <td>{{item.submittedCount}}/{{item.categoryTotalCount}}</td>
+                                            <td>{{item.pieScore}}</td>
+                                            <td>{{item.triangleScore}}</td>
+                                            <td>{{item.xScore}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

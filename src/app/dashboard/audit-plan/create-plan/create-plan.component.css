@@ -8,3 +8,8 @@
     cursor: pointer;
     margin-bottom: 0px !important;
   }
+
+  .w_100 {
+    width: 100%;
+}
+

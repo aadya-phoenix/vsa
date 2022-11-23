@@ -20,6 +20,7 @@ export class ManageAuditInitiateComponent implements OnInit {
   initiateDetails:any;
   vendorObj:any=[];
   vendorId:any;
+  disabled= true;
   
   constructor(
     private fb: FormBuilder,
@@ -36,20 +37,19 @@ export class ManageAuditInitiateComponent implements OnInit {
     });
 
     this.initiateForm = this.fb.group({
-      vendorName:new FormControl('',[Validators.required]),
-      vendorCode:new FormControl('',[Validators.required]),
-      startDate:new FormControl('',[Validators.required]),
-      endDate:new FormControl('',[Validators.required]),
+      vendorName:new FormControl('',[]),
+      vendorCode:new FormControl('',[]),
+      plannedStartDate:new FormControl('',[]),
+      plannedEndDate:new FormControl('',[]),
       partName: new FormControl('',[Validators.required]),
       actualStartDate: new FormControl('',[Validators.required]),
       actualEndDate: new FormControl('',[Validators.required]),
-      otherLocation: new FormControl('',[Validators.required]),
+      otherLocation: new FormControl('',[]),
       partNumber:  new FormControl('',[Validators.required]),
     })
   }
 
   ngOnInit(): void {
-   // this.getEmployeeList();
     this.getinitiateDetails();
   }
 
@@ -62,9 +62,10 @@ export class ManageAuditInitiateComponent implements OnInit {
          this.vendorId = this.initiateDetails.vendorId;
          this.initiateForm.controls['vendorName'].setValue(this.initiateDetails.vendorName);
          this.initiateForm.controls['vendorCode'].setValue(this.initiateDetails.vendorCode);
-         this.initiateForm.controls['startDate'].setValue(this.dateFormat(this.initiateDetails.plannedStartDate));
-         this.initiateForm.controls['endDate'].setValue(this.dateFormat(this.initiateDetails.plannedEndDate));
-        // this.initiateForm.controls['partName'].setValue(this.dateFormat(this.initiateDetails.partName));
+         this.initiateForm.controls['plannedStartDate'].setValue(this.dateFormat(this.initiateDetails.plannedStartDate));
+         this.initiateForm.controls['plannedEndDate'].setValue(this.dateFormat(this.initiateDetails.plannedEndDate));
+         this.initiateForm.controls['partName'].setValue(this.initiateDetails?.partName);
+         this.initiateForm.controls['partNumber'].setValue(this.initiateDetails?.partNumber);
          this.commonService.hideLoading();
         }
        },
@@ -116,7 +117,7 @@ export class ManageAuditInitiateComponent implements OnInit {
   }
 
   back(){
-    this.router.navigateByUrl(`dashboard/manage-audit/initiate/${this.auditPlanId}`);  
+    this.router.navigateByUrl(`dashboard/manage-audit`);  
   }
 
   dateFormat(date:any){

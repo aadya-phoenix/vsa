@@ -5,6 +5,7 @@ import { CreatePlanRoutingModule } from './create-plan-routing.module';
 import { CreatePlanComponent } from './create-plan.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     CreatePlanRoutingModule,
-    RouterModule
+    RouterModule,
+    NgSelectModule
   ]
 })
 export class CreatePlanModule { }

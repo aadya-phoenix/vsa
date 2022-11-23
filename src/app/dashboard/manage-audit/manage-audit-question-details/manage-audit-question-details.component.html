@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Audit Area Details (Vendor 1)</h3>
+            <h3 class="card-title">Audit Area Details</h3>
          </div>
           <form [formGroup]="questionForm" enctype="multipart/form-data">
             <div class="card-body">
@@ -23,8 +23,6 @@
                   <div class="col-sm-8">
                     <div class="mt-2 p-2">
                       <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
-                       <!-- <form >
-                           <ng-container *ngFor="let object of regulationList"></ng-container> -->
                           <ng-container formArrayName="metadata">
                         <div class="card"  *ngFor="let obj of metadataArray.controls; let i = index">
                           <div class="card-header">
@@ -35,23 +33,22 @@
                           <div class="card-body"  >
                             <div class="row" [formGroupName]="i">
                               <div class="col-sm-12" >
-                             
                                 <div class="jugme_css">
                                   <label class="mb-0">Judgment</label>
                                   <div class="d-flex">
                                     <div class="mr-3">
-                                      <input type="radio" formControlName="JudgementId" id="html"    name="fav_language" 
+                                      <input type="radio" (click)="judgeValue($event.target,i)" formControlName="JudgementId"      
                                       [value]= "triangle"
                                         class="chek_box"><img src="../../../../assets/icons/triangle.png"
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" id="javascript" formControlName="JudgementId" name="fav_language" [value]="pie"
+                                      <input type="radio"  formControlName="JudgementId" (click)="judgeValue($event,i)"  [value]="pie"
                                         class="chek_box"><img src="../../../../assets/icons/square.png"
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" id="css" formControlName="JudgementId" name="fav_language" [value]="cross" class="chek_box"><img
+                                      <input type="radio" formControlName="JudgementId" (click)="judgeValue($event,i)"  [value]="cross" class="chek_box"><img
                                         src="../../../../assets/icons/new-moon.png" class="diacisq_css">
                                     </div>
                                   </div>
@@ -92,7 +89,6 @@
                           </div>
                         </div>
                       </ng-container>
-                      <!-- </form> -->
                         </div>
                     </div>
                   </div>

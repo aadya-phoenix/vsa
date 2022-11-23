@@ -30,7 +30,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   nullId =dataConstants.NullId;
   judgeNew:any=[];
   regulationId:any;
-  triangle = dataConstants.JudgementValues.Triangle;
+  triangle = "70d2109a-1bb4-46ff-ad68-25b00efdce33";
   cross = dataConstants.JudgementValues.X;
   pie = dataConstants.JudgementValues.Pie;
 
@@ -139,6 +139,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         if(res){
          this.regulationList = res;
          this.regulationList.forEach((reg:any)=>{
+          console.log("reg",reg);
           this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
             regulationId:reg.id}).subscribe({
             next: (res) => {
@@ -253,6 +254,10 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   fileInput(event:any,i:any,j:any){
     console.log("event",event.target.files[0],i,j);
+  }
+
+  judgeValue(event:any,i:any){
+    console.log("judge",event,i);
   }
 
 }

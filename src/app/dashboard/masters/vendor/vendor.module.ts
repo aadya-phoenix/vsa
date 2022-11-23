@@ -4,8 +4,9 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
-import {  ReactiveFormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -13,12 +14,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     VendorListComponent,
     VendorEditComponent
   ],
-  providers:[DatePipe],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     VendorRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ]
 })
 export class VendorModule { }

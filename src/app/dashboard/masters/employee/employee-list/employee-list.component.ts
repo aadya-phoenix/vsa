@@ -24,7 +24,7 @@ export class EmployeeListComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
-
+  searchText:any;
   constructor(
     private router:Router,
     private commonService: CommonService, 
@@ -53,6 +53,10 @@ export class EmployeeListComponent implements OnInit {
       next: (res) => {
         if(res){
          this.employeeObj = res;
+         this.employeeObj = res.filter((x: any) => {
+          return x.roleId != "ae44799a-e90a-43a1-8c77-e6b68bf3a9f0" &&
+            x.roleName != 'Vendor';
+        });
          this.commonService.hideLoading();
         }
        },

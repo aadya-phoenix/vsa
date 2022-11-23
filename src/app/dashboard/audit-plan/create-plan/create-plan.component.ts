@@ -19,7 +19,8 @@ export class CreatePlanComponent implements OnInit {
   locationObj: any = [];
   selectedFile: any;
   bulkFile: any;
-
+  today= new Date();
+  minStartDate = {};
   constructor(
     private formBuilder: FormBuilder,
     private auditPlanService: AuditPlanService,
@@ -27,6 +28,7 @@ export class CreatePlanComponent implements OnInit {
     private employeeService: EmployeeMasterService,
     private router: Router
   ) {
+    this.minStartDate = `${this.today.getFullYear()}-${("0" + (this.today.getMonth() + 1)).slice(-2)}-${("0" + this.today.getDate()).slice(-2)}`;
     this.createPlanForm = this.formBuilder.group({
       vendorId: new FormControl('', [Validators.required]),
       locationId: new FormControl('', [Validators.required]),
@@ -54,6 +56,7 @@ export class CreatePlanComponent implements OnInit {
   submit() {
     this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
+      console.log("kk",this.createPlanForm.value);
       Swal.fire({
         title: 'Please fill all mandatory fields.',
         icon: 'error',
@@ -111,9 +114,9 @@ export class CreatePlanComponent implements OnInit {
   }
 
   getVendor(event: any) {
-    let vendorId = event.target.value;
-    this.createPlanForm.controls['vendorId'].setValue(vendorId);
-    this.getLocation(vendorId);
+   let vendorId = event?.id;
+   this.createPlanForm.controls['vendorId'].setValue(vendorId);
+   vendorId ? this.getLocation(vendorId) :  this.createPlanForm.controls['locationId'].setValue('');
   }
 
   getLocation(id: any) {

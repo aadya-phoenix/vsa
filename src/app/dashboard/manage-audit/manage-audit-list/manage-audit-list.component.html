@@ -62,7 +62,7 @@
                                 <h6 class="mr-1 mb-0">Filters:-</h6>
                                 <div class=" mr-1">
                                     <label class="filter_label">Vendor Code</label>
-                                    <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name ">
+                                    <input type="text" [(ngModel)]="vendorCode"  class="form-control mr-1 filter_css" placeholder="Vendor Name ">
                                   </div>
                                 <div class=" mr-1">
                                   <label class="filter_label">Vendor Name</label>
@@ -76,7 +76,7 @@
               
                              <div class=" mr-1">
                                   <label class="filter_label">To Date</label>
-                                  <input type="date" [(ngModel)]="plannedStartDate" class="form-control mr-1 filter_css" placeholder="Date ">
+                                  <input type="date" [(ngModel)]="plannedEndDate" class="form-control mr-1 filter_css" placeholder="Date ">
                               </div>
               
                              <div class=" mr-1">

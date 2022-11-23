@@ -23,9 +23,10 @@ export class ManageAuditListComponent implements OnInit {
   Vendor = dataConstants.Vendor;
   viewPlanList:any=[];
   viewPlanListToShow :any=[];
-
+  vendorCode:any;
   vendorName:string='';
   plannedStartDate:any;
+  plannedEndDate:any;
   statusName:string='';
   counters:any;
 
@@ -84,8 +85,10 @@ export class ManageAuditListComponent implements OnInit {
   filter(){
     this.commonService.showLoading();
     const body={} as any;
+    body.vendorCode = this.vendorCode;
     body.vendorName= this.vendorName;
     body.plannedStartDate = this.plannedStartDate;
+    body.plannedEndDate = this.plannedEndDate;
     body.statusName= this.statusName;
 
     this.auditPlanService.filter(body).subscribe({

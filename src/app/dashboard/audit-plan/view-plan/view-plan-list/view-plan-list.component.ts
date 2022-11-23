@@ -24,6 +24,7 @@ export class ViewPlanListComponent implements OnInit {
   viewPlanListToShow:any = [];
   counters:any=[];
   vendorName:string='';
+  vendorCode:any;
   plannedStartDate:any;
   plannedEndDate:any;
   statusName:string='';
@@ -84,8 +85,10 @@ export class ViewPlanListComponent implements OnInit {
 
   filter(){
     const body={} as any;
+    body.vendorCode = this.vendorCode;
     body.vendorName= this.vendorName;
     body.plannedStartDate = this.plannedStartDate;
+    body.plannedEndDate = this.plannedEndDate;
     body.statusName= this.statusName;
     this.commonService.showLoading();
     this.auditPlanService.filter(body).subscribe({

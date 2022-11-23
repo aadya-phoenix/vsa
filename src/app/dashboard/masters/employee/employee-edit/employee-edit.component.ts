@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -54,8 +55,7 @@ export class EmployeeEditComponent implements OnInit {
       next:(res: any) => {
         this.commonService.hideLoading();
         Swal.fire({
-          title: res.message,
-        //  text: 'Please login again!',
+          title: 'User Edited Successfully',
           icon: 'success',
         })
         this.router.navigateByUrl('dashboard/employee'); 
@@ -72,8 +72,7 @@ export class EmployeeEditComponent implements OnInit {
       next:(res: any) => {
         this.router.navigateByUrl('dashboard/employee'); 
         Swal.fire({
-          title: res.message,
-        //  text: 'Please login again!',
+          title: 'User Created Successfully',
           icon: 'success',
         })
         this.commonService.hideLoading();
@@ -93,6 +92,7 @@ export class EmployeeEditComponent implements OnInit {
          this.employeeForm.controls['name'].setValue(this.employeeDetails.name);
          this.employeeForm.controls['code'].setValue(this.employeeDetails.code);
          this.employeeForm.controls['roleId'].setValue(this.employeeDetails.roleId);
+        // this.employeeForm.controls['createdDate'].setValue(this.dateFormat(this.employeeDetails.createdDate));
          this.commonService.hideLoading();
         }
        },

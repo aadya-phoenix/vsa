@@ -6,6 +6,12 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Employee Master</h3>
+                <div class="form-group filter_course">
+                  <input type="text " name="search " autocomplete="off" [(ngModel)]="searchText"
+                      placeholder="Type to Search" style="width: 87%; height: calc(1.25rem + 14px); margin-left: 13%;" 
+                      class="form-control ng-untouched ng-pristine ng-valid form_width"
+                      ng-reflect-name="search" />
+              </div>
                 <a *ngIf="isSuperAdmin" (click)="addEmployee()" class="btn btn-primary"> 
                     <img src="../../../../../assets/icons/group.png" class="side_imgmaster mr-1">Add Employee</a>
               </div>
@@ -23,11 +29,11 @@
                       <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>
-                  <tr *ngFor="let item of employeeObj| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                  <tr *ngFor="let item of employeeObj | filter:searchText | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                     <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
-                    <td>{{item.userName}}</td>
-                    <td>{{item.code}}</td>
                     <td>{{item.name}}</td>
+                    <td>{{item.code}}</td>
+                    <td>{{item.roleName}}</td>
                     <td>12-2-2022</td>
                     <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
