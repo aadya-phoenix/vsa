@@ -7,10 +7,15 @@
     }
 }
 
-.user-panel{
+.user-panel > img{
   text-align: center;
+  transition: all ease .1s;
 }
 
+::ng-deep .sidebar-collapse .user-panel>img {
+  margin: 4px 12px !important;
+  width: 350px !important;
+}
 
 /* define a fixed width for the entire menu */
 

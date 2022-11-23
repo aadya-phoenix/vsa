@@ -12,7 +12,7 @@ import { ReportService } from 'src/app/shared/services/reports/report.service';
 })
 export class ExecutiveSummaryComponent implements OnInit {
   dateFormat = dataConstants.dateFormate;
-  auditPlanId = "8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
+  auditPlanId = "a0071ce2-a502-45a8-8f0f-c0404bd4737e";
   auditReportData:any;
   chartsData = false;
   data : any = [
