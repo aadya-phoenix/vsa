@@ -13,7 +13,7 @@
                   <div class="col-sm-4" >
                     <div class="d-flex flex_colum mt_17" id="myDIV" *ngFor="let item of auditAreaList">
                       <div id="headingOne" class="div_main_active">
-                        <button class="btn btn-link mb-2 active" data-toggle="collapse" data-target="#collapseOne" (click)="getRegulation(item.id)"
+                        <button class="btn btn-link mb-2 active" (click)="getRegulation(item.id)"
                           aria-expanded="true" aria-controls="collapseOne">
                           {{item.name}}
                         </button>
@@ -22,7 +22,7 @@
                   </div>
                   <div class="col-sm-8">
                     <div class="mt-2 p-2">
-                      <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="collapse show">
                           <ng-container formArrayName="metadata">
                         <div class="card"  *ngFor="let obj of metadataArray.controls; let i = index">
                           <div class="card-header">
