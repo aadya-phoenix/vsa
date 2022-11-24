@@ -86,5 +86,8 @@ export class SectionHeadDataComponent implements OnInit {
     this.pagination.pageNumber = event;
   }
 
+  goToReport(id:any){
+    window.open(`dashboard/evidence/report/${id}`, "_blank"); 
+  }
 
 }

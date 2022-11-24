@@ -14,6 +14,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { EvidenceAuditorRemarksComponent } from './evidence-auditor-remarks/evidence-auditor-remarks.component';
 import { EvidenceReceiveCategoryComponent } from './evidence-receive-category/evidence-receive-category.component';
+import { EvidenceExecutiveSummaryComponent } from './evidence-executive-summary/evidence-executive-summary.component';
+import { NgChartsModule } from 'ng2-charts';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { EvidenceReceiveCategoryComponent } from './evidence-receive-category/ev
     DpmDataComponent,
     EvidenceAuditsComponent,
     EvidenceAuditorRemarksComponent,
-    EvidenceReceiveCategoryComponent
+    EvidenceReceiveCategoryComponent,
+    EvidenceExecutiveSummaryComponent
   ],
   entryComponents:[EvidenceAuditorRemarksComponent],
   imports: [
@@ -35,7 +39,9 @@ import { EvidenceReceiveCategoryComponent } from './evidence-receive-category/ev
     EvidenceRoutingModule,
     RouterModule,
     ModalModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgChartsModule,
+    Ng2SearchPipeModule
   ]
 })
 export class EvidenceModule { }

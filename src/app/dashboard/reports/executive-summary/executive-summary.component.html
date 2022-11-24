@@ -1,141 +1,141 @@
 <section class="content p-3">
-    <div class="row">
-        <div class="col-md-12 p-0">
-            <div class="card">
-                <div class="card-header">
-                     <div class="header_card">
-                         <h3 class="card-title">Audit Area Details</h3>
-                         <button class="btn btn-success">Download PDF</button>
-                      </div>
-                 </div>
-                 <div class="card-body">
-                   <div class="table-responsive max_hei_table">
-                     <table class="table table-bordered">
-                        <thead class="bac_table_white">
-                         <tr class="text-center ">
-                           <th rowspan="2" class="ver_midd">Vendor Quality System Audit Report</th>
-                           <th>Issue Deptt</th>
-                           <td>QA-VSA</td>
-                           <th>Prepared</th>
-                           <th>Verified</th>
-                           <th>Approved</th>
-                          </tr>
-                          <tr class="text-center">
-                            <th>Date of Issue</th>
-                            <td>{{auditReportData.dateOfIssue | date:dateFormat}}</td>
-                            <td>{{auditReportData.preparedBy}}</td>
-                            <td>{{auditReportData.verifiedBy}}</td>
-                            <td>{{auditReportData.approvedBy}}</td>
-                         </tr>
-                        </thead>
-                        <tbody class="text-center">
-                          <tr>
-                            <th colspan="2">Copy to</th>
-                            <th>Supplier name</th>
-                            <th>Supplier Attendant Name</th>
-                            <th colspan="2">Audit Date</th>
-                          </tr>
-                          <tr>
-                            <td>Vendor</td>
-                            <td>1</td>
-                            <td rowspan="2" class="ver_midd">Dummy Industries</td>
-                            <td>Mr. X - Director</td>
-                            <td colspan="2">{{auditReportData.auditDate | date:dateFormat}}</td>
-                          </tr>
-                          <tr>
-                            <td>QAPQ</td>
-                            <td>1</td>
-                            <td rowspan="2">Mr. Y - Plant Head</td>
-                            <th colspan="2">Audit Person</th>
-                          </tr>
-                          <tr>
-                            <td>SC</td>
-                            <td>1</td>
-                            <th>Supplier code:DD01</th>
-                            <td colspan="2">{{auditReportData.auditPerson}}</td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <th>(Audit Score)</th>
-                          </tr>
-                          <tr>
-                            <td>Total</td>
-                            <td>3</td>
-                            <td>62</td>
-                          </tr>
-                        </tbody>
-                        <tbody class="text-center">
-                        </tbody>
-                     </table>
-                   </div>
-                   <div class="table-responsive max_hei_table">
-                      <table class="table table-borderd">
-                         <thead>
-                           <tr class="now_rap text-center sticky_header">
-                             <th rowspan="2" class="ver_midd"><b>Subject:</b> Vendor System Audit</th>
-                             <th>Part Number：</th>
-                             <td>{{auditReportData.partNumber}}</td>
-                           </tr>
-                           <tr class="text-center">
-                             <th>Part Name:</th>
-                             <td>{{auditReportData.partName}}</td>
-                           </tr>
-                        </thead>
-                      </table>
-                   </div>
-     
-                 <p class="mb-1 mt-2"><b>Supplier category is "Yellow". Major improvement areas are as follows:-</b></p>
-                 <p>
-                    1- New product development planning needs improvement.  All relevant activities to be included in preparation of APQP plan.<br>
-                    2- Review of APQP plan to be adequately recorded and Process FMEAs to be made in accordance with the defined standards.<br>
-                    3- Initial flow control process implementation to be improved. Extension criteria of the activity to be clearly defined..<br>
-                    4- 4M change management to be defined and implemented effectively on shop floor with proper recording and quality checks of parts..<br>
-                    5- Tier - 2 supplier controls needs strengthening. Supplier rating and auditing system to be standardized..<br>
-                    6- Skill Evaluation criteria to be defined for operators and adherence to be strengthened. Monitoring of annual training plan to be improved..<br>
-                    7- Quality abnormality handling process needs effective implementation with focus on root cause analysis and standardization of countermeasure actions..<br>
-                    8- Implementation of updated standards on shop floor and actual working as per defined PCS / WI to be ensured..<br>
-                    9- Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
-                    10- Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
-                 </p>
-                   <img src="dist/img/graph.png" class="w_100">
-                 </div>
-            </div>
-            <div class="card card-default">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="table-responsive">
-                                <table id="example2" class="table table-bordered table-hover">
-
-                                    <thead>
-                                        <tr class="now_rap text-center sticky_header">
-                                            <th colspan="2">Achieved/Total</th>
-                                            <th>○</th>
-                                            <th >△</th>
-                                            <th>×</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="tbody_data" *ngFor="let item of auditReportData?.catergoryWiseScoreModel;let i = index">
-                                            <td>{{i+1}}</td>
-                                            <td>{{item.observationCount}}/{{item.categoryTotalCount}}</td>
-                                            <td>{{item.pieScore}}</td>
-                                            <td>{{item.triangleScore}}</td>
-                                            <td>{{item.xScore}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-md-6" *ngIf="this.chartsData">
-                            <canvas baseChart [data]="reportData" [type]="'radar'"
-                                [options]="reportOptions">
-                            </canvas>
-                        </div>
+  <div class="row">
+      <div class="col-md-12 p-0">
+          <div class="card">
+              <div class="card-header">
+                   <div class="header_card">
+                       <h3 class="card-title">Audit Area Details</h3>
+                       <button class="btn btn-success">Download PDF</button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+               </div>
+               <div class="card-body">
+                 <div class="table-responsive max_hei_table">
+                   <table class="table table-bordered">
+                      <thead class="bac_table_white">
+                       <tr class="text-center ">
+                         <th rowspan="2" class="ver_midd">Vendor Quality System Audit Report</th>
+                         <th>Issue Deptt</th>
+                         <td>QA-VSA</td>
+                         <th>Prepared</th>
+                         <th>Verified</th>
+                         <th>Approved</th>
+                        </tr>
+                        <tr class="text-center">
+                          <th>Date of Issue</th>
+                          <td>{{auditReportData.dateOfIssue | date:dateFormat}}</td>
+                          <td>{{auditReportData.preparedBy}}</td>
+                          <td>{{auditReportData.verifiedBy}}</td>
+                          <td>{{auditReportData.approvedBy}}</td>
+                       </tr>
+                      </thead>
+                      <tbody class="text-center">
+                        <tr>
+                          <th colspan="2">Copy to</th>
+                          <th>Supplier name</th>
+                          <th>Supplier Attendant Name</th>
+                          <th colspan="2">Audit Date</th>
+                        </tr>
+                        <tr>
+                          <td>Vendor</td>
+                          <td>1</td>
+                          <td rowspan="2" class="ver_midd">Dummy Industries</td>
+                          <td>Mr. X - Director</td>
+                          <td colspan="2">{{auditReportData.auditDate | date:dateFormat}}</td>
+                        </tr>
+                        <tr>
+                          <td>QAPQ</td>
+                          <td>1</td>
+                          <td rowspan="2">Mr. Y - Plant Head</td>
+                          <th colspan="2">Audit Person</th>
+                        </tr>
+                        <tr>
+                          <td>SC</td>
+                          <td>1</td>
+                          <th>Supplier code:DD01</th>
+                          <td colspan="2">{{auditReportData.auditPerson}}</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th>(Audit Score)</th>
+                        </tr>
+                        <tr>
+                          <td>Total</td>
+                          <td>3</td>
+                          <td>62</td>
+                        </tr>
+                      </tbody>
+                      <tbody class="text-center">
+                      </tbody>
+                   </table>
+                 </div>
+                 <div class="table-responsive max_hei_table">
+                    <table class="table table-borderd">
+                       <thead>
+                         <tr class="now_rap text-center sticky_header">
+                           <th rowspan="2" class="ver_midd"><b>Subject:</b> Vendor System Audit</th>
+                           <th>Part Number：</th>
+                           <td>{{auditReportData.partNumber}}</td>
+                         </tr>
+                         <tr class="text-center">
+                           <th>Part Name:</th>
+                           <td>{{auditReportData.partName}}</td>
+                         </tr>
+                      </thead>
+                    </table>
+                 </div>
+   
+               <p class="mb-1 mt-2"><b>Supplier category is "Yellow". Major improvement areas are as follows:-</b></p>
+               <p>
+                  1- New product development planning needs improvement.  All relevant activities to be included in preparation of APQP plan.<br>
+                  2- Review of APQP plan to be adequately recorded and Process FMEAs to be made in accordance with the defined standards.<br>
+                  3- Initial flow control process implementation to be improved. Extension criteria of the activity to be clearly defined..<br>
+                  4- 4M change management to be defined and implemented effectively on shop floor with proper recording and quality checks of parts..<br>
+                  5- Tier - 2 supplier controls needs strengthening. Supplier rating and auditing system to be standardized..<br>
+                  6- Skill Evaluation criteria to be defined for operators and adherence to be strengthened. Monitoring of annual training plan to be improved..<br>
+                  7- Quality abnormality handling process needs effective implementation with focus on root cause analysis and standardization of countermeasure actions..<br>
+                  8- Implementation of updated standards on shop floor and actual working as per defined PCS / WI to be ensured..<br>
+                  9- Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
+                  10- Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
+               </p>
+                 <img src="dist/img/graph.png" class="w_100">
+               </div>
+          </div>
+          <div class="card card-default">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="table-responsive">
+                              <table id="example2" class="table table-bordered table-hover">
+
+                                  <thead>
+                                      <tr class="now_rap text-center sticky_header">
+                                          <th colspan="2">Achieved/Total</th>
+                                          <th>○</th>
+                                          <th >△</th>
+                                          <th>×</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="tbody_data" *ngFor="let item of auditReportData?.catergoryWiseScoreModel;let i = index">
+                                          <td>{{i+1}}</td>
+                                          <td>{{item.observationCount}}/{{item.categoryTotalCount}}</td>
+                                          <td>{{item.pieScore}}</td>
+                                          <td>{{item.triangleScore}}</td>
+                                          <td>{{item.xScore}}</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="col-md-6" *ngIf="this.chartsData">
+                          <canvas baseChart [data]="reportData" [type]="'radar'"
+                              [options]="reportOptions">
+                          </canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>z

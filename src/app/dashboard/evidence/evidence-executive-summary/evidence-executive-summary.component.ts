@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
 @Component({
-  selector: 'app-executive-summary',
-  templateUrl: './executive-summary.component.html',
-  styleUrls: ['./executive-summary.component.css']
+  selector: 'app-evidence-executive-summary',
+  templateUrl: './evidence-executive-summary.component.html',
+  styleUrls: ['./evidence-executive-summary.component.css']
 })
-export class ExecutiveSummaryComponent implements OnInit {
+export class EvidenceExecutiveSummaryComponent implements OnInit {
   dateFormat = dataConstants.dateFormate;
-  auditPlanId = "a0071ce2-a502-45a8-8f0f-c0404bd4737e";
+  auditPlanId :any;
   auditReportData:any;
   chartsData = false;
   data : any = [
@@ -57,9 +57,14 @@ export class ExecutiveSummaryComponent implements OnInit {
   };
   constructor(
     private router:Router,
+    private route:ActivatedRoute,
     private commonService: CommonService,
     private reportService:ReportService
   ) { 
+    this.route.paramMap.subscribe((res:ParamMap)=>{
+      let Id = res.get('id');
+      this.auditPlanId = Id;
+    })
     this.getExecutiveSummary();
   }
 
@@ -77,7 +82,6 @@ export class ExecutiveSummaryComponent implements OnInit {
             const reprotData = (element.observationCount / element.categoryTotalCount) * 100;
             this.reportData.datasets[0].data.push(reprotData > 0 ? reprotData : 0);
           });
-          console.log("res",this.auditReportData);
           this.chartsData = true;
           this.commonService.hideLoading();
         }

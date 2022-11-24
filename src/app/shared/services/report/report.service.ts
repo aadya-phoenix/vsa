@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,6 +21,12 @@ export class ReportService {
         'Content-Type', 'application/json'
         );
   }
+
+  getExecutiveSummary(id:any){
+    const params = new HttpParams().set('AuditplanId',id);
+    const url = `${this.basePath}api/AuditReports/VendorSystemAuditReport`;
+    return this.http. getParams(url, this.http.headers, params).pipe(catchError(this.commmonService.Errorhandling));
+   }
 
   getAuditPlanStatusByMonth(data:any){
     const url = `${this.basePath}api/AuditReports/AuditPlanStatusByMonth`;

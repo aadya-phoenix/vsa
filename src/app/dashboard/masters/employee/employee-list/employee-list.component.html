@@ -22,8 +22,8 @@
                   <thead>
                     <tr class="sticky_header">
                       <th>S.No</th>
-                      <th>Employee Name </th>
                       <th>Employee Code</th>
+                      <th>Employee Name </th>
                       <th>Employee Role</th>
                       <th>Employee Creation Date</th>
                       <th *ngIf="isSuperAdmin">Action</th>
@@ -31,8 +31,8 @@
                   </thead>
                   <tr *ngFor="let item of employeeObj | filter:searchText | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                     <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
-                    <td>{{item.name}}</td>
                     <td>{{item.code}}</td>
+                    <td>{{item.name}}</td>
                     <td>{{item.roleName}}</td>
                     <td>12-2-2022</td>
                     <td *ngIf="isSuperAdmin">

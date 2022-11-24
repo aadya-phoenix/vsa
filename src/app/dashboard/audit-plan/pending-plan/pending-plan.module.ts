@@ -5,8 +5,9 @@ import { PendingPlanRoutingModule } from './pending-plan-routing.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PendingPlanListComponent } from './pending-plan-list/pending-plan-list.component';
 import { PendingPlanRejectComponent } from './pending-plan-reject/pending-plan-reject.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -18,10 +19,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
   entryComponents:[PendingPlanRejectComponent],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
     PendingPlanRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ]
 })
 export class PendingPlanModule { }

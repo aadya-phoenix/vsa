@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
@@ -50,13 +51,23 @@ export class CreatePlanComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
+    const fsize = event.target.files[0].size;
+    const file = Math.round((fsize / 1024)/1024);
+    if(file > dataConstants.maxImageSize){
+      Swal.fire(
+        'Invalid File!',
+        `File is more than ${dataConstants.maxImageSize} mb. Please select a valid file`,
+        'warning'
+      )
+      event.target.value = '';
+      return;
+    }
     this.selectedFile = event.target.files[0];
   }
 
   submit() {
     this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
-      console.log("kk",this.createPlanForm.value);
       Swal.fire({
         title: 'Please fill all mandatory fields.',
         icon: 'error',
@@ -80,18 +91,22 @@ export class CreatePlanComponent implements OnInit {
     formData.append('additionalMSILEmail', body.additionalMSILEmail);
     formData.append('auditeeEmail', body.auditeeEmail);
 
-    this.auditPlanService.add(formData).subscribe({
+    this.createPlanForm.controls['attachment'].setValue('');
+
+   /*  this.auditPlanService.add(formData).subscribe({
       next: (res: any) => {
         Swal.fire({
           title: 'Plan Created Successfully',
           icon: 'success',
         });
+        
+        this.createPlanForm.reset(this.createPlanForm.value);
         this.commonService.hideLoading();
       },
       error: (err: any) => {
         this.commonService.hideLoading();
       }
-    });
+    }); */
   }
 
   getEmployeeList() {

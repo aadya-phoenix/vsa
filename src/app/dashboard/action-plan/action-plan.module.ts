@@ -16,6 +16,7 @@ import { ActionPlanCategoryVendorComponent } from './action-plan-category-vendor
 import { ActionPlanUpdateComponent } from './action-plan-update/action-plan-update.component';
 import { ActionPlanAuditorCategoryComponent } from './action-plan-auditor-category/action-plan-auditor-category.component';
 import { ActionPlanReceiveComponent } from './action-plan-receive/action-plan-receive.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ActionPlanReceiveComponent } from './action-plan-receive/action-plan-re
     FormsModule,
     ActionPlanRoutingModule,
     RouterModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ]
 })
 export class ActionPlanModule { }

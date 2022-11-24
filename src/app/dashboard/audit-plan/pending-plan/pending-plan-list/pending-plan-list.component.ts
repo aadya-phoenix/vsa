@@ -31,7 +31,7 @@ export class PendingPlanListComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
-
+  searchText:any;
 
   constructor(
     private router:Router,

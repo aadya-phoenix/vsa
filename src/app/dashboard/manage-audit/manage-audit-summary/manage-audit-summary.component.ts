@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { CommonService } from 'src/app/shared/services/common/common.service';
-import { ReportService } from 'src/app/shared/services/reports/report.service';
+import { ReportService } from 'src/app/shared/services/report/report.service';
 
 @Component({
   selector: 'app-manage-audit-summary',

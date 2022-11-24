@@ -31,7 +31,7 @@
                                         <td>{{item.vendorCode}}</td>
                                         <td>{{item.vendorName}}</td>
                                         <td>{{item.auditorName}}</td>
-                                        <td><a><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
+                                        <td><a (click)="goToReport(item.id)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
                                         <td>{{item.observationCount}}</td>
                                         <td>
                                             <button class="btn btn-success" (click)="submit(accept,

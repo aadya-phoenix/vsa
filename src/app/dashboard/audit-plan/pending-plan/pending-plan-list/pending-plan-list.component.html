@@ -57,7 +57,7 @@
               <div class="header_card">
                 <h3 class="card-title">Pending Plan Details</h3>
                 <div class="d-flex">
-                  <input type="text" class="form-control mr-1" placeholder="search ...">
+                  <input type="text" class="form-control mr-1"  [(ngModel)]="searchText" placeholder="Type to search">
                   
                 </div>
               </div>
@@ -79,7 +79,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="tbody_data" *ngFor="let item of viewPlanObj| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                    <tr class="tbody_data" *ngFor="let item of viewPlanObj| filter:searchText | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                       <td>AU{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>  
                       <td>{{item.vendorCode}}</td>
                       <td>{{item.vendorName}}</td>
