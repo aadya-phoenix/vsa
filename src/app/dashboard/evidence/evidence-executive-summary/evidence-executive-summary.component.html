@@ -22,10 +22,10 @@
                           </tr>
                           <tr class="text-center">
                             <th>Date of Issue</th>
-                            <td>{{auditReportData.dateOfIssue | date:dateFormat}}</td>
-                            <td>{{auditReportData.preparedBy}}</td>
-                            <td>{{auditReportData.verifiedBy}}</td>
-                            <td>{{auditReportData.approvedBy}}</td>
+                            <td>{{auditReportData?.dateOfIssue | date:dateFormat}}</td>
+                            <td>{{auditReportData?.preparedBy}}</td>
+                            <td>{{auditReportData?.verifiedBy}}</td>
+                            <td>{{auditReportData?.approvedBy}}</td>
                          </tr>
                         </thead>
                         <tbody class="text-center">
@@ -119,7 +119,9 @@
                                     <tbody>
                                         <tr class="tbody_data" *ngFor="let item of auditReportData?.catergoryWiseScoreModel;let i = index">
                                             <td>{{i+1}}</td>
-                                            <td>{{item.categoryScore}}/{{item.categoryTotalCount}}</td>
+                                            <td>
+                                            {{item.categoryScore}}/{{item.totalCount
+                                            }}</td>
                                             <td>{{item.pieScore}}</td>
                                             <td>{{item.triangleScore}}</td>
                                             <td>{{item.xScore}}</td>
