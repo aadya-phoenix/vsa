@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
@@ -17,6 +18,8 @@ export class VendorEditComponent implements OnInit {
   vendorForm:FormGroup;
   vendor_id:any;
   vendorDetails:any;
+  vendorRoleId = dataConstants.Vendor.RoleId;
+  vendorRoleName = dataConstants.Vendor.role;
 
   constructor(
     private fb:FormBuilder,
@@ -86,7 +89,8 @@ export class VendorEditComponent implements OnInit {
   editVendor(body:any){
     this.commonService.showLoading();  
     body.id = this.vendor_id;
-    console.log("body",body);
+    body.roleId = this.vendorRoleId;
+    body.roleName = this.vendorRoleName;
     this.employeeService.edit(body).subscribe({
       next:(res: any) => {
         Swal.fire({
@@ -103,7 +107,9 @@ export class VendorEditComponent implements OnInit {
   }
 
   addVendor(body:any){
-    this.commonService.showLoading();  
+    this.commonService.showLoading();
+    body.roleId = this.vendorRoleId;
+    body.roleName = this.vendorRoleName;  
     this.employeeService.add(body).subscribe({
       next:(res: any) => {
         Swal.fire({

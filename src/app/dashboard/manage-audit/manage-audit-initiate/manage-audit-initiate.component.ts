@@ -66,6 +66,7 @@ export class ManageAuditInitiateComponent implements OnInit {
          this.initiateForm.controls['plannedEndDate'].setValue(this.dateFormat(this.initiateDetails.plannedEndDate));
          this.initiateForm.controls['partName'].setValue(this.initiateDetails?.partName);
          this.initiateForm.controls['partNumber'].setValue(this.initiateDetails?.partNumber);
+         this.initiateForm.controls['otherLocation'].setValue(this.initiateDetails?.otherLocation);
          this.commonService.hideLoading();
         }
        },

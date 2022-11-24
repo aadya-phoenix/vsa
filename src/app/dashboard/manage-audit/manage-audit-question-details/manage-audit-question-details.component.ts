@@ -30,7 +30,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   nullId =dataConstants.NullId;
   judgeNew:any=[];
   regulationId:any;
-  triangle = "70d2109a-1bb4-46ff-ad68-25b00efdce33";
+  triangle = dataConstants.JudgementValues.Triangle;
   cross = dataConstants.JudgementValues.X;
   pie = dataConstants.JudgementValues.Pie;
 
@@ -108,7 +108,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   private metaUpdateGroup(data:any): FormGroup {
-    console.log("data",data);
     return this.fb.group({
       JudgementId: new FormControl(data.judgementId,[]),
       ObservationList: this.fb.array(data.judgeNew,[])
@@ -116,18 +115,24 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   getAuditAreaByCategory(){
+    this.commonService.showLoading();
     this.auditPlanService.getAuditAreaByCategory(this.categoryId).subscribe({
       next: (res) => {
         if(res){
           this.auditAreaList = res;
           this.getRegulation(this.auditAreaList[0]?.id);
+          this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      }); 
   }
 
   getRegulation(id:any){
+    this.commonService.showLoading();
     this.metadataArray.controls = [];
     const data={
       auditPlanId: this.auditPlanId,
@@ -139,7 +144,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         if(res){
          this.regulationList = res;
          this.regulationList.forEach((reg:any)=>{
-          console.log("reg",reg);
           this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
             regulationId:reg.id}).subscribe({
             next: (res) => {
@@ -169,9 +173,13 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
                    reg.judgeNew = this.judgeNew;
                    this.updateMetadata(reg);
                  }
+                 this.commonService.hideLoading();
               }
              },
-            error: (e) => console.error(e), 
+            error: (e) => {
+              console.error(e);
+              this.commonService.hideLoading();
+            }, 
            });
          });
          this.getJudgement();
@@ -182,25 +190,35 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   getPlanObservation(id:any){
+    this.commonService.showLoading();
     this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, regulationId:id}).subscribe({
       next: (res) => {
         if(res){
          this.observationList = res;    
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });
   }
 
 
   getJudgement(){
+    this.commonService.showLoading();
     this.auditPlanService.getJudgement().subscribe({
       next: (res) => {
         if(res){
          this.observationList = res;
+         this.commonService.hideLoading();
         }
        },
-      error: (e) => console.error(e), 
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
      });  
   }
 
@@ -217,7 +235,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       if(dataKey === 'ObservationList') {
         for (let previewKey in data[dataKey]) {
           for (let nestedKey in data[dataKey][previewKey]){
-            console.log("nestedKey",nestedKey);
             formData.append(`ObservationList[${previewKey}][${nestedKey}]`, data[dataKey][previewKey][nestedKey]);
           }
         }

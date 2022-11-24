@@ -91,22 +91,20 @@ export class CreatePlanComponent implements OnInit {
     formData.append('additionalMSILEmail', body.additionalMSILEmail);
     formData.append('auditeeEmail', body.auditeeEmail);
 
-    this.createPlanForm.controls['attachment'].setValue('');
-
-   /*  this.auditPlanService.add(formData).subscribe({
+   this.auditPlanService.add(formData).subscribe({
       next: (res: any) => {
         Swal.fire({
           title: 'Plan Created Successfully',
           icon: 'success',
         });
-        
-        this.createPlanForm.reset(this.createPlanForm.value);
+        this.createPlanForm.controls['attachment'].setValue('');
+        this.createPlanForm.reset();
         this.commonService.hideLoading();
       },
       error: (err: any) => {
         this.commonService.hideLoading();
       }
-    }); */
+    }); 
   }
 
   getEmployeeList() {
