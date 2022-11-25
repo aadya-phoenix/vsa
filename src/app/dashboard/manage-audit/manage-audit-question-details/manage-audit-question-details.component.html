@@ -4,7 +4,9 @@
       <div class="col-12">
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Audit Area Details</h3>
+            <h3 class="card-title">Audit Area Details ( {{vendorName}} )
+
+            </h3>
          </div>
           <form [formGroup]="questionForm" enctype="multipart/form-data">
             <div class="card-body">
@@ -22,15 +24,15 @@
                   </div>
                   <div class="col-sm-8">
                     <div class="mt-2 p-2">
-                      <div class="collapse show">
-                          <ng-container formArrayName="metadata">
-                        <div class="card"  *ngFor="let obj of metadataArray.controls; let i = index">
+                      <div class="collapse show" formArrayName="metadata">
+                          <ng-container *ngFor="let obj of metadataArray.controls; let i = index">
+                        <div class="card" *ngIf="regulationList[i] != null">
                           <div class="card-header">
                               <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
                           </div>
-                          <div class="card-body"  >
+                          <div class="card-body">
                             <div class="row" [formGroupName]="i">
                               <div class="col-sm-12" >
                                 <div class="jugme_css">

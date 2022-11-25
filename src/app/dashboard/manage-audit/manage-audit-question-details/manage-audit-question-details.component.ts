@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
@@ -33,6 +33,9 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   triangle = dataConstants.JudgementValues.Triangle;
   cross = dataConstants.JudgementValues.X;
   pie = dataConstants.JudgementValues.Pie;
+  auditPlanDetails:any;
+  viewPlanId:any;
+  vendorName:any;
 
   constructor(
     private auditPlanService:AuditPlanService,
@@ -58,12 +61,13 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this. getAuditAreaByCategory();
+    this.getAuditAreaByCategory();
+    this.getAuditPlanDetails();
   }
 
   private metaDataGroup(): FormGroup {
     return this.fb.group({
-      JudgementId: new FormControl('',[]),
+      JudgementId: new FormControl('',[Validators.required]),
       ObservationList: this.fb.array([this.judgeGroup()])
     })
   } 
@@ -109,7 +113,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   private metaUpdateGroup(data:any): FormGroup {
     return this.fb.group({
-      JudgementId: new FormControl(data.judgementId,[]),
+      JudgementId: new FormControl(data.judgementId,[Validators.required]),
       ObservationList: this.fb.array(data.judgeNew,[])
     })
   }
@@ -144,34 +148,43 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         if(res){
          this.regulationList = res;
          this.regulationList.forEach((reg:any)=>{
+          this.judgeNew=[];
+          reg.remarks = [];
+          reg.judgeNew = [];
           this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
             regulationId:reg.id}).subscribe({
             next: (res) => {
               if(res){
                 this.observationList = res;
-                if(reg.issubmitted == false){
-                  this.addMetadata();
-                 }                
-                 else{
+              //  debugger;
+                 if(reg.issubmitted == true){
                   this.judgeNew=[];
                   reg.remarks = [];
                   reg.judgeNew = [];
                   this.regulationId = reg.id;
-                  this.observationList.forEach((x:any)=>{
-                    reg.remarks.push({remark:x.remark, id:x.id});
-                  });
-                  for(let item of reg.remarks){
-                    this.judgeNew.push(this.fb.group({
-                     remark: item.remark ,
-                     file:'',
-                     auditPlanId:this.auditPlanId,
-                     createdBy: this.userId,
-                     regulationId:reg.id,
-                     id: item.id
-                     }));
-                   }
+                  if(this.observationList.length>0){
+                    this.observationList.forEach((x:any)=>{
+                      reg.remarks.push({remark:x.remark, id:x.id});
+                    });
+                    for(let item of reg.remarks){
+                      this.judgeNew.push(this.fb.group({
+                       remark: item.remark ,
+                       file:'',
+                       auditPlanId:this.auditPlanId,
+                       createdBy: this.userId,
+                       regulationId:reg.id,
+                       id: item.id
+                       }));
+                     }
+                  }
+                  else{
+                    this.judgeNew.push(this.judgeGroup())
+                  }
                    reg.judgeNew = this.judgeNew;
                    this.updateMetadata(reg);
+                 }              
+                else{
+                  this.addMetadata();
                  }
                  this.commonService.hideLoading();
               }
@@ -182,7 +195,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
             }, 
            });
          });
-         this.getJudgement();
         }
        },
       error: (e) => console.error(e), 
@@ -205,26 +217,17 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
      });
   }
 
-
-  getJudgement(){
-    this.commonService.showLoading();
-    this.auditPlanService.getJudgement().subscribe({
-      next: (res) => {
-        if(res){
-         this.observationList = res;
-         this.commonService.hideLoading();
-        }
-       },
-      error: (e) => {
-        console.error(e);
-        this.commonService.hideLoading();
-      }, 
-     });  
-  }
-
   submit(index:any,id:any){
     this.commonService.showLoading();
     const body = this.questionForm.controls['metadata'].value;
+    if (!body[index].JudgementId) {
+      Swal.fire({
+        title: 'Please Submit Judgement.',
+        icon: 'error',
+      });
+      this.commonService.hideLoading();
+      return;
+    }
     body[index].ObservationList.forEach((x:any)=> {
       x.regulationId = id;
     });
@@ -244,29 +247,21 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       }
     }
     this.commonService.hideLoading();
-      this.auditPlanService.saveObservation(formData).subscribe({
-      next: (res) => {
-        if(res){
-          this.commonService.hideLoading();
-          Swal.fire({
-            title: res.message,
-            icon: 'success',
-          });
-        }
-       },
-      error: (e) =>{
-        console.error(e);
-        this.commonService.hideLoading();
-      } , 
-     });  
-  }
-
-  addData(){}
-
-  init(){}
-
-  back(){
-    this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);;
+    this.auditPlanService.saveObservation(formData).subscribe({
+     next: (res) => {
+       if(res){
+         this.commonService.hideLoading();
+         Swal.fire({
+           title: res.message,
+           icon: 'success',
+         });
+       }
+      },
+     error: (e) =>{
+       console.error(e);
+       this.commonService.hideLoading();
+     } , 
+    });  
   }
 
   fileInput(event:any,i:any,j:any){
@@ -277,4 +272,24 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     console.log("judge",event,i);
   }
 
+  back(){
+    this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);;
+  }
+
+  getAuditPlanDetails(){
+    this.commonService.showLoading();  
+    this.auditPlanService.getPlanDetails(this.auditPlanId).subscribe({
+      next: (res) => {
+        if(res){
+         this.auditPlanDetails = res;
+         this.vendorName = res.vendorName;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
+     });
+  }
 }

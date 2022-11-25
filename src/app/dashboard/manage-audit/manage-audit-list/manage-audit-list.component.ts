@@ -36,7 +36,6 @@ export class ManageAuditListComponent implements OnInit {
     pageSize: 10
   }
 
-  
   constructor(
     private authService: AuthenticationService,
     private auditPlanService:AuditPlanService,
@@ -106,9 +105,11 @@ export class ManageAuditListComponent implements OnInit {
 
   reset(){
     this.viewPlanListToShow = this.viewPlanList;
-     this. vendorName = ' ';
-     this.plannedStartDate = '';
-     this.statusName ='';
+    this.vendorName = ' ';
+    this.plannedStartDate = '';
+    this.statusName ='';
+    this.vendorCode = '';
+    this.plannedEndDate = '';
   }
 
   pageChanged(event: any) {

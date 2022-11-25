@@ -151,7 +151,6 @@ export class CreatePlanComponent implements OnInit {
   bulkUpload(event: any) {
     this.commonService.showLoading();
     this.bulkFile = event.target.files[0];
-    console.log("bulk ", this.bulkFile);
     const formData = new FormData();
     formData.append('File', this.bulkFile);
     this.auditPlanService.bulkUpload(formData).subscribe({
@@ -160,9 +159,15 @@ export class CreatePlanComponent implements OnInit {
           title: 'Plan Uploaded Successfully',
           icon: 'success',
         });
+        this.bulkFile = '';
         this.commonService.hideLoading();
       },
       error: (err: any) => {
+        Swal.fire({
+          title: 'Please check format & try again',
+          icon: 'error',
+        });
+        this.bulkFile = '';
         this.commonService.hideLoading();
       }
     });

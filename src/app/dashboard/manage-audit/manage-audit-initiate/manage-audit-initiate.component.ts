@@ -21,6 +21,7 @@ export class ManageAuditInitiateComponent implements OnInit {
   vendorObj:any=[];
   vendorId:any;
   disabled= true;
+  dummyDate = "0001-01-01T00:00:00";
   
   constructor(
     private fb: FormBuilder,
@@ -67,6 +68,17 @@ export class ManageAuditInitiateComponent implements OnInit {
          this.initiateForm.controls['partName'].setValue(this.initiateDetails?.partName);
          this.initiateForm.controls['partNumber'].setValue(this.initiateDetails?.partNumber);
          this.initiateForm.controls['otherLocation'].setValue(this.initiateDetails?.otherLocation);
+         if(this.initiateDetails.actualStartDate == this.dummyDate){
+          this.initiateForm.controls['actualStartDate'].setValue('');
+         }else{
+          this.initiateForm.controls['actualStartDate'].setValue(this.dateFormat(this.initiateDetails?.actualStartDate));
+         }
+         if(this.initiateDetails.actualEndDate == this.dummyDate){
+          this.initiateForm.controls['actualEndDate'].setValue('');
+         }
+         else{
+          this.initiateForm.controls['actualEndDate'].setValue(this.dateFormat(this.initiateDetails?.actualEndDate));
+         }
          this.commonService.hideLoading();
         }
        },

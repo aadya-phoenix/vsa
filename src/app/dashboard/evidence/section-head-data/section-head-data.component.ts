@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 export class SectionHeadDataComponent implements OnInit {
   dateFormate = dataConstants.dateFormate;
    accept = 1;
-   reject = 0;
+   reject = 2;
    auditPlanId='';
    user:any;
    viewPlanList:any=[];

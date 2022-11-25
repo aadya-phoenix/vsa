@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
@@ -28,17 +29,13 @@ export class ViewPlanListComponent implements OnInit {
   plannedStartDate:any;
   plannedEndDate:any;
   statusName:string='';
-
-  isClosure1 = true;
-  isClosure2 = false;
-  isClosure3 = false;
-
   pagination = {
     page: 1,
     pageNumber: 1,
     pageSize: 10
   }
-
+  Accepted = 'Accepted';
+  Final = 'Final';
 
   constructor(
     private router:Router,
@@ -105,9 +102,10 @@ export class ViewPlanListComponent implements OnInit {
 
   reset(){
     this.viewPlanListToShow = this.viewPlanList;
-     this. vendorName = ' ';
-     this.plannedStartDate = '';
-     this.statusName ='';
+    this.vendorCode = '';
+    this. vendorName = ' ';
+    this.plannedStartDate = '';
+    this.statusName ='';
     this.plannedEndDate =''
   }
 
@@ -118,35 +116,6 @@ export class ViewPlanListComponent implements OnInit {
   evidence(id:any){
     this.router.navigateByUrl(`dashboard/view-plan/evidence/${id}`); 
   }
-
-  closure2(){
-    this.isClosure1 = false;
-    this.isClosure2 = false;
-    this.isClosure3 = true;
-  }
-
-  back(){
-   // this.router.navigateByUrl(`dashboard/view-plan`); 
-   this.isClosure1 = true;
-   this.isClosure2 = false;
-   this.isClosure3 = false;
-  }
-
-  backevi(){
-    // this.router.navigateByUrl(`dashboard/view-plan`); 
-    this.isClosure1 = false;
-    this.isClosure2 = true;
-    this.isClosure3 = false;
-  }
-
-  backclose1(){
-    // this.router.navigateByUrl(`dashboard/view-plan`); 
-    this.isClosure1 = true;
-    this.isClosure2 = false;
-    this.isClosure3 = false;
-  }
-
-  closure1(){}
 
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
