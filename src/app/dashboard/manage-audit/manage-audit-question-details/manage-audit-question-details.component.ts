@@ -151,7 +151,33 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
           this.judgeNew=[];
           reg.remarks = [];
           reg.judgeNew = [];
-          this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
+          if(reg.issubmitted == true){
+            this.regulationId = reg.id;
+            if(reg.lstObservation.length>0){
+              reg.lstObservation.forEach((x:any)=>{
+                reg.remarks.push({remark:x.remark, id:x.id});
+              });
+            for(let item of reg.remarks){
+              this.judgeNew.push(this.fb.group({
+               remark: item.remark ,
+               file:'',
+               auditPlanId:this.auditPlanId,
+               createdBy: this.userId,
+               regulationId:reg.id,
+               id: item.id
+               }));
+             }
+          }
+          else{
+            this.judgeNew.push(this.judgeGroup())
+          }
+           reg.judgeNew = this.judgeNew;
+           this.updateMetadata(reg);
+         }              
+        else{
+          this.addMetadata();
+         }
+        /*   this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
             regulationId:reg.id}).subscribe({
             next: (res) => {
               if(res){
@@ -193,11 +219,15 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
               console.error(e);
               this.commonService.hideLoading();
             }, 
-           });
+           }); */
+           this.commonService.hideLoading();
          });
         }
        },
-      error: (e) => console.error(e), 
+       error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
      });
   }
 
