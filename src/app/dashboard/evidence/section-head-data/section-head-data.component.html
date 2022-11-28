@@ -33,12 +33,15 @@
                                         <td>{{item.auditorName}}</td>
                                         <td><a (click)="goToReport(item.id)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
                                         <td>{{item.observationCount}}</td>
-                                        <td>
+                                        <td><div *ngIf="item.sectionHeadApprovalStatus !='Approved'">
                                             <button class="btn btn-success" (click)="submit(accept,
                                             item.id)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Accept</button>
+                                        </div>
                                         </td>
                                         <td>
+                                            <div *ngIf="item.sectionHeadApprovalStatus !='Approved'">
                                             <button class="btn btn-danger" data-toggle="tooltip" (click)="submit(reject,item.id)" data-placement="top" title="Tooltip on top">Reject</button>
+                                        </div>
                                         </td>
                                     </tr>
                                 </tbody>

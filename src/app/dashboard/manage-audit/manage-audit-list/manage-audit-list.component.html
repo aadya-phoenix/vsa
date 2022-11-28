@@ -130,11 +130,13 @@
                                                     data-placement="top" title="Tooltip on top"><img
                                                         src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                                             </td>
-                                            <td *ngIf="(isAuditor || isSuperAdmin || isPlanner) && item.status == 'Accepted'">
+                                            <td>
+                                                <div *ngIf="(isAuditor || isSuperAdmin || isPlanner) && item.status == 'Accepted' && item.typeOfReport != 'Final'">
                                                 <a (click)="initiateAudit(item)" data-toggle="tooltip"
                                                     data-placement="top" title="Tooltip on top"><img
                                                         src="../../../../assets/icons/auditini.png"
                                                         class="viwe_iamge"></a>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>

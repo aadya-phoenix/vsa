@@ -2,6 +2,9 @@
 .w_226{
   width: 226px;
 }
+.hover-tr ::hover{
+  background-color:#80808012;
+}
 .modal-content {
     margin: auto !important;
   }

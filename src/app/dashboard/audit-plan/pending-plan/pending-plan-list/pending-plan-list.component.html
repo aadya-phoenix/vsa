@@ -88,10 +88,12 @@
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
                       <td><p class="pend_coloe  backgr_blue">{{item.status}} </p></td>
-                      <td *ngIf="isVendor && item. status != 'Accepted'">  
+                      <td>  
+                        <div  *ngIf="isVendor && item. status != 'Accepted'">
                         <p class="pend_coloe backgr_green" 
                         (click)="getVendorAction(accept,item)" >Accept </p>
                         <p class="pend_coloe backgr_red" (click)="openModal(reject,item)">Reject </p>
+                      </div>
                       </td>
                     </tr>
                   </tbody>

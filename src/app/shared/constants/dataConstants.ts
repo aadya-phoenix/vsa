@@ -9,7 +9,7 @@ export const dataConstants = {
         {RoleId: "aa1b2adc-e205-451e-8b2f-5b184df9e4f4", role: "SectionHead"},
 
     ],
-    maxImageSize: 10,//10mb
+    maxImageSize: 3,//3mb
     dateFormate: 'dd-MM-yyyy',
     dateTimeFormate: 'dd-MM-yyyy HH:mm a',
     NullId: "00000000-0000-0000-0000-000000000000",

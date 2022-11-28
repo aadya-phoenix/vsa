@@ -91,22 +91,20 @@ export class CreatePlanComponent implements OnInit {
     formData.append('additionalMSILEmail', body.additionalMSILEmail);
     formData.append('auditeeEmail', body.auditeeEmail);
 
-    this.createPlanForm.controls['attachment'].setValue('');
-
-   /*  this.auditPlanService.add(formData).subscribe({
+   this.auditPlanService.add(formData).subscribe({
       next: (res: any) => {
         Swal.fire({
           title: 'Plan Created Successfully',
           icon: 'success',
         });
-        
-        this.createPlanForm.reset(this.createPlanForm.value);
+        this.createPlanForm.controls['attachment'].setValue('');
+        this.createPlanForm.reset();
         this.commonService.hideLoading();
       },
       error: (err: any) => {
         this.commonService.hideLoading();
       }
-    }); */
+    }); 
   }
 
   getEmployeeList() {
@@ -153,7 +151,6 @@ export class CreatePlanComponent implements OnInit {
   bulkUpload(event: any) {
     this.commonService.showLoading();
     this.bulkFile = event.target.files[0];
-    console.log("bulk ", this.bulkFile);
     const formData = new FormData();
     formData.append('File', this.bulkFile);
     this.auditPlanService.bulkUpload(formData).subscribe({
@@ -162,9 +159,15 @@ export class CreatePlanComponent implements OnInit {
           title: 'Plan Uploaded Successfully',
           icon: 'success',
         });
+        this.bulkFile = '';
         this.commonService.hideLoading();
       },
       error: (err: any) => {
+        /* Swal.fire({
+          title: 'Please check format & try again',
+          icon: 'error',
+        }); */
+        this.bulkFile = '';
         this.commonService.hideLoading();
       }
     });

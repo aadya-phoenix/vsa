@@ -26,7 +26,9 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   final = dataConstants.ReportType.Final;
   getLoginDetails:any;
   sectionHeadId:any;
-
+  auditPlanDetails:any;
+  reportType:any;
+  Final = 'Final';
   constructor(
     private fb:FormBuilder,
     private authService:AuthenticationService,
@@ -53,6 +55,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategoryList();
+    this.getAuditPlanDetails();
   }
 
   getCategoryList(){
@@ -165,6 +168,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
           title: 'Report Submitted Successfully',
           icon: 'success',
         });
+        this.router.navigateByUrl('dashboard/view-plan');
       }
      },
     error: (e) =>{
@@ -216,6 +220,28 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     this.sectionHeadId = event.target.value;
   }
 
-  close(){}
+  getAuditPlanDetails(){
+    this.commonService.showLoading();  
+    this.auditPlanService.getPlanDetails(this.auditPlanId).subscribe({
+      next: (res) => {
+        if(res){
+         this.auditPlanDetails = res;
+         this.reportType = res.typeOfReport;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }, 
+     });
+  }
+
+  isSubmit(){
+  if(this.reportType != this.Final)
+  return true;
+  else 
+  return false;
+  }
 
 }

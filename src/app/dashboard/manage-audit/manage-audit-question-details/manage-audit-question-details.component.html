@@ -4,7 +4,9 @@
       <div class="col-12">
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Audit Area Details</h3>
+            <h3 class="card-title">Audit Area Details ( {{vendorName}} )
+
+            </h3>
          </div>
           <form [formGroup]="questionForm" enctype="multipart/form-data">
             <div class="card-body">
@@ -13,7 +15,7 @@
                   <div class="col-sm-4" >
                     <div class="d-flex flex_colum mt_17" id="myDIV" *ngFor="let item of auditAreaList">
                       <div id="headingOne" class="div_main_active">
-                        <button class="btn btn-link mb-2 active" data-toggle="collapse" data-target="#collapseOne" (click)="getRegulation(item.id)"
+                        <button class="btn btn-link mb-2 active" (click)="getRegulation(item.id)"
                           aria-expanded="true" aria-controls="collapseOne">
                           {{item.name}}
                         </button>
@@ -22,19 +24,19 @@
                   </div>
                   <div class="col-sm-8">
                     <div class="mt-2 p-2">
-                      <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
-                          <ng-container formArrayName="metadata">
-                        <div class="card"  *ngFor="let obj of metadataArray.controls; let i = index">
+                      <div class="collapse show" formArrayName="metadata">
+                          <ng-container *ngFor="let obj of metadataArray.controls; let i = index">
+                        <div class="card" *ngIf="regulationList[i] != null">
                           <div class="card-header">
                               <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
                           </div>
-                          <div class="card-body"  >
+                          <div class="card-body">
                             <div class="row" [formGroupName]="i">
                               <div class="col-sm-12" >
                                 <div class="jugme_css">
-                                  <label class="mb-0">Judgment</label>
+                                  <label class="mb-0">Judgement</label>
                                   <div class="d-flex">
                                     <div class="mr-3">
                                       <input type="radio" (click)="judgeValue($event.target,i)" formControlName="JudgementId"      
