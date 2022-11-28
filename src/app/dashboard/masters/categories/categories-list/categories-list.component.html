@@ -6,14 +6,15 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Categories Details</h3>
-                <a *ngIf="isSuperAdmin" (click)="addCategory()" class="btn btn-primary"> <img src="../../../../../assets/icons/admin.png" class="side_imgmaster mr-1">Add Categories</a>
+                <a *ngIf="isSuperAdmin" (click)="addCategory()" class="btn btn-primary"> 
+                  <img src="../../../../../assets/icons/admin.png" class="side_imgmaster mr-1"> <span class="fon_14">Add Categories</span></a>
               </div>
             </div>
             <div class="card-body">
               <div class="table-responsive max_hei_table">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                    <tr class="sticky_header text-center">
+                    <tr class="sticky_header">
                       <th>S.No</th>
                       <th>Category Name</th>
                       <th>Status</th>
@@ -25,7 +26,7 @@
                       <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
                       <td>{{item.name}}</td>
                       <td >
-                        <button [ngClass]="item.active  ? 'btn btn-success' : 'btn btn-danger'">{{item.active ? 'Active' : 'Inactive'}}</button> </td>
+                        <button [ngClass]="item.active  ? 'btn btn-success' : 'btn btn-danger'" >{{item.active ? 'Active' : 'Inactive'}}</button> </td>
                       <td *ngIf="isSuperAdmin">
                         <div class="d-flex align-items-center justify-content-center">
                           <a (click)="update(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>

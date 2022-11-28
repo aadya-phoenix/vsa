@@ -259,5 +259,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   judgeValue(event:any,i:any){
     console.log("judge",event,i);
   }
+  
 
 }

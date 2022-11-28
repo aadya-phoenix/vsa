@@ -18,6 +18,14 @@
    
     border-radius: 10px !important;
 }
+.btn-add-deatil {
+  width: 14px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+}
   .progress-bar {
     display: flex;
     flex-direction: column;

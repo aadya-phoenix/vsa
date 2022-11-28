@@ -6,14 +6,20 @@
             <div class="card-header">
               <div class="header_card">
                 <h3 class="card-title">Vendor Master</h3>
+              <div class="d-flex align-items-center">
                 <div class="form-group filter_course">
                   <input type="text " name="search " autocomplete="off" [(ngModel)]="searchText"
-                      placeholder="Type to Search" style="width: 87%; height: calc(1.25rem + 14px); margin-left: 13%;" 
+                      placeholder="Type to Search"
                       class="form-control ng-untouched ng-pristine ng-valid form_width"
                       ng-reflect-name="search" />
                 </div>
-                <a *ngIf="isSuperAdmin" (click)="addVendor()" class="btn btn-primary">   <img src="../../../../../assets/icons/owner copy.png" class="side_imgmaster mr-1">Add Vendor</a>
+                <a *ngIf="isSuperAdmin" (click)="addVendor()" class="btn btn-primary"> 
+                    <img src="../../../../../assets/icons/owner copy.png" class="side_imgmaster mr-1"> <span class="fon_14">Add Vendor</span></a>
+              
+                    </div>
+             
               </div>
+             
             </div>
             <div class="card-body">
               <div class="table-responsive max_hei_table">
@@ -46,13 +52,15 @@
                     </tr>
                   </tbody>
                 </table>
-                <nav aria-label="Page navigation example">
-                  <div class="pagination justift_end">
-                    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-                  </div>
-                </nav>
+               
               </div>
+              <nav aria-label="Page navigation example">
+                <div class="pagination justift_end">
+                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
+              </nav>
             </div>
+
           </div>
         </div>
       </div>

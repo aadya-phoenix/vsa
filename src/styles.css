@@ -57,12 +57,36 @@
     color: #000;
   }
 
-
-
-.w_25 {
-  width: 25px;
+  .ngx-pagination {
+    margin-left: 0;
+    margin-bottom: 1rem;
+    padding-left: 0px !IMPORTANT;
+    border: 1px solid #d9dadb;
+    border-radius: 3px;
+    margin-top: 13px;
+    font-size: 13px;
 }
 
+.w_25 {
+  width: 21px;
+}
+.filter_course{   
+    
+  margin-right: 13px;
+  margin-bottom: 0px !important;
+}
+
+.filter_course input{   
+  height: 31px;
+  font-size: 13px;
+}
+.ngx-pagination .current{
+
+   
+    background: #1a65a3 !important;
+    color: #fefefe;
+    padding: 0px 10px !important;
+}
 .btn-blue {
   display: flex;
   background: #1a65a3;
@@ -74,6 +98,10 @@
 
 .side_imgmaster {
   width: 16px;
+  margin-top: -3px;
+}
+tbody tr{
+  font-size: 14px;
 }
 .counter_cs_parent {
   margin-bottom: 10px;
@@ -182,7 +210,7 @@
 }
 
 .fon_12 {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 
 .mt_17 {
@@ -201,34 +229,35 @@
 }
 .btn-danger {
   padding: 2px 14px !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
   color: #fff !important;
     background-color: #c82333 !important;
     border-color: #bd2130 !important;
 }
 .btn-success {
   padding: 2px 14px !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
   color: #fff !important;
     background-color: #218838 !important;
     border-color: #1e7e34 !important;
 }
 .btn-primary {
   padding: 2px 14px !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
   background-color: #1a65a3 !important;
   border-color: #1a65a3 !important;
 }
+
 .btn-default {
   padding: 2px 14px !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
   background-color: #e9ecef !important;
   border-color: #e9ecef !important;
   color: #2b2b2b !important;
 }
 .btn-secondary {
   padding: 2px 14px !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
   background-color: #5a6268 !important;
   border-color: #5a6268 !important;
   color: #fff !important;
@@ -236,7 +265,7 @@
 
 .btn-warning {
   padding: 2px 14px !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
   background-color: yellow !important;
   border-color: yellow !important;
   color: #000 !important;
@@ -244,7 +273,56 @@
 .fon_9{
   font-size: 9px !important;
 }
+.Accepted {
+  background: green; 
+font-size: 13px;
+  padding: 2px 14px !important;
+  color: #fff;
+  margin-bottom: 0px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.Auditor-log{
+  background-color: #5a6268 !important;
+  border-color: #5a6268 !important;
+  font-size: 13px;
+    padding: 2px 14px !important;
+    color: #fff;
+    margin-bottom: 0px;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+.Auditor-log :hover{
+ 
+   
+    color: #fff !important;
+   
+}
+.Submitted{
+  background: #1a65a3;
+  font-size: 13px;
+  padding: 2px 14px !important;
+  color: #fff;
+  margin-bottom: 0px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
 
+.Rejected{
+  background: #dc3545;
+  font-size: 13px;
+  padding: 2px 14px !important;
+  color: #fff;
+  margin-bottom: 0px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.modal-header{
+  padding: 6px 22px !important;
+}
+.modal-footer{
+  padding: 6px 22px !important;
+}
 .sidebar-mini.sidebar-collapse .main-sidebar {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
@@ -2914,12 +2992,7 @@
     box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
   }
   
-  .btn-secondary {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
-    box-shadow: none;
-  }
+ 
   
   .btn-secondary:hover {
     color: #fff;
@@ -53318,6 +53391,7 @@
   
   .card-header {
     background: #f8f9fa !important;
+    padding: 11px 20px !important;
   }
   .nav_bar_header {
     display: flex !important;
@@ -53351,20 +53425,21 @@
       justify-content:space-between;
       align-items:center;
   }
-  .card-header {
-    padding: 7px 23px;
-  }
+ 
   .action_butt{
       display:flex;
   }
   .form_label {
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 3px;
   }
-  
+  .card-footer{
+    border-top: 1px solid rgba(0, 0, 0, 0.125) !important;
+  }
   .inputbox_css {
     height: 34px !important;
     background: #8080800f;
+    font-size: 14px !important;
   }
   .nav-link img {
     width:16px;
@@ -53554,11 +53629,12 @@
 
 
       /* CUSTOM CSS */
-ng-select.form-control,
+
 select.form-control{
     background-repeat: no-repeat;
     background-position: right .75rem center;
     background-size: 16px 12px;
+    font-size:14px;
 
 	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }

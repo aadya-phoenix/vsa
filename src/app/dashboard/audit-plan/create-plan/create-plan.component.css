@@ -1,14 +1,10 @@
-.button-upload{
-    display: inline-block;
-    background-color: #1a65a3;
-    color: white;
-    padding: 0.5rem;
-    font-family: sans-serif;
-    border-radius: 0.3rem;
-    cursor: pointer;
-    margin-bottom: 0px !important;
-  }
+.upload_ico{
+  margin-top: -2px;
+}
+.mt_3{
+  margin-top: -3px !important;
 
+}
   .w_100 {
     width: 100%;
 }

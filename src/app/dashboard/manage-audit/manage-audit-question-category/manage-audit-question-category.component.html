@@ -6,7 +6,7 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details</h3>
-              <button class="btn btn-success">Download PDF</button>
+              <button class="btn btn-success"><i class="fas fa-download mr-1 upload_ico"></i>Download PDF</button>
             </div>
           </div>
           <div class="card-body">
@@ -99,7 +99,7 @@
                                 maxlength="200" formControlName="vendorAttendee">
                             </td>
                             <td class="btn-width p-1">
-                              <button class="btn btn-success mr-2 py-1" (click)="addVendorAttendee('')">+</button>
+                              <button class="btn btn-success btn-add-deatil mr-2 py-1" (click)="addVendorAttendee('')">+</button>
                               <button class="btn btn-danger py-1" *ngIf="i > 0" (click)="removeVendorAttendee(i)"><i
                                   class="fa fa-trash"></i></button>
                             </td>

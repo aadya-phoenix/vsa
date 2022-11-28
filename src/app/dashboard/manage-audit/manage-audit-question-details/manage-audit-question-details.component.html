@@ -73,8 +73,8 @@
                                               </label>
                                               <input id="file-input" type="file" formControlName="file" (input)="fileInput($event,i,j)"/>
                                             </div>
-                                            <button class="btn btn-primary mr-1"  (click)="addJudge(i,'')">+</button>
-                                            <button class="btn btn-danger" *ngIf="j > 0" (click)="removeJudge(i,j)">-</button>
+                                            <button class="btn btn-primary btn-add-deatil mr-1"  (click)="addJudge(i,'')">+</button>
+                                            <button class="btn btn-danger btn-add-deatil" *ngIf="j > 0" (click)="removeJudge(i,j)">-</button>
                                           </div>
                                         </td>
                                       </tr>
