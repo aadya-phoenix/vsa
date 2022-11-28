@@ -26,8 +26,8 @@ export class ViewPlanListComponent implements OnInit {
   counters:any=[];
   vendorName:string='';
   vendorCode:any;
-  plannedStartDate:any;
-  plannedEndDate:any;
+  plannedStartDate:any = null;
+  plannedEndDate:any = null;
   statusName:string='';
   pagination = {
     page: 1,
@@ -104,9 +104,9 @@ export class ViewPlanListComponent implements OnInit {
     this.viewPlanListToShow = this.viewPlanList;
     this.vendorCode = '';
     this. vendorName = ' ';
-    this.plannedStartDate = '';
+    this.plannedStartDate = null;
+    this.plannedEndDate =null;
     this.statusName ='';
-    this.plannedEndDate =''
   }
 
   pendingAction(item:any){

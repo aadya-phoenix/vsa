@@ -38,15 +38,16 @@
                                 <div class="jugme_css">
                                   <label class="mb-0">Judgement</label>
                                   <div class="d-flex">
-                                    <div class="mr-3">
-                                      <input type="radio" (click)="judgeValue($event.target,i)" formControlName="JudgementId"      
-                                      [value]= "triangle"
-                                        class="chek_box"><img src="../../../../assets/icons/triangle.png"
-                                        class="diacisq_css">
-                                    </div>
+                                   
                                     <div class="mr-3">
                                       <input type="radio"  formControlName="JudgementId" (click)="judgeValue($event,i)"  [value]="pie"
                                         class="chek_box"><img src="../../../../assets/icons/square.png"
+                                        class="diacisq_css">
+                                    </div>
+                                    <div class="mr-3">
+                                      <input type="radio"  formControlName="JudgementId"      
+                                      [value]= "triangle"
+                                        class="chek_box"><img src="../../../../assets/icons/triangle.png"
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">

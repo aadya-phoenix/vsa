@@ -29,6 +29,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   auditPlanDetails:any;
   reportType:any;
   Final = 'Final';
+  vendorName:any;
   constructor(
     private fb:FormBuilder,
     private authService:AuthenticationService,
@@ -226,6 +227,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
       next: (res) => {
         if(res){
          this.auditPlanDetails = res;
+         this.vendorName =  this.auditPlanDetails.vendorName;
          this.reportType = res.typeOfReport;
          this.commonService.hideLoading();
         }

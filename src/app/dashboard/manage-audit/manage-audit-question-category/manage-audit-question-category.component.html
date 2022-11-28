@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header">
             <div class="header_card">
-              <h3 class="card-title">Audit Area Details</h3>
+              <h3 class="card-title">Audit Area Details ( {{vendorName}} )</h3>
               <button class="btn btn-success"><i class="fas fa-download mr-1 upload_ico"></i>Download PDF</button>
             </div>
           </div>
@@ -26,11 +26,10 @@
                       <tr *ngFor="let item of categoryScoreList;  let i =index;" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" [title]="item.name" class="hover-tr">
                         <td (click)="details(item.categoryId)">{{i+1}}.</td>
                         <td (click)="details(item.categoryId)">{{item.name}}</td>
-                        <td (click)="details(item.categoryId)">{{item.categoryTotalCount
-                        }}/{{item.totalCount}}
+                        <td (click)="details(item.categoryId)">
                         </td>
                         <td (click)="details(item.categoryId)">{{item.categoryScore
-                        }}</td>
+                        }}/{{item.totalCount}}</td>
                       </tr>
                     </tbody>
                   </table>
