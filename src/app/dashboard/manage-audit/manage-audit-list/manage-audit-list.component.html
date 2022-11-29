@@ -56,7 +56,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="header_card justify-content-center mb-1">
-                                <h3 class="card-title">Audit Area Details</h3>
+                                <h3 class="card-title">Audit Execution Details</h3>
                             </div>
                             <div class="d-flex align-items-center justify-content-center">
                                 <div class=" mr-1">
@@ -101,6 +101,7 @@
                                 <table id="" class="table table-bordered table-hover">
                                     <thead>
                                         <tr class=" text-center sticky_header">
+                                            <th>Audit No</th>
                                             <th>Vendor Code </th>
                                             <th>Vendor Name</th>
                                             <th>Location</th>
@@ -115,6 +116,7 @@
                                     <tbody>
                                         <tr class="tbody_data"
                                             *ngFor="let item of viewPlanListToShow | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                                            <td>{{item.auditNumber}}</td>
                                             <td>{{item.vendorCode}}</td>
                                             <td>{{item.vendorName}}</td>
                                             <td>{{item.locationName}}</td>

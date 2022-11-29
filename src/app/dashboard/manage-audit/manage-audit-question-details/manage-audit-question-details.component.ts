@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
 
@@ -37,12 +38,14 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   viewPlanId:any;
   vendorName:any;
   selectedTab:any;
+  categoryName:any;
 
   constructor(
     private auditPlanService:AuditPlanService,
     private fb:FormBuilder,
     private route:ActivatedRoute,
     private commonService: CommonService,
+    private categoryService:CategoryMasterService,
     private authService: AuthenticationService,
     private router:Router
   ) { 
@@ -64,6 +67,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getAuditAreaByCategory();
     this.getAuditPlanDetails();
+    this.getCategoryDetails();
   }
 
   private metaDataGroup(): FormGroup {
@@ -283,6 +287,23 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         console.error(e);
         this.commonService.hideLoading();
       }, 
+     });
+  }
+
+  getCategoryDetails(){
+    this.commonService.showLoading();  
+    this.categoryService.getCategoryDetails(this.categoryId).subscribe({
+      next: (res) => {
+        if(res){
+         this.categoryName = res.name ;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
      });
   }
 }

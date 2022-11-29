@@ -15,6 +15,7 @@
                             <table id="" class="table table-bordered table-hover">
                                 <thead>
                                     <tr class=" text-center sticky_header">
+                                        <th>Audit No</th>
                                         <th>Audit Complition Date</th>
                                         <th>Vendor Code </th>
                                         <th>Vendor Name</th>
@@ -27,6 +28,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="tbody_data" *ngFor="let item of viewPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                                        <td>{{item.auditNumber}}</td>
                                         <td>{{item.reportReleaseDate| date:dateFormate }}</td>                    
                                         <td>{{item.vendorCode}}</td>
                                         <td>{{item.vendorName}}</td>

@@ -5,6 +5,7 @@ import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import Swal from 'sweetalert2';
@@ -66,18 +67,24 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
       next: (res) => {
         if(res){
          this.categoryScoreList = res;
-        // debugger;
+         let i=0;
+         debugger;
          this.categoryScoreList.forEach((x:any):any=>{
+          
           x.totalRegulation = Math.round((x.totalCount)/3);
           if(x.competedRegulation != x.totalRegulation){
-           //  x.isNotCompleteRegulation = false;
-             this.isNotCompleteRegulation = true;
-             console.log("this.is ",this.isNotCompleteRegulation);
-             return false;
+           i = 0;        
           } 
           else{
-            this.isNotCompleteRegulation = false;
-            console.log("this.is ",this.isNotCompleteRegulation);
+            i++;
+          }
+          if(i==0)
+          {
+            this.isNotCompleteRegulation=true;
+          }
+          else
+          {
+            this.isNotCompleteRegulation=false;
           }
          });
          this.commonService.hideLoading();

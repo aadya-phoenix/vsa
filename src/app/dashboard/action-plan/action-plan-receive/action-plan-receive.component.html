@@ -31,7 +31,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="tbody_data" *ngFor="let item of auditPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                                        <td>AU{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
+                                        <td>{{item.auditNumber}}</td>
                                         <td>{{item.vendorCode}}</td>
                                         <td>{{item.vendorName}}</td>
                                         <td>{{item.plannedStartDate | date:dateFormat}}</td>
