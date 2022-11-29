@@ -24,12 +24,12 @@
                     </tr>
                     <tr class=" text-center sticky_header">
                         <th>Observation</th>
-                        <th>ITEM NO.</th>
-                        <th>SUB ITEM NO. </th>
-                        <th>DESIRED IMPROVEMENT POINTS</th>
-                        <th>DETAIL OF IMPROVEMENT PLAN</th>
-                        <th>IN-CHARGE</th>
-                        <th>DATE</th>
+                        <th>Audit Area</th>
+                        <th>Regulation </th>
+                        <th>Desired Improvement Points </th>
+                        <th>Detail of Improvement Plan</th>
+                        <th>In-Charge</th>
+                        <th>Date</th>
                         <th>Download</th>
                         <th>Action</th>
                     </tr>
@@ -37,8 +37,8 @@
                 <tbody>
                     <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                         <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
-                        <td>{{i+1}}</td>
-                        <td>{{i+1}}.1</td>
+                        <td><p class="show">{{item.auditArea}}</p></td>
+                        <td><p class="show">{{item.regulationText}}</p></td>
                         <td>{{item.remarkOfAuditor}}</td>
                         <td>{{item.detailOfImprovement}}</td>
                         <td>{{item.incharge}}</td>
@@ -68,18 +68,3 @@
         <button (click)="back()" class="btn btn-default">Back</button>
     </div>
 </div>
-
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-            <label>Remarks</label>
-            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="save()">Save    changes</button>
-        </div>
-      </div>
-    </div>
-</div> -->

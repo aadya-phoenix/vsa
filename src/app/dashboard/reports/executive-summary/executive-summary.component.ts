@@ -77,7 +77,6 @@ export class ExecutiveSummaryComponent implements OnInit {
             const reprotData = (element.observationCount / element.categoryTotalCount) * 100;
             this.reportData.datasets[0].data.push(reprotData > 0 ? reprotData : 0);
           });
-          console.log("res",this.auditReportData);
           this.chartsData = true;
           this.commonService.hideLoading();
         }

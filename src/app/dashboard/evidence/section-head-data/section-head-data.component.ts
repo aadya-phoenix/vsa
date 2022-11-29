@@ -87,7 +87,7 @@ export class SectionHeadDataComponent implements OnInit {
   }
 
   goToReport(id:any){
-    window.open(`dashboard/evidence/report/${id}`, "_blank"); 
+    this.router.navigateByUrl(`dashboard/evidence/report/${id}`);
   }
 
 }

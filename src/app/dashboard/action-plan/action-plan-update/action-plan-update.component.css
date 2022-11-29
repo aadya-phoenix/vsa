@@ -1,0 +1,25 @@
+.w_26{
+    width: 26%;
+}
+
+.show {
+   
+    padding: 5px 5px 5px 5px;
+    height: 25px;
+    overflow: hidden;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+   
+  
+}
+  .show:hover {
+  overflow: visible;
+  white-space: normal;
+  height: auto;
+  }
+
+  .width-300{
+    width: 300px;
+  }

@@ -76,4 +76,10 @@ export class AuditExecutionService {
     const url = `${this.basePath}api/AuditReports/VendorDashboardCount`;
     return this.http.post(url, {}).pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  getSummaryDetails(id:any){
+    const params = new HttpParams().set('AuditPlanId',id);
+    const url = `${this.basePath}api/AuditExecution/GetAuditExecutionDetails`;
+    return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
 }

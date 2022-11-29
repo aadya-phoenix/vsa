@@ -98,7 +98,6 @@
                   9- Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
                   10- Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
                </p>
-                 <img src="dist/img/graph.png" class="w_100">
                </div>
           </div>
           <div class="card card-default">
@@ -119,7 +118,7 @@
                                   <tbody>
                                       <tr class="tbody_data" *ngFor="let item of auditReportData?.catergoryWiseScoreModel;let i = index">
                                           <td>{{i+1}}</td>
-                                          <td>{{item.observationCount}}/{{item.categoryTotalCount}}</td>
+                                          <td>{{item.categoryScore}}/{{item.totalCount}}</td>
                                           <td>{{item.pieScore}}</td>
                                           <td>{{item.triangleScore}}</td>
                                           <td>{{item.xScore}}</td>

@@ -16,24 +16,26 @@
                     </tr>
                     <tr class=" text-center sticky_header fon_9">
                         <th>Observation</th>
-                        <th>ITEM NO.</th>
-                        <th>SUB ITEM NO. </th>
-                        <th>DETAIL OF IMPROVEMENT PLAN</th>
-                        <th>IN-CHARGE</th>
-                        <th>DATE</th>
+                        <th>Audit Area</th>
+                        <th>Regulation </th>
+                        <th>Desired Improvement Points </th>
+                        <th>Detail of Improvement Plan</th>
+                        <th>In-Charge</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                        <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
-                        <td>{{i+1}}</td>
-                        <td>{{i+1}}.1</td>
+                        <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>  
+                        <td><p class="show">{{item.auditArea}}</p></td>  
+                        <td><p class="show">{{item.regulationText}}</p></td>
+                        <td>{{item.remark}}</td>
                         <td>{{item.detailOfImprovement}}</td>
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td> 
                         <td>
-                           <textarea [(ngModel)]="item.remarkOfAuditor" class="form-control" placeholder="Enter your Remarks"></textarea>
+                           <textarea [(ngModel)]="item.remarkOfAuditor" class="form-control width-300" placeholder="Enter your Remarks"></textarea>
                         </td>
                     </tr>
                 </tbody>

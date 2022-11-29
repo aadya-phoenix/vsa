@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
@@ -11,27 +12,11 @@ import { ReportService } from 'src/app/shared/services/report/report.service';
   styleUrls: ['./evidence-executive-summary.component.css']
 })
 export class EvidenceExecutiveSummaryComponent implements OnInit {
+  auditPlanId:any;
   dateFormat = dataConstants.dateFormate;
-  auditPlanId :any;
   auditReportData:any;
+  summaryDetails:any=[];
   chartsData = false;
-  data : any = [
-    {judgment:12, total:24},
-    {judgment:9, total:15},
-    {judgment:12, total:18},
-    {judgment:15, total:18},
-    {judgment:-3, total:18},
-    {judgment:9, total:15},
-    {judgment:9, total:21},
-    {judgment:15, total:21},
-    {judgment:15, total:18},
-    {judgment:9, total:15},
-    {judgment:12, total:15},
-    {judgment:15, total:18},
-    {judgment:9, total:12},
-    {judgment:9, total:9}
-  ]
-
   reportData: ChartData<'radar'> = {
     labels:[],
     datasets:[
@@ -55,20 +40,23 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
       // }
     }
   };
+  
   constructor(
     private router:Router,
     private route:ActivatedRoute,
     private commonService: CommonService,
+    private auditExecutionService:AuditExecutionService,
     private reportService:ReportService
-  ) { 
-    this.route.paramMap.subscribe((res:ParamMap)=>{
-      let Id = res.get('id');
-      this.auditPlanId = Id;
+  ) {
+    this.route.paramMap.subscribe((params:ParamMap)=>{
+      const Id = params.get('id');
+      this.auditPlanId = Id ? Id : 0;
     })
-    this.getExecutiveSummary();
-  }
+   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
+    this.getExecutiveSummary();
+    this.getSummaryDetails();
   }
 
   getExecutiveSummary(){
@@ -91,6 +79,31 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
         this.commonService.hideLoading();
       }
     });
-  } 
+  }
+  
+  back(){
+    this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);
+  }
+
+  getSummaryDetails(){
+    this.commonService.showLoading();
+    this.auditExecutionService.getSummaryDetails(this.auditPlanId).subscribe({
+      next:(res)=>{
+        if(res){
+          this.summaryDetails = res;
+          this.summaryDetails.forEach((x:any)=>{
+            if(x.judgementSymbol == 'Pie'){
+              x.judgeSymbol = ''
+            }
+          });
+          this.commonService.hideLoading();
+        }
+      },
+      error:(e)=>{
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });
+  }
 
 }

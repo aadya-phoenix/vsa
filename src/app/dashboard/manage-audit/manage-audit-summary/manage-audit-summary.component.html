@@ -19,10 +19,9 @@
                 <table class="table table-bordered">
                   <thead class="bac_table_white">
                     <tr class="now_rap text-center sticky_header">
+                      <th>S.No.</th>
                       <th>Category</th>
-                      <th></th>
                       <th>Audit Area</th>
-                      <th></th>
                       <th>Concerning regulation</th>
                       <th>Judgment</th>
                       <th>Remarks</th>
@@ -30,22 +29,27 @@
                     </tr>
                   </thead>
                   <tbody class="text-center">
-                    <tr>
-                      <th rowspan="5">１.Production preparation</th>
-                    </tr>
-                    <tr>
-                      <th>1</th>
-                      <td>Regarding implementation rule of production preparation</td>
-                      <td>①</td>
-                      <td>Do you define in regulation following items for production preparation?-scope of parts,-responsibility of each department　-control contents/items?</td>
-                      <td>△</td>
+                    <tr *ngFor="let item of summaryDetails; let i=index;">
+                      <th>{{i+1}}</th>
+                      <th >{{item.categoryName}}</th>
+<!--               rowspan="5"      </tr>
+                    <tr> 
+                      <th>1</th>-->
+                      <td>{{item.auditAreaName}}</td>
+                      <!-- <td>①</td> -->
+                      <td>{{item.regulationText}}</td>
+                      <td *ngIf="item.judgementSymbol =='Triangle'"><img src="../../../../assets/icons/triangle.png"
+                        class="diacisq_css"></td>
+                      <td *ngIf="item.judgementSymbol =='Pie'"><img src="../../../../assets/icons/square.png"
+                        class="diacisq_css"></td>
+                      <td *ngIf="item.judgementSymbol =='x'"><img
+                        src="../../../../assets/icons/new-moon.png" class="diacisq_css"></td>
                       <td>
-                        -APQP matrix activity and time plan activity are not matching.
-                        - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
+                        {{item.remark}}
                       </td>
                       <td></td>
                     </tr>
-                    <tr>
+      <!--               <tr>
                       <th>2</th>
                       <td>Regarding implementation rule of production preparation</td>
                       <td>①</td>
@@ -80,7 +84,7 @@
                         - Phases are not included in APQP matrix and some activities such as training of operator is not mentioned in APQP matrix as well as time plan.
                       </td>
                       <td></td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -109,10 +113,10 @@
                     </tr>
                     <tr class="text-center">
                       <th>Date of Issue
-                      <td>{{auditReportData.dateOfIssue | date:dateFormat}}</td>
-                      <td>{{auditReportData.preparedBy}}</td>
-                      <td>{{auditReportData.verifiedBy}}</td>
-                      <td>{{auditReportData.approvedBy}}</td>
+                      <td>{{auditReportData?.dateOfIssue | date:dateFormat}}</td>
+                      <td>{{auditReportData?.preparedBy}}</td>
+                      <td>{{auditReportData?.verifiedBy}}</td>
+                      <td>{{auditReportData?.approvedBy}}</td>
                     </tr>
                   </thead>
                   <tbody class="text-center">
@@ -127,7 +131,7 @@
                       <td>1</td>
                       <td rowspan="2" class="ver_midd">Dummy Industries</td>
                       <td>Mr. X - Director</td>
-                      <td colspan="2">{{auditReportData.auditDate | date:dateFormat}}</td>
+                      <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td>
                     </tr>
                     <tr>
                       <td>QAPQ</td>
@@ -139,7 +143,7 @@
                       <td>SC</td>
                       <td>1</td>
                       <th>Supplier code:DD01</th>
-                      <td colspan="2">{{auditReportData.auditPerson}}</td>
+                      <td colspan="2">{{auditReportData?.auditPerson}}</td>
                     </tr>
                     <tr>
                       <td></td>
@@ -162,11 +166,11 @@
                   <tr class="now_rap text-center sticky_header">
                     <th rowspan="2" class="ver_midd"><b>Subject:</b> Vendor System Audit</th>
                     <th>Part Number：</th>
-                    <td>{{auditReportData.partNumber}}</td>
+                    <td>{{auditReportData?.partNumber}}</td>
                   </tr>
                   <tr class="text-center">
                     <th>Part Name:</th>
-                    <td>{{auditReportData.partNumber}}</td>
+                    <td>{{auditReportData?.partNumber}}</td>
                   </tr>
                 </thead>
               </table>
@@ -185,7 +189,37 @@
                 9- Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
                 10- Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
               </p>
-              <img src="dist/img/graph.png" class="w_100">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table id="example2" class="table table-bordered table-hover">
+
+                            <thead>
+                                <tr class="now_rap text-center sticky_header">
+                                    <th colspan="2">Achieved/Total</th>
+                                    <th>○</th>
+                                    <th >△</th>
+                                    <th>×</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tbody_data" *ngFor="let item of auditReportData?.catergoryWiseScoreModel;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{item.categoryScore}}/{{item.totalCount}}</td>
+                                    <td>{{item.pieScore}}</td>
+                                    <td>{{item.triangleScore}}</td>
+                                    <td>{{item.xScore}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="this.chartsData">
+                    <canvas baseChart [data]="reportData" [type]="'radar'"
+                        [options]="reportOptions">
+                    </canvas>
+                </div>
+            </div>
             </div>
           </div>
         </div>

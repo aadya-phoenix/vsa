@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ManageAuditSummaryComponent } from './manage-audit-summary/manage-audit-summary.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -32,7 +33,8 @@ import { ManageAuditSummaryComponent } from './manage-audit-summary/manage-audit
     FormsModule,
     ReactiveFormsModule,
     ManageAuditRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgChartsModule
   ]
 })
 export class ManageAuditModule { }

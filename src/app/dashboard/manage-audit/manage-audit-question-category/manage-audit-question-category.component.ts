@@ -68,7 +68,6 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
         if(res){
          this.categoryScoreList = res;
          let i=0;
-         debugger;
          this.categoryScoreList.forEach((x:any):any=>{
           
           x.totalRegulation = Math.round((x.totalCount)/3);

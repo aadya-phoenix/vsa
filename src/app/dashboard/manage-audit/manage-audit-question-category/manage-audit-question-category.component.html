@@ -6,7 +6,6 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details ( {{vendorName}} )</h3>
-              <button class="btn btn-success"><i class="fas fa-download mr-1 upload_ico"></i>Download PDF</button>
             </div>
           </div>
           <div class="card-body">
@@ -41,8 +40,7 @@
             <div class="flex_direction_media">
               <button class="btn btn-primary mr-1" (click)="viewSummary()">
                 View Summary Details</button>
-              <button class="btn btn-primary mr-1" (click)="reportSubmit(draft)">Save as draft</button>
-              <button class="btn btn-danger mr-1" data-toggle="modal" data-target="#executive-summary">Executive Summary
+              <button class="btn btn-danger mr-1" data-toggle="modal" data-target="#executive-summary">Vendor Summary
               </button>
               <button (click)="getEmployeeList()" class="btn btn-success mr-1" data-toggle="modal" data-target="#submit" [disabled]="isNotCompleteRegulation">Submit</button>
               <button (click)="back()" class="btn btn-default">Back</button>
