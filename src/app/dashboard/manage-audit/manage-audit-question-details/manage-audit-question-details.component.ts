@@ -36,6 +36,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   auditPlanDetails:any;
   viewPlanId:any;
   vendorName:any;
+  selectedTab:any;
 
   constructor(
     private auditPlanService:AuditPlanService,
@@ -124,7 +125,12 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       next: (res) => {
         if(res){
           this.auditAreaList = res;
-          this.getRegulation(this.auditAreaList[0]?.id);
+          this.auditAreaList.forEach((x:any)=>{
+            x.isActiveTab = false;
+          });
+          this.getRegulation(this.auditAreaList[0]);
+          this.auditAreaList[0].isActiveTab = true;
+          this.selectedTab = this.auditAreaList[0];
           this.commonService.hideLoading();
         }
        },
@@ -135,13 +141,16 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
      }); 
   }
 
-  getRegulation(id:any){
+  getRegulation(item:any){
     this.commonService.showLoading();
+    if (this.selectedTab != undefined) this.selectedTab.isActiveTab = false;
+    this.selectedTab = item;
+    item.isActiveTab = true;
     this.metadataArray.controls = [];
     const data={
       auditPlanId: this.auditPlanId,
       categoryId: this.categoryId,
-      auditAreaId: id
+      auditAreaId: item.id
     };
     this.auditPlanService.getPlanRegulation(data).subscribe({
       next: (res) => {
@@ -177,49 +186,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         else{
           this.addMetadata();
          }
-        /*   this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, 
-            regulationId:reg.id}).subscribe({
-            next: (res) => {
-              if(res){
-                this.observationList = res;
-              //  debugger;
-                 if(reg.issubmitted == true){
-                  this.judgeNew=[];
-                  reg.remarks = [];
-                  reg.judgeNew = [];
-                  this.regulationId = reg.id;
-                  if(this.observationList.length>0){
-                    this.observationList.forEach((x:any)=>{
-                      reg.remarks.push({remark:x.remark, id:x.id});
-                    });
-                    for(let item of reg.remarks){
-                      this.judgeNew.push(this.fb.group({
-                       remark: item.remark ,
-                       file:'',
-                       auditPlanId:this.auditPlanId,
-                       createdBy: this.userId,
-                       regulationId:reg.id,
-                       id: item.id
-                       }));
-                     }
-                  }
-                  else{
-                    this.judgeNew.push(this.judgeGroup())
-                  }
-                   reg.judgeNew = this.judgeNew;
-                   this.updateMetadata(reg);
-                 }              
-                else{
-                  this.addMetadata();
-                 }
-                 this.commonService.hideLoading();
-              }
-             },
-            error: (e) => {
-              console.error(e);
-              this.commonService.hideLoading();
-            }, 
-           }); */
+ 
            this.commonService.hideLoading();
          });
         }
@@ -296,12 +263,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   fileInput(event:any,i:any,j:any){
     console.log("event",event.target.files[0],i,j);
-  }
-
-  judgeValue(event:any,i:any){
-    console.log("judge",event,i);
-  }
-  
+  }  
 
   back(){
     this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);;

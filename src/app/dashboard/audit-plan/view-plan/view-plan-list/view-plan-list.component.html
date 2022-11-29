@@ -119,13 +119,15 @@
                       <td>{{item.typeOfReport}}</td>
                       <td>{{item.statusPendingAt}}</td>
                       <td *ngIf="isSuperAdmin || isPlanner">
-                        <a (click)="viewPlan(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>             
+                        <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>             
                       </td>
                       <td *ngIf="isSuperAdmin"> <div *ngIf="isSuperAdmin && (item.status == Accepted) && (item.typeOfReport != Final)">  <a  (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a> </div></td>
-                      <td><p [ngClass]="item.status" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.status}} </p></td>
-                      <td><button class="btn btn-primary" (click)="pendingAction(item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top" >
-                      {{item.actionPlanStatus}}</button></td>
-                      <td (click)="evidence(item.id)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.evidenceReceived
+                      <td><p [ngClass]="item.status" >{{item.status =='Submitted' ? 'Pending At Vendor' : item.status}} </p></td>
+                      <td><div *ngIf="item.status == 'Accepted'">
+                        <button class="btn btn-primary" (click)="pendingAction(item)" >
+                          {{item.actionPlanStatus}}</button>
+                      </div></td>
+                      <td (click)="evidence(item.id)" >{{item.evidenceReceived
                       }}</td>
                       <td>  <a class="mr-1 Auditor-log" data-toggle="modal" data-target="#exampleModal"><span>Auditor Log</span></a></td>
                     </tr>

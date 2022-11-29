@@ -29,6 +29,8 @@ export class CategoriesEditComponent implements OnInit {
     });
     this.categoryForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
+      isCriticalObservation:new FormControl('', []),
+      active:new FormControl('', []),
     });
    }
 
@@ -69,7 +71,6 @@ export class CategoriesEditComponent implements OnInit {
       next:(res: any) => {
         Swal.fire({
           title: res.message,
-        //  text: 'Please login again!',
           icon: 'success',
         });
         this.router.navigateByUrl('dashboard/category'); 
@@ -81,12 +82,12 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   addCategory(body:any){
-    this.commonService.showLoading();  
+    this.commonService.showLoading();
+    body.active = true;  
     this.categoryService.add(body).subscribe({
       next:(res: any) => {
         Swal.fire({
           title: res.message,
-        //  text: 'Please login again!',
           icon: 'success',
         });
         this.router.navigateByUrl('dashboard/category');
@@ -100,6 +101,10 @@ export class CategoriesEditComponent implements OnInit {
 
   close(){
     this.router.navigateByUrl('dashboard/category');
+  }
+
+  checkStatus(event:any){
+
   }
 
 }

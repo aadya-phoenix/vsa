@@ -1,4 +1,8 @@
-.active, .btn-link:hover {
+.active-tab {
+    background-color: #1a65a3 !important;
+    color: white !important;
+  }
+  .disactive-tab {
     background-color: #666 !important;
     color: white !important;
   }

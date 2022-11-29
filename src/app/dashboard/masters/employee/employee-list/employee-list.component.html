@@ -39,7 +39,7 @@
                     <td>{{item.code}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.roleName}}</td>
-                    <td>12-2-2022</td>
+                    <td>{{item.createdDate | date:dateFormat}}</td>
                     <td *ngIf="isSuperAdmin">
                       <div class="d-flex">
                         <a  (click)="editEmployee(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>

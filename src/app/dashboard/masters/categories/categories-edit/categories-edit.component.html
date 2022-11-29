@@ -17,27 +17,19 @@
                                  maxlength="200">
                         </div>
                       </div>
-                      <!-- <div class="col-sm-4">
-                        <div class="form-group">
-                          <label class="form_label">Category Code</label>
-                          <input type="text" class="form-control inputbox_css" 
-                                 placeholder="Enter Categories Name" formControlName="code"
-                                 maxlength="200">
-                        </div>
-                      </div> -->
                       <div class="col-sm-4">
                         <div class="form-group">
                           <label class="form_label">Status</label>
-                          <select class="form-control inputbox_css">
-                          <option>Active</option>
-                          <option>In Active</option>
+                          <select class="form-control inputbox_css" formControlName="active" (click)="checkStatus($event)">
+                          <option [value]="true">Active</option>
+                          <option [value]="false">In Active</option>
                           
                           </select>
                           </div>
-                        </div><!--colend-->
+                        </div>
                     </div>
                     <div class="d-flex">
-                    <input type="checkbox">
+                    <input type="checkbox" formControlName="isCriticalObservation">
                   <p class="ml-1 mb-0">Critical Observation</p>
                   </div>
                   </div>

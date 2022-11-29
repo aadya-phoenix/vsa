@@ -4,9 +4,9 @@
   </div>
     <div class="sidebar">
       <nav class="mt-2 navigation">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" id="myDIV" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item" *ngIf="!isVendor">
-            <a routerLink="/dashboard" class="nav-link active">
+            <a routerLink="/dashboard" class="nav-link active-sidebar">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -14,7 +14,7 @@
             </a>
           </li>
           <li class="nav-item" >
-            <a class="nav-link" *ngIf="isSuperAdmin">
+            <a class="nav-link active-sidebar active" *ngIf="isSuperAdmin">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Setup
@@ -65,7 +65,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link active-sidebar">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Audit Plan
@@ -133,7 +133,7 @@
             </ul>
           </li>
           <li class="nav-item" *ngIf="isSectionHead"> 
-            <a routerLink="/dashboard/evidence/section-data" class="nav-link">
+            <a routerLink="/dashboard/evidence/section-data" class="nav-link active-sidebar">
               <img src="../../assets/icons/planning.png" class="side_img">
               <p>
               Pending For Approval
@@ -142,7 +142,7 @@
           </li>
           <li class="nav-item" *ngIf="isSectionHead 
           || isDPM"> 
-            <a routerLink="/dashboard/evidence/dpm" class="nav-link">
+            <a routerLink="/dashboard/evidence/dpm" class="nav-link active-sidebar">
               <img src="../../assets/icons/planning.png" class="side_img">
               <p>
                 Report Approval
@@ -150,7 +150,7 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="!isVendor">
-            <a routerLink="/dashboard/manage-audit" class="nav-link">
+            <a routerLink="/dashboard/manage-audit" class="nav-link active-sidebar">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Audit Execution
@@ -159,7 +159,7 @@
             
           </li>
           <li class="nav-item"  *ngIf="isAuditor || isSectionHead">
-            <a routerLink="/dashboard/action-plan/receive" class="nav-link">
+            <a routerLink="/dashboard/action-plan/receive" class="nav-link active-sidebar">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Action Plan 
@@ -167,7 +167,7 @@
             </a>
           </li>
           <li class="nav-item"  *ngIf="isVendor">
-            <a routerLink="/dashboard/action-plan" class="nav-link">
+            <a routerLink="/dashboard/action-plan" class="nav-link active-sidebar">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Action Plan
@@ -175,7 +175,7 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="!isAuditor && !isVendor">
-            <a class="nav-link">
+            <a class="nav-link active-sidebar">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Reports

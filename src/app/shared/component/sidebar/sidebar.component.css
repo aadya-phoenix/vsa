@@ -87,9 +87,8 @@
     cursor: pointer;
     
   }
-  
-  /* Style the active class, and buttons on mouse-over */
-  .active, .btn_active:hover {
+
+  .active, .active-sidebar:hover {
     background-color: #666;
     color: white;
   }

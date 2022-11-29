@@ -5,7 +5,6 @@
         <div class="card card-default">
           <div class="card-header">
             <h3 class="card-title">Audit Area Details ( {{vendorName}} )
-
             </h3>
          </div>
           <form [formGroup]="questionForm" enctype="multipart/form-data">
@@ -13,9 +12,9 @@
               <div id="accordion">
                 <div class="row">
                   <div class="col-sm-4" >
-                    <div class="d-flex flex_colum mt_17" id="myDIV" *ngFor="let item of auditAreaList">
+                    <div class="d-flex flex_colum mt_17"  *ngFor="let item of auditAreaList">
                       <div id="headingOne" class="div_main_active">
-                        <button class="btn btn-link mb-2 active" (click)="getRegulation(item.id)"
+                        <button  [ngClass]="item.isActiveTab == true ? 'active-tab' : 'disactive-tab'"class="btn btn-link mb-2 active" (click)="getRegulation(item)"
                           aria-expanded="true" aria-controls="collapseOne">
                           {{item.name}}
                         </button>
@@ -40,7 +39,7 @@
                                   <div class="d-flex">
                                    
                                     <div class="mr-3">
-                                      <input type="radio"  formControlName="JudgementId" (click)="judgeValue($event,i)"  [value]="pie"
+                                      <input type="radio"  formControlName="JudgementId"   [value]="pie"
                                         class="chek_box"><img src="../../../../assets/icons/square.png"
                                         class="diacisq_css">
                                     </div>
@@ -51,7 +50,7 @@
                                         class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" formControlName="JudgementId" (click)="judgeValue($event,i)"  [value]="cross" class="chek_box"><img
+                                      <input type="radio" formControlName="JudgementId"   [value]="cross" class="chek_box"><img
                                         src="../../../../assets/icons/new-moon.png" class="diacisq_css">
                                     </div>
                                   </div>

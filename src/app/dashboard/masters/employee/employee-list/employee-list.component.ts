@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-
+  dateFormat = dataConstants.dateFormate;
   getUserrole: any;
   isSuperAdmin = false;
   isPlanner = false;

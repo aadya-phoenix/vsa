@@ -122,18 +122,15 @@
                                             <td>{{item.plannedStartDate | date:dateFormate}}</td>
                                             <td>{{item.plannedEndDate | date:dateFormate}}</td>
                                             <td>
-                                                <p [ngClass]="item.status" data-toggle="tooltip" data-placement="top"
-                                                    title="Tooltip on top">{{item.status}} </p>
+                                                <p [ngClass]="item.status">{{item.status}} </p>
                                             </td>
                                             <td *ngIf="isAuditor || isPlanner">
-                                                <a (click)="viewManageAudit()" data-toggle="tooltip"
-                                                    data-placement="top" title="Tooltip on top"><img
+                                                <a (click)="viewManageAudit()" ><img
                                                         src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                                             </td>
                                             <td>
                                                 <div *ngIf="(isAuditor || isSuperAdmin || isPlanner) && item.status == 'Accepted' && item.typeOfReport != 'Final'">
-                                                <a (click)="initiateAudit(item)" data-toggle="tooltip"
-                                                    data-placement="top" title="Tooltip on top"><img
+                                                <a (click)="initiateAudit(item)" ><img
                                                         src="../../../../assets/icons/auditini.png"
                                                         class="viwe_iamge"></a>
                                                 </div>

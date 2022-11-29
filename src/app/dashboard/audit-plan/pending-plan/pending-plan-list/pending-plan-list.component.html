@@ -87,12 +87,12 @@
                       <td>{{item.otherLocation}}</td>
                       <td>{{item.plannedStartDate | date:dateFormate}}</td>
                       <td>{{item.plannedEndDate | date:dateFormate}}</td>
-                      <td><p class="pend_coloe  backgr_blue">{{item.status}} </p></td>
+                      <td><p [ngClass]="item.status">{{item.status =='Submitted' ? 'Pending' : item.status}} </p></td>
                       <td>  
-                        <div  *ngIf="isVendor && item. status != 'Accepted'">
-                        <p class="pend_coloe backgr_green" 
+                        <div  *ngIf="isVendor && item. status == 'Submitted'">
+                        <p class="Accepted" 
                         (click)="getVendorAction(accept,item)" >Accept </p>
-                        <p class="pend_coloe backgr_red" (click)="openModal(reject,item)">Reject </p>
+                        <p class="Rejected" (click)="openModal(reject,item)">Reject </p>
                       </div>
                       </td>
                     </tr>

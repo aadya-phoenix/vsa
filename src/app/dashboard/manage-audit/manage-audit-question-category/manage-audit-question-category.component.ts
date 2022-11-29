@@ -30,6 +30,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   reportType:any;
   Final = 'Final';
   vendorName:any;
+  isNotCompleteRegulation = true;
   constructor(
     private fb:FormBuilder,
     private authService:AuthenticationService,
@@ -65,6 +66,20 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
       next: (res) => {
         if(res){
          this.categoryScoreList = res;
+        // debugger;
+         this.categoryScoreList.forEach((x:any):any=>{
+          x.totalRegulation = Math.round((x.totalCount)/3);
+          if(x.competedRegulation != x.totalRegulation){
+           //  x.isNotCompleteRegulation = false;
+             this.isNotCompleteRegulation = true;
+             console.log("this.is ",this.isNotCompleteRegulation);
+             return false;
+          } 
+          else{
+            this.isNotCompleteRegulation = false;
+            console.log("this.is ",this.isNotCompleteRegulation);
+          }
+         });
          this.commonService.hideLoading();
         }
        },

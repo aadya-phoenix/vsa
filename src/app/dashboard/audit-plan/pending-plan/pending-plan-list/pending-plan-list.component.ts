@@ -97,6 +97,7 @@ export class PendingPlanListComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(PendingPlanRejectComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
+    this.getViewPlanList();
   }
 
   pageChanged(event: any) {
