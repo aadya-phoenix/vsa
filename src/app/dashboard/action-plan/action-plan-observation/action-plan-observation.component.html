@@ -14,7 +14,7 @@
                     <tr class=" text-center sticky_header fon_9">
                         <th>Observation</th>
                         <th>ITEM NO.</th>
-                        <th>SUB ITEM NO. </th>
+                        <th>Regulation </th>
                         <th>DESIRED IMPROVEMENT POINTS</th>
                         <th>DETAIL OF IMPROVEMENT PLAN</th>
                         <th>IN-CHARGE</th>
@@ -25,8 +25,8 @@
                     <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                         <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
                         <td>{{i+1}}</td>
-                        <td>{{i+1}}.1</td>
-                        <td>{{item.remarkOfAuditor}}</td>
+                        <td>{{item.regulationText}}</td>
+                        <td>{{item.remark}}</td>
                         <td><textarea [(ngModel)]="item.detailOfImprovement" class="form-control"></textarea></td>
                         <td><textarea [(ngModel)]="item.incharge" class="form-control"></textarea>
                         </td>
