@@ -69,11 +69,11 @@
                                         <td [formGroupName]="j" >
                                           <div class="d-flex">
                                             <div class="image-upload mr-1">
-                                              <label for="file-input">
+                                              <label for="file_input_{{i}}_{{j}}">
                                                 <img src="../../../../assets/icons/up-arrow.png" data-toggle="tooltip"
                                                   data-placement="top" title="Uplaod File" class="upload_file_css">
                                               </label>
-                                              <input id="file-input" type="file" formControlName="file" (input)="fileInput($event,i,j)"/>
+                                              <input id="file_input_{{i}}_{{j}}" type="file" formControlName="file"  (input)="fileInput($event,i,j)"/>
                                             </div>
                                             <button class="btn btn-primary btn-add-deatil mr-1"  (click)="addJudge(i,'')">+</button>
                                             <button class="btn btn-danger btn-add-deatil" *ngIf="j > 0" (click)="removeJudge(i,j)">-</button>
