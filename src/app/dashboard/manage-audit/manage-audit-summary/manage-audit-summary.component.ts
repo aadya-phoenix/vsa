@@ -68,7 +68,7 @@ export class ManageAuditSummaryComponent implements OnInit {
           this.auditReportData = res;
           this.auditReportData.catergoryWiseScoreModel.forEach((element:any, index:number) => {
             this.reportData.labels?.push(`${index+1} ${element.name}`);
-            const reprotData = (element.observationCount / element.categoryTotalCount) * 100;
+            const reprotData = (element.categoryScore / element.totalCount) * 100;
             this.reportData.datasets[0].data.push(reprotData > 0 ? reprotData : 0);
           });
           this.chartsData = true;
