@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ActionPlanRoutingModule } from './action-plan-routing.module';
 import { ActionPlanComponent } from './action-plan.component';
@@ -33,6 +33,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ActionPlanAuditorCategoryComponent,
     ActionPlanReceiveComponent
   ],
+  providers:[DatePipe],
   imports: [
     CommonModule,
     FormsModule,

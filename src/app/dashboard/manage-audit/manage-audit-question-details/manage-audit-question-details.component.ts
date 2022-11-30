@@ -39,7 +39,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   vendorName:any;
   selectedTab:any;
   categoryName:any;
-
+  myFile:any=[];
   constructor(
     private auditPlanService:AuditPlanService,
     private fb:FormBuilder,
@@ -80,7 +80,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   private judgeGroup(): FormGroup {
     return this.fb.group({
       remark: new FormControl('',[]),
-      file: new FormControl('',[]),
+      file: new FormControl(null,[]),
       auditPlanId: new FormControl(this.auditPlanId,[]),
       createdBy: new FormControl(this.userId,[]),
       regulationId: new FormControl('',[]),
@@ -220,6 +220,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   submit(index:any,id:any){
     this.commonService.showLoading();
+    //debugger;
     const body = this.questionForm.controls['metadata'].value;
     if (!body[index].JudgementId) {
       Swal.fire({
@@ -266,7 +267,10 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   fileInput(event:any,i:any,j:any){
-    console.log("event",event.target.files[0],i,j);
+    //debugger;
+   // console.log("event",event.target.files[0],i,j);
+   this.myFile[0]=event.target.files[0];
+   console.log("myFile",this.myFile);
   }  
 
   back(){

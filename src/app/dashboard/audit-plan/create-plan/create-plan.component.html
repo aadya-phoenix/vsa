@@ -8,9 +8,11 @@
                             <h3 class="card-title">Create Plan Details</h3>
                             <div class="d-flex">
                                 <input type="file"  (change)="bulkUpload($event)" id="upload" hidden />
-                                <button for="upload" class="button-upload btn btn-primary"> 
-                                    <i class="fas fa-upload mr-1 upload_ico"></i>
-                                    <span class="now_rap">Upload Plan</span></button>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn button-upload btn-primary" (change)="bulkUpload($event)"> <i class="fas fa-upload mr-1 upload_ico"></i>
+                                        <span class="now_rap">Upload Plan</span></button>
+                                    <input type="file" name="myfile" />
+                                  </div>
                                 <button class="btn btn-success d-flex align-items-center ml-1"
                                 (click)="download()">
                                     <i class="fas fa-download mr-1 upload_ico"></i>
@@ -49,6 +51,7 @@
                                     <div class="form-group">
                                         <label class="form_label">Location <span class="start_css">*</span></label>
                                         <select class="form-control inputbox_css " formControlName="locationId">
+                                            <option></option>
                                             <option *ngFor="let item of locationObj" [value]="item.id">{{item.name }}
                                             </option>
                                         </select>

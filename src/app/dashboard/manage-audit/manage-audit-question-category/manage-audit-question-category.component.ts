@@ -63,6 +63,8 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
 
   getCategoryList(){
     this.commonService.showLoading();
+    let overAllRegulations = 0;
+    let overAllCompetedRegulation = 0;
     this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
@@ -71,21 +73,14 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
          this.categoryScoreList.forEach((x:any):any=>{
           
           x.totalRegulation = Math.round((x.totalCount)/3);
-          if(x.competedRegulation != x.totalRegulation){
-           i = 0;        
-          } 
-          else{
-            i++;
-          }
-          if(i==0)
-          {
-            this.isNotCompleteRegulation=true;
-          }
-          else
-          {
-            this.isNotCompleteRegulation=false;
-          }
+          debugger;
+          overAllRegulations += x.totalRegulation;
+          overAllCompetedRegulation += x.competedRegulation;
          });
+         if(overAllRegulations == overAllCompetedRegulation)
+         {
+          this.isNotCompleteRegulation=false;
+         }
          this.commonService.hideLoading();
         }
        },

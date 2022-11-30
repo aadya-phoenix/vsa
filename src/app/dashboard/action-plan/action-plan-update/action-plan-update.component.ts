@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
 
@@ -22,10 +23,11 @@ export class ActionPlanUpdateComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
-
+  categoryName:any;
   constructor(
     private auditExeService:AuditExecutionService,
     private commonService: CommonService,
+    private categoryService:CategoryMasterService,
     private router:Router,
     private route:ActivatedRoute
   ) { 
@@ -39,6 +41,7 @@ export class ActionPlanUpdateComponent implements OnInit {
 
   ngOnInit(): void {
   this. getActionPlanList();
+  this.getCategoryDetails();
   }
 
   getActionPlanList(){
@@ -47,7 +50,6 @@ export class ActionPlanUpdateComponent implements OnInit {
       next: (res) => {
         if(res){
          this.actionPlanList = res;
-        // this.actionPlanListToShow = res;
         this.commonService.hideLoading();
         }
        },
@@ -110,5 +112,20 @@ export class ActionPlanUpdateComponent implements OnInit {
     this.pagination.pageNumber = event;
   }
 
-
+  getCategoryDetails(){
+    this.commonService.showLoading();  
+    this.categoryService.getCategoryDetails(this.categoryId).subscribe({
+      next: (res) => {
+        if(res){
+         this.categoryName = res.name;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
+     });
+  }
 }

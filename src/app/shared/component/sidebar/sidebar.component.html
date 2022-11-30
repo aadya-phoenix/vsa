@@ -14,7 +14,7 @@
             </a>
           </li>
           <li class="nav-item" >
-            <a class="nav-link active-sidebar active" *ngIf="isSuperAdmin || isPlanner">
+            <a class="nav-link active-sidebar" *ngIf="isSuperAdmin || isPlanner">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Setup
@@ -98,14 +98,7 @@
                 </a>
               </li>
 
-              <li class="nav-item" *ngIf="isAuditor"> 
-                <a routerLink="/dashboard/action-plan/auditor" class="nav-link">
-                  <img src="../../assets/icons/planning.png" class="side_img">
-                  <p>
-                    Evidence Received
-                  </p>
-                </a>
-              </li>
+           
               <!-- <li class="nav-item" *ngIf="isSectionHead"> 
                 <a routerLink="/dashboard/evidence/section-data" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
@@ -155,6 +148,14 @@
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Action Plan 
+              </p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isAuditor"> 
+            <a routerLink="/dashboard/action-plan/auditor" class="nav-link">
+              <img src="../../assets/icons/planning.png" class="side_img">
+              <p>
+                Evidence Received
               </p>
             </a>
           </li>

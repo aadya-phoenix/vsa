@@ -10,7 +10,8 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
   styleUrls: ['./action-plan-list.component.css']
 })
 export class ActionPlanListComponent implements OnInit {
-
+  plannedStartDate:any;
+  plannedEndDate:any;
   auditPlanList:any=[];
   dateFormat = dataConstants.dateFormate;
   pagination = {

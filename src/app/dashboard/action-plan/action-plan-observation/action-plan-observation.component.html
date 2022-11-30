@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <div class="header_card">
-            <h3 class="card-title">Regulation for initial production control </h3>
+            <h3 class="card-title">{{categoryName}}</h3>
         </div>
     </div>
     <div class="card-body">
@@ -30,8 +30,7 @@
                         <td><textarea [(ngModel)]="item.detailOfImprovement" class="form-control width-300"></textarea></td>
                         <td><textarea [(ngModel)]="item.incharge" class="form-control width-300"></textarea>
                         </td>
-                        <!-- <td *ngIf="item.dateOfSubmission">{{item.dateOfSubmission | date:dateFormat}}</td> -->
-                        <td ><input [(ngModel)]="item.dateOfSubmission" type="date"></td>
+                        <td ><input  [min]="minStartDate" [(ngModel)]="item.dateOfSubmission" type="date"></td>
                     </tr>
                 </tbody>
             </table>
@@ -43,8 +42,8 @@
           </nav>
     </div>
     <div class="card-footer">
-        <button (click)="submit()" class="btn btn-success">Submit</button>
-         <button (click)="back()" class="btn btn-default">Back</button>
+        <button type="button" (click)="submit()" class="btn btn-success">Submit</button>
+         <button type="button" (click)="back()" class="btn btn-default">Back</button>
 
      </div>
 </div>

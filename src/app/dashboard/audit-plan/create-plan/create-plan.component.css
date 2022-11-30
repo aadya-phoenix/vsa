@@ -1,6 +1,22 @@
 .upload_ico{
   margin-top: -2px;
 }
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer !important;
+}
 .mt_3{
   margin-top: -3px !important;
 

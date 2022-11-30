@@ -1,4 +1,26 @@
+.Accepted {
+  background: green; 
+  padding: 4px 14px;
+  color: #fff;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
 
+.Submitted{
+  background: #1a65a3;
+  padding: 4px 14px;
+  color: #fff;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.Rejected{
+  background: #dc3545;
+  padding: 4px 14px;
+  color: #fff;
+  margin-bottom: 10px;
+ cursor: pointer;
+}
 .heigh_60{
     width: 67px;
 }

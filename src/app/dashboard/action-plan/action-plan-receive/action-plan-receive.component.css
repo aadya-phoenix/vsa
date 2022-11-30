@@ -1,0 +1,28 @@
+.submit {
+    background: green; 
+    padding: 4px 14px;
+    color: #fff;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none !important;
+   
+}
+
+.to_be_submit{
+    background: #1a65a3;
+    padding: 4px 14px;
+    color: #fff;
+    margin-bottom: 10px;
+    border: none !important;
+    cursor: pointer;
+}
+
+.Rejected{
+    background: #dc3545;
+    padding: 4px 14px;
+    color: #fff;
+    margin-bottom: 10px;
+   cursor: pointer;
+   border: none !important;
+   
+}

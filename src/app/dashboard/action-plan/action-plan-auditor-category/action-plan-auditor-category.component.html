@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="header_card">
-                            <h3 class="card-title">Audit Area Details</h3>   
+                            <h3 class="card-title">Category Details</h3>   
                         </div>
                     </div>
                     <div class="card-body">
@@ -19,19 +19,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="tbody_data" *ngFor="let item of categoryScoreList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                                        <td>C{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>
+                                    <tr class="tbody_data" *ngFor="let item of categoryScoreList ;let i =index">
+                                        <td>{{i+1}}</td>
                                         <td>{{item.name}}</td>
                                         <td>  <button (click)="goToObservation(item.categoryId)" class="btn btn-primary">{{item.observationCount}}</button></td>               
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <nav aria-label="Page navigation example">
-                            <div class="pagination justift_end">
-                              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-                            </div>
-                        </nav>
                     </div>
                     <div class="card-footer">
                         <button (click)="back()" class="btn btn-default">Back</button>

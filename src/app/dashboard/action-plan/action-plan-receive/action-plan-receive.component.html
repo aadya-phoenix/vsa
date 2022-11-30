@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="header_card">
-                            <h3 class="card-title">Audit Area Details</h3>
+                            <h3 class="card-title">Action Plan Details</h3>
                             <div class="d-flex align-items-center">
                                 <h6 class="mr-1 mb-0">Filters:-</h6>
                                 <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name">
@@ -38,9 +38,9 @@
                                         <td>{{item.plannedEndDate | date:dateFormat}}</td>
                                         <td>{{item.observationCount}}</td>
                                         <td></td>
-                                        <td><button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.score}}</button></td>
+                                        <td><p><b>{{item.score}}</b></p></td>
                                         <td>
-                                            <button (click)="goToCategory(item.id)" class="btn btn-primary"data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{item.actionPlanStatus}}</button>
+                                            <button (click)="goToCategory(item.id)"  [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted' }">{{item.actionPlanStatus}}</button>
                                         </td>
                                     </tr>
                                 </tbody>

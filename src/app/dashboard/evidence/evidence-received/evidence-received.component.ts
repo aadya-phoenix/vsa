@@ -4,6 +4,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
+import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
 import { EvidenceAuditorRemarksComponent } from '../evidence-auditor-remarks/evidence-auditor-remarks.component';
@@ -28,11 +29,12 @@ export class EvidenceReceivedComponent implements OnInit {
   userId:any;
   bsModalRef ?: BsModalRef;
   categoryId:any;
-
+  categoryName:any;
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
     private modalService: BsModalService,
+    private categoryService:CategoryMasterService,
     private auditExeService:AuditExecutionService,
     private route:ActivatedRoute,
     private router:Router
@@ -49,6 +51,7 @@ export class EvidenceReceivedComponent implements OnInit {
 
   ngOnInit(): void {
     this. getActionPlanList();
+    this.getCategoryDetails();
   }
 
   getActionPlanList(){
@@ -111,6 +114,23 @@ export class EvidenceReceivedComponent implements OnInit {
 
   back(){
     this.router.navigateByUrl(`dashboard/evidence/category/${this.auditPlanId}`);
+  }
+
+  getCategoryDetails(){
+    this.commonService.showLoading();  
+    this.categoryService.getCategoryDetails(this.categoryId).subscribe({
+      next: (res) => {
+        if(res){
+         this.categoryName = res.name;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
+     });
   }
 
 }

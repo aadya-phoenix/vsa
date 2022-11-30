@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
 
@@ -24,10 +25,11 @@ export class EvidenceSubmissionComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
-
+  categoryName:any;
   constructor(
     private commonService: CommonService,
     private auditExeService:AuditExecutionService,
+    private categoryService:CategoryMasterService,
     private router:Router,
     private route:ActivatedRoute
   ) { 
@@ -41,6 +43,7 @@ export class EvidenceSubmissionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getActionPlanList();
+    this.getCategoryDetails();
   }
 
   fileUpload(event:any){
@@ -114,6 +117,23 @@ export class EvidenceSubmissionComponent implements OnInit {
 
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
+  }
+
+  getCategoryDetails(){
+    this.commonService.showLoading();  
+    this.categoryService.getCategoryDetails(this.categoryId).subscribe({
+      next: (res) => {
+        if(res){
+         this.categoryName = res.name;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
+     });
   }
 
 

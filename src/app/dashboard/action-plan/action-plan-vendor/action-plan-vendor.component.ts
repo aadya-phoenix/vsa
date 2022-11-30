@@ -18,8 +18,8 @@ export class ActionPlanVendorComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
-
-
+  plannedStartDate:any;
+  plannedEndDate:any;
   constructor(
     private router:Router,
     private commonService: CommonService,
