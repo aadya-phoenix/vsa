@@ -97,14 +97,7 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item" *ngIf="isVendor"> 
-                <a routerLink="/dashboard/action-plan/vendor" class="nav-link">
-                  <img src="../../assets/icons/planning.png" class="side_img">
-                  <p>
-                    Evidence Submission
-                  </p>
-                </a>
-              </li>
+
               <li class="nav-item" *ngIf="isAuditor"> 
                 <a routerLink="/dashboard/action-plan/auditor" class="nav-link">
                   <img src="../../assets/icons/planning.png" class="side_img">
@@ -170,6 +163,14 @@
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Action Plan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isVendor"> 
+            <a routerLink="/dashboard/action-plan/vendor" class="nav-link">
+              <img src="../../assets/icons/planning.png" class="side_img">
+              <p>
+                Evidence Submission
               </p>
             </a>
           </li>

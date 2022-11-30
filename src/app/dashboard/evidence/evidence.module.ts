@@ -17,6 +17,9 @@ import { EvidenceReceiveCategoryComponent } from './evidence-receive-category/ev
 import { EvidenceExecutiveSummaryComponent } from './evidence-executive-summary/evidence-executive-summary.component';
 import { NgChartsModule } from 'ng2-charts';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DpmReportComponent } from './dpm-report/dpm-report.component';
+import { SectionHeadRejectComponent } from './section-head-reject/section-head-reject.component';
+import { DpmRejectComponent } from './dpm-reject/dpm-reject.component';
 
 
 @NgModule({
@@ -29,9 +32,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     EvidenceAuditsComponent,
     EvidenceAuditorRemarksComponent,
     EvidenceReceiveCategoryComponent,
-    EvidenceExecutiveSummaryComponent
+    EvidenceExecutiveSummaryComponent,
+    DpmReportComponent,
+    SectionHeadRejectComponent,
+    DpmRejectComponent
   ],
-  entryComponents:[EvidenceAuditorRemarksComponent],
+  entryComponents:[EvidenceAuditorRemarksComponent,SectionHeadRejectComponent,DpmRejectComponent],
   imports: [
     CommonModule,
     FormsModule,

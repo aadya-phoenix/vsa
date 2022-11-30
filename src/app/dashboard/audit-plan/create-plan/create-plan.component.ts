@@ -66,6 +66,7 @@ export class CreatePlanComponent implements OnInit {
   }
 
   submit() {
+    console.log("value",this.createPlanForm.value);
     this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
       Swal.fire({

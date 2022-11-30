@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalDirective, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
@@ -97,8 +97,13 @@ export class PendingPlanListComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(PendingPlanRejectComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
-    this.getViewPlanList();
+    this.bsModalRef.onHidden?.subscribe(() => {
+      this. getViewPlanList();
+  });
+   
   }
+
+  
 
   pageChanged(event: any) {
     this.pagination.pageNumber = event;

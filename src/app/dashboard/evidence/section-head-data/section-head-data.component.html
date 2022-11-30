@@ -37,12 +37,12 @@
                                         <td>{{item.observationCount}}</td>
                                         <td><div *ngIf="item.sectionHeadApprovalStatus !='Approved' && item.sectionHeadApprovalStatus !='Rejected'">
                                             <button class="btn btn-success" (click)="submit(accept,
-                                            item.id)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Accept</button>
+                                            item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Accept</button>
                                         </div>
                                         </td>
                                         <td>
                                             <div *ngIf="item.sectionHeadApprovalStatus !='Approved' &&item.sectionHeadApprovalStatus !='Rejected'" >
-                                            <button class="btn btn-danger" data-toggle="tooltip" (click)="submit(reject,item.id)" data-placement="top" title="Tooltip on top">Reject</button>
+                                            <button class="btn btn-danger" data-toggle="tooltip" (click)="openModal(reject,item)" data-placement="top" title="Tooltip on top">Reject</button>
                                         </div>
                                         </td>
                                     </tr>
@@ -60,3 +60,4 @@
         </div>
     </div>
 </section>
+

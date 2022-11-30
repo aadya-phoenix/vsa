@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
@@ -7,11 +7,11 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
 @Component({
-  selector: 'app-evidence-executive-summary',
-  templateUrl: './evidence-executive-summary.component.html',
-  styleUrls: ['./evidence-executive-summary.component.css']
+  selector: 'app-dpm-report',
+  templateUrl: './dpm-report.component.html',
+  styleUrls: ['./dpm-report.component.css']
 })
-export class EvidenceExecutiveSummaryComponent implements OnInit {
+export class DpmReportComponent implements OnInit {
   auditPlanId:any;
   dateFormat = dataConstants.dateFormate;
   auditReportData:any;
@@ -70,7 +70,7 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
   }
   
   back(){
-    this.router.navigateByUrl(`dashboard/evidence/section-data`);
+    this.router.navigateByUrl(`dashboard/evidence/dpm`);
   }
 
   getSummaryDetails(){

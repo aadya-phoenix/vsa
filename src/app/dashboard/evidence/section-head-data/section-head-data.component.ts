@@ -1,12 +1,15 @@
 import { ConditionalExpr } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
+import { SectionHeadRejectComponent } from '../section-head-reject/section-head-reject.component';
 
 @Component({
   selector: 'app-section-head-data',
@@ -25,16 +28,22 @@ export class SectionHeadDataComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
-
-
+  public rejectForm: FormGroup;
+  bsModalRef ?: BsModalRef;
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
     private auditExeService:AuditExecutionService,
     private auditPlanService:AuditPlanService,
     private router:Router,
+    private modalService: BsModalService,
+    private formBuilder: FormBuilder,
     private route:ActivatedRoute
-  ) { }
+  ) {
+    this.rejectForm = this.formBuilder.group({
+      comment: new FormControl('', []),
+    });
+   }
 
   ngOnInit(): void {
     this.user = this.authService.getLoginDetails();
@@ -58,10 +67,10 @@ export class SectionHeadDataComponent implements OnInit {
      });
   }
 
-  submit(status:any,id:any){
+  submit(status:any,item:any){
     this.commonService.showLoading();
     const body ={
-      auditPlanId: id,
+      auditPlanId: item.id,
       roleId: this.user.RoleId,
       userId: this.user.UserId,
       status: status,
@@ -74,6 +83,7 @@ export class SectionHeadDataComponent implements OnInit {
           icon: 'success',
         });
         this.commonService.hideLoading();
+        this.getViewPlanList();
       },
       error:(err:any) =>{
         console.error(err);
@@ -88,6 +98,23 @@ export class SectionHeadDataComponent implements OnInit {
 
   goToReport(id:any){
     this.router.navigateByUrl(`dashboard/evidence/report/${id}`);
+  }
+
+  openModal(status:any,item:any){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:item.id,
+       user:this.user,
+       status:status,
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(SectionHeadRejectComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+      this. getViewPlanList();
+  });
+   
   }
 
 }

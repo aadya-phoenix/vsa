@@ -1,51 +1,62 @@
-<div class="card">
-    <div class="card-header">
-        <div class="header_card">
-            <h3 class="card-title">Regulation for initial production control </h3> 
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive max_hei_table" >
-            <table id="" class="table table-bordered table-hover">
-                <thead>
-                    <tr class="text-center">
-                        <th colspan="9">Observation({{actionPlanList.length}})
-                            <button class="btn btn-success mr-1" (click)="submit('accept')">Accept</button>
-                            <button class="btn btn-danger" (click)="submit('reject')">Reject</button>
-                        </th>
-                    </tr>
-                    <tr class=" text-center sticky_header fon_9">
-                        <th>Observation</th>
-                        <th>ITEM NO.</th>
-                        <th>SUB ITEM NO. </th>
-                        <th>DETAIL OF IMPROVEMENT PLAN</th>
-                        <th>IN-CHARGE</th>
-                        <th>DATE</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                        <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
-                        <td>{{i+1}}</td>
-                        <td>{{i+1}}.1</td>
-                        <td>{{item.detailOfImprovement}}</td>
-                        <td>{{item.incharge}}</td>
-                        <td>{{item.dateOfSubmission | date:dateFormat}}</td> 
-                        <td>
-                           <textarea [(ngModel)]="item.remarkOfAuditor" class="form-control" placeholder="Enter your Remarks"></textarea>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <nav aria-label="Page navigation example">
-            <div class="pagination justift_end">
-              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header_card">
+                            <h3 class="card-title">Audit Area Details</h3>
+                            <div class="d-flex align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive max_hei_table">
+                            <table id="" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class=" text-center sticky_header">
+                                        <th>Audit No</th>
+                                        <th>Audit Completion Date</th>
+                                        <th>Vendor Code </th>
+                                        <th>Vendor Name</th>
+                                        <th>Auditor Name </th>
+                                        <th>View Report</th>
+                                        <th>No Of Observation</th>
+                                        <th>Accept</th>
+                                        <th>Reject</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tbody_data" *ngFor="let item of viewPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                                        <td>{{item.auditNumber}}</td>
+                                        <td>{{item.reportReleaseDate| date:dateFormate }}</td>                    
+                                        <td>{{item.vendorCode}}</td>
+                                        <td>{{item.vendorName}}</td>
+                                        <td>{{item.auditorName}}</td>
+                                        <td><a (click)="goToReport(item.id)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
+                                        <td>{{item.observationCount}}</td>
+                                        <td><div *ngIf="item.dpmApprovalStatus !='Approved' && item.dpmApprovalStatus !='Rejected'">
+                                            <button class="btn btn-success" (click)="submit(accept,
+                                            item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Accept</button>
+                                        </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="item.dpmApprovalStatus !='Approved' &&item.dpmApprovalStatus !='Rejected'" >
+                                            <button class="btn btn-danger" data-toggle="tooltip" (click)="openModal(reject,item)" data-placement="top" title="Tooltip on top">Reject</button>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <div class="pagination justift_end">
+                              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
             </div>
-          </nav>
+        </div>
     </div>
-    <div class="card-footer">
-        <button class="btn btn-default" (click)="close()">Back</button>
-    </div>
-</div>
+</section>

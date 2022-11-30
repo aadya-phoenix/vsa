@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DpmDataComponent } from './dpm-data/dpm-data.component';
+import { DpmReportComponent } from './dpm-report/dpm-report.component';
 import { EvidenceAuditsComponent } from './evidence-audits/evidence-audits.component';
 import { EvidenceExecutiveSummaryComponent } from './evidence-executive-summary/evidence-executive-summary.component';
 import { EvidenceReceiveCategoryComponent } from './evidence-receive-category/evidence-receive-category.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'dpm',component:DpmDataComponent},
   {path:'category/:id',component:EvidenceReceiveCategoryComponent},
   {path:'report/:id',component:EvidenceExecutiveSummaryComponent},
+  {path:'dpm-report/:id',component:DpmReportComponent}
 ];
 
 @NgModule({
