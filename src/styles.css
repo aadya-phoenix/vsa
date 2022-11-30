@@ -34,6 +34,9 @@
   margin-bottom:0px;
   text-align:center;
 }
+.tbody_data td{
+  text-align: left !important;
+}
 .pass_change {
   width: 16px;
 }
@@ -53441,6 +53444,15 @@ font-size: 13px;
     background: #8080800f;
     font-size: 14px !important;
   }
+  .inputbox_css-date {
+    height: 34px !important;
+    background: #f6f6f6;
+    font-size: 14px !important;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 10px;
+    width: 200px !important;
+  }
   .nav-link img {
     width:16px;
     margin-right: 5px;
@@ -53497,6 +53509,9 @@ font-size: 13px;
     max-height: 450px;
   }*/
   .max_hei_table{
+    max-height: 400px;
+  }
+  .max_hei_table-400{
     max-height: 400px;
   }
   .sticky_header {

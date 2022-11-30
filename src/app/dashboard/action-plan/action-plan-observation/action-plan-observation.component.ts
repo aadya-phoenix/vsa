@@ -59,10 +59,15 @@ export class ActionPlanObservationComponent implements OnInit {
       next: (res) => {
         if(res){
          this.actionPlanList = res;
-
+        
          this.actionPlanList.forEach((x:any)=>{
+          if(x.dateOfSubmission == "0001-01-01T00:00:00"){
+            x.dateOfSubmission = null
+          }
+          else{
           x.dateOfSubmission = this.datepipe.transform( x.dateOfSubmission,'yyyy-MM-dd');
-         }) 
+          }
+         });
          this.actionPlanListToShow = res;
          this.commonService.hideLoading();
         }
@@ -76,10 +81,22 @@ export class ActionPlanObservationComponent implements OnInit {
 
   submit(){
     this.commonService.showLoading();
+    let overAllRegulations = 0;
     this.actionPlanList.forEach((element:any) => {
       element.auditPlanId = this.auditPlanId;
       element.createdBy = this.userId;
+      if(!element.dateOfSubmission || !element.detailOfImprovement|| !element.incharge){
+        overAllRegulations++;
+      }
     });
+    if(overAllRegulations >0){
+      Swal.fire({
+        title: 'Please fill all mandatory fields.',
+        icon: 'error',
+      });
+      this.commonService.hideLoading();
+      return;
+    }
     this.auditExeService.saveActionPlan(this.actionPlanList).subscribe({
       next: (res) => {
         if(res){
@@ -103,7 +120,19 @@ export class ActionPlanObservationComponent implements OnInit {
   } 
 
   back(){
-    this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
+    Swal.fire({
+      title: 'Are you sure want to Go Back?',
+      text: 'The data you entered will not be saved',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+      this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
+      }
+    })
+    
   }
 
   getCategoryDetails(){

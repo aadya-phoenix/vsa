@@ -66,11 +66,10 @@ export class CreatePlanComponent implements OnInit {
   }
 
   submit() {
-    console.log("value",this.createPlanForm.value);
     this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
       Swal.fire({
-        title: 'Please fill all mandatory fields.',
+        title: 'Please fill all fields.',
         icon: 'error',
       });
       this.commonService.hideLoading();

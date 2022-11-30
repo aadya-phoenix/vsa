@@ -36,9 +36,13 @@ export class ActionPlanListComponent implements OnInit {
     this.auditService.getAuditPlan().subscribe({
       next:(res)=>{
         if(res){
-          this.commonService.hideLoading();
-          this.auditPlanList = res;
+          
+          this.auditPlanList = res.filter((x:any)=>{
+            return x.dpmApprovalStatus
+            == "Approved";
+           });
         }
+        this.commonService.hideLoading();
       },
       error:(e)=>{
         console.error(e);

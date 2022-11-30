@@ -39,6 +39,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   selectedTab:any;
   categoryName:any;
   myFile:any=[];
+  myFileIndex:any=[];
   constructor(
     private auditPlanService:AuditPlanService,
     private fb:FormBuilder,
@@ -73,7 +74,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     return this.fb.group({
       JudgementId: new FormControl('',[Validators.required]),
       ObservationList: this.fb.array([this.judgeGroup()])
-    })
+    });
   } 
 
   private judgeGroup(): FormGroup {
@@ -219,7 +220,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   submit(index:any,id:any){
     this.commonService.showLoading();
-    //debugger;
+    //
     const body = this.questionForm.controls['metadata'].value;
     if (!body[index].JudgementId) {
       Swal.fire({
@@ -232,6 +233,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     body[index].ObservationList.forEach((x:any)=> {
       x.regulationId = id;
     });
+    debugger;
     body[index].isSubmitted = true;
     const data = body[index];
     const formData :any = new FormData();
@@ -240,6 +242,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         for (let previewKey in data[dataKey]) {
           for (let nestedKey in data[dataKey][previewKey]){
             formData.append(`ObservationList[${previewKey}][${nestedKey}]`, data[dataKey][previewKey][nestedKey]);
+
           }
         }
       }
@@ -266,7 +269,10 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   fileInput(event:any,sessIndex: any,breakIndex:any){
-    console.log("event",event.target.files[0], sessIndex, breakIndex);
+    this.myFile.push(event.target.files[0]);
+    this.myFileIndex.push(sessIndex+'|'+breakIndex)
+    console.log(this.myFile);
+    //console.log("event",event.target.files[0], sessIndex, breakIndex);
   }  
 
   back(){
