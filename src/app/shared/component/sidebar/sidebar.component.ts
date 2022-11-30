@@ -31,13 +31,13 @@ export class SidebarComponent implements OnInit {
     private authService: AuthenticationService,
   ) { 
     this.getUserrole = this.authService.getRolefromlocal();
-    this.isSuperAdmin = this.getUserrole.RoleId === this.SuperAdmin.RoleId && this.getUserrole.role === this.SuperAdmin.role;
-    this. isPlanner = this.getUserrole.RoleId === this.Planner.RoleId && this.getUserrole.role === this.Planner.role;
-    this.isAuditor = this.getUserrole.RoleId === this.Auditor.RoleId && this.getUserrole.role === this.Auditor.role; 
-    this.isVendor = this.getUserrole.RoleId === this.Vendor.RoleId && this.getUserrole.role === this.Vendor.role; 
-    this.isSectionHead = this.getUserrole.RoleId === this.SectionHead.RoleId && this.getUserrole.role === this.SectionHead.role;
-    this.isVerticalHead = this.getUserrole.RoleId === this.VerticalHead.RoleId && this.getUserrole.role === this.VerticalHead.role;
-    this.isDPM = this.getUserrole.RoleId === this.DPM.RoleId && this.getUserrole.role === this.DPM.role;
+    this.isSuperAdmin = this.getUserrole.role.toLowerCase() === this.SuperAdmin.role.toLowerCase();
+    this.isPlanner = this.getUserrole.role.toLowerCase() === this.Planner.role.toLowerCase();
+    this.isAuditor = this.getUserrole.role.toLowerCase() === this.Auditor.role.toLowerCase(); 
+    this.isVendor = this.getUserrole.role.toLowerCase() === this.Vendor.role.toLowerCase(); 
+    this.isSectionHead = this.getUserrole.role.toLowerCase() === this.SectionHead.role.toLowerCase();
+    this.isVerticalHead = this.getUserrole.role.toLowerCase() === this.VerticalHead.role.toLowerCase();
+    this.isDPM = this.getUserrole.role.toLowerCase() === this.DPM.role.toLowerCase();
   }
 
   ngOnInit(): void {
