@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./manage-audit-question-details.component.css']
 })
 export class ManageAuditQuestionDetailsComponent implements OnInit {
-
   questionForm:FormGroup;
   regulationList:any=[];
   auditAreaList: any = [];
@@ -265,8 +264,8 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     });  
   }
 
-  fileInput(event:any,i:any,j:any){
-    console.log("event",event.target.files[0],i,j);
+  fileInput(event:any,sessIndex: any,breakIndex:any){
+    console.log("event",event.target.files[0], sessIndex, breakIndex);
   }  
 
   back(){
