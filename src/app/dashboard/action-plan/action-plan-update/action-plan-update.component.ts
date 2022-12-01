@@ -46,10 +46,15 @@ export class ActionPlanUpdateComponent implements OnInit {
 
   getActionPlanList(){
     this.commonService.showLoading();
-    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId}).subscribe({
+    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId, categoryId: this.categoryId}).subscribe({
       next: (res) => {
         if(res){
          this.actionPlanList = res;
+         this.actionPlanList.forEach((x:any)=>{
+         x.dateOfSubmission == 
+         "0001-01-01T00:00:00" ? x.dateOfSubmission = null : 
+         x.dateOfSubmission =  x.dateOfSubmission;   
+         });
         this.commonService.hideLoading();
         }
        },
@@ -63,10 +68,22 @@ export class ActionPlanUpdateComponent implements OnInit {
 
   submit(status:any){
     this.commonService.showLoading();
+    let submittedFields = 0;
     this.actionPlanList.forEach((element:any) => {
       element.remark = element.remarkOfAuditor;
       this.actionPlanAudi.push({id:element.id,remark:element.remark});
+      if(!element.remark){
+        submittedFields++;
+      }
     });
+    if(submittedFields >0){
+      Swal.fire({
+        title: 'Please fill all remarks.',
+        icon: 'error',
+      });
+      this.commonService.hideLoading();
+      return;
+    }
     this.auditExeService.actionPlanRemarks(this.actionPlanAudi).subscribe({
       next: (res) => {
         if(res){
@@ -105,7 +122,18 @@ export class ActionPlanUpdateComponent implements OnInit {
   }
 
   close(){
+    Swal.fire({
+      title: 'Are you sure want to Go Back?',
+      text: 'The data you entered will not be saved',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
     this.router.navigateByUrl(`dashboard/action-plan/auditor/category/${this.auditPlanId}`);
+    }
+  }); 
   }
 
   pageChanged(event: any) {

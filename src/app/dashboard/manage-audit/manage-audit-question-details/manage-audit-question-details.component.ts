@@ -233,7 +233,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     body[index].ObservationList.forEach((x:any)=> {
       x.regulationId = id;
     });
-    debugger;
+   
     body[index].isSubmitted = true;
     const data = body[index];
     const formData :any = new FormData();

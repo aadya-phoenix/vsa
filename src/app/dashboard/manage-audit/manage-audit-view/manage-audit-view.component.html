@@ -1,120 +1,106 @@
-<section class="content pt-2">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
+<section class="content">
+    <div>
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="card card-default">
                     <div class="card-header">
-                        <div class="header_card">
-                            <h3 class="card-title">Audit Area Details</h3>
-                        </div>
+                        <h3 class="card-title">View Plan Details</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Vendor Code <span class="start_css">*</span></label>
-                                    <input list="europe-countries" placeholder="Search Vendor Code" class="form-control inputbox_css "
-                                        disabled>
-                                    <datalist id="europe-countries">
-                                        <option>VCNH1231</option>
-                                    </datalist>
+                      <form [formGroup]="viewPlanForm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Vendor Code</label>
+                                        <input type="text" class="form-control inputbox_css "
+                                        formControlName="vendorCode">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Vendor Name <span class="start_css">*</span></label>
-                                    <select class="form-control inputbox_css " disabled>
-                                        <option>Vendor1</option>
-                                    </select>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Vendor Name</label>
+                                        <input type="text" class="form-control"
+                                        formControlName="vendorName" >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Location <span class="start_css">*</span></label>
-                                    <select class="form-control inputbox_css " disabled>
-                                        <option>Location2</option>
-                                    </select>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Location </label>
+                                        <input type="text" class="form-control"
+                                        formControlName="locationName" >
+                                    </div>
                                 </div>
-                            </div>
-                           
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Any Other Code <span class="start_css">*</span></label>
-                                    <input type="text" class="form-control inputbox_css " placeholder="XXXXXX" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Any Other Location </label>
+                                        <input type="text" class="form-control"
+                                        formControlName="otherLocation">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Any Other Location </label>
-                                    <input type="text" class="form-control inputbox_css " placeholder="Enter Other Location" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Any Other Code</label>
+                                        <input type="text" class="form-control inputbox_css mt_3"   formControlName="otherCode">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Type Code</label>
-                                    <input type="text" class="form-control inputbox_css " placeholder="XXXXX" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type Code</label>
+                                        <input type="text" class="form-control inputbox_css"  formControlName="typeCode">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Type Name</label>
-                                    <input type="text" class="form-control inputbox_css " placeholder="XXXXX" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type Name</label>
+                                        <input type="text" class="form-control inputbox_css"  formControlName="typeName">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Type location</label>
-                                    <input type="text" class="form-control inputbox_css " placeholder="XXXXX" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type Location</label>
+                                        <input type="text" class="form-control"  formControlName="typeLocation">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Planned Start Date <span
-                                            class="start_css">*</span></label>
-                                    <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Planned Start Date </label>
+                                        <input type="date" class="form-control inputbox_css" formControlName="plannedStartDate">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">Planned End Date <span class="start_css">*</span></label>
-                                    <input type="text" class="form-control inputbox_css" placeholder="XXXXX" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Planned End Date </label>
+                                        <input type="date" class="form-control inputbox_css"
+                                        formControlName="plannedEndDate">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">
-                                        Additional MSIL email
-                                    </label>
-                                    <input type="text" class="form-control inputbox_css " ng-model="driverObj.DriverName"
-                                        placeholder="XXXXX" disabled>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">
+                                            Additional MSIL Email
+                                        </label>
+                                        <input type="text" class="form-control inputbox_css" 
+                                            formControlName="additionalMSILEmail">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">
-                                        Auditee email id <span class="start_css">*</span>
-                                    </label>
-                                    <input type="text" class="form-control inputbox_css " ng-model="driverObj.DriverName"
-                                        placeholder="xyz@gmail.com" disabled>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="form_label">
-                                        Upload File
-                                    </label>
-                                    <a
-                                        href="http://localhost:64604/index.html#/ViewPlan/">http://localhost:64604/index.html#/ViewPlan/</a>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">
+                                            Auditee Email Id 
+                                        </label>
+                                        <input type="text" class="form-control inputbox_css mt_3"  
+                                            formControlName="auditeeEmail">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"
-                            (click)="manageScreenView()">Close</button>
-                    </div>
+                        <div class="card-footer" >
+                            <button class="btn btn-default" (click)="close()">Back</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+

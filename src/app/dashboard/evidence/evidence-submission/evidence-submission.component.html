@@ -11,7 +11,7 @@
                     <tr class="text-center">
                         <th colspan="10">Observation({{actionPlanList.length}})</th>
                     </tr>
-                    <tr class=" text-center sticky_header">
+                    <tr class="sticky_header">
                         <th>Observation</th>
                         <th>Audit Area</th>
                         <th>Regulation </th>
@@ -33,7 +33,7 @@
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
                         <td><input type="file" id="exampleInputFile" (change)="fileUpload($event)"
-                         class="form-control width-300"  multiple></td>
+                         class="form-control inputbox_css-date"  multiple></td>
                         <td><button class="btn btn-success"  (click)="submit(item)">Submit</button></td>
                     </tr>
                 </tbody>

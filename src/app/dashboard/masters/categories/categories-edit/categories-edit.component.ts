@@ -15,6 +15,7 @@ export class CategoriesEditComponent implements OnInit {
   categoryForm:FormGroup;
   category_id:any;
   categoryDetails:any;
+  status:any;
 
   constructor(
     private fb:FormBuilder,
@@ -29,7 +30,7 @@ export class CategoriesEditComponent implements OnInit {
     });
     this.categoryForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
-      isCriticalObservation:new FormControl('', []),
+      isCriticalObservation:new FormControl(false, []),
       active:new FormControl('', []),
     });
    }
@@ -45,6 +46,8 @@ export class CategoriesEditComponent implements OnInit {
         if(res){
          this.categoryDetails = res;
          this.categoryForm.controls['name'].setValue(this.categoryDetails.name);
+         this.categoryForm.controls['isCriticalObservation'].setValue(this.categoryDetails.isCriticalObservation);
+         this.categoryForm.controls['active'].setValue(this.categoryDetails.active);
          this.commonService.hideLoading();
         }
        },
@@ -78,12 +81,12 @@ export class CategoriesEditComponent implements OnInit {
       },
       error:(err:any) =>{
       }
-    }); 
+    });  
   }
 
   addCategory(body:any){
     this.commonService.showLoading();
-    body.active = true;  
+    body.isCriticalObservation == true ? body.isCriticalObservation = 1 :  body.isCriticalObservation = 0;
     this.categoryService.add(body).subscribe({
       next:(res: any) => {
         Swal.fire({
@@ -104,7 +107,7 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   checkStatus(event:any){
-
+  this.status = event.target.value;
   }
 
 }

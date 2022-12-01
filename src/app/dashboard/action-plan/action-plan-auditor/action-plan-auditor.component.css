@@ -1,5 +1,5 @@
 .submit {
-    background: green; 
+    background: #1a65a3; 
     padding: 4px 14px;
     color: #fff;
     margin-bottom: 10px;
@@ -9,7 +9,7 @@
 }
 
 .to_be_submit{
-    background: #1a65a3;
+    background: palevioletred;
     padding: 4px 14px;
     color: #fff;
     margin-bottom: 10px;
@@ -17,12 +17,29 @@
     cursor: pointer;
 }
 
-.Rejected{
+.to_be_received{
+    background: orange;
+    padding: 4px 14px;
+    color: #fff;
+    margin-bottom: 10px;
+    border: none !important;
+    cursor: pointer;
+}
+
+.rejected{
     background: #dc3545;
     padding: 4px 14px;
     color: #fff;
     margin-bottom: 10px;
-   cursor: pointer;
-   border: none !important;
-   
+    cursor: pointer;
+    border: none !important;
+}
+
+.accepted{
+    background: green; 
+    padding: 4px 14px;
+    color: #fff;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none !important;
 }

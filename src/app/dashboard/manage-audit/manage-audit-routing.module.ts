@@ -11,7 +11,7 @@ import { ManageAuditComponent } from './manage-audit.component';
 
 const routes: Routes = [
   {path:'',component:ManageAuditListComponent},
-  {path:'view',component:ManageAuditViewComponent},
+  {path:'view/:id',component:ManageAuditViewComponent},
   {path:'initiate/:id',component:ManageAuditInitiateComponent},
   {path:'question/:id',component:ManageAuditQuestionCategoryComponent},
   {path:'question-details/:id/:cid',component:ManageAuditQuestionDetailsComponent},

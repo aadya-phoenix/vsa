@@ -71,8 +71,8 @@ export class ManageAuditListComponent implements OnInit {
      });
   }
 
-  viewManageAudit(){
-    this.router.navigateByUrl(`dashboard/manage-audit/view`);
+  viewManageAudit(item:any){
+    this.router.navigateByUrl(`dashboard/manage-audit/view/${item.id}`);
   }
 
   addAuditArea(){}

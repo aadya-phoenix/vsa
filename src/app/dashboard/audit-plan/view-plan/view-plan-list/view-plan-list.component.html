@@ -133,7 +133,8 @@
                       </div></td>
                       <td (click)="evidence(item.id)" >{{item.evidenceReceived
                       }}</td>
-                      <td>  <a class="mr-1 Auditor-log" data-toggle="modal" data-target="#exampleModal"><span>Auditor Log</span></a></td>
+                      <td>  <button (click)="openModal(item)" class="mr-1 Auditor-log btn btn-secondary">
+                        <span>Audit Log</span></button></td>
                     </tr>
                   </tbody>
                 </table>

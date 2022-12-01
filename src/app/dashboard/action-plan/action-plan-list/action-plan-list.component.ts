@@ -35,8 +35,7 @@ export class ActionPlanListComponent implements OnInit {
     this.commonService.showLoading();
     this.auditService.getAuditPlan().subscribe({
       next:(res)=>{
-        if(res){
-          
+        if(res){ 
           this.auditPlanList = res.filter((x:any)=>{
             return x.dpmApprovalStatus
             == "Approved";
