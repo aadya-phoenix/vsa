@@ -39,7 +39,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   selectedTab:any;
   categoryName:any;
   myFile:any=[];
-  myFileIndex:any=[];
+  myFileIndex = Array<String>();
   constructor(
     private auditPlanService:AuditPlanService,
     private fb:FormBuilder,
@@ -106,6 +106,11 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   removeJudge(sessIndex: any,breakIndex:any): void{
     (<FormArray>(<FormGroup>this.metadataArray.controls[sessIndex]).controls['ObservationList']).removeAt(breakIndex);
+    var fileIndex = this.myFileIndex.findIndex(x => x == sessIndex + "|" + breakIndex)
+    if (fileIndex > -1) {
+      this.myFile.removeAt(fileIndex)
+      this.myFileIndex.splice(fileIndex, 1)
+    }
   }
 
   addMetadata(): void {
@@ -170,10 +175,10 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
               reg.lstObservation.forEach((x:any)=>{
                 reg.remarks.push({remark:x.remark, id:x.id});
               });
-            for(let item of reg.remarks){
+            for(let item of reg.lstObservation){
               this.judgeNew.push(this.fb.group({
                remark: item.remark ,
-               file:'',
+               file: item.file,
                auditPlanId:this.auditPlanId,
                createdBy: this.userId,
                regulationId:reg.id,
@@ -233,17 +238,28 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     body[index].ObservationList.forEach((x:any)=> {
       x.regulationId = id;
     });
-   
     body[index].isSubmitted = true;
     const data = body[index];
     const formData :any = new FormData();
-    for(let dataKey in data) {
-      if(dataKey === 'ObservationList') {
+    var remarkIndex = 0
+    for (let dataKey in data) {
+      if (dataKey === 'ObservationList') {
         for (let previewKey in data[dataKey]) {
-          for (let nestedKey in data[dataKey][previewKey]){
-            formData.append(`ObservationList[${previewKey}][${nestedKey}]`, data[dataKey][previewKey][nestedKey]);
-
+          let list = new Map<string, any>();
+          for (let nestedKey in data[dataKey][previewKey]) {
+            if (nestedKey == "file") {
+              var fileIndex = this.myFileIndex.findIndex(x => x == index + "|" + remarkIndex)
+              debugger
+              if (fileIndex > -1) {
+                var file = this.myFile[fileIndex]
+                formData.append(`ObservationList[${previewKey}].${nestedKey}`, file, file.name);
+              } else {
+                formData.append(`ObservationList[${previewKey}].fileAttachment`, data[dataKey][previewKey][nestedKey]);
+              }
+            } else
+              formData.append(`ObservationList[${previewKey}].${nestedKey}`, data[dataKey][previewKey][nestedKey]);
           }
+          remarkIndex++;
         }
       }
       else {
@@ -252,27 +268,25 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     }
     this.commonService.hideLoading();
     this.auditPlanService.saveObservation(formData).subscribe({
-     next: (res) => {
-       if(res){
-         this.commonService.hideLoading();
-         Swal.fire({
-           title: res.message,
-           icon: 'success',
-         });
-       }
+      next: (res) => {
+        if (res) {
+          this.commonService.hideLoading();
+          Swal.fire({
+            title: res.message,
+            icon: 'success',
+          });
+        }
       },
-     error: (e) =>{
-       console.error(e);
-       this.commonService.hideLoading();
-     } , 
-    });  
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      },
+    });
   }
 
-  fileInput(event:any,sessIndex: any,breakIndex:any){
+  fileInput(event: any,sessIndex: any,breakIndex:any){
     this.myFile.push(event.target.files[0]);
     this.myFileIndex.push(sessIndex+'|'+breakIndex)
-    console.log(this.myFile);
-    //console.log("event",event.target.files[0], sessIndex, breakIndex);
   }  
 
   back(){
