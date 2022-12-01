@@ -81,17 +81,17 @@ export class ActionPlanObservationComponent implements OnInit {
 
   submit(){
     this.commonService.showLoading();
-    let overAllRegulations = 0;
+    let submittedFields = 0;
     this.actionPlanList.forEach((element:any) => {
       element.auditPlanId = this.auditPlanId;
       element.createdBy = this.userId;
       if(!element.dateOfSubmission || !element.detailOfImprovement|| !element.incharge){
-        overAllRegulations++;
+        submittedFields++;
       }
     });
-    if(overAllRegulations >0){
+    if(submittedFields >0){
       Swal.fire({
-        title: 'Please fill all mandatory fields.',
+        title: 'Please fill all fields.',
         icon: 'error',
       });
       this.commonService.hideLoading();
@@ -131,8 +131,7 @@ export class ActionPlanObservationComponent implements OnInit {
       if (result.value) {
       this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
       }
-    })
-    
+    }); 
   }
 
   getCategoryDetails(){

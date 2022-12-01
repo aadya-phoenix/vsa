@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewEvidenceComponent } from './view-evidence/view-evidence.component';
 import { ViewPlanClosureComponent } from './view-plan-closure/view-plan-closure.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuditLogComponent } from './audit-log/audit-log.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -18,15 +20,18 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ViewPlanEditComponent,
     ViewPlanAssignComponent,
     ViewEvidenceComponent,
-    ViewPlanClosureComponent
+    ViewPlanClosureComponent,
+    AuditLogComponent
   ],
+  entryComponents:[AuditLogComponent],
   providers:[DatePipe],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ViewPlanRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ModalModule.forRoot(),
   ]
 })
 export class ViewPlanModule { }

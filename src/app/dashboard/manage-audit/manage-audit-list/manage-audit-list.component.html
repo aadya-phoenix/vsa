@@ -127,7 +127,7 @@
                                                 <p [ngClass]="item.status">{{item.status}} </p>
                                             </td>
                                             <td *ngIf="isAuditor || isPlanner">
-                                                <a (click)="viewManageAudit()" ><img
+                                                <a (click)="viewManageAudit(item)" ><img
                                                         src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                                             </td>
                                             <td>

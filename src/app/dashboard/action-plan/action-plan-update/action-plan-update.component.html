@@ -14,7 +14,7 @@
                             <button class="btn btn-danger" (click)="submit('reject')">Reject</button>
                         </th>
                     </tr>
-                    <tr class=" text-center sticky_header fon_9">
+                    <tr class="sticky_header fon_9">
                         <th>Observation</th>
                         <th>Audit Area</th>
                         <th>Regulation </th>
@@ -26,8 +26,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                        <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>  
+                    <tr class="tbody_data" *ngFor="let item of actionPlanList ;let i =index">
+                        <td>{{i+1}}</td>  
                         <td><p class="show">{{item.auditArea}}</p></td>  
                         <td><p class="show">{{item.regulationText}}</p></td>
                         <td>{{item.remark}}</td>
@@ -41,11 +41,11 @@
                 </tbody>
             </table>
         </div>
-        <nav aria-label="Page navigation example">
+      <!--   <nav aria-label="Page navigation example">
             <div class="pagination justift_end">
               <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
             </div>
-          </nav>
+          </nav> -->
     </div>
     <div class="card-footer">
         <button class="btn btn-default" (click)="close()">Back</button>

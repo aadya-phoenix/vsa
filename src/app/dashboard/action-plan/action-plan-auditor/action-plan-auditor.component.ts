@@ -42,7 +42,10 @@ export class ActionPlanAuditorComponent implements OnInit {
       next:(res)=>{
         if(res){
           this.commonService.hideLoading();
-          this.auditPlanList = res;
+          this.auditPlanList = res.filter((x:any)=>{
+            return x.dpmApprovalStatus
+            == "Approved";
+           });
         }
       },
       error:(e)=>{

@@ -92,28 +92,42 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   }
 
   saveCriticalObservation(){
+    this.commonService.showLoading();
     const body = this.executiveSummaryForm.value;
     const data ={
       criticalObservation:body.criticalObservation
     } ;
     this.auditPlanService.saveCriticalObservation(data).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+        });
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       } 
     }); 
 
   }
 
   saveVendorAttendee(){
+    this.commonService.showLoading();
     const body = this.executiveSummaryForm.value;
     const data = {
       vendorAttendee: body.vendorAttendee
     };
     this.auditPlanService.saveVendorAttendees(data).subscribe({
       next:(res: any) => {
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+        });
+        this.commonService.hideLoading();
       },
       error:(err:any) =>{
+        this.commonService.hideLoading();
       } 
     }); 
   }
