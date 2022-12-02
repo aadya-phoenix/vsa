@@ -13,94 +13,130 @@ import { ReportService } from 'src/app/shared/services/report/report.service';
 })
 export class ManageAuditSummaryComponent implements OnInit {
 
-  auditPlanId:any;
+  auditPlanId: any;
   dateFormat = dataConstants.dateFormate;
-  auditReportData:any;
-  summaryDetails:any=[];
+  auditReportData: any;
+  summaryDetails: any = [];
+  criticalObservations: any = [];
+  supplierCategoryStatus = 'Yellow';
   chartsData = false;
+  categoryScoreSum = 0;
+  totalCountSum = 0;
+  pieScoreSum = 0;
+  triangleScoreSum = 0;
+  totalCountPercentage = 0;
+  xScoreSum = 0;
   reportData: ChartData<'radar'> = {
-    labels:[],
-    datasets:[
-    { data: [] },
-    ]
- /*    labels: ["1.Production preparation","2.Regulation for initial production control", "3.Changing management ©" , 
-     "4.    Standards management",
-     "5.Education and training ©","6.Quality audit and process verification", "7.Supplier control ©", "8.Handling abnormality in quality ©",
-     "9.5S management", "10.Equipment/Inspection equipment's management ©", "11.Implementation of standards", "12.Products management",
-     "13.Handling Management", "14.Critical parts Management"],
+    labels: [],
     datasets: [
-      { data: [50,60,67,83,0,60,43,71,83,60,80,83,75,100], label: 'Executive' },
-    ], */
+      { label: 'Category', data: [] },
+    ]
+    /*    labels: ["1.Production preparation","2.Regulation for initial production control", "3.Changing management ©" , 
+        "4.    Standards management",
+        "5.Education and training ©","6.Quality audit and process verification", "7.Supplier control ©", "8.Handling abnormality in quality ©",
+        "9.5S management", "10.Equipment/Inspection equipment's management ©", "11.Implementation of standards", "12.Products management",
+        "13.Handling Management", "14.Critical parts Management"],
+       datasets: [
+         { data: [50,60,67,83,0,60,43,71,83,60,80,83,75,100], label: 'Executive' },
+       ], */
   };
   reportOptions: ChartOptions = {
     responsive: true,
     plugins: {
-      // title: {
-      //   display: true,
-      //   text: 'Executive Summary'
-      // }
+      title: {
+        display: true,
+        text: 'Executive Summary'
+      }
     }
   };
-  
+
   constructor(
-    private router:Router,
-    private route:ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private commonService: CommonService,
-    private auditExecutionService:AuditExecutionService,
-    private reportService:ReportService
+    private auditExecutionService: AuditExecutionService,
+    private reportService: ReportService
   ) {
-    this.route.paramMap.subscribe((params:ParamMap)=>{
+    this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
       this.auditPlanId = Id ? Id : 0;
     })
-   }
+  }
 
   ngOnInit(): void {
     this.getExecutiveSummary();
     this.getSummaryDetails();
+    this.getCriticalObservations();
   }
 
-  getExecutiveSummary(){
+  getExecutiveSummary() {
     this.commonService.showLoading();
     this.reportService.getExecutiveSummary(this.auditPlanId).subscribe({
-      next:(res)=>{
-        if(res){
+      next: (res) => {
+        if (res) {
           this.auditReportData = res;
-          this.auditReportData.catergoryWiseScoreModel.forEach((element:any, index:number) => {
-            this.reportData.labels?.push(`${index+1} ${element.name}`);
+          this.categoryScoreSum = 0;
+          this.totalCountSum = 0;
+          this.pieScoreSum = 0;
+          this.triangleScoreSum = 0;
+          this.xScoreSum = 0;
+          this.auditReportData.catergoryWiseScoreModel.forEach((element: any, index: number) => {
+            this.reportData.labels?.push(`${index + 1} ${element.name}`);
             const reprotData = (element.categoryScore / element.totalCount) * 100;
             this.reportData.datasets[0].data.push(reprotData > 0 ? reprotData : 0);
+            this.categoryScoreSum += element.categoryScore ? element.categoryScore : 0;
+            this.totalCountSum += element.totalCount ? element.totalCount : 0;
+            this.pieScoreSum += element.pieScore ? element.pieScore : 0;
+            this.triangleScoreSum += element.triangleScore ? element.triangleScore : 0;
+            this.xScoreSum += element.xScore ? element.xScore : 0;
           });
+          this.totalCountPercentage = (this.categoryScoreSum *100) / this.totalCountSum ;
           this.chartsData = true;
           this.commonService.hideLoading();
         }
       },
-      error:(e)=>{
+      error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
       }
     });
   }
-  
-  back(){
+
+  getCriticalObservations() {
+    this.commonService.showLoading();
+    this.reportService.getCriticalObservations({ id: this.auditPlanId }).subscribe({
+      next: (res) => {
+        if (res) {
+          this.criticalObservations = res;
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });
+  }
+
+  back() {
     this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);
   }
 
-  getSummaryDetails(){
+  getSummaryDetails() {
     this.commonService.showLoading();
     this.auditExecutionService.getSummaryDetails(this.auditPlanId).subscribe({
-      next:(res)=>{
-        if(res){
+      next: (res) => {
+        if (res) {
           this.summaryDetails = res;
-          this.summaryDetails.forEach((x:any)=>{
-            if(x.judgementSymbol == 'Pie'){
+          this.summaryDetails.forEach((x: any) => {
+            if (x.judgementSymbol == 'Pie') {
               x.judgeSymbol = ''
             }
           });
           this.commonService.hideLoading();
         }
       },
-      error:(e)=>{
+      error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
       }

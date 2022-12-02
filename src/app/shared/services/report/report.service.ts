@@ -28,6 +28,13 @@ export class ReportService {
     return this.http. getParams(url, this.http.headers, params).pipe(catchError(this.commmonService.Errorhandling));
    }
 
+   getCriticalObservations(data:any){
+    const url = `${this.basePath}api/AuditPlan/GetCriticalObservations`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));
+  }
+
   getAuditPlanStatusByMonth(data:any){
     const url = `${this.basePath}api/AuditReports/AuditPlanStatusByMonth`;
     return this.http
