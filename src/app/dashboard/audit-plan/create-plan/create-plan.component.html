@@ -7,14 +7,14 @@
                         <div class="d-flex justif_space_betwen">
                             <h3 class="card-title">Create Plan Details</h3>
                             <div class="d-flex">
-                                <input type="file"  (change)="bulkUpload($event)" id="upload" hidden />
+                                <input type="file" (change)="bulkUpload($event)" id="upload" hidden />
                                 <div class="upload-btn-wrapper">
-                                    <button class="btn button-upload btn-primary" (change)="bulkUpload($event)"> <i class="fas fa-upload mr-1 upload_ico"></i>
+                                    <button class="btn button-upload btn-primary" (change)="bulkUpload($event)"> <i
+                                            class="fas fa-upload mr-1 upload_ico"></i>
                                         <span class="now_rap">Upload Plan</span></button>
                                     <input type="file" name="myfile" />
-                                  </div>
-                                <button class="btn btn-success d-flex align-items-center ml-1"
-                                (click)="download()">
+                                </div>
+                                <button class="btn btn-success d-flex align-items-center ml-1" (click)="download()">
                                     <i class="fas fa-download mr-1 upload_ico"></i>
                                     <span class="now_rap">Download Template</span>
                                 </button>
@@ -27,19 +27,19 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code <span class="start_css">*</span></label>
-                                        <ng-select (change)="getVendor($event)"
-                                        [items]="vendorObj" bindLabel="code" bindValue="id"
-                                        formControlName="vendorId" class="form-control inputbox_css ">
-                                    </ng-select>
+                                        <ng-select (change)="getVendor($event)" [items]="vendorObj" bindLabel="code"
+                                            bindValue="id" formControlName="vendorId" class="form-control inputbox_css"
+                                            (search)="searchVendor($event.term)">
+                                        </ng-select>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Name <span class="start_css">*</span></label>
-                                         <ng-select (change)="getVendor($event)"
-                                        [items]="vendorObj" bindLabel="name" bindValue="id"
-                                        formControlName="vendorId" class="form-control inputbox_css ">
-                                    </ng-select>
+                                        <ng-select (change)="getVendor($event)" [items]="vendorObj" bindLabel="name"
+                                            bindValue="id" formControlName="vendorId"
+                                            class="form-control inputbox_css ">
+                                        </ng-select>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -57,34 +57,35 @@
                                         <label class="form_label">
                                             Auditee Email Id <span class="start_css">*</span>
                                         </label>
-                                        <input type="email" class="form-control" 
-                                            formControlName="auditeeEmail">
+                                        <input type="email" class="form-control" formControlName="auditeeEmail">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="form_label">Vendor Category <span class="start_css">*</span></label>
-                                         <ng-select (change)="getVendor($event)"
-                                        [items]="categoryObj" bindLabel="categoryName" bindValue="id"
-                                        formControlName="vendorCategory" class="form-control inputbox_css ">
-                                    </ng-select>
+                                        <label class="form_label">Vendor Category <span
+                                                class="start_css">*</span></label>
+                                        <ng-select (change)="getVendor($event)" [items]="categoryObj"
+                                            bindLabel="categoryName" bindValue="id" formControlName="vendorCategory"
+                                            class="form-control inputbox_css ">
+                                        </ng-select>
                                     </div>
                                 </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class="form_label">Any Other Location</label>
-                                            <input #otherLocation type="text" class="form-control inputbox_css " formControlName="otherLocation" 
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Any Other Location</label>
+                                        <input #otherLocation type="text" class="form-control inputbox_css "
+                                            formControlName="otherLocation"
                                             (input)="otherLocation.value = otherLocation.value.toUpperCase()"
-                                                placeholder="Type Any Other location">
-                                        </div>
+                                            placeholder="Type Any Other location">
                                     </div>
-                                    <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Any Other Code</label>
-                                        <input type="text" class="form-control inputbox_css mt_3" placeholder="Type Any Other Code"
-                                            formControlName="otherCode">
+                                        <input type="text" class="form-control inputbox_css mt_3"
+                                            placeholder="Type Any Other Code" formControlName="otherCode">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -93,33 +94,31 @@
                                         <input type="text" class="form-control inputbox_css " placeholder="Type Code"
                                             formControlName="typeCode">
                                     </div>
-                                </div>                            
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class="form_label">Type Name</label>
-                                            <input type="text" class="form-control inputbox_css " placeholder="Type Name"
-                                                formControlName="typeName">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type Name</label>
+                                        <input type="text" class="form-control inputbox_css " placeholder="Type Name"
+                                            formControlName="typeName">
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class="form_label">Type Location</label>
-                                            <input type="text" class="form-control inputbox_css " placeholder="Type location"
-                                                formControlName="typeLocation">
-                                        </div>
-                                    </div>  
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class="form_label">Planned Start Date <span
-                                                    class="start_css">*</span></label>
-                                            <input type="date" class="form-control inputbox_css mt_3"
-                                                formControlName="plannedStartDate"  
-                                                [min]="minStartDate"
-                                               >
-                                        </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Type Location</label>
+                                        <input type="text" class="form-control inputbox_css "
+                                            placeholder="Type location" formControlName="typeLocation">
                                     </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Planned Start Date <span
+                                                class="start_css">*</span></label>
+                                        <input type="date" class="form-control inputbox_css mt_3"
+                                            formControlName="plannedStartDate" [min]="minStartDate">
+                                    </div>
+                                </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Planned End Date <span
@@ -134,11 +133,12 @@
                                         <label class="form_label">
                                             Additional MSIL Email
                                         </label>
-                                        <input type="text" class="form-control inputbox_css " placeholder="Enter Auditee MSIL email"
+                                        <input type="text" class="form-control inputbox_css "
+                                            placeholder="Enter Auditee MSIL email"
                                             formControlName="additionalMSILEmail">
                                     </div>
                                 </div>
-                           
+
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">

@@ -23,9 +23,14 @@
                     <tr *ngFor="let obje of assignAuditorArray.controls;let i = index;">
                       <td>{{i+1}}</td>
                       <td class="p-1" [formGroupName]="i">
-                        <select class="form-control" formControlName="auditorId">
-                          <option *ngFor="let item of auditorList" [value]="item.id">{{item.name}} ({{item.code}})</option>
-                        </select>
+                        <!-- <select class="form-control" formControlName="auditorId">
+                          <option *ngFor="let item of auditorList" [value]="item.id">{{item.name}} ({{item.code}})
+                          </option>
+                        </select> -->
+                        <ng-select [items]="auditorList[i]" bindLabel="code" bindValue="id"
+                          formControlName="auditorId" class="form-control"
+                          (search)="searchAuditor($event.term, i)">
+                        </ng-select>
                       </td>
                       <td class="btn-width p-1">
                         <button class="btn btn-success mr-2 py-1" (click)="addAuditor('')">

@@ -49,7 +49,7 @@ export class CreatePlanComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEmployeeList();
+    //this.getEmployeeList();
     this.getVendorCategory();
   }
 
@@ -127,6 +127,31 @@ export class CreatePlanComponent implements OnInit {
         this.commonService.hideLoading();
       },
     });
+  }
+
+  searchVendor(elem: any) {
+    if (elem && elem.length > 1) {
+      this.commonService.showLoading();
+      const data = {
+        code: elem,
+        rolename: 'Vendor'
+      }
+      this.employeeService.getUsersByRoleId(data).subscribe({
+        next: (res) => {
+          if (res) {
+            this.vendorObj = res;
+            this.commonService.hideLoading();
+          }
+        },
+        error: (e) => {
+          console.error(e);
+          this.commonService.hideLoading();
+        },
+      });
+    }
+    else {
+      this.vendorObj = [];
+    }
   }
 
   getVendor(event: any) {

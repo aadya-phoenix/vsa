@@ -144,7 +144,7 @@ export class ViewPlanEditComponent implements OnInit {
           const downloadLink = document.createElement('a');
           downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.body.type }));
           const contentDisposition = response.headers.get('content-disposition');
-          const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim();
+          const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim().replaceAll('"','');
           console.log("file",fileName)
           downloadLink.download = fileName;
           downloadLink.click();

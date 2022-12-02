@@ -37,7 +37,7 @@ export class ViewPlanAssignComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEmployeeList(); 
+    //this.getEmployeeList(); 
   }
 
   assign(){
@@ -56,6 +56,31 @@ export class ViewPlanAssignComponent implements OnInit {
         this.commonService.hideLoading();
       } 
     });
+  }
+
+  searchAuditor(elem: any, index:any) {
+    if (elem && elem.length > 1) {
+      this.commonService.showLoading();
+      const data = {
+        name: elem,
+        rolename: 'Auditor'
+      }
+      this.employeeService.getUsersByRoleId(data).subscribe({
+        next: (res) => {
+          if (res) {
+            this.auditorList[index] = res.map((i:any) => { i.code = i.name + ' (' + i.code + ')'; return i; });;
+            this.commonService.hideLoading();
+          }
+        },
+        error: (e) => {
+          console.error(e);
+          this.commonService.hideLoading();
+        },
+      });
+    }
+    else {
+      this.auditorList[index] = [];
+    }
   }
 
  

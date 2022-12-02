@@ -26,7 +26,15 @@ export class EmployeeMasterService {
       .get(url, this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling));
   }
+  
+  getUsersByRoleId(data:any){
+    const url = `${this.basePath}api/User/GetUsersByRoleId`;
+    return this.http
+      .post(url, data)
+      .pipe(catchError(this.commmonService.Errorhandling));
+  }
    
+
   add(data:any){
     const url = `${this.basePath}api/User/Add`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));

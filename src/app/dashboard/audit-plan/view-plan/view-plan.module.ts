@@ -12,6 +12,7 @@ import { ViewPlanClosureComponent } from './view-plan-closure/view-plan-closure.
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuditLogComponent } from './audit-log/audit-log.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ReactiveFormsModule,
     ViewPlanRoutingModule,
     NgxPaginationModule,
+    NgSelectModule,
     ModalModule.forRoot(),
   ]
 })
