@@ -25,6 +25,7 @@
                                         <th>Planned End Date</th>
                                         <th>No Of Observation</th>
                                         <th>Score</th>
+                                        <th>Evidence</th>
                                         <th>Action Plan </th>    
                                     </tr>
                                 </thead>
@@ -37,8 +38,9 @@
                                         <td>{{item.plannedEndDate | date:dateFormat}}</td>
                                         <td>{{item.observationCount}}</td>
                                         <td>  <p><b>{{item.score}}</b></p></td>
+                                        <td>{{item.evidenceReceived}}</td>
                                         <td>
-                                            <button (click)="goToCategory(item.id)" [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }">{{item.actionPlanStatus}}</button>
+                                            <button (click)="goToCategory(item.id)"class="btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -5,10 +5,39 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="header_card">
-                            <h3 class="card-title">Category Details</h3>   
+                            <h3 class="card-title">Evidence-Category Details</h3>   
                         </div>
                     </div>
                     <div class="card-body">
+                        <h3 class="summary-heading">Overall Summary</h3>
+                        <div class="table-responsive max_hei_table">
+                            <table id="example2" class="table table-bordered table-hover">
+                              <thead>
+                                <tr class="now_rap sticky_header" >
+                                    <th>Total Point Raised</th>
+                                    <th>Closure</th>
+                                    <th>Verify</th>
+                                    <th>Closed</th>
+                                    <th>Partailly Closed</th>
+                                    <th>Open</th>
+                                    <th>Point Pending from Vendor</th>
+                                    
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="tbody_data" > 
+                                  <td>AU</td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <h3 class="summary-heading">Category-wise Summary</h3>
                         <div class="table-responsive max_hei_table">
                             <table id="" class="table table-bordered table-hover">
                                 <thead>
@@ -16,13 +45,25 @@
                                         <th>S.No</th>
                                         <th>Categories </th>
                                         <th>Observation</th>
+                                        <th>Evidence Received</th>
+                                       <th>Action To Be Taken</th>
+                                       <!--   <th>Closed</th>
+                                        <th>Partially Closed</th> -->
+                                        <!-- <th>Pending from Vendor</th> -->
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="tbody_data" *ngFor="let item of categoryScoreList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                                         <td>{{i+1}}</td>
-                                        <td>{{item.name}}</td>
-                                        <td>  <button (click)="goToObservation(item.categoryId)" class="btn btn-primary">{{item.observationCount}}</button></td>               
+                                        <td style="width: 13px;">{{item.name}}</td>
+                                        <td>  <span (click)="goToObservation(item.categoryId)">{{item.observationCount}}</span></td>  
+                                        <td></td>   
+                                         <td></td> 
+                                        <!--<td></td>
+                                        <td></td>   -->
+                                        
+                                        <td>  <button class="btn btn-primary" (click)="goToObservation(item.categoryId)">View</button></td>         
                                     </tr>
                                 </tbody>
                             </table>

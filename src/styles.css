@@ -366,7 +366,16 @@ font-size: 13px;
 .w_17 {
   width: 17px;
 }
-
+.w_80{
+  width:80%;
+}
+.summary-heading{
+  font-weight: 400;
+  font-size: 20px;
+}
+.w-170{
+  width:170px;
+}
 .add_minus_mar .btn{
     margin-right:3px;
 }
@@ -402,6 +411,9 @@ font-size: 13px;
 }
 .max_hei_table-350{
   max-height: 350px !important ;
+}
+.cursor-pointer{
+  cursor: pointer;
 }
  body, html {
     height: 100%;

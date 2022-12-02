@@ -30,6 +30,7 @@
                                         <th>No Of Observation</th>
                                         <th>Score</th>
                                         <th>Action Plan</th>    
+                                        <th>Evidence Submission</th>    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,6 +45,7 @@
                                             <button (click)="goToCategory(item.id)" 
                                             [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }">{{item.actionPlanStatus}}</button>
                                         </td>
+                                        <td><button class="btn btn-info" (click)="goToCategory(item.id)">View</button></td>
                                     </tr>
                                 </tbody>
                             </table>

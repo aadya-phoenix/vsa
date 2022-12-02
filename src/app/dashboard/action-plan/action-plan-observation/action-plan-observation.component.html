@@ -15,7 +15,7 @@
                         <th>Observation</th>
                         <th>Audit Area</th>
                         <th>Regulation </th>
-                        <th>Desired Improvement Points </th>
+                        <th >Desired Improvement Points</th>
                         <th>Detail of Improvement Plan</th>
                         <th>In-Charge</th>
                         <th>Date</th>
@@ -26,7 +26,7 @@
                         <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
                         <td><p class="show">{{item.auditArea}}</p></td>
                         <td><p class="show">{{item.regulationText}}</p></td>
-                        <td>{{item.remark}}</td>
+                        <td><p class="w-170">{{item.remark}}</p></td>
                         <td><textarea [(ngModel)]="item.detailOfImprovement" class="form-control width-300 "></textarea></td>
                         <td><textarea [(ngModel)]="item.incharge" class="form-control width-300"></textarea>
                         </td>
@@ -42,7 +42,7 @@
           </nav>
     </div>
     <div class="card-footer">
-        <button type="button" (click)="submit()" class="btn btn-success">Submit</button>
+        <button type="button" (click)="submit()" class="btn btn-success">Save</button>
          <button type="button" (click)="back()" class="btn btn-default">Back</button>
 
      </div>
