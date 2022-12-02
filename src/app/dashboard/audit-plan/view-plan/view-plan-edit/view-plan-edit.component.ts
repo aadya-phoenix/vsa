@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { take } from 'rxjs';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
@@ -27,6 +28,7 @@ export class ViewPlanEditComponent implements OnInit {
   vendorObj:any=[];
   viewPlanId:any;
   viewPlanDetails:any;
+  attachUrl:any;
 
   constructor(
     private authService: AuthenticationService,
@@ -69,7 +71,7 @@ export class ViewPlanEditComponent implements OnInit {
   ngOnInit(): void {
     if(this.viewPlanId){
       this.getViewPlanDetails();
-      this.getAttachment();
+   //   this.getAttachment();
     }
   }
 
@@ -135,14 +137,23 @@ export class ViewPlanEditComponent implements OnInit {
   }
 
   getAttachment(){
-    this.auditPlanService.getAttachment(this.viewPlanId).subscribe({
-      next: (res) => {
-        if(res){
-          console.log("attachment",res)
+    this.commonService.showLoading();
+    this.auditPlanService.getAttachment(this.viewPlanId).pipe(take(1))
+      .subscribe({
+        next: (response: any) => {
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.body.type }));
+          const contentDisposition = response.headers.get('content-disposition');
+          const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim();
+          console.log("file",fileName)
+          downloadLink.download = fileName;
+          downloadLink.click();
+          this.commonService.hideLoading();
+        }, error: (e) => {
+          console.error(e);
+          this.commonService.hideLoading();
         }
-      },
-     error: (e) => console.error(e), 
-    });
+      });
   }
 
   dateFormat(date:any){

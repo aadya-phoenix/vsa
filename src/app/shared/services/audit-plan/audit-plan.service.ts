@@ -49,14 +49,6 @@ export class AuditPlanService {
       .pipe(catchError(this.commmonService.Errorhandling));  
   }
 
-  getAttachment(id:any){
-    const params = new HttpParams().set('id',id);
-    const url = `${this.basePath}api/AuditPlan/attachment`;
-    return this.http
-      .getParams(url, this.http.headers,params)
-      .pipe(catchError(this.commmonService.Errorhandling));
-  }
-
   delete(id: any){
     const params = new HttpParams().set('id',id);
     const url = `${this.basePath}api/AuditPlan/`;
@@ -167,4 +159,17 @@ export class AuditPlanService {
      
   }
   
+  getAttachment(id:any): Observable<HttpResponse<Blob>>{
+   // const params = new HttpParams().set('id',id);
+    const url = `${this.basePath}api/AuditPlan/attachment?id=${id}`;
+    return this.http
+    .getBlob(url,{ observe: 'response', responseType: 'blob' as 'json'} );
+  }
+
+  getVendorCategory(){
+   const url = `${this.basePath}api/AuditPlan/GetVendorCategory`;
+    return this.http
+      .post(url, {})
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
 }

@@ -4,8 +4,11 @@
       <div class="col-12">
         <div class="card card-default">
           <div class="card-header">
+            <div class="d-flex align-items-center d-flex justify-content-between">
             <h3 class="card-title">Audit Area Details ( {{vendorName}} ) - {{categoryName}} 
             </h3>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#viehistory">View Previous Year Remarks</button>
+            </div>
          </div>
           <form [formGroup]="questionForm" enctype="multipart/form-data">
             <div class="card-body">
@@ -27,9 +30,12 @@
                           <ng-container *ngFor="let obj of metadataArray.controls; let i = index">
                         <div class="card" *ngIf="regulationList[i] != null">
                           <div class="card-header">
+                            <div class="d-flex align-items-center d-flex justify-content-between">
                               <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#sechistory">Section Head Remarks</button>
+            </div>
                           </div>
                           <div class="card-body">
                             <div class="row" [formGroupName]="i">
@@ -53,7 +59,7 @@
                                       <input type="radio" formControlName="JudgementId"   [value]="cross" class="chek_box"><img
                                         src="../../../../assets/icons/new-moon.png" class="diacisq_css">
                                     </div>
-                                  </div>
+                                      </div>
                                 </div>
                                 <div class="table-responsive max_hei_table">
                                   <table class="table table-bordered" formArrayName="ObservationList">
@@ -65,18 +71,24 @@
                                     </thead>
                                     <tbody>
                                       <tr *ngFor="let item of obsArray(i).controls; let j = index;">
-                                        <th scope="row" [formGroupName]="j"> <textarea formControlName="remark" class="form-control"></textarea></th>
+                                        <th scope="row" [formGroupName]="j"> <textarea formControlName="remark" class="form-control"></textarea>
+                                       </th>
                                         <td [formGroupName]="j" >
                                           <div class="d-flex">
+                                            <input type="checkbox" aria-label="Checkbox for following text input" class="mr-1 input-css-check">
                                             <div class="image-upload mr-1">
+                                           
                                               <label for="file_input_{{i}}_{{j}}">
                                                 <img src="../../../../assets/icons/up-arrow.png" data-toggle="tooltip"
                                                   data-placement="top" title="Uplaod File" class="upload_file_css">
                                               </label>
                                               <input id="file_input_{{i}}_{{j}}" type="file" formControlName="file"  (input)="fileInput($event,i,j)"/>
                                             </div>
+                                           
                                             <button class="btn btn-primary btn-add-deatil mr-1"  (click)="addJudge(i,'')">+</button>
                                             <button class="btn btn-danger btn-add-deatil" *ngIf="j > 0" (click)="removeJudge(i,j)">-</button>
+                                           
+                                
                                           </div>
                                         </td>
                                       </tr>
@@ -106,3 +118,104 @@
     </div>
   </div>
 </section>
+
+
+<div class="modal fade" id="viehistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive max_hei_table">
+          <table class="table table-bordered">
+            <thead class="bac_table_white">
+              <tr class="text-center ">
+                <th rowspan="2" class="ver_midd">S.No.</th>
+                <th>Audit Area</th>
+                <th>Regulation</th>
+                <th>Remarks</th>
+                <th>Judegement</th>
+              </tr>
+           
+            </thead>
+            <tbody class="text-center">
+              <tr class="text-center">
+                <th>1</th>
+                <td>Regarding implementation rule of production preparation</td>
+                <td>Do you define importance level during production preparation for each product and clarify control it</td>
+                <td>..........</td>
+                <td><img src="../../../../assets/icons/triangle.png"
+                  class="diacisq_css"></td>
+              </tr>
+              <tr class="text-center">
+                <th>2</th>
+                <td>Defect prevention on the stage of process design by using FMEA/Matrix diagram</td>
+                <td>Do you review and improve FMEA or Matrix diagrams when any critical issue occurs after SOP?</td>
+                <td>..........</td>
+                <td><img
+                  src="../../../../assets/icons/new-moon.png" class="diacisq_css"></td>
+              </tr>
+            </tbody>
+            <tbody class="text-center">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="sechistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Section Head Remarks</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive max_hei_table">
+          <table class="table table-bordered">
+            <thead class="bac_table_white">
+              <tr class="text-center ">
+                <th rowspan="2" class="ver_midd">S.No.</th>
+                <th>Audit Area</th>
+                <th>Regulation</th>
+                <th>Remarks</th>
+              </tr>
+           
+            </thead>
+            <tbody class="text-center">
+              <tr class="text-center">
+                <th>1</th>
+                <td>Regarding implementation rule of production preparation</td>
+                <td>Do you define importance level during production preparation for each product and clarify control it</td>
+                <td>..........</td>
+              </tr>
+              <tr class="text-center">
+                <th>2</th>
+                <td>Regarding implementation rule of production preparation</td>
+                <td>Do you define importance level during production preparation for each product and clarify control it</td>
+                <td>..........</td>
+              </tr>
+            </tbody>
+            <tbody class="text-center">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

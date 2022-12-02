@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
@@ -9,6 +10,8 @@ import { CategoryMasterService } from 'src/app/shared/services/category-master/c
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import Swal from 'sweetalert2';
+import { CriticalObservationComponent } from '../critical-observation/critical-observation.component';
+import { VendorAttendeesComponent } from '../vendor-attendees/vendor-attendees.component';
 
 
 
@@ -18,7 +21,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./manage-audit-question-category.component.css']
 })
 export class ManageAuditQuestionCategoryComponent implements OnInit {
-
+  bsModalRef ?: BsModalRef;
   executiveSummaryForm:FormGroup;
   auditPlanId:any;
   sectionHeadObj:any=[];
@@ -35,6 +38,7 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private authService:AuthenticationService,
+    private modalService: BsModalService,
     private auditPlanService:AuditPlanService,
     private auditExecuteService:AuditExecutionService,
     private commonService: CommonService,
@@ -274,6 +278,32 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   return true;
   else 
   return false;
+  }
+
+  openVendorModal(){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:this.auditPlanId,
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(VendorAttendeesComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+   });
+  }
+
+  openCriticalModal(){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:this.auditPlanId,
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(CriticalObservationComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+   });
   }
 
 }

@@ -28,25 +28,20 @@
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code <span class="start_css">*</span></label>
                                         <ng-select (change)="getVendor($event)"
-                                        
                                         [items]="vendorObj" bindLabel="code" bindValue="id"
                                         formControlName="vendorId" class="form-control inputbox_css ">
                                     </ng-select>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Name <span class="start_css">*</span></label>
-
                                          <ng-select (change)="getVendor($event)"
-                                        
                                         [items]="vendorObj" bindLabel="name" bindValue="id"
                                         formControlName="vendorId" class="form-control inputbox_css ">
                                     </ng-select>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Location <span class="start_css">*</span></label>
@@ -57,53 +52,64 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="form_label">Any Other Location <span
-                                                class="start_css">*</span></label>
-                                        <input #otherLocation type="text" class="form-control inputbox_css " formControlName="otherLocation" 
-                                        (input)="otherLocation.value = otherLocation.value.toUpperCase()"
-                                            placeholder="Type Any Other location">
+                                        <label class="form_label">
+                                            Auditee Email Id <span class="start_css">*</span>
+                                        </label>
+                                        <input type="email" class="form-control" 
+                                            formControlName="auditeeEmail">
                                     </div>
                                 </div>
-                                </div>
-                                <div class="row">
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label class="form_label">Any Other Code <span
-                                                class="start_css">*</span></label>
+                                        <label class="form_label">Vendor Category <span class="start_css">*</span></label>
+                                         <ng-select (change)="getVendor($event)"
+                                        [items]="categoryObj" bindLabel="categoryName" bindValue="id"
+                                        formControlName="vendorCategory" class="form-control inputbox_css ">
+                                    </ng-select>
+                                    </div>
+                                </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="form_label">Any Other Location</label>
+                                            <input #otherLocation type="text" class="form-control inputbox_css " formControlName="otherLocation" 
+                                            (input)="otherLocation.value = otherLocation.value.toUpperCase()"
+                                                placeholder="Type Any Other location">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">Any Other Code</label>
                                         <input type="text" class="form-control inputbox_css mt_3" placeholder="Type Any Other Code"
                                             formControlName="otherCode">
                                     </div>
                                 </div>
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Type Code</label>
                                         <input type="text" class="form-control inputbox_css " placeholder="Type Code"
                                             formControlName="typeCode">
                                     </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label class="form_label">Type Name</label>
-                                        <input type="text" class="form-control inputbox_css " placeholder="Type Name"
-                                            formControlName="typeName">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label class="form_label">Type Location</label>
-                                        <input type="text" class="form-control inputbox_css " placeholder="Type location"
-                                            formControlName="typeLocation">
-                                    </div>
-                                </div>
-
-                               
+                                </div>                            
                                 </div>
                                 <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="form_label">Type Name</label>
+                                            <input type="text" class="form-control inputbox_css " placeholder="Type Name"
+                                                formControlName="typeName">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="form_label">Type Location</label>
+                                            <input type="text" class="form-control inputbox_css " placeholder="Type location"
+                                                formControlName="typeLocation">
+                                        </div>
+                                    </div>  
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label class="form_label">Planned Start Date <span
@@ -132,15 +138,7 @@
                                             formControlName="additionalMSILEmail">
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label class="form_label">
-                                            Auditee Email Id <span class="start_css">*</span>
-                                        </label>
-                                        <input type="email" class="form-control" placeholder="xyz@gmail.com"
-                                            formControlName="auditeeEmail">
-                                    </div>
-                                </div>
+                           
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">

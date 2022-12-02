@@ -22,6 +22,7 @@ export class CreatePlanComponent implements OnInit {
   bulkFile: any;
   today= new Date();
   minStartDate = {};
+  categoryObj:any=[];
   constructor(
     private formBuilder: FormBuilder,
     private auditPlanService: AuditPlanService,
@@ -33,8 +34,9 @@ export class CreatePlanComponent implements OnInit {
     this.createPlanForm = this.formBuilder.group({
       vendorId: new FormControl('', [Validators.required]),
       locationId: new FormControl('', [Validators.required]),
-      otherLocation: new FormControl('', [Validators.required]),
-      otherCode: new FormControl('', [Validators.required]),
+      otherLocation: new FormControl('', []),
+      vendorCategory:new FormControl('', [Validators.required]),
+      otherCode: new FormControl('', []),
       typeCode: new FormControl('', []),
       typeName: new FormControl('', []),
       typeLocation: new FormControl('', []),
@@ -48,6 +50,7 @@ export class CreatePlanComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployeeList();
+    this.getVendorCategory();
   }
 
   onFileSelected(event: any) {
@@ -128,8 +131,10 @@ export class CreatePlanComponent implements OnInit {
 
   getVendor(event: any) {
    let vendorId = event?.id;
+   let vendorEmail = event?.email;
    this.createPlanForm.controls['vendorId'].setValue(vendorId);
    vendorId ? this.getLocation(vendorId) :  this.createPlanForm.controls['locationId'].setValue('');
+   vendorEmail ?  this.createPlanForm.controls['auditeeEmail'].setValue(vendorEmail): this.createPlanForm.controls['auditeeEmail'].setValue('');
   }
 
   getLocation(id: any) {
@@ -191,6 +196,22 @@ export class CreatePlanComponent implements OnInit {
           this.commonService.hideLoading();
         }
       });
+  }
+
+  getVendorCategory() {
+    this.commonService.showLoading();
+    this.auditPlanService.getVendorCategory().subscribe({
+      next: (res) => {
+        if (res) {
+          this.categoryObj = res;
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      },
+    });
   }
 
   close() {

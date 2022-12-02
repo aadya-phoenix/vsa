@@ -24,7 +24,7 @@
                       <td>{{i+1}}</td>
                       <td class="p-1" [formGroupName]="i">
                         <select class="form-control" formControlName="auditorId">
-                          <option *ngFor="let item of auditorList" [value]="item.id">{{item.name}}</option>
+                          <option *ngFor="let item of auditorList" [value]="item.id">{{item.name}} ({{item.code}})</option>
                         </select>
                       </td>
                       <td class="btn-width p-1">

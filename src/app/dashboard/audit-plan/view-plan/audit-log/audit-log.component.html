@@ -10,7 +10,8 @@
         <table class="table table-bordered">
           <thead>
             <tr class="sticky_header">
-             
+              <th>UserName</th>
+              <th>Role</th>
               <th scope="col">Status</th>
               <th scope="col">Status Date</th>
               <th scope="col">Remarks</th>
@@ -18,10 +19,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of logDetails;let i =index;">
-         
-          <td>{{item.status}}</td>
-          <td>{{item.statusDate |date:dateFormat}}</td>
-          <td>{{item.remark}}</td>
+             <td>{{item.userName}}</td>
+             <td>{{item.role}}</td>
+             <td>{{item.status}}</td>
+             <td>{{item.statusDate |date:dateFormat}}</td>
+             <td>{{item.remark}}</td>
             </tr>
           </tbody>
         </table>
