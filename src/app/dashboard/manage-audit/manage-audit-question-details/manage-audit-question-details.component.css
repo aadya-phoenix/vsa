@@ -34,3 +34,9 @@
     align-items: center;
     margin-top: 2px;
 }
+.input-css-check{
+  width: 18px;
+    height: 18px;
+    position: relative;
+    top: 7px;
+}

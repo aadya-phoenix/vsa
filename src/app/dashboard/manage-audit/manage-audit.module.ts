@@ -13,6 +13,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ManageAuditSummaryComponent } from './manage-audit-summary/manage-audit-summary.component';
 import { NgChartsModule } from 'ng2-charts';
+import { VendorAttendeesComponent } from './vendor-attendees/vendor-attendees.component';
+import { CriticalObservationComponent } from './critical-observation/critical-observation.component';
 
 
 
@@ -24,8 +26,12 @@ import { NgChartsModule } from 'ng2-charts';
     ManageAuditInitiateComponent,
     ManageAuditQuestionCategoryComponent,
     ManageAuditQuestionDetailsComponent,
-    ManageAuditSummaryComponent
+    ManageAuditSummaryComponent,
+    VendorAttendeesComponent,
+    CriticalObservationComponent
   ],
+  entryComponents:[VendorAttendeesComponent,
+    CriticalObservationComponent],
   providers:[DatePipe],
   imports: [
     CommonModule,

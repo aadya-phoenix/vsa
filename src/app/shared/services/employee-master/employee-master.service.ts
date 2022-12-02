@@ -58,4 +58,11 @@ export class EmployeeMasterService {
       .get(url, this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  getUserByRole(id:any){
+    const url = `${this.basePath}api/User/GetUsersByRoleId/${id}`;
+    return this.http
+      .get(url, this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));    
+  }
 }

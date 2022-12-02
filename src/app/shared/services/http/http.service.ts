@@ -59,4 +59,9 @@ export class HttpService {
     return this.httpClient.get<Blob>(url, { observe: 'response', responseType: 'blob' as 'json'});
   }
 
+  public getBlobParams(urlString: string, params:HttpParams,observe: string, responseType: any): Observable<any> {
+    const url = urlString;
+    return this.httpClient.get<Blob>(url, {params,responseType});
+  }
+
 }

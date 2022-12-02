@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Critical Observation</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="executiveSummaryForm">
+        <div>
+           <div class="table-responsive max_hei_table">
+                <table class="table table-bordered" formArrayName="criticalObservation">
+                  <thead>
+                    <tr class="sticky_header">
+                      <th>S.No</th>
+                      <th>Remarks</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of criticalObservationArray.controls;let i = index;">
+                      <th scope="row">{{i+1}}</th>
+                      <td class="p-1" [formGroupName]="i">
+                        <textarea class="form-control" rows="3" placeholder="Enter Your Remark" spellcheck="false"
+                          formControlName="criticalObservation">
+                          </textarea>
+                      </td>
+                      <td class="btn-width p-1">
+                        <button class="btn btn-success mr-2 py-1" (click)="addCriticalObservation('')">
+                          +
+                        </button>
+                        <button class="btn btn-danger py-1" *ngIf="i > 0" (click)="removeCriticalObservation(i)">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" (click)="saveCriticalObservation()" class="btn btn-primary mr-1">Save
+        changes</button>
+      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

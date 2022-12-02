@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Vendor Attendees</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="executiveSummaryForm">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="table-responsive max_hei_table">
+                <table class="table table-bordered" formArrayName="vendorAttendee">
+                  <thead>
+                    <tr class="sticky_header">
+                      <th scope="col">S.No</th>
+                      <th scope="col">Vendor Attendees</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of vendorAttendeeArray.controls;
+                                    let i = index;">
+                      <th scope="row">{{i+1}}</th>
+                      <td class="p-1" [formGroupName]="i">
+                        <input type="text" class="form-control inputbox_css" placeholder="Enter Vendor Attendees"
+                          maxlength="200" formControlName="vendorAttendee">
+                      </td>
+                      <td class="btn-width p-1">
+                        <button class="btn btn-success btn-add-deatil mr-2 py-1" (click)="addVendorAttendee('')">+</button>
+                        <button class="btn btn-danger py-1" *ngIf="i > 0" (click)="removeVendorAttendee(i)"><i
+                            class="fa fa-trash"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" (click)="saveVendorAttendee()" class="btn btn-primary mr-1">Save changes</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+      Close</button>
+  </div>

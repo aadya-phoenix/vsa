@@ -41,6 +41,7 @@ export class ManageAuditInitiateComponent implements OnInit {
       vendorName:new FormControl('',[]),
       vendorCode:new FormControl('',[]),
       plannedStartDate:new FormControl('',[]),
+      vendorCategory:new FormControl('',[]),
       plannedEndDate:new FormControl('',[]),
       partName: new FormControl('',[Validators.required]),
       actualStartDate: new FormControl('',[Validators.required]),
@@ -63,6 +64,7 @@ export class ManageAuditInitiateComponent implements OnInit {
          this.vendorId = this.initiateDetails.vendorId;
          this.initiateForm.controls['vendorName'].setValue(this.initiateDetails.vendorName);
          this.initiateForm.controls['vendorCode'].setValue(this.initiateDetails.vendorCode);
+         this.initiateForm.controls['vendorCategory'].setValue(this.initiateDetails.categoryName);
          this.initiateForm.controls['plannedStartDate'].setValue(this.dateFormat(this.initiateDetails.plannedStartDate));
          this.initiateForm.controls['plannedEndDate'].setValue(this.dateFormat(this.initiateDetails.plannedEndDate));
          this.initiateForm.controls['partName'].setValue(this.initiateDetails?.partName);
