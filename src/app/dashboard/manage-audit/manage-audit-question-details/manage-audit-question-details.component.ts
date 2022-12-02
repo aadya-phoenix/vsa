@@ -101,6 +101,14 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   addJudge(index: any,val:any): void {
+   let abc =  (<FormArray>(<FormGroup>this.metadataArray.controls[index]).controls['ObservationList']);
+   if(abc.length>1){
+    Swal.fire({
+      title: 'More than 2 remarks.',
+      text:"If you fill more than 2 remarks, your judgement will be 'X'!",
+      icon: 'warning',
+    });
+   }
     (<FormArray>(<FormGroup>this.metadataArray.controls[index]).controls['ObservationList']).push(this.judgeGroup());
   }
 

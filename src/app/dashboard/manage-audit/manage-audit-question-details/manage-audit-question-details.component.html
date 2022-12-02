@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center d-flex justify-content-between">
             <h3 class="card-title">Audit Area Details ( {{vendorName}} ) - {{categoryName}} 
             </h3>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#viehistory">View History</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#viehistory">View Previous Year Remarks</button>
             </div>
          </div>
           <form [formGroup]="questionForm" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
                               <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#viehistory">Section Head Remarks</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#sechistory">Section Head Remarks</button>
             </div>
                           </div>
                           <div class="card-body">
@@ -130,11 +130,91 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="table-responsive max_hei_table">
+          <table class="table table-bordered">
+            <thead class="bac_table_white">
+              <tr class="text-center ">
+                <th rowspan="2" class="ver_midd">S.No.</th>
+                <th>Audit Area</th>
+                <th>Regulation</th>
+                <th>Remarks</th>
+                <th>Judegement</th>
+              </tr>
+           
+            </thead>
+            <tbody class="text-center">
+              <tr class="text-center">
+                <th>1</th>
+                <td>Regarding implementation rule of production preparation</td>
+                <td>Do you define importance level during production preparation for each product and clarify control it</td>
+                <td>..........</td>
+                <td><img src="../../../../assets/icons/triangle.png"
+                  class="diacisq_css"></td>
+              </tr>
+              <tr class="text-center">
+                <th>2</th>
+                <td>Defect prevention on the stage of process design by using FMEA/Matrix diagram</td>
+                <td>Do you review and improve FMEA or Matrix diagrams when any critical issue occurs after SOP?</td>
+                <td>..........</td>
+                <td><img
+                  src="../../../../assets/icons/new-moon.png" class="diacisq_css"></td>
+              </tr>
+            </tbody>
+            <tbody class="text-center">
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="sechistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Section Head Remarks</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive max_hei_table">
+          <table class="table table-bordered">
+            <thead class="bac_table_white">
+              <tr class="text-center ">
+                <th rowspan="2" class="ver_midd">S.No.</th>
+                <th>Audit Area</th>
+                <th>Regulation</th>
+                <th>Remarks</th>
+              </tr>
+           
+            </thead>
+            <tbody class="text-center">
+              <tr class="text-center">
+                <th>1</th>
+                <td>Regarding implementation rule of production preparation</td>
+                <td>Do you define importance level during production preparation for each product and clarify control it</td>
+                <td>..........</td>
+              </tr>
+              <tr class="text-center">
+                <th>2</th>
+                <td>Regarding implementation rule of production preparation</td>
+                <td>Do you define importance level during production preparation for each product and clarify control it</td>
+                <td>..........</td>
+              </tr>
+            </tbody>
+            <tbody class="text-center">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
