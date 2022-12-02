@@ -250,7 +250,12 @@ tbody tr{
   background-color: #1a65a3 !important;
   border-color: #1a65a3 !important;
 }
-
+.btn-info {
+  padding: 2px 14px !important;
+  font-size: 13px !important;
+  background-color: #17a2b8 !important;
+  border-color: #17a2b8 !important;
+}
 .btn-default {
   padding: 2px 14px !important;
   font-size: 13px !important;
@@ -272,6 +277,12 @@ tbody tr{
   background-color: yellow !important;
   border-color: yellow !important;
   color: #000 !important;
+}
+
+.modal-header .close, .modal-header .mailbox-attachment-close {
+  padding: 1rem;
+  margin: -1rem -1rem -1rem auto;
+  font-size: 14px !important;
 }
 .fon_9{
   font-size: 9px !important;
@@ -389,7 +400,9 @@ font-size: 13px;
 .w_100{
     width:100%;
 }
-
+.max_hei_table-350{
+  max-height: 350px !important ;
+}
  body, html {
     height: 100%;
   }

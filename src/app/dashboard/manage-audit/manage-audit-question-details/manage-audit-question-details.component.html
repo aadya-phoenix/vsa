@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center d-flex justify-content-between">
             <h3 class="card-title">Audit Area Details ( {{vendorName}} ) - {{categoryName}} 
             </h3>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#viehistory">View Previous Year Remarks</button>
+           
             </div>
          </div>
           <form [formGroup]="questionForm" enctype="multipart/form-data">
@@ -34,7 +34,8 @@
                               <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#sechistory">Section Head Remarks</button>
+                            <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#sechistory">Section Head Remarks</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#viehistory">View Last Year Remarks</button>
             </div>
                           </div>
                           <div class="card-body">
@@ -75,7 +76,7 @@
                                        </th>
                                         <td [formGroupName]="j" >
                                           <div class="d-flex">
-                                            <input type="checkbox" aria-label="Checkbox for following text input" class="mr-1 input-css-check">
+                                            <input type="checkbox" aria-label="Checkbox for following text input" class="input-css-check mr-1">
                                             <div class="image-upload mr-1">
                                            
                                               <label for="file_input_{{i}}_{{j}}">
@@ -90,6 +91,7 @@
                                            
                                 
                                           </div>
+                                         
                                         </td>
                                       </tr>
                                     </tbody>

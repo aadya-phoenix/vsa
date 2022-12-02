@@ -66,3 +66,9 @@
   display: flex;
   padding: 4px 15px;
 }
+.prog-css-bar{
+  width: 80%;
+}
+.per-text{
+  width: 20%;
+}

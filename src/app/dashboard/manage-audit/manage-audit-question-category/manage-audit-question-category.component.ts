@@ -77,7 +77,9 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
          this.categoryScoreList.forEach((x:any):any=>{
           
           x.totalRegulation = Math.round((x.totalCount)/3);
-         
+
+         x.completePercent = Math.round(((x.competedRegulation)/x.totalRegulation)*100);
+         x.scorePercent = Math.round(((x.categoryScore)/x.totalCount)*100);
           overAllRegulations += x.totalRegulation;
           overAllCompetedRegulation += x.competedRegulation;
          });
