@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -50,6 +52,8 @@ export class ManageAuditSummaryComponent implements OnInit {
     }
   };
 
+  @ViewChild('pdfTable') pdfTable: ElementRef | undefined;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -90,7 +94,7 @@ export class ManageAuditSummaryComponent implements OnInit {
             this.triangleScoreSum += element.triangleScore ? element.triangleScore : 0;
             this.xScoreSum += element.xScore ? element.xScore : 0;
           });
-          this.totalCountPercentage = (this.categoryScoreSum *100) / this.totalCountSum ;
+          this.totalCountPercentage = (this.categoryScoreSum * 100) / this.totalCountSum;
           this.chartsData = true;
           this.commonService.hideLoading();
         }
@@ -120,6 +124,24 @@ export class ManageAuditSummaryComponent implements OnInit {
 
   back() {
     this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);
+  }
+
+  exportAsPDF(div_id: any) {
+    let data = document.getElementById(div_id);
+    if (data != null) {
+      html2canvas(data, {
+        allowTaint: true
+      }).then((canvas: any) => {
+        const contentDataURL = canvas.toDataURL({
+          format: 'jpeg',
+          quality: 0.8
+       });
+        //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+        let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, 21.0,29.7);
+        pdf.save('ExecutiveSummary.pdf');
+      });
+    }
   }
 
   getSummaryDetails() {

@@ -99,10 +99,10 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details </h3>
-              <button class="btn btn-success">Download PDF ( WIP )</button>
+              <button class="btn btn-success" (click)="exportAsPDF('MyDIv');">Download PDF</button>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body" id="MyDIv">
             <div class="row mb-2">
               <div class="col-md-3">
                 <img src="../../../../assets/img/report-logo.png">
@@ -112,7 +112,7 @@
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead class="bac_table_white">
-                  <tr class="text-center ">
+                  <tr class="text-center bac_table_white">
                     <th rowspan="2" colspan="4" class="ver_midd"> Vendor Quality System Audit Report</th>
                     <th>Issue Deptt</th>
                     <td>QA-VSA</td>
@@ -120,7 +120,7 @@
                     <th>Verified</th>
                     <th>Approved</th>
                   </tr>
-                  <tr class="text-center">
+                  <tr class="text-center bac_table_white">
                     <th colspan="2">Date of Issue
                       <!-- <td>{{auditReportData?.dateOfIssue | date:dateFormat}}</td> -->
                     <td rowspan="2">{{auditReportData?.preparedBy}}</td>
