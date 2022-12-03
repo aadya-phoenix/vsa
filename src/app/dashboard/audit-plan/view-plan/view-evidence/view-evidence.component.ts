@@ -11,7 +11,7 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
 export class ViewEvidenceComponent implements OnInit {
 
   auditPlanId:any;
-  obsList:any;
+  obsList:any=[];
 
   constructor(
     private auditExeService:AuditExecutionService,

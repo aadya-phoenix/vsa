@@ -20,6 +20,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DpmReportComponent } from './dpm-report/dpm-report.component';
 import { SectionHeadRejectComponent } from './section-head-reject/section-head-reject.component';
 import { DpmRejectComponent } from './dpm-reject/dpm-reject.component';
+import { AddSectionHeadRemarksComponent } from './add-section-head-remarks/add-section-head-remarks.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DpmRejectComponent } from './dpm-reject/dpm-reject.component';
     EvidenceExecutiveSummaryComponent,
     DpmReportComponent,
     SectionHeadRejectComponent,
-    DpmRejectComponent
+    DpmRejectComponent,
+    AddSectionHeadRemarksComponent
   ],
   entryComponents:[EvidenceAuditorRemarksComponent,SectionHeadRejectComponent,DpmRejectComponent],
   imports: [

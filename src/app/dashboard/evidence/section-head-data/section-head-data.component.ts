@@ -117,4 +117,8 @@ export class SectionHeadDataComponent implements OnInit {
    
   }
 
+  addRemark(item:any){
+    this.router.navigateByUrl(`dashboard/evidence/remark/${item.id}`);
+  }
+
 }
