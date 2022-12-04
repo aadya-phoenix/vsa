@@ -103,8 +103,6 @@ export class PendingPlanListComponent implements OnInit {
    
   }
 
-  
-
   pageChanged(event: any) {
     this.pagination.pageNumber = event;
   }

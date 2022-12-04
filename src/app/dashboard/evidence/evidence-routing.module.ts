@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddSectionHeadRemarksComponent } from './add-section-head-remarks/add-section-head-remarks.component';
 import { DpmDataComponent } from './dpm-data/dpm-data.component';
 import { DpmReportComponent } from './dpm-report/dpm-report.component';
 import { EvidenceAuditsComponent } from './evidence-audits/evidence-audits.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'section-data',component:SectionHeadDataComponent},
   {path:'dpm',component:DpmDataComponent},
   {path:'category/:id',component:EvidenceReceiveCategoryComponent},
+  {path:'remark/:id',component:AddSectionHeadRemarksComponent},
   {path:'report/:id',component:EvidenceExecutiveSummaryComponent},
   {path:'dpm-report/:id',component:DpmReportComponent}
 ];

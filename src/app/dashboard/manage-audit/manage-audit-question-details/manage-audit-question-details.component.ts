@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CategoryMasterService } from 'src/app/shared/services/category-master/category-master.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
+import { LastYearRemarksComponent } from '../last-year-remarks/last-year-remarks.component';
+import { SectionHeadRemarksComponent } from '../section-head-remarks/section-head-remarks.component';
 
 @Component({
   selector: 'app-manage-audit-question-details',
@@ -16,6 +19,7 @@ import Swal from 'sweetalert2';
 export class ManageAuditQuestionDetailsComponent implements OnInit {
   questionForm:FormGroup;
   regulationList:any=[];
+  bsModalRef ?: BsModalRef;
   auditAreaList: any = [];
   observationList:any = [];
   auditPlanId:any;
@@ -44,6 +48,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     private auditPlanService:AuditPlanService,
     private fb:FormBuilder,
     private route:ActivatedRoute,
+    private modalService: BsModalService,
     private commonService: CommonService,
     private categoryService:CategoryMasterService,
     private authService: AuthenticationService,
@@ -333,5 +338,29 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       }
       , 
      });
+  }
+
+  openSectionModal(reg:any){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:reg,
+       auditId:this.auditPlanId,
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(SectionHeadRemarksComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+  openLastModal(reg:any){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:reg,
+       auditId:this.auditPlanId,
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(LastYearRemarksComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 }

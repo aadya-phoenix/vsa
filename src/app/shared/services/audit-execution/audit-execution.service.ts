@@ -88,4 +88,14 @@ export class AuditExecutionService {
     const url = `${this.basePath}api/AuditPlan/GetAuditLog`;
     return this.http.postParams(url,{}, params).pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  getObservationByFilter(data:any){
+    const url = `${this.basePath}api/AuditExecution/GetAuditPlanObservationByFilter`;
+    return this.http.post(url,data).pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  saveSectionHeadRemarks(data:any){
+    const url = `${this.basePath}api/AuditExecution/UpdateAuditPlanExecutionObservation`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
 }

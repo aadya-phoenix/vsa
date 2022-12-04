@@ -34,9 +34,9 @@
                               <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
-                            <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#sechistory">Section Head Remarks</button>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#viehistory">View Last Year Remarks</button>
-            </div>
+                            <button class="btn btn-primary mr-1" (click)="openSectionModal(regulationList[i])" >Section Head Remarks</button>
+                            <button class="btn btn-primary"  (click)="openLastModal(regulationList[i])" >View Last Year Remarks</button>
+                           </div>
                           </div>
                           <div class="card-body">
                             <div class="row" [formGroupName]="i">

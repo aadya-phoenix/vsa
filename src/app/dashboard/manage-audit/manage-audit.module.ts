@@ -15,6 +15,9 @@ import { ManageAuditSummaryComponent } from './manage-audit-summary/manage-audit
 import { NgChartsModule } from 'ng2-charts';
 import { VendorAttendeesComponent } from './vendor-attendees/vendor-attendees.component';
 import { CriticalObservationComponent } from './critical-observation/critical-observation.component';
+import { SectionHeadRemarksComponent } from './section-head-remarks/section-head-remarks.component';
+import { LastYearRemarksComponent } from './last-year-remarks/last-year-remarks.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -28,16 +31,19 @@ import { CriticalObservationComponent } from './critical-observation/critical-ob
     ManageAuditQuestionDetailsComponent,
     ManageAuditSummaryComponent,
     VendorAttendeesComponent,
-    CriticalObservationComponent
+    CriticalObservationComponent,
+    SectionHeadRemarksComponent,
+    LastYearRemarksComponent
   ],
   entryComponents:[VendorAttendeesComponent,
-    CriticalObservationComponent],
+    CriticalObservationComponent,SectionHeadRemarksComponent, LastYearRemarksComponent],
   providers:[DatePipe],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    ModalModule.forRoot(),
     ManageAuditRoutingModule,
     NgxPaginationModule,
     NgChartsModule

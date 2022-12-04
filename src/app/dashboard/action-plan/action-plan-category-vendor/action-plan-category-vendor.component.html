@@ -24,17 +24,17 @@
                                     
                                 </tr>
                               </thead>
-                              <tbody>
-                                <tr class="tbody_data" > 
-                                  <td>AU</td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
+                              <tbody class="text-center" *ngFor="let item of obsList">
+                                <tr>
+                                  <td>{{item.totalPoint}}</td>
+                                  <td>{{item.closure}}</td>
+                                  <td>{{item.verify}}</td>
+                                  <td>{{item.closed}}</td>
+                                  <td>{{item.partialClosed}}</td>
+                                  <td>{{item.open}}</td>
+                                  <td>{{item.pendingPoints}}</td>
                                 </tr>
-                              </tbody>
+                                </tbody>
                             </table>
                           </div>
                           <h3 class="summary-heading">Category-wise Summary</h3>

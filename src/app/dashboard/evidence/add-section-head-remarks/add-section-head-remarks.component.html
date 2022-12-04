@@ -1,0 +1,58 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header_card">
+                            <h3 class="card-title">Audit Details</h3>
+                            <div class="d-flex align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive max_hei_table">
+                            <table class="table table-bordered table-hover">
+                              <thead class="bac_table_white">
+                                <tr class="now_rap text-center sticky_header">
+                                  <th>S.No.</th>
+                                  <th>Category</th>
+                                  <th>Audit Area</th>
+                                  <th>Concerning regulation</th>
+                                  <th>Judgment</th>
+                                  <th>Auditor Remarks</th>
+                                  <th>Add Remarks</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody class="text-center">
+                                <tr *ngFor="let item of summaryDetails; let i=index;">
+                                  <th>{{i+1}}</th>
+                                  <th>{{item.categoryName}}</th>
+                                  <td>{{item.auditAreaName}}</td>
+                                  <td>{{item.regulationText}}</td>
+                                  <td *ngIf="item.judgementSymbol =='Triangle'"><img src="../../../../assets/icons/triangle.png"
+                                      class="diacisq_css"></td>
+                                  <td *ngIf="item.judgementSymbol =='Pie'"><img src="../../../../assets/icons/square.png"
+                                      class="diacisq_css"></td>
+                                  <td *ngIf="item.judgementSymbol =='x'"><img src="../../../../assets/icons/new-moon.png"
+                                      class="diacisq_css"></td>
+                                  <td>
+                                    {{item.remark}}
+                                  </td>
+                                  <td><textarea [(ngModel)]="item.secRemarks" class="form-control width-300"></textarea></td>
+                                  <td><button class="btn btn-success"  (click)="submit(item)">Submit</button></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                    <div class="card-footer">
+
+                        <button (click)="back()" class="btn btn-default">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

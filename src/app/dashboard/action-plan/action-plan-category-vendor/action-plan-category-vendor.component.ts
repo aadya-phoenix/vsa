@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 
@@ -11,7 +12,7 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
 export class ActionPlanCategoryVendorComponent implements OnInit {
   auditPlanId:any;
   categoryScoreList:any=[];
-
+  obsList:any=[];
   pagination = {
     page: 1,
     pageNumber: 1,
@@ -23,7 +24,8 @@ export class ActionPlanCategoryVendorComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router,
     private commonService: CommonService,
-    private auditPlanService:AuditPlanService
+    private auditPlanService:AuditPlanService,
+    private auditExeService:AuditExecutionService
   ) { 
     this.route.paramMap.subscribe((params:ParamMap)=>{
       const Id = params.get('id');
@@ -33,6 +35,7 @@ export class ActionPlanCategoryVendorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategoryList();
+    this.getActionObservation();
   }
 
   getCategoryList(){
@@ -64,6 +67,23 @@ export class ActionPlanCategoryVendorComponent implements OnInit {
 
   back(){
     this.router.navigateByUrl(`dashboard/action-plan/vendor`); 
+  }
+
+  getActionObservation(){
+    this.commonService.showLoading();
+    this.auditExeService.getEvidenceObservation(this.auditPlanId).subscribe({
+      next: (res) => {
+        if(res){
+         this.obsList = res;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => 
+      {
+      console.error(e);
+      this.commonService.hideLoading();
+      }, 
+      });
   }
 
 }
