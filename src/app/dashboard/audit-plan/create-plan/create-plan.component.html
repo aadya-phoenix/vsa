@@ -66,8 +66,8 @@
                                     <div class="form-group">
                                         <label class="form_label">Vendor Category <span
                                                 class="start_css">*</span></label>
-                                        <ng-select (change)="getVendor($event)" [items]="categoryObj"
-                                            bindLabel="categoryName" bindValue="id" formControlName="vendorCategory"
+                                        <ng-select [items]="categoryObj"
+                                            bindLabel="categoryName" bindValue="id" formControlName="vendorCategoryId"
                                             class="form-control inputbox_css ">
                                         </ng-select>
                                     </div>

@@ -14,10 +14,10 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details </h3>
-              <button class="btn btn-success">Download PDF ( WIP )</button>
+              <button class="btn btn-success" (click)="exportAsPDF('checkSheet');">Download PDF</button>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body" id="checkSheet">
             <div class="table-responsive max_hei_table">
               <table class="table table-bordered">
                 <thead class="bac_table_white">
@@ -317,10 +317,10 @@
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details </h3>
-              <button class="btn btn-success">Download PDF ( WIP )</button>
+              <button class="btn btn-success" (click)="exportAsPDF('receivingData');">Download PDF ()</button>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body" id="receivingData">
             <div class="row">
               <div class="col-sm-6">
                 <div class="table-responsive max_hei_table">

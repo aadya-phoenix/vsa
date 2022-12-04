@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -16,11 +18,19 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
   dateFormat = dataConstants.dateFormate;
   auditReportData:any;
   summaryDetails:any=[];
+  criticalObservations:any = [];
   chartsData = false;
+  supplierCategoryStatus = 'Yellow';
+  categoryScoreSum = 0;
+  totalCountSum = 0;
+  pieScoreSum = 0;
+  triangleScoreSum = 0;
+  totalCountPercentage = 0;
+  xScoreSum = 0;
   reportData: ChartData<'radar'> = {
     labels:[],
-    datasets:[
-    { data: [] },
+    datasets: [
+      { label: 'Category', data: [] },
     ]
   };
   reportOptions: ChartOptions = {
@@ -45,6 +55,7 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
   ngOnInit(): void {
     this.getExecutiveSummary();
     this.getSummaryDetails();
+    this.getCriticalObservations();
   }
 
   getExecutiveSummary(){
@@ -55,8 +66,13 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
           this.auditReportData = res;
           this.auditReportData.catergoryWiseScoreModel.forEach((element:any, index:number) => {
             this.reportData.labels?.push(`${index+1} ${element.name}`);
-            const reprotData = (element.observationCount / element.categoryTotalCount) * 100;
+            const reprotData = (element.categoryScore / element.totalCount) * 100;
             this.reportData.datasets[0].data.push(reprotData > 0 ? reprotData : 0);
+            this.categoryScoreSum += element.categoryScore ? element.categoryScore : 0;
+            this.totalCountSum += element.totalCount ? element.totalCount : 0;
+            this.pieScoreSum += element.pieScore ? element.pieScore : 0;
+            this.triangleScoreSum += element.triangleScore ? element.triangleScore : 0;
+            this.xScoreSum += element.xScore ? element.xScore : 0;
           });
           this.chartsData = true;
           this.commonService.hideLoading();
@@ -93,5 +109,40 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
       }
     });
   }
+
+  getCriticalObservations() {
+    this.commonService.showLoading();
+    this.reportService.getCriticalObservations({ id: this.auditPlanId }).subscribe({
+      next: (res) => {
+        if (res) {
+          this.criticalObservations = res;
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });
+  }
+
+  exportAsPDF(div_id: any) {
+    let data = document.getElementById(div_id);
+    if (data != null) {
+      html2canvas(data, {
+        allowTaint: true
+      }).then((canvas: any) => {
+        const contentDataURL = canvas.toDataURL({
+          format: 'jpeg',
+          quality: 0.8
+       });
+        //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+        let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, 21.0,29.7);
+        pdf.save('ExecutiveSummary.pdf');
+      });
+    }
+  }
+
 
 }

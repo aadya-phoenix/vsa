@@ -35,7 +35,7 @@ export class CreatePlanComponent implements OnInit {
       vendorId: new FormControl('', [Validators.required]),
       locationId: new FormControl('', [Validators.required]),
       otherLocation: new FormControl('', []),
-      vendorCategory:new FormControl('', [Validators.required]),
+      vendorCategoryId:new FormControl('', [Validators.required]),
       otherCode: new FormControl('', []),
       typeCode: new FormControl('', []),
       typeName: new FormControl('', []),
@@ -93,6 +93,7 @@ export class CreatePlanComponent implements OnInit {
     formData.append('plannedEndDate', body.plannedEndDate);
     formData.append('additionalMSILEmail', body.additionalMSILEmail);
     formData.append('auditeeEmail', body.auditeeEmail);
+    formData.append('VendorCategoryId', body.vendorCategoryId);
 
    this.auditPlanService.add(formData).subscribe({
       next: (res: any) => {
