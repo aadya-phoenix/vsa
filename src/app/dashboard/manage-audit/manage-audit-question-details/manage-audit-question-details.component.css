@@ -44,3 +44,8 @@
 .max-w-100{
   max-width: 100px;
 }
+
+.mange-que-detail-button{
+  width: 105px;
+    font-size: 12px !important;
+}

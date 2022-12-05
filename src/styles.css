@@ -54,6 +54,24 @@
   align-items: center;
 }
 
+.show1 {
+   
+  padding: 5px 5px 5px 5px;
+  height: 25px;
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+ 
+
+}
+.show1:hover {
+overflow: visible;
+white-space: normal;
+height: auto;
+}
+
   .sing_out_button a {
     font-size: 14px;
     margin-top: 4px;
@@ -269,6 +287,7 @@ tbody tr{
   background-color: #5a6268 !important;
   border-color: #5a6268 !important;
   color: #fff !important;
+  
 }
 
 .btn-warning {
@@ -277,6 +296,14 @@ tbody tr{
   background-color: yellow !important;
   border-color: yellow !important;
   color: #000 !important;
+}
+
+.btn-orange {
+  padding: 2px 14px !important;
+  font-size: 13px !important;
+  background-color: orange !important;
+  border-color: orange !important;
+  color: #fff !important;
 }
 
 .modal-header .close, .modal-header .mailbox-attachment-close {
@@ -366,8 +393,14 @@ font-size: 13px;
 .w_17 {
   width: 17px;
 }
+.w_27{
+  width:27px;
+}
 .w_80{
   width:80%;
+}
+.w_120{
+  width:120px !important;
 }
 .summary-heading{
   font-weight: 400;

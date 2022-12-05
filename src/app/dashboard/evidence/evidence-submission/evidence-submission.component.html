@@ -26,8 +26,8 @@
                 <tbody>
                     <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                         <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
-                        <td><p class="show">{{item.auditArea}}</p></td>
-                        <td><p class="show">{{item.regulationText}}</p></td>
+                        <td><p class="show1">{{item.auditArea}}</p></td>
+                        <td><p class="show1">{{item.regulationText}}</p></td>
                         <td>{{item.remark}}</td>
                         <td>{{item.detailOfImprovement}}</td>
                         <td>{{item.incharge}}</td>
