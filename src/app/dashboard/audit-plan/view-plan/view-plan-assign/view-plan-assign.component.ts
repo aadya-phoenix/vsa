@@ -42,7 +42,8 @@ export class ViewPlanAssignComponent implements OnInit {
 
   assign(){
     this.commonService.showLoading();
-    const body = this.assignAuditorForm.value;
+    let body = this.assignAuditorForm.value;
+    body.assignAuditor = body.assignAuditor.filter((x:any) => x.auditorId != null);
     this.auditPlanService.assignAuditor(body).subscribe({
       next:(res: any) => {
         Swal.fire({
@@ -56,6 +57,15 @@ export class ViewPlanAssignComponent implements OnInit {
         this.commonService.hideLoading();
       } 
     });
+  }
+
+  audotorChange(element:any, index:any){
+    if(this.assignAuditorArray && this.assignAuditorArray.value && this.assignAuditorArray.value.length > 0 && element){
+      const assignedAudditor =  this.assignAuditorArray.value.filter((x:any) => x.auditorId == element.id)
+      if(assignedAudditor && assignedAudditor.length > 1){
+        (<FormGroup>this.assignAuditorArray.controls[index]).controls['auditorId'].setValue('');
+      }
+    }
   }
 
   searchAuditor(elem: any, index:any) {

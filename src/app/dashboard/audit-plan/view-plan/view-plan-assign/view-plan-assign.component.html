@@ -29,7 +29,7 @@
                         </select> -->
                         <ng-select [items]="auditorList[i]" bindLabel="code" bindValue="id"
                           formControlName="auditorId" class="form-control"
-                          (search)="searchAuditor($event.term, i)">
+                          (search)="searchAuditor($event.term, i)" (change)="audotorChange($event, i)">
                         </ng-select>
                       </td>
                       <td class="btn-width p-1">
