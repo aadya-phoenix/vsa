@@ -1,77 +1,80 @@
 <section class="content">
     <div>
-        <div class="row" >
+        <div class="row">
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">
                         <h3 class="card-title">View Plan Details</h3>
                     </div>
-                      <form [formGroup]="viewPlanForm">
+                    <form [formGroup]="viewPlanForm">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code</label>
                                         <input type="text" class="form-control inputbox_css "
-                                        formControlName="vendorCode">
+                                            formControlName="vendorCode" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Name</label>
-                                        <input type="text" class="form-control"
-                                        formControlName="vendorName" >
+                                        <input type="text" class="form-control" formControlName="vendorName"
+                                            [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Location </label>
-                                        <input type="text" class="form-control"
-                                        formControlName="locationName" >
+                                        <input type="text" class="form-control" formControlName="locationName"
+                                            [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Any Other Location </label>
-                                        <input type="text" class="form-control"
-                                        formControlName="otherLocation">
+                                        <input type="text" class="form-control" formControlName="otherLocation" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Any Other Code</label>
-                                        <input type="text" class="form-control inputbox_css mt_3"   formControlName="otherCode">
+                                        <input type="text" class="form-control inputbox_css mt_3"
+                                            formControlName="otherCode" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Type Code</label>
-                                        <input type="text" class="form-control inputbox_css"  formControlName="typeCode">
+                                        <input type="text" class="form-control inputbox_css" formControlName="typeCode"
+                                            [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Type Name</label>
-                                        <input type="text" class="form-control inputbox_css"  formControlName="typeName">
+                                        <input type="text" class="form-control inputbox_css" formControlName="typeName"
+                                            [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Type Location</label>
-                                        <input type="text" class="form-control"  formControlName="typeLocation">
+                                        <input type="text" class="form-control" formControlName="typeLocation" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Planned Start Date </label>
-                                        <input type="date" class="form-control inputbox_css" formControlName="plannedStartDate">
+                                        <input type="date" class="form-control inputbox_css"
+                                            formControlName="plannedStartDate" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Planned End Date </label>
                                         <input type="date" class="form-control inputbox_css"
-                                        formControlName="plannedEndDate">
+                                            formControlName="plannedEndDate" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -79,27 +82,25 @@
                                         <label class="form_label">
                                             Additional MSIL Email
                                         </label>
-                                        <input type="text" class="form-control inputbox_css" 
-                                            formControlName="additionalMSILEmail">
+                                        <input type="text" class="form-control inputbox_css"
+                                            formControlName="additionalMSILEmail" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">
-                                            Auditee Email Id 
+                                            Auditee Email Id
                                         </label>
-                                        <input type="text" class="form-control inputbox_css mt_3"  
-                                            formControlName="auditeeEmail">
+                                        <input type="text" class="form-control inputbox_css mt_3"
+                                            formControlName="auditeeEmail" [attr.disabled]="true">
                                     </div>
                                 </div>
                                 <span class="pt-2">
-                                    <a
-                                     (click)="getAttachment()"
-                                        style="color:#ff7900">Click here to View Resource</a>
+                                    <a (click)="getAttachment()" style="color:#ff7900">Click here to View Resource</a>
                                 </span>
                             </div>
                         </div>
-                        <div class="card-footer" >
+                        <div class="card-footer">
                             <button class="btn btn-default" (click)="close()">Back</button>
                         </div>
                     </form>
@@ -108,4 +109,3 @@
         </div>
     </div>
 </section>
-
