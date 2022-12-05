@@ -91,6 +91,9 @@
                                            
                                 
                                           </div>
+                                          <div class="max-w-100" *ngIf="fileUploadArray && fileUploadArray[i] && fileUploadArray[i][j]">
+                                            {{fileUploadArray[i][j].name}}
+                                          </div>
                                          
                                         </td>
                                       </tr>

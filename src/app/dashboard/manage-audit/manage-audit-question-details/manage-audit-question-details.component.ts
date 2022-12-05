@@ -17,55 +17,63 @@ import { SectionHeadRemarksComponent } from '../section-head-remarks/section-hea
   styleUrls: ['./manage-audit-question-details.component.css']
 })
 export class ManageAuditQuestionDetailsComponent implements OnInit {
-  questionForm:FormGroup;
-  regulationList:any=[];
-  bsModalRef ?: BsModalRef;
+  questionForm: FormGroup;
+  regulationList: any = [];
+  bsModalRef?: BsModalRef;
   auditAreaList: any = [];
-  observationList:any = [];
-  auditPlanId:any;
-  categoryId:any;
-  getUserDetails:any;
-  userId:any;
-  judgeDetails:any={
-    JudgementId:'',
-    ObservationList:[]
+  observationList: any = [];
+  auditPlanId: any;
+  categoryId: any;
+  getUserDetails: any;
+  userId: any;
+  judgeDetails: any = {
+    JudgementId: '',
+    ObservationList: []
   };
   observeArray = [];
-  nullId =dataConstants.NullId;
-  judgeNew:any=[];
-  regulationId:any;
+  nullId = dataConstants.NullId;
+  judgeNew: any = [];
+  regulationId: any;
   triangle = dataConstants.JudgementValues.Triangle;
   cross = dataConstants.JudgementValues.X;
   pie = dataConstants.JudgementValues.Pie;
-  auditPlanDetails:any;
-  viewPlanId:any;
-  vendorName:any;
-  selectedTab:any;
-  categoryName:any;
-  myFile:any=[];
+  auditPlanDetails: any;
+  viewPlanId: any;
+  vendorName: any;
+  selectedTab: any;
+  categoryName: any;
+  myFile: any = [];
   myFileIndex = Array<String>();
+  fileUploadArray: any = [];
   constructor(
-    private auditPlanService:AuditPlanService,
-    private fb:FormBuilder,
-    private route:ActivatedRoute,
+    private auditPlanService: AuditPlanService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
     private modalService: BsModalService,
     private commonService: CommonService,
-    private categoryService:CategoryMasterService,
+    private categoryService: CategoryMasterService,
     private authService: AuthenticationService,
-    private router:Router
-  ) { 
+    private router: Router
+  ) {
     this.getUserDetails = this.authService.getLoginDetails();
     this.userId = this.getUserDetails.UserId;
-   
-    this.route.paramMap.subscribe((params:ParamMap)=>{
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
       const cid = params.get('cid');
       this.auditPlanId = Id ? Id : 0;
       this.categoryId = cid ? cid : 0;
     });
-
-    this.questionForm =this.fb.group({
+    this.questionForm = this.fb.group({
       metadata: this.fb.array([]),
+    });
+    (this.questionForm.get('metadata') as FormArray).valueChanges.subscribe(values => {
+      values.forEach((element: any, index: any) => {
+        if (element.ObservationList && element.ObservationList.length > 2 && element.JudgementId != this.cross) {
+          (<FormGroup>this.metadataArray.controls[index]).controls['JudgementId'].setValue(this.cross);
+          //this.questionForm.get('metadata').controls[0].controls.JudgementId.setValue('asdasdsadsadsad')
+        }
+      });
     });
   }
 
@@ -76,28 +84,30 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   }
 
   private metaDataGroup(): FormGroup {
+
     return this.fb.group({
-      JudgementId: new FormControl('',[Validators.required]),
+      JudgementId: new FormControl('', [Validators.required]),
       ObservationList: this.fb.array([this.judgeGroup()])
     });
-  } 
+  }
 
   private judgeGroup(): FormGroup {
     return this.fb.group({
-      remark: new FormControl('',[]),
-      file: new FormControl(null,[]),
-      auditPlanId: new FormControl(this.auditPlanId,[]),
-      createdBy: new FormControl(this.userId,[]),
-      regulationId: new FormControl('',[]),
-      id:new FormControl('',[])
+      remark: new FormControl('', []),
+      file: new FormControl(null, []),
+      auditPlanId: new FormControl(this.auditPlanId, []),
+      createdBy: new FormControl(this.userId, []),
+      regulationId: new FormControl('', []),
+      id: new FormControl('', [])
     });
   }
-  
+
   get metadataArray(): FormArray {
     return <FormArray>this.questionForm.get('metadata');
+
   }
- 
-  obsArray(index:number) : FormArray {
+
+  obsArray(index: number): FormArray {
     return <FormArray>this.metadataArray.at(index).get("ObservationList");
   }
 
@@ -105,19 +115,19 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     return this.questionForm.get("ObservationList") as FormArray;
   }
 
-  addJudge(index: any,val:any): void {
-   let abc =  (<FormArray>(<FormGroup>this.metadataArray.controls[index]).controls['ObservationList']);
-   if(abc.length>1){
-    Swal.fire({
-      title: 'More than 2 remarks.',
-      text:"If you fill more than 2 remarks, your judgement will be 'X'!",
-      icon: 'warning',
-    });
-   }
+  addJudge(index: any, val: any): void {
+    let abc = (<FormArray>(<FormGroup>this.metadataArray.controls[index]).controls['ObservationList']);
+    if (abc.length > 1) {
+      Swal.fire({
+        title: 'More than 2 remarks.',
+        text: "If you fill more than 2 remarks, your judgement will be 'X'!",
+        icon: 'warning',
+      });
+    }
     (<FormArray>(<FormGroup>this.metadataArray.controls[index]).controls['ObservationList']).push(this.judgeGroup());
   }
 
-  removeJudge(sessIndex: any,breakIndex:any): void{
+  removeJudge(sessIndex: any, breakIndex: any): void {
     (<FormArray>(<FormGroup>this.metadataArray.controls[sessIndex]).controls['ObservationList']).removeAt(breakIndex);
     var fileIndex = this.myFileIndex.findIndex(x => x == sessIndex + "|" + breakIndex)
     if (fileIndex > -1) {
@@ -130,24 +140,24 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     this.metadataArray.push(this.metaDataGroup());
   }
 
-  updateMetadata(data:any){
-    this.metadataArray.push(this.metaUpdateGroup(data)); 
+  updateMetadata(data: any) {
+    this.metadataArray.push(this.metaUpdateGroup(data));
   }
 
-  private metaUpdateGroup(data:any): FormGroup {
+  private metaUpdateGroup(data: any): FormGroup {
     return this.fb.group({
-      JudgementId: new FormControl(data.judgementId,[Validators.required]),
-      ObservationList: this.fb.array(data.judgeNew,[])
+      JudgementId: new FormControl(data.judgementId, [Validators.required]),
+      ObservationList: this.fb.array(data.judgeNew, [])
     })
   }
 
-  getAuditAreaByCategory(){
+  getAuditAreaByCategory() {
     this.commonService.showLoading();
     this.auditPlanService.getAuditAreaByCategory(this.categoryId).subscribe({
       next: (res) => {
-        if(res){
+        if (res) {
           this.auditAreaList = res;
-          this.auditAreaList.forEach((x:any)=>{
+          this.auditAreaList.forEach((x: any) => {
             x.isActiveTab = false;
           });
           this.getRegulation(this.auditAreaList[0]);
@@ -155,88 +165,88 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
           this.selectedTab = this.auditAreaList[0];
           this.commonService.hideLoading();
         }
-       },
+      },
       error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
-      }, 
-     }); 
+      },
+    });
   }
 
-  getRegulation(item:any){
+  getRegulation(item: any) {
     this.commonService.showLoading();
     if (this.selectedTab != undefined) this.selectedTab.isActiveTab = false;
     this.selectedTab = item;
     item.isActiveTab = true;
     this.metadataArray.controls = [];
-    const data={
+    const data = {
       auditPlanId: this.auditPlanId,
       categoryId: this.categoryId,
       auditAreaId: item.id
     };
     this.auditPlanService.getPlanRegulation(data).subscribe({
       next: (res) => {
-        if(res){
-         this.regulationList = res;
-         this.regulationList.forEach((reg:any)=>{
-          this.judgeNew=[];
-          reg.remarks = [];
-          reg.judgeNew = [];
-          if(reg.issubmitted == true){
-            this.regulationId = reg.id;
-            if(reg.lstObservation.length>0){
-              reg.lstObservation.forEach((x:any)=>{
-                reg.remarks.push({remark:x.remark, id:x.id});
-              });
-            for(let item of reg.lstObservation){
-              this.judgeNew.push(this.fb.group({
-               remark: item.remark ,
-               file: item.file,
-               auditPlanId:this.auditPlanId,
-               createdBy: this.userId,
-               regulationId:reg.id,
-               id: item.id
-               }));
-             }
-          }
-          else{
-            this.judgeNew.push(this.judgeGroup())
-          }
-           reg.judgeNew = this.judgeNew;
-           this.updateMetadata(reg);
-         }              
-        else{
-          this.addMetadata();
-         }
- 
-           this.commonService.hideLoading();
-         });
-        }
-       },
-       error: (e) => {
-        console.error(e);
-        this.commonService.hideLoading();
-      }
-     });
-  }
+        if (res) {
+          this.regulationList = res;
+          this.regulationList.forEach((reg: any) => {
+            this.judgeNew = [];
+            reg.remarks = [];
+            reg.judgeNew = [];
+            if (reg.issubmitted == true) {
+              this.regulationId = reg.id;
+              if (reg.lstObservation.length > 0) {
+                reg.lstObservation.forEach((x: any) => {
+                  reg.remarks.push({ remark: x.remark, id: x.id });
+                });
+                for (let item of reg.lstObservation) {
+                  this.judgeNew.push(this.fb.group({
+                    remark: item.remark,
+                    file: item.file,
+                    auditPlanId: this.auditPlanId,
+                    createdBy: this.userId,
+                    regulationId: reg.id,
+                    id: item.id
+                  }));
+                }
+              }
+              else {
+                this.judgeNew.push(this.judgeGroup())
+              }
+              reg.judgeNew = this.judgeNew;
+              this.updateMetadata(reg);
+            }
+            else {
+              this.addMetadata();
+            }
 
-  getPlanObservation(id:any){
-    this.commonService.showLoading();
-    this.auditPlanService.getPlanObservation({auditPlanId:this.auditPlanId, regulationId:id}).subscribe({
-      next: (res) => {
-        if(res){
-         this.observationList = res;    
-         this.commonService.hideLoading();
+            this.commonService.hideLoading();
+          });
         }
-       },
+      },
       error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
-      }, 
-     });
+      }
+    });
   }
 
-  submit(index:any,id:any){
+  getPlanObservation(id: any) {
+    this.commonService.showLoading();
+    this.auditPlanService.getPlanObservation({ auditPlanId: this.auditPlanId, regulationId: id }).subscribe({
+      next: (res) => {
+        if (res) {
+          this.observationList = res;
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      },
+    });
+  }
+
+  submit(index: any, id: any) {
     this.commonService.showLoading();
     //
     const body = this.questionForm.controls['metadata'].value;
@@ -248,12 +258,12 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       this.commonService.hideLoading();
       return;
     }
-    body[index].ObservationList.forEach((x:any)=> {
+    body[index].ObservationList.forEach((x: any) => {
       x.regulationId = id;
     });
     body[index].isSubmitted = true;
     const data = body[index];
-    const formData :any = new FormData();
+    const formData: any = new FormData();
     var remarkIndex = 0
     for (let dataKey in data) {
       if (dataKey === 'ObservationList') {
@@ -297,67 +307,74 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     });
   }
 
-  fileInput(event: any,sessIndex: any,breakIndex:any){
+  fileInput(event: any, sessIndex: any, breakIndex: any) {
     this.myFile.push(event.target.files[0]);
-    this.myFileIndex.push(sessIndex+'|'+breakIndex)
-  }  
+    this.myFileIndex.push(sessIndex + '|' + breakIndex);
+    while (this.fileUploadArray.length < sessIndex + 1) {
+      this.fileUploadArray.push([]);
+    }
+    while (this.fileUploadArray[sessIndex].length < breakIndex + 1) {
+      this.fileUploadArray[sessIndex].push([]);
+    }
+    this.fileUploadArray[sessIndex][breakIndex] = { file: event.target.files[0], name: event.target.files[0].name };
+  }
 
-  back(){
+  back() {
     this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);;
   }
 
-  getAuditPlanDetails(){
-    this.commonService.showLoading();  
+  getAuditPlanDetails() {
+    this.commonService.showLoading();
     this.auditPlanService.getPlanDetails(this.auditPlanId).subscribe({
       next: (res) => {
-        if(res){
-         this.auditPlanDetails = res;
-         this.vendorName = res.vendorName;
-         this.commonService.hideLoading();
+        if (res) {
+          this.auditPlanDetails = res;
+          this.vendorName = res.vendorName;
+          this.commonService.hideLoading();
         }
-       },
+      },
       error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
-      }, 
-     });
+      },
+    });
   }
 
-  getCategoryDetails(){
-    this.commonService.showLoading();  
+  getCategoryDetails() {
+    this.commonService.showLoading();
     this.categoryService.getCategoryDetails(this.categoryId).subscribe({
       next: (res) => {
-        if(res){
-         this.categoryName = res.name ;
-         this.commonService.hideLoading();
+        if (res) {
+          this.categoryName = res.name;
+          this.commonService.hideLoading();
         }
-       },
+      },
       error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
       }
-      , 
-     });
+      ,
+    });
   }
 
-  openSectionModal(reg:any){
+  openSectionModal(reg: any) {
     const initialState: ModalOptions = {
       initialState: {
-       data:reg,
-       auditId:this.auditPlanId,
-       title: 'Modal with component'
+        data: reg,
+        auditId: this.auditPlanId,
+        title: 'Modal with component'
       }
     };
     this.bsModalRef = this.modalService.show(SectionHeadRemarksComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  openLastModal(reg:any){
+  openLastModal(reg: any) {
     const initialState: ModalOptions = {
       initialState: {
-       data:reg,
-       auditId:this.auditPlanId,
-       title: 'Modal with component'
+        data: reg,
+        auditId: this.auditPlanId,
+        title: 'Modal with component'
       }
     };
     this.bsModalRef = this.modalService.show(LastYearRemarksComponent, initialState);
