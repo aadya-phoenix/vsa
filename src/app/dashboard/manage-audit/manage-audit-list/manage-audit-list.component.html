@@ -81,12 +81,6 @@
                                     <input type="date" [(ngModel)]="plannedEndDate" class="form-control mr-1 filter_css inputbox_css "
                                         placeholder="Date ">
                                 </div>
-
-                                <div class=" mr-1">
-                                    <label class="filter_label">Status</label>
-                                    <input type="text" [(ngModel)]="statusName" class="form-control mr-1 filter_css inputbox_css "
-                                        placeholder="Status ">
-                                </div>
                                 <div class="mt_24">
                                     <button type="button" (click)="filter()"
                                         class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span>
@@ -124,7 +118,7 @@
                                             <td>{{item.plannedStartDate | date:dateFormate}}</td>
                                             <td>{{item.plannedEndDate | date:dateFormate}}</td>
                                             <td>
-                                                <p [ngClass]="item.status">{{item.status}} </p>
+                                                <p [ngClass]="item.status" class="btn btn-defult">{{item.status}} </p>
                                             </td>
                                             <td *ngIf="isAuditor || isPlanner">
                                                 <a (click)="viewManageAudit(item)" ><img

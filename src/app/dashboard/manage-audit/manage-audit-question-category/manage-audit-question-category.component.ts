@@ -199,12 +199,20 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   this.commonService.showLoading();
   this.auditExecuteService.submitReport(body).subscribe({
     next: (res) => {
-      if(res){
+      if(res.type == "Error"){
         this.commonService.hideLoading();
         Swal.fire({
-          title: 'Report Submitted Successfully',
-          icon: 'success',
+          title: res.message,
+          icon: 'error',
         });
+        return;
+       }
+        else{
+          this.commonService.hideLoading();
+          Swal.fire({
+            title: res.message,
+            icon: 'success',
+          });
         this.router.navigateByUrl('dashboard/view-plan');
       }
      },

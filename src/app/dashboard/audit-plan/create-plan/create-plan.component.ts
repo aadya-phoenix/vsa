@@ -182,6 +182,7 @@ export class CreatePlanComponent implements OnInit {
   bulkUpload(event: any) {
     this.commonService.showLoading();
     this.bulkFile = event.target.files[0];
+    console.log("bulk upload")
     const formData = new FormData();
     formData.append('File', this.bulkFile);
     this.auditPlanService.bulkUpload(formData).subscribe({

@@ -272,7 +272,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
           for (let nestedKey in data[dataKey][previewKey]) {
             if (nestedKey == "file") {
               var fileIndex = this.myFileIndex.findIndex(x => x == index + "|" + remarkIndex)
-              debugger
               if (fileIndex > -1) {
                 var file = this.myFile[fileIndex]
                 formData.append(`ObservationList[${previewKey}].${nestedKey}`, file, file.name);

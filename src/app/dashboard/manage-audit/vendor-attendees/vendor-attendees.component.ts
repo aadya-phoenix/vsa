@@ -14,6 +14,7 @@ export class VendorAttendeesComponent implements OnInit {
   executiveSummaryForm:FormGroup;
   data:any;
   auditPlanId:any;
+  vendors:any;
   constructor(
     private fb:FormBuilder,
     private commonService: CommonService,
@@ -28,6 +29,7 @@ export class VendorAttendeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:'',auditId:this.data}));
+    this.getVendorAttendees();
   }
 
   get vendorAttendeeArray(): FormArray {
@@ -61,6 +63,7 @@ export class VendorAttendeesComponent implements OnInit {
           title: res.message,
           icon: 'success',
         });
+        this.bsModalRef.hide();
         this.commonService.hideLoading();
       },
       error:(err:any) =>{
@@ -70,4 +73,28 @@ export class VendorAttendeesComponent implements OnInit {
   }
 
 
+  getVendorAttendees() {
+    this.commonService.showLoading();
+    this.auditPlanService.getVendorAttendees( this.auditPlanId ).subscribe({
+      next: (res) => {
+        if (res) {
+          this.vendors = res;
+          if(this.vendors.length > 0){
+            this.vendors.forEach((x:any)=>{
+            this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:x.vendorAttendee
+              ,auditId:this.data}));
+          });
+         }
+          else{
+            this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:'',auditId:this.data}));
+          }
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });
+  }
 }

@@ -7,13 +7,13 @@
                         <div class="d-flex justif_space_betwen">
                             <h3 class="card-title">Create Plan Details</h3>
                             <div class="d-flex">
-                                <input type="file" (change)="bulkUpload($event)" id="upload" hidden />
-                                <div class="upload-btn-wrapper">
-                                    <button class="btn button-upload btn-primary" (change)="bulkUpload($event)"> <i
+                                <input type="file" (change)="bulkUpload($event)" id="upload" />
+                                <!-- <div class="upload-btn-wrapper">
+                                    <button class="btn button-upload btn-primary"> <i
                                             class="fas fa-upload mr-1 upload_ico"></i>
                                         <span class="now_rap">Upload Plan</span></button>
                                     <input type="file" name="myfile" />
-                                </div>
+                                </div> -->
                                 <button class="btn btn-success d-flex align-items-center ml-1" (click)="download()">
                                     <i class="fas fa-download mr-1 upload_ico"></i>
                                     <span class="now_rap">Download Template</span>
@@ -27,7 +27,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code <span class="start_css">*</span></label>
-                                        <ng-select (change)="getVendor($event)" [items]="vendorObj" bindLabel="code" placeholder="type here"
+                                        <ng-select (change)="getVendor($event)" [items]="vendorObj" bindLabel="code" 
                                             bindValue="id" formControlName="vendorId" class="form-control inputbox_css"
                                             (search)="searchVendor($event.term)">
                                         </ng-select>

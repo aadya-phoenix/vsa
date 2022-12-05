@@ -17,6 +17,7 @@ export class AddSectionHeadRemarksComponent implements OnInit {
   auditPlanId:any;
   summaryDetails: any = [];
   user:any
+  headRemarks:any=[];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -57,14 +58,17 @@ export class AddSectionHeadRemarksComponent implements OnInit {
     });
   }
 
-  submit(item:any){
+  submit(){
     this.commonService.showLoading();
-    const body ={
-       auditPlanId: this.auditPlanId,
-       regulationId: item?.regulationId,
-       remark: item.secRemarks,
-    }
-     this.auditExecutionService.saveSectionHeadRemarks(body).subscribe({
+    this.summaryDetails.forEach((x: any) => {
+      this.headRemarks.push(
+        {
+          auditPlanId: this.auditPlanId,
+          regulationId: x.regulationId,
+          remark: x?.secRemarks,
+        });
+     });
+     this.auditExecutionService.saveSectionHeadRemarks(this.headRemarks).subscribe({
       next:(res: any) => {
         Swal.fire({
           title: 'Section Head Remarks Submitted Successfully',
@@ -84,25 +88,43 @@ export class AddSectionHeadRemarksComponent implements OnInit {
   }
 
   giveStatus(status:any){
-   const body={
-      auditPlanId: this.auditPlanId,
-      roleId: this.user.RoleId,
-      userId: this.user.UserId,
-      status: status,
-    };
-    this.auditExecutionService.saveHeadApproval(body).subscribe({
-      next:(res: any) => {
-        Swal.fire({
-          title: status == this.accept ? 'Audit Plan Approved' : ' Audit Plan Rejected',
-          icon: 'success',
+    this.summaryDetails.forEach((x: any) => {
+      this.headRemarks.push(
+        {
+          auditPlanId: this.auditPlanId,
+          regulationId: x.regulationId,
+          remark: x?.secRemarks,
         });
+     });
+     this.auditExecutionService.saveSectionHeadRemarks(this.headRemarks).subscribe({
+      next:(res: any) => {
+        const body={
+          auditPlanId: this.auditPlanId,
+          roleId: this.user.RoleId,
+          userId: this.user.UserId,
+          status: status,
+          remark:""
+        };
+        this.auditExecutionService.saveHeadApproval(body).subscribe({
+          next:(res: any) => {
+            Swal.fire({
+              title: status == this.accept ? 'Audit Plan Approved' : ' Audit Plan Rejected',
+              icon: 'success',
+            });
+            this.commonService.hideLoading();
+          },
+          error:(err:any) =>{
+            console.error(err);
+            this.commonService.hideLoading();
+          } 
+        });  
         this.commonService.hideLoading();
       },
       error:(err:any) =>{
         console.error(err);
         this.commonService.hideLoading();
       } 
-    });  
+    }); 
   }
 
 }
