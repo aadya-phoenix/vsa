@@ -40,10 +40,13 @@ export class ActionPlanCategoryVendorComponent implements OnInit {
 
   getCategoryList(){
     this.commonService.showLoading();
-    this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
+    this.auditExeService.getActionCategory(this.auditPlanId).subscribe({
       next: (res) => {
         if(res){
          this.categoryScoreList = res;
+         this.categoryScoreList.forEach((x:any)=>{
+          x.completePercent = Math.round(((x.closure)/x.actionPlanCount)*100);
+         })
          this.commonService.hideLoading();
         }
        },

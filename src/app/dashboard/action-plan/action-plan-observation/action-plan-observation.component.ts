@@ -81,22 +81,6 @@ export class ActionPlanObservationComponent implements OnInit {
 
   submit(){
     this.commonService.showLoading();
-    let submittedFields = 0;
-    this.actionPlanList.forEach((element:any) => {
-      element.auditPlanId = this.auditPlanId;
-      element.createdBy = this.userId;
-      if(!element.dateOfSubmission || !element.detailOfImprovement|| !element.incharge){
-        submittedFields++;
-      }
-    });
-    if(submittedFields >0){
-      Swal.fire({
-        title: 'Please fill all fields.',
-        icon: 'error',
-      });
-      this.commonService.hideLoading();
-      return;
-    }
     this.auditExeService.saveActionPlan(this.actionPlanList).subscribe({
       next: (res) => {
         if(res){
@@ -120,18 +104,8 @@ export class ActionPlanObservationComponent implements OnInit {
   } 
 
   back(){
-    Swal.fire({
-      title: 'Are you sure want to Go Back?',
-      text: 'The data you entered will not be saved',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
-    }).then((result) => {
-      if (result.value) {
       this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
-      }
-    }); 
+  
   }
 
   getCategoryDetails(){

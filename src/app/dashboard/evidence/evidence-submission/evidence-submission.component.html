@@ -20,6 +20,8 @@
                         <th>In-Charge</th>
                         <th>Date</th>
                         <th>Upload(Multiple Evidence Can be Uploaded)</th>
+                        <th>Current Status</th>
+                        <th>Auditor's Remarks</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -32,9 +34,17 @@
                         <td>{{item.detailOfImprovement}}</td>
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
-                        <td><input type="file" id="exampleInputFile" (change)="fileUpload($event)"
-                         class="form-control inputbox_css-date"  multiple></td>
-                        <td><button class="btn btn-success"  (click)="submit(item)">Submit</button></td>
+                        <td><div *ngIf="item.closureStatus != 'Closed'"><input type="file" id="exampleInputFile" 
+                            (change)="fileUpload($event)"
+                         class="form-control inputbox_css-date"  multiple>
+                        </div></td>
+                        <td>{{item.closureStatus}}</td>
+                        <td><p class="show1">{{item.observationActionRemark}}</p></td>
+                        <td>
+                            <div *ngIf="item.closureStatus != 'Closed'">
+                            <button class="btn btn-success"  (click)="submit(item)">Submit</button>
+                           </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

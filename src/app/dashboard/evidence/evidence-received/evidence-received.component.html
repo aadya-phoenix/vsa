@@ -5,7 +5,8 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive max_hei_table" >
+       
+        <div class="table-responsive max_hei_table">
             <table id="" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
@@ -35,7 +36,8 @@
                         <td>
                             <a *ngIf="item.attachment" (click)="download(item.attachment)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a>
                         </td>
-                        <td><button class="btn btn-success mr-1" 
+                        <td><div *ngIf="item.attachment && !item.closureStatus">
+                            <button class="btn btn-success mr-1" 
               
                             (click)="openModal(open,item)">Open</button>
                            <button class="btn btn-danger  mr-1" 
@@ -44,11 +46,16 @@
                            <button class="btn btn-primary" style="color: #fff;"
                           
                            (click)="openModal(partialClose,item)">Partially Close</button>
+                        </div>
+                        <div *ngIf="item.closureStatus && item.attachment">
+                         <button class="btn btn-default cursor-none">{{item.closureStatus}}</button>
+                        </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+       
         <nav aria-label="Page navigation example">
             <div class="pagination justift_end">
               <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>

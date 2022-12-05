@@ -52,12 +52,14 @@
                                     <tr class="tbody_data" *ngFor="let item of categoryScoreList;let i =index">
                                         <td>{{i+1}}</td>
                                         <td>{{item.name}}</td>
-                                        <td>  <button (click)="goToObservation(item.categoryId)" class="btn btn-primary">{{item.observationCount}}</button></td>               
+                                        <td> 
+                                            <p (click)="goToObservation(item.categoryId)" class="mb-0 cursor-pointer"> {{item.actionPlanCount}}</p> 
+                                            <!-- <button (click)="goToObservation(item.categoryId)" class="btn btn-primary"></button></td>                -->
                                         <td> 
                                             <div class="d-flex">
-                                            <span class="w_17 mr-2">4/8</span>
+                                            <span class="w_17 mr-2">{{item.closure}}/{{item.actionPlanCount}}</span>
                                             <div class="progress w_80">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                                <div class="progress-bar" role="progressbar" [style.width.%]="item.completePercent" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{item.completePercent}}%</div>
                                               </div>
                                               </div>
                                                     </td>    

@@ -15,7 +15,7 @@
                                     <tr class="sticky_header">
                                         <th>S.No</th>
                                         <th>Categories </th>
-                                        <th>Observation</th>
+                                        <th>Observation ( Remarks )</th>
                                         <th>Action Plan Submitted</th>
                                     </tr>
                                 </thead>
@@ -26,7 +26,7 @@
                                         <td>{{item.name}}</td>
                                         <td>
                                           
-                                            <button (click)="goToObservation(item.categoryId)" class="btn btn-primary">{{item.observationCount}}</button> 
+                                            <p class="cursor-pointer mb-0" (click)="goToObservation(item.categoryId)">{{item.observationCount}}</p> 
 
 
 

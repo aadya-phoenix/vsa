@@ -27,3 +27,6 @@
   .w_30{
     width: 30px;
 }
+.cursor-none{
+  cursor: no-drop !important;
+}
