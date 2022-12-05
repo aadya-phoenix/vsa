@@ -98,4 +98,11 @@ export class AuditExecutionService {
     const url = `${this.basePath}api/AuditExecution/UpdateAuditPlanExecutionObservation`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  downloadDocument(data:any){
+    const url = `${this.basePath}api/AuditPlan/DownloadEvidenceDocument`;
+    return this.http
+      .postBlobParams(url,data,{ observe: 'response', responseType: 'blob' as 'json'} );
+     
+  }
 }

@@ -64,4 +64,10 @@ export class HttpService {
     return this.httpClient.get<Blob>(url, {params,responseType});
   }
 
+  
+  public postBlobParams(urlString: string,obj:any,data:any): Observable<any> {
+    const url = urlString;
+    return this.httpClient.post<Blob>(url,obj, { observe: 'response', responseType: 'blob' as 'json'});
+  }
+
 }
