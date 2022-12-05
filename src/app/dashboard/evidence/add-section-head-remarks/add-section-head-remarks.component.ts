@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 import Swal from 'sweetalert2';
@@ -11,12 +12,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-section-head-remarks.component.css']
 })
 export class AddSectionHeadRemarksComponent implements OnInit {
-
+  accept = 1;
+   reject = 2;
   auditPlanId:any;
   summaryDetails: any = [];
+  user:any
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private authService:AuthenticationService,
     private commonService: CommonService,
     private auditExecutionService: AuditExecutionService,
     private reportService: ReportService
@@ -28,6 +32,7 @@ export class AddSectionHeadRemarksComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.user = this.authService.getLoginDetails();
     this.getSummaryDetails();
   }
 
@@ -62,7 +67,7 @@ export class AddSectionHeadRemarksComponent implements OnInit {
      this.auditExecutionService.saveSectionHeadRemarks(body).subscribe({
       next:(res: any) => {
         Swal.fire({
-          title: 'Evidence Submitted Successfully',
+          title: 'Section Head Remarks Submitted Successfully',
           icon: 'success',
         });
         this.commonService.hideLoading();
@@ -76,6 +81,28 @@ export class AddSectionHeadRemarksComponent implements OnInit {
 
   back(){
     this.router.navigateByUrl(`dashboard/evidence/section-data`);
+  }
+
+  giveStatus(status:any){
+   const body={
+      auditPlanId: this.auditPlanId,
+      roleId: this.user.RoleId,
+      userId: this.user.UserId,
+      status: status,
+    };
+    this.auditExecutionService.saveHeadApproval(body).subscribe({
+      next:(res: any) => {
+        Swal.fire({
+          title: status == this.accept ? 'Audit Plan Approved' : ' Audit Plan Rejected',
+          icon: 'success',
+        });
+        this.commonService.hideLoading();
+      },
+      error:(err:any) =>{
+        console.error(err);
+        this.commonService.hideLoading();
+      } 
+    });  
   }
 
 }

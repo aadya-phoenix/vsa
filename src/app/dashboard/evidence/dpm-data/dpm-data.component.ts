@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/shared/services/auth/authenticati
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import Swal from 'sweetalert2';
 import { PendingPlanRejectComponent } from '../../audit-plan/pending-plan/pending-plan-reject/pending-plan-reject.component';
+import { DpmRejectComponent } from '../dpm-reject/dpm-reject.component';
 
 @Component({
   selector: 'app-dpm-data',
@@ -68,7 +69,7 @@ export class DpmDataComponent implements OnInit {
        title: 'Modal with component'
       }
     };
-    this.bsModalRef = this.modalService.show(PendingPlanRejectComponent, initialState);
+    this.bsModalRef = this.modalService.show(DpmRejectComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.onHidden?.subscribe(() => {
     this. getViewPlanList();
