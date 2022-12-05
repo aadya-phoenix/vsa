@@ -99,7 +99,7 @@ export class PendingPlanListComponent implements OnInit {
     this.bsModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.onHidden?.subscribe(() => {
       this. getViewPlanList();
-  });
+    });
    
   }
 

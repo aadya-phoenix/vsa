@@ -30,6 +30,10 @@ export class EvidenceReceivedComponent implements OnInit {
   bsModalRef ?: BsModalRef;
   categoryId:any;
   categoryName:any;
+  open =1;
+  close =3;
+  partialClose =2;
+
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
@@ -41,16 +45,15 @@ export class EvidenceReceivedComponent implements OnInit {
   ) { 
     this.route.paramMap.subscribe((res:ParamMap)=>{
       let Id = res.get('id');
-      // Id ? this.auditPlanId = Id : this.auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
-       let Cid = res.get('cid');
-       this.auditPlanId = Id;
-       this.categoryId = Cid;
+      let Cid = res.get('cid');
+      this.auditPlanId = Id;
+      this.categoryId = Cid;
     });
     this.userId = this.authService.getLoginDetails().UserId;
   }
 
   ngOnInit(): void {
-    this. getActionPlanList();
+    this.getActionPlanList();
     this.getCategoryDetails();
   }
 
@@ -110,6 +113,9 @@ export class EvidenceReceivedComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(EvidenceAuditorRemarksComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+      this.getActionPlanList();
+    });
   }
 
   back(){

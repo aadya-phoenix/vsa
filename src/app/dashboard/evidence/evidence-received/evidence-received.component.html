@@ -28,7 +28,7 @@
                         <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
                         <td><p class="show1">{{item.auditArea}}</p></td>
                         <td><p class="show1">{{item.regulationText}}</p></td>
-                        <td>{{item.remarkOfAuditor}}</td>
+                        <td>{{item.remark}}</td>
                         <td>{{item.detailOfImprovement}}</td>
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
@@ -37,13 +37,13 @@
                         </td>
                         <td><button class="btn btn-success mr-1" 
               
-                            (click)="observeAction(1,item.id)">Open</button>
+                            (click)="openModal(open,item)">Open</button>
                            <button class="btn btn-danger  mr-1" 
                 
-                           (click)="observeAction(3,item.id)">Close</button>
+                           (click)="openModal(close,item)">Close</button>
                            <button class="btn btn-primary" style="color: #fff;"
                           
-                           (click)="observeAction(2,item.id)">Partially Close</button>
+                           (click)="openModal(partialClose,item)">Partially Close</button>
                         </td>
                     </tr>
                 </tbody>
