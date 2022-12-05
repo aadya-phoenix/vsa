@@ -23,24 +23,25 @@ export class VendorAttendeesComponent implements OnInit {
     this.executiveSummaryForm=this.fb.group({
       vendorAttendee: this.fb.array([])
     });
-    this.vendorAttendeeArray.push(this.addMoreVendorAttendee(''));
+   
   }
 
   ngOnInit(): void {
+    this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:'',auditId:this.data}));
   }
 
   get vendorAttendeeArray(): FormArray {
     return this.executiveSummaryForm.get("vendorAttendee") as FormArray;
   }
 
-  addVendorAttendee(auditorVal: string) {
+  addVendorAttendee(auditorVal: any) {
     return this.vendorAttendeeArray.push(this.addMoreVendorAttendee(auditorVal));
   }
 
-  addMoreVendorAttendee(auditorVal: string) {
+  addMoreVendorAttendee(auditorVal: any) {
     return this.fb.group({
-      vendorAttendee: new FormControl(auditorVal, [Validators.required]),
-      auditPlanId: new FormControl(this.auditPlanId)
+      vendorAttendee: new FormControl(auditorVal.vendor, [Validators.required]),
+      auditPlanId: new FormControl(this.data)
     });
   }
 

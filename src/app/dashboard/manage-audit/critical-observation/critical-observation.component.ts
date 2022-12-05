@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class CriticalObservationComponent implements OnInit {
   executiveSummaryForm:FormGroup;
-  data:any;
+  public data:any;
   auditPlanId:any;
   constructor(
     private fb:FormBuilder,
@@ -23,24 +23,25 @@ export class CriticalObservationComponent implements OnInit {
     this.executiveSummaryForm=this.fb.group({
       criticalObservation: this.fb.array([]),
     });
-    this.criticalObservationArray.push(this.addMoreCriticalObservation(''));
+    
   }
 
   ngOnInit(): void {
+    this.criticalObservationArray.push(this.addMoreCriticalObservation({critical:'',auditId:this.data}));
   }
 
   get criticalObservationArray(): FormArray {
     return this.executiveSummaryForm.get("criticalObservation") as FormArray;
   }
 
-  addCriticalObservation(auditorVal: string) {
+  addCriticalObservation(auditorVal: any) {
     return this.criticalObservationArray.push(this.addMoreCriticalObservation(auditorVal));
   }
 
-  addMoreCriticalObservation(auditorVal: string) {
+  addMoreCriticalObservation(auditorVal: any) {
     return this.fb.group({
-      criticalObservation: new FormControl(auditorVal, [Validators.required]),
-      auditPlanId: new FormControl(this.auditPlanId)
+      criticalObservation: new FormControl(auditorVal.critical, [Validators.required]),
+      auditPlanId: new FormControl(this.data)
     });
   }
 
