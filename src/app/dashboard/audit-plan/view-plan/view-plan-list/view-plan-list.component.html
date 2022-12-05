@@ -104,6 +104,7 @@
                       <th *ngIf="isSuperAdmin || isPlanner">View</th>
                       <th *ngIf="isSuperAdmin || isPlanner">Add Auditor</th>
                       <th>Auditors Assigned</th>
+                      <th>Final Auditor</th>
                       <th>Status </th>          
                       <th> Action Plan</th>   
                       <th> Evidences Recieved </th>
@@ -126,8 +127,10 @@
                       <td *ngIf="isSuperAdmin || isPlanner">
                         <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>             
                       </td>
-                      <td *ngIf="isSuperAdmin"> <div *ngIf="isSuperAdmin && (item.status == Accepted) && (item.typeOfReport != Final)">  <a  (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a> </div></td>
-                      <td>{{item.auditorName}}</td>
+                      <td *ngIf="isSuperAdmin">
+                         <div *ngIf="isSuperAdmin && (item.status == Accepted) && (item.typeOfReport != Final)">  <a  (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a> </div></td>
+                      <td><p class="w_120 show1">{{item.auditorName}}</p></td>
+                      <td></td>
                       <td><p [ngClass]="item.status" >{{item.status =='Submitted' ? 'Pending At Vendor' : item.status}} </p></td>
                       <td><div *ngIf="item.status == 'Accepted'">
                         <button class="btn btn-primary" (click)="pendingAction(item)" >

@@ -27,7 +27,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">Vendor Code <span class="start_css">*</span></label>
-                                        <ng-select (change)="getVendor($event)" [items]="vendorObj" bindLabel="code"
+                                        <ng-select (change)="getVendor($event)" [items]="vendorObj" bindLabel="code" placeholder="type here"
                                             bindValue="id" formControlName="vendorId" class="form-control inputbox_css"
                                             (search)="searchVendor($event.term)">
                                         </ng-select>
