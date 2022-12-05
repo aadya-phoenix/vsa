@@ -105,4 +105,10 @@ export class AuditExecutionService {
       .postBlobParams(url,data,{ observe: 'response', responseType: 'blob' as 'json'} );
      
   }
+
+  getActionCategory(id:any){
+    const params = new HttpParams().set('AuditplanId',id);
+    const url = `${this.basePath}api/AuditExecution/GetActionPlanStatusCategoryWise`;
+    return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling));
+  }
 }

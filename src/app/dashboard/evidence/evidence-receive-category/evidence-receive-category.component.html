@@ -47,9 +47,6 @@
                                         <th>Action Plan</th>
                                         <th>Evidence Received</th>
                                        <th>Action To Be Taken</th>
-                                       <!--   <th>Closed</th>
-                                        <th>Partially Closed</th> -->
-                                        <!-- <th>Pending from Vendor</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -57,12 +54,9 @@
                                     <tr class="tbody_data" *ngFor="let item of categoryScoreList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                                         <td>{{i+1}}</td>
                                         <td style="width: 13px;">{{item.name}}</td>
-                                        <td>  <span (click)="goToObservation(item.categoryId)">{{item.observationCount}}</span></td>  
-                                        <td></td>   
-                                         <td></td> 
-                                        <!--<td></td>
-                                        <td></td>   -->
-                                        
+                                        <td>  <span (click)="goToObservation(item.categoryId)">{{item.actionPlanCount}}</span></td>  
+                                        <td>{{item.closure}}</td>   
+                                         <td>{{item.balance}}</td> 
                                         <td>  <button class="btn btn-primary" (click)="goToObservation(item.categoryId)">View</button></td>         
                                     </tr>
                                 </tbody>

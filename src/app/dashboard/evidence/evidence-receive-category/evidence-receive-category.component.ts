@@ -40,7 +40,7 @@ export class EvidenceReceiveCategoryComponent implements OnInit {
 
   getCategoryList(){
     this.commonService.showLoading();
-    this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
+    this.auditExeService.getActionCategory(this.auditPlanId).subscribe({
       next: (res) => {
         if(res){
          this.categoryScoreList = res;
