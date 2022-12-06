@@ -201,7 +201,8 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
                 for (let item of reg.lstObservation) {
                   this.judgeNew.push(this.fb.group({
                     remark: item.remark,
-                    file: item.file,
+                    fileAttachment: item.file,
+                    file: "",
                     auditPlanId: this.auditPlanId,
                     createdBy: this.userId,
                     regulationId: reg.id,
@@ -276,7 +277,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
                 var file = this.myFile[fileIndex]
                 formData.append(`ObservationList[${previewKey}].${nestedKey}`, file, file.name);
               } else {
-                formData.append(`ObservationList[${previewKey}].fileAttachment`, data[dataKey][previewKey][nestedKey]);
+                formData.append(`ObservationList[${previewKey}].fileAttachment`, data[dataKey][previewKey]["fileAttachment"]);
               }
             } else
               formData.append(`ObservationList[${previewKey}].${nestedKey}`, data[dataKey][previewKey][nestedKey]);
