@@ -88,6 +88,7 @@ export class AddSectionHeadRemarksComponent implements OnInit {
   }
 
   giveStatus(status:any){
+    this.commonService.showLoading();
     this.summaryDetails.forEach((x: any) => {
       this.headRemarks.push(
         {
@@ -111,6 +112,7 @@ export class AddSectionHeadRemarksComponent implements OnInit {
               title: status == this.accept ? 'Audit Plan Approved' : ' Audit Plan Rejected',
               icon: 'success',
             });
+            this.router.navigateByUrl('dashboard/evidence/section-data');
             this.commonService.hideLoading();
           },
           error:(err:any) =>{

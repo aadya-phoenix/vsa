@@ -35,6 +35,7 @@ export class VendorEditComponent implements OnInit {
     this.vendorForm = this.fb.group({
       name: new FormControl('',[Validators.required]),
       code: new FormControl('',[Validators.required]),
+      userName:new FormControl('', [Validators.required]),
     });
    }
 
@@ -80,6 +81,10 @@ export class VendorEditComponent implements OnInit {
   
   save(){
     if (this.vendorForm.invalid) {
+      Swal.fire({
+        title: 'Please fill all fields.',
+        icon: 'error',
+      });
       return;
     }
     const body = this.vendorForm.value;

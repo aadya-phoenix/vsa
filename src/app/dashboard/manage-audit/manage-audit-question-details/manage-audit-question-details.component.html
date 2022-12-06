@@ -35,7 +35,7 @@
                                 {{regulationList[i]?.name}}
                             </h4>
                             <div class="d-flex">
-                            <button class="btn btn-orange mr-1 mange-que-detail-button" (click)="openSectionModal(regulationList[i])" >Section Head Remarks</button>
+                            <button *ngIf="regulationList[i].shRemarksCount > 0" class="btn btn-orange mr-1 mange-que-detail-button" (click)="openSectionModal(regulationList[i])" >Section Head Remarks</button>
                             <button class="btn btn-primary mange-que-detail-button"  (click)="openLastModal(regulationList[i])" > Last Year Remarks</button>
                            
                           </div>
