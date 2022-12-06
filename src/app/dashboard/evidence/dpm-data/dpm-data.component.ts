@@ -65,6 +65,7 @@ export class DpmDataComponent implements OnInit {
     const initialState: ModalOptions = {
       initialState: {
        data:item.id,
+       user:this.user,
        status:status,
        title: 'Modal with component'
       }

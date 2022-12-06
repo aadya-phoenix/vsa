@@ -111,4 +111,10 @@ export class AuditExecutionService {
     const url = `${this.basePath}api/AuditExecution/GetActionPlanStatusCategoryWise`;
     return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  getCmeasureReport(id:any){
+    const params = new HttpParams().set('AuditplanId',id);
+    const url = `${this.basePath}api/AuditExecution/GetCMeasureReport`;
+    return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling));
+  }
 }

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
@@ -14,11 +15,13 @@ import { ReportService } from 'src/app/shared/services/report/report.service';
   styleUrls: ['./dpm-report.component.css']
 })
 export class DpmReportComponent implements OnInit {
-  auditPlanId:any;
+  auditPlanId: any;
   dateFormat = dataConstants.dateFormate;
-  auditReportData:any;
-  summaryDetails:any=[];
+  auditReportData: any;
+  summaryDetails: any = [];
+  auditDetails: any;
   criticalObservations: any = [];
+  vendorAttendees:any=[];
   supplierCategoryStatus = 'Yellow';
   chartsData = false;
   categoryScoreSum = 0;
@@ -28,7 +31,7 @@ export class DpmReportComponent implements OnInit {
   totalCountPercentage = 0;
   xScoreSum = 0;
   reportData: ChartData<'radar'> = {
-    labels:[],
+    labels: [],
     datasets: [
       { label: 'Category', data: [] },
     ]
@@ -36,36 +39,51 @@ export class DpmReportComponent implements OnInit {
   reportOptions: ChartOptions = {
     responsive: true,
     plugins: {
+      title: {
+        display: true,
+        text: 'Executive Summary'
+      }
     }
   };
-  
+  cReportDetails:any=[];
+
+  @ViewChild('pdfTable') pdfTable: ElementRef | undefined;
+
   constructor(
-    private router:Router,
-    private route:ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private commonService: CommonService,
-    private auditExecutionService:AuditExecutionService,
-    private reportService:ReportService
+    private auditExecutionService: AuditExecutionService,
+    private authService:AuthenticationService,
+    private reportService: ReportService
   ) {
-    this.route.paramMap.subscribe((params:ParamMap)=>{
+    this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
       this.auditPlanId = Id ? Id : 0;
     })
-   }
+  }
 
   ngOnInit(): void {
     this.getExecutiveSummary();
     this.getSummaryDetails();
     this.getCriticalObservations();
+    this.getCmeasureReport();
+    this.auditDetails = this.authService.getAuditDetails();
   }
 
-  getExecutiveSummary(){
+  getExecutiveSummary() {
     this.commonService.showLoading();
     this.reportService.getExecutiveSummary(this.auditPlanId).subscribe({
-      next:(res)=>{
-        if(res){
+      next: (res) => {
+        if (res) {
           this.auditReportData = res;
-          this.auditReportData.catergoryWiseScoreModel.forEach((element:any, index:number) => {
-            this.reportData.labels?.push(`${index+1} ${element.name}`);
+          this.categoryScoreSum = 0;
+          this.totalCountSum = 0;
+          this.pieScoreSum = 0;
+          this.triangleScoreSum = 0;
+          this.xScoreSum = 0;
+          this.auditReportData.catergoryWiseScoreModel.forEach((element: any, index: number) => {
+            this.reportData.labels?.push(`${index + 1} ${element.name}`);
             const reprotData = (element.categoryScore / element.totalCount) * 100;
             this.reportData.datasets[0].data.push(reprotData > 0 ? reprotData : 0);
             this.categoryScoreSum += element.categoryScore ? element.categoryScore : 0;
@@ -74,36 +92,12 @@ export class DpmReportComponent implements OnInit {
             this.triangleScoreSum += element.triangleScore ? element.triangleScore : 0;
             this.xScoreSum += element.xScore ? element.xScore : 0;
           });
+          this.totalCountPercentage = (this.categoryScoreSum * 100) / this.totalCountSum;
           this.chartsData = true;
           this.commonService.hideLoading();
         }
       },
-      error:(e)=>{
-        console.error(e);
-        this.commonService.hideLoading();
-      }
-    });
-  }
-  
-  back(){
-    this.router.navigateByUrl(`dashboard/evidence/dpm`);
-  }
-
-  getSummaryDetails(){
-    this.commonService.showLoading();
-    this.auditExecutionService.getSummaryDetails(this.auditPlanId).subscribe({
-      next:(res)=>{
-        if(res){
-          this.summaryDetails = res;
-          this.summaryDetails.forEach((x:any)=>{
-            if(x.judgementSymbol == 'Pie'){
-              x.judgeSymbol = ''
-            }
-          });
-          this.commonService.hideLoading();
-        }
-      },
-      error:(e)=>{
+      error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
       }
@@ -126,6 +120,7 @@ export class DpmReportComponent implements OnInit {
     });
   }
 
+
   exportAsPDF(div_id: any) {
     let data = document.getElementById(div_id);
     if (data != null) {
@@ -142,6 +137,53 @@ export class DpmReportComponent implements OnInit {
         pdf.save('ExecutiveSummary.pdf');
       });
     }
+  }
+
+  getSummaryDetails() {
+    this.commonService.showLoading();
+    this.auditExecutionService.getSummaryDetails(this.auditPlanId).subscribe({
+      next: (res) => {
+        if (res) {
+          this.summaryDetails = res;
+          this.summaryDetails.forEach((x: any) => {
+            if (x.judgementSymbol == 'Pie') {
+              x.judgeSymbol = ''
+            }
+          });
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });
+  }
+
+  getCmeasureReport(){
+    this.commonService.showLoading();
+    this.auditExecutionService.getCmeasureReport(this.auditPlanId).subscribe({
+      next: (res) => {
+        if (res) {
+          this.cReportDetails = res;
+          this.commonService.hideLoading();
+          this.cReportDetails.forEach((x:any)=>{
+            if(x.dateOfSubmission == "0001-01-01T00:00:00"){
+              x.dateOfSubmission = null
+            }
+           });
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });  
+  }
+
+
+  back(){
+    this.router.navigateByUrl(`dashboard/evidence/dpm`);
   }
 
 }

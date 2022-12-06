@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
@@ -10,11 +10,11 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
 @Component({
-  selector: 'app-evidence-executive-summary',
-  templateUrl: './evidence-executive-summary.component.html',
-  styleUrls: ['./evidence-executive-summary.component.css']
+  selector: 'app-manage-audit-report',
+  templateUrl: './manage-audit-report.component.html',
+  styleUrls: ['./manage-audit-report.component.css']
 })
-export class EvidenceExecutiveSummaryComponent implements OnInit {
+export class ManageAuditReportComponent implements OnInit {
   auditPlanId: any;
   dateFormat = dataConstants.dateFormate;
   auditReportData: any;
@@ -120,6 +120,9 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
     });
   }
 
+  back() {
+    this.router.navigateByUrl(`dashboard/manage-audit`);
+  }
 
   exportAsPDF(div_id: any) {
     let data = document.getElementById(div_id);
@@ -166,12 +169,12 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
       next: (res) => {
         if (res) {
           this.cReportDetails = res;
-          this.commonService.hideLoading();
           this.cReportDetails.forEach((x:any)=>{
             if(x.dateOfSubmission == "0001-01-01T00:00:00"){
               x.dateOfSubmission = null
             }
            });
+          this.commonService.hideLoading();
         }
       },
       error: (e) => {
@@ -181,7 +184,4 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
     });  
   }
 
-  back(){
-    this.router.navigateByUrl(`dashboard/evidence/section-data`);
-  }
 }

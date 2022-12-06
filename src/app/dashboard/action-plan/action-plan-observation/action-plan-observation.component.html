@@ -12,9 +12,8 @@
                         <th colspan="8">Observation({{actionPlanList.length}}) - {{actionPlanStatus}}</th>
                     </tr>
                     <tr class=" text-center sticky_header">
-                        <th>Observation</th>
-                        <th>Audit Area</th>
-                        <th>Regulation </th>
+                        <th>Item No.</th>
+                        <th>Sub Item No.</th>
                         <th >Desired Improvement Points</th>
                         <th>Detail of Improvement Plan</th>
                         <th>In-Charge</th>
@@ -23,10 +22,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                        <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
-                        <td><p class="show">{{item.auditArea}}</p></td>
-                        <td><p class="show">{{item.regulationText}}</p></td>
+                    <tr class="tbody_data" *ngFor="let item of actionPlanList;let i =index">   
+                        <td>{{item.item}}</td>  
+                        <td>{{item.subItem}}</td>
                         <td><p class="w-170">{{item.remark}}</p></td>
                         <td><textarea [(ngModel)]="item.detailOfImprovement" class="form-control width-300 "></textarea></td>
                         <td><textarea [(ngModel)]="item.incharge" class="form-control width-300"></textarea>
@@ -38,14 +36,9 @@
                 </tbody>
             </table>
         </div>
-        <nav aria-label="Page navigation example">
-            <div class="pagination justift_end">
-              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-            </div>
-          </nav>
     </div>
     <div class="card-footer">
-        <button type="button" (click)="submit()" class="btn btn-success">Save</button>
+        <button type="button" (click)="submit()" class="btn btn-success">Submit</button>
          <button type="button" (click)="back()" class="btn btn-default">Back</button>
 
      </div>

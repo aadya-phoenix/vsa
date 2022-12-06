@@ -45,7 +45,8 @@ export class EvidenceAuditorRemarksComponent implements OnInit {
           Swal.fire({
             title: res.message,
             icon: 'success',
-          })
+          });
+          this.bsModalRef.hide();
           this.commonService.hideLoading();
         }
        },

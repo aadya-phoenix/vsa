@@ -7,13 +7,12 @@
                         <div class="d-flex justif_space_betwen">
                             <h3 class="card-title">Create Plan Details</h3>
                             <div class="d-flex">
-                                <input type="file" (change)="bulkUpload($event)" id="upload" />
-                                <!-- <div class="upload-btn-wrapper">
-                                    <button class="btn button-upload btn-primary"> <i
-                                            class="fas fa-upload mr-1 upload_ico"></i>
-                                        <span class="now_rap">Upload Plan</span></button>
-                                    <input type="file" name="myfile" />
-                                </div> -->
+                              
+                                 <div class="mr-5" >
+                                    <label for="upload">Upload Plan</label>
+                                    <input style="margin-left: 8px;
+                                    margin-right: -124px" type="file" (change)="bulkUpload($event)" id="upload" />
+                                </div>
                                 <button class="btn btn-success d-flex align-items-center ml-1" (click)="download()">
                                     <i class="fas fa-download mr-1 upload_ico"></i>
                                     <span class="now_rap">Download Template</span>
@@ -142,10 +141,19 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label class="form_label">
-                                            Upload File
+                                            Upload Attachment 1
                                         </label>
                                         <input type="file" (change)="onFileSelected($event)"
                                             formControlName="attachment" class="form-control inputbox_css ">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="form_label">
+                                            Upload Attachment 2
+                                        </label>
+                                        <input type="file" (change)="onFile2Selected($event)"
+                                            formControlName="attachment1" class="form-control inputbox_css ">
                                     </div>
                                 </div>
                             </div>

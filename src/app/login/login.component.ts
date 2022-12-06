@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
     });
    } 
   }
+  
   getDecodedAccessToken(token: string): any {
     try {
       return jwt_decode(token);

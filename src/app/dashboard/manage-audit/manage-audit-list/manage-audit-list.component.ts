@@ -145,5 +145,9 @@ export class ManageAuditListComponent implements OnInit {
     this.bsModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.onHidden?.subscribe(() => {
     });
-   }
+  }
+
+  goToReport(id:any){
+   this.router.navigateByUrl(`dashboard/manage-audit/report/${id}`)
+  }
 }

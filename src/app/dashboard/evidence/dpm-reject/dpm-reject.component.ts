@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 export class DpmRejectComponent implements OnInit {
   public rejectForm: FormGroup;
   public status: any;
-  id:any;
+  data:any;
   user:any;
 
   constructor(
@@ -34,10 +34,12 @@ export class DpmRejectComponent implements OnInit {
   submit(){
     this.commonService.showLoading();
       const body = this.rejectForm.value;
-      body.auditPlanId = this.id;
+      body.auditPlanId = this.data;
       body.roleId= this.user.RoleId;
       body.userId= this.user.UserId;
       body.status= this.status;
+
+      console.log("user",this.user)
  
     this.auditExeService.saveHeadApproval(body).subscribe({
       next:(res: any) => {

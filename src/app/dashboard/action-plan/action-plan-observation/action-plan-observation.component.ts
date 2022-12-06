@@ -55,13 +55,12 @@ export class ActionPlanObservationComponent implements OnInit {
 
   getActionPlanList(){
     this.commonService.showLoading();
-    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId,
-      categoryId: this.categoryId}).subscribe({
+    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
          this.actionPlanList = res;
          this.actionPlanList.find((x:any)=>{
-          x.isActionPlanRejected =='1'? this.actionPlanStatus= 'Rejected' : this.actionPlanStatus= 'Accepted';
+          x.isActionPlanRejected =='2'? this.actionPlanStatus= 'Rejected' : this.actionPlanStatus= 'Accepted';
          });
          this.actionPlanList.forEach((x:any)=>{
           if(x.dateOfSubmission == "0001-01-01T00:00:00"){
@@ -84,6 +83,20 @@ export class ActionPlanObservationComponent implements OnInit {
 
   submit(){
     this.commonService.showLoading();
+    let submittedFields = 0;
+    this.actionPlanList.forEach((element:any) => {
+      if(!element.detailOfImprovement || !element.incharge || !element.dateOfSubmission){
+        submittedFields++;
+      }
+    });
+    if(submittedFields >0){
+      Swal.fire({
+        title: 'Please fill all fields.',
+        icon: 'error',
+      });
+      this.commonService.hideLoading();
+      return;
+    }
     this.auditExeService.saveActionPlan(this.actionPlanList).subscribe({
       next: (res) => {
         if(res){
@@ -91,7 +104,7 @@ export class ActionPlanObservationComponent implements OnInit {
             title: 'Improvement Plan Submitted Successfully',
             icon: 'success',
           });
-          this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
+          this.router.navigateByUrl(`dashboard/action-plan`);
           this.commonService.hideLoading();
         }
        },
@@ -107,7 +120,7 @@ export class ActionPlanObservationComponent implements OnInit {
   } 
 
   back(){
-   this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
+   this.router.navigateByUrl(`dashboard/action-plan`);
   }
 
   getCategoryDetails(){

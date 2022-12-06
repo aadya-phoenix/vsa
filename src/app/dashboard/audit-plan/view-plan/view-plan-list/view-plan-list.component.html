@@ -136,23 +136,9 @@
                             src="../../../../assets/icons/audit.png" class="viwe_iamge"></a> </div>
                     </td>
                      <td>
-                      
-                  <!--     <p [class]="ReadMore ? 'overflow-ellipsis' : ''" class="mb-1"> {{item.auditorName}}</p>
-                      <p (click)="onclick()" class="mb-0 reda-more-less">
-                        {{ReadMore?"Read More":"Read Less"}}
-                      </p> -->
                       <p class="show1">{{item.auditorName}}</p>
-                     
-                      <!-- <p class="show1">{{item.auditorName}}</p> -->
-                      <!-- <div class="expand-main-div-relative">
-                        <p class="expand-data">{{item.auditorName}}</p>
-                        <i class="fa fa-arrows-alt expand-div-icon" aria-hidden="true"></i>
-                       
-                        
-                         <div class="expand-div-hide">{{item.auditorName}}</div>
-                      </div> -->
                     </td>
-                    <td></td>
+                    <td>{{item.finalAuditor}}</td>
                     <td>
                       <p [ngClass]="item.status" class="btn btn-default">{{item.status =='Submitted' ? 'Pending At
                         Vendor' : item.status}} </p>

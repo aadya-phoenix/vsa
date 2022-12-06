@@ -19,6 +19,7 @@ import { SectionHeadRemarksComponent } from './section-head-remarks/section-head
 import { LastYearRemarksComponent } from './last-year-remarks/last-year-remarks.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ManageAuditLogComponent } from './manage-audit-log/manage-audit-log.component';
+import { ManageAuditReportComponent } from './manage-audit-report/manage-audit-report.component';
 
 
 
@@ -35,7 +36,8 @@ import { ManageAuditLogComponent } from './manage-audit-log/manage-audit-log.com
     CriticalObservationComponent,
     SectionHeadRemarksComponent,
     LastYearRemarksComponent,
-    ManageAuditLogComponent
+    ManageAuditLogComponent,
+    ManageAuditReportComponent
   ],
   entryComponents:[VendorAttendeesComponent,ManageAuditLogComponent,
     CriticalObservationComponent,SectionHeadRemarksComponent, LastYearRemarksComponent],

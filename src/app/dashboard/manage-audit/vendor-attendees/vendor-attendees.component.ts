@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
 export class VendorAttendeesComponent implements OnInit {
   executiveSummaryForm:FormGroup;
   data:any;
-  auditPlanId:any;
   vendors:any;
   constructor(
     private fb:FormBuilder,
@@ -28,7 +27,6 @@ export class VendorAttendeesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:'',auditId:this.data}));
     this.getVendorAttendees();
   }
 
@@ -57,7 +55,8 @@ export class VendorAttendeesComponent implements OnInit {
     const data = {
       vendorAttendee: body.vendorAttendee
     };
-    this.auditPlanService.saveVendorAttendees(data).subscribe({
+
+  this.auditPlanService.saveVendorAttendees(data).subscribe({
       next:(res: any) => {
         Swal.fire({
           title: res.message,
@@ -74,8 +73,8 @@ export class VendorAttendeesComponent implements OnInit {
 
 
   getVendorAttendees() {
-    this.commonService.showLoading();
-    this.auditPlanService.getVendorAttendees( this.auditPlanId ).subscribe({
+     this.commonService.showLoading();
+    this.auditPlanService.getVendorAttendees(this.data).subscribe({
       next: (res) => {
         if (res) {
           this.vendors = res;
@@ -95,6 +94,6 @@ export class VendorAttendeesComponent implements OnInit {
         console.error(e);
         this.commonService.hideLoading();
       }
-    });
+    }); 
   }
 }

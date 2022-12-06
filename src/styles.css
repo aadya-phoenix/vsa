@@ -430,6 +430,9 @@ font-size: 13px  !important;
 .ver_midd{
     vertical-align:middle !important;
 }
+.vertical_top{
+  vertical-align:top !important;
+}
 .rota_css {
   margin-bottom: 0px;
   transform: rotate(-90deg);

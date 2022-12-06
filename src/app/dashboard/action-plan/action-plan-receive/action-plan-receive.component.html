@@ -6,11 +6,6 @@
                     <div class="card-header">
                         <div class="header_card">
                             <h3 class="card-title">Action Plan Details</h3>
-        <!--                     <div class="d-flex align-items-center">
-                                <h6 class="mr-1 mb-0">Filters:-</h6>
-                                <input type="text" class="form-control mr-1 filter_css" placeholder="Vendor Name">
-                                <input type="text" class="form-control mr-1 filter_css" placeholder="Date">
-                            </div> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -38,7 +33,7 @@
                                         <td>{{item.observationCount}}</td>
                                         <td><p><b>{{item.score}}</b></p></td>
                                         <td>
-                                            <button (click)="goToCategory(item.id)"  [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }">{{item.actionPlanStatus}}</button>
+                                            <button (click)="goToAction(item.id)"  [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }">{{item.actionPlanStatus}}</button>
                                         </td>
                                     </tr>
                                 </tbody>

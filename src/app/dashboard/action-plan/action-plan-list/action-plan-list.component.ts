@@ -51,7 +51,7 @@ export class ActionPlanListComponent implements OnInit {
   }
 
   goToCategory(id:any){
-   this.router.navigateByUrl(`dashboard/action-plan/category/${id}`);
+    this.router.navigateByUrl(`dashboard/action-plan/observe/${id}`);
   }
 
   gridView1(){}

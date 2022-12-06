@@ -5,6 +5,8 @@ import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
+import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
@@ -19,7 +21,9 @@ export class ManageAuditSummaryComponent implements OnInit {
   dateFormat = dataConstants.dateFormate;
   auditReportData: any;
   summaryDetails: any = [];
+  auditDetails: any;
   criticalObservations: any = [];
+  vendorAttendees:any=[];
   supplierCategoryStatus = 'Yellow';
   chartsData = false;
   categoryScoreSum = 0;
@@ -43,6 +47,7 @@ export class ManageAuditSummaryComponent implements OnInit {
       }
     }
   };
+  cReportDetails:any=[];
 
   @ViewChild('pdfTable') pdfTable: ElementRef | undefined;
 
@@ -51,6 +56,7 @@ export class ManageAuditSummaryComponent implements OnInit {
     private route: ActivatedRoute,
     private commonService: CommonService,
     private auditExecutionService: AuditExecutionService,
+    private authService:AuthenticationService,
     private reportService: ReportService
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -63,6 +69,8 @@ export class ManageAuditSummaryComponent implements OnInit {
     this.getExecutiveSummary();
     this.getSummaryDetails();
     this.getCriticalObservations();
+    this.getCmeasureReport();
+    this.auditDetails = this.authService.getAuditDetails();
   }
 
   getExecutiveSummary() {
@@ -155,6 +163,27 @@ export class ManageAuditSummaryComponent implements OnInit {
         this.commonService.hideLoading();
       }
     });
+  }
+
+  getCmeasureReport(){
+    this.commonService.showLoading();
+    this.auditExecutionService.getCmeasureReport(this.auditPlanId).subscribe({
+      next: (res) => {
+        if (res) {
+          this.cReportDetails = res;
+          this.commonService.hideLoading();
+          this.cReportDetails.forEach((x:any)=>{
+            if(x.dateOfSubmission == "0001-01-01T00:00:00"){
+              x.dateOfSubmission = null
+            }
+           });
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });  
   }
 
 }

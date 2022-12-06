@@ -19,6 +19,7 @@ export class CreatePlanComponent implements OnInit {
   vendorObj: any = [];
   locationObj: any = [];
   selectedFile: any;
+  selectedFile2: any;
   bulkFile: any;
   today= new Date();
   minStartDate = {};
@@ -45,11 +46,11 @@ export class CreatePlanComponent implements OnInit {
       additionalMSILEmail: new FormControl('', []),
       auditeeEmail: new FormControl('', [Validators.required]),
       attachment: new FormControl('', []),
+      attachment1: new FormControl('', []),
     });
   }
 
   ngOnInit(): void {
-    //this.getEmployeeList();
     this.getVendorCategory();
   }
 
@@ -68,6 +69,21 @@ export class CreatePlanComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
+  onFile2Selected(event: any) {
+    const fsize = event.target.files[0].size;
+    const file = Math.round((fsize / 1024)/1024);
+    if(file > dataConstants.maxImageSize){
+      Swal.fire(
+        'Invalid File!',
+        `File is more than ${dataConstants.maxImageSize} mb. Please select a valid file`,
+        'warning'
+      )
+      event.target.value = '';
+      return;
+    }
+    this.selectedFile2 = event.target.files[0];
+  }
+
   submit() {
     this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
@@ -79,9 +95,9 @@ export class CreatePlanComponent implements OnInit {
       return;
     }
     const body = this.createPlanForm.value;
-
     const formData = new FormData();
     formData.append('AttachmentFile', this.selectedFile);
+    formData.append('AttachmentFile1', this.selectedFile2);
     formData.append('vendorId', body.vendorId);
     formData.append('locationId', body.locationId);
     formData.append('otherLocation', body.otherLocation);
@@ -102,6 +118,7 @@ export class CreatePlanComponent implements OnInit {
           icon: 'success',
         });
         this.createPlanForm.controls['attachment'].setValue('');
+        this.createPlanForm.controls['attachment1'].setValue('');
         this.createPlanForm.reset();
         this.commonService.hideLoading();
       },

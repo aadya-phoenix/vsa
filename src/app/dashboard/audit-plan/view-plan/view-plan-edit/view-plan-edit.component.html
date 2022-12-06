@@ -95,8 +95,11 @@
                                             formControlName="auditeeEmail" [attr.disabled]="true">
                                     </div>
                                 </div>
-                                <span class="pt-2">
-                                    <a (click)="getAttachment()" style="color:#003cff">Click here to View Attachment</a>
+                                <span class="pt-2" *ngIf="viewPlanDetails.attachment">
+                                    <a (click)="download(viewPlanDetails.attachment)" style="color:#003cff">Click here to View Attachment</a>
+                                </span>
+                                <span class="pt-2" *ngIf="viewPlanDetails.attachment1">
+                                    <a (click)="download(viewPlanDetails.attachment1)" style="color:#003cff">Click here to View Attachment 2</a>
                                 </span>
                             </div>
                         </div>

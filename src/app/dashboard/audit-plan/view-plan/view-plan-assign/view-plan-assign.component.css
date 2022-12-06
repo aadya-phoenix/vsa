@@ -1,0 +1,7 @@
+.overflow-visible{
+    overflow: visible !important;
+}
+.max_hei_table-y-scroll{
+    max-height: 400px;
+    overflow-y: scroll !important;
+}

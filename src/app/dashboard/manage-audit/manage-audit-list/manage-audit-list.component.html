@@ -106,6 +106,7 @@
                                            
                                             <th *ngIf="isAuditor || isPlanner">View</th>
                                             <th *ngIf="isAuditor || isSuperAdmin || isPlanner">Initiate Audit </th>
+                                            <th>View Report</th>
                                             <th>Audit Plan Approval Status(By SH / DPM)</th>
                                             <th>Audit Log</th>
                                         </tr>
@@ -135,6 +136,7 @@
                                                         class="viwe_iamge"></a>
                                                 </div>
                                             </td>
+                                            <td><a (click)="goToReport(item.id)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
                                             <td><p class="mb-0 width-123"></p></td>
                                             <td><button (click)="openModal(item)" class="btn btn-secondary">Audit Log</button></td>
                                         </tr>

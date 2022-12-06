@@ -48,8 +48,8 @@ export class ActionPlanReceiveComponent implements OnInit {
     });
   }
 
-  goToCategory(id:any){
-   this.router.navigateByUrl(`dashboard/action-plan/auditor/category/${id}`);
+  goToAction(id:any){
+   this.router.navigateByUrl(`dashboard/action-plan/update/${id}`);
   }
 
   gridView1(){}

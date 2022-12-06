@@ -24,6 +24,8 @@ export class ActionPlanUpdateComponent implements OnInit {
     pageSize: 10
   }
   categoryName:any;
+  accept=1;
+  reject=2;
   constructor(
     private auditExeService:AuditExecutionService,
     private commonService: CommonService,
@@ -33,20 +35,18 @@ export class ActionPlanUpdateComponent implements OnInit {
   ) { 
     this.route.paramMap.subscribe((res:ParamMap)=>{
       let Id = res.get('id');
-      const cid = res.get('cid');
       this.auditPlanId = Id;
-      cid ? this.categoryId = cid : '';
-    })
+    });
   }
 
   ngOnInit(): void {
   this. getActionPlanList();
-  this.getCategoryDetails();
+ // this.getCategoryDetails();
   }
 
   getActionPlanList(){
     this.commonService.showLoading();
-    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId, categoryId: this.categoryId}).subscribe({
+    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
          this.actionPlanList = res;
@@ -89,7 +89,7 @@ export class ActionPlanUpdateComponent implements OnInit {
         if(res){
           const data ={
             id: this.auditPlanId,
-            isActionPlanRejected: status == 'accept' ? 1 : 0
+            isActionPlanRejected: status 
            };
            this.auditExeService.actionPlanApproval(data).subscribe({
             next: (res) => {
@@ -99,7 +99,8 @@ export class ActionPlanUpdateComponent implements OnInit {
                   title: res.message,
                 //  text: 'Please login again!',
                   icon: 'success',
-                })
+                });
+                this.router.navigateByUrl('dashboard/action-plan/receive');
               }
              },
             error: (e) => {
@@ -122,18 +123,7 @@ export class ActionPlanUpdateComponent implements OnInit {
   }
 
   close(){
-    Swal.fire({
-      title: 'Are you sure want to Go Back?',
-      text: 'The data you entered will not be saved',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
-    }).then((result) => {
-      if (result.value) {
-    this.router.navigateByUrl(`dashboard/action-plan/auditor/category/${this.auditPlanId}`);
-    }
-  }); 
+   this.router.navigateByUrl(`dashboard/action-plan/receive`);
   }
 
   pageChanged(event: any) {

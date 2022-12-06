@@ -15,7 +15,7 @@
                               <thead>
                                 <tr class="now_rap sticky_header" >
                                     <th>Total Point Raised</th>
-                                    <th>Closure</th>
+                                    <th>Closure Submitted</th>
                                     <th>Verify</th>
                                     <th>Closed</th>
                                     <th>Partailly Closed</th>
@@ -55,7 +55,7 @@
                                         <td> 
                                             <p (click)="goToObservation(item.categoryId)" class="mb-0 cursor-pointer"> {{item.actionPlanCount}}</p> 
                                         <td> 
-                                            <div class="d-flex">
+                                            <div class="d-flex  justify-content-between">
                                             <span class="w_17 mr-2">{{item.closure}}/{{item.actionPlanCount}}</span>
                                             <div class="progress w_80">
                                                 <div class="progress-bar" role="progressbar" [style.width.%]="item.completePercent" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{item.completePercent}}%</div>

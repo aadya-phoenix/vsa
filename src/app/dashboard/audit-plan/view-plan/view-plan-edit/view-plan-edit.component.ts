@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -34,6 +35,7 @@ export class ViewPlanEditComponent implements OnInit {
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private auditPlanService:AuditPlanService,
+    private auditExeService:AuditExecutionService,
     private employeeService:EmployeeMasterService,
     private router:Router,
     private route: ActivatedRoute,
@@ -154,6 +156,31 @@ export class ViewPlanEditComponent implements OnInit {
           this.commonService.hideLoading();
         }
       });
+  }
+
+  download(fileName:any){
+    this.commonService.showLoading();  
+    this.auditExeService.downloadDocument({
+      attachement: fileName
+    }).subscribe({
+      next: (response) => {
+        if(response){
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.body.type }));
+          const contentDisposition = response.headers.get('content-disposition');
+          const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim().replaceAll('"','');
+          console.log("file",fileName)
+          downloadLink.download = fileName;
+          downloadLink.click();
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
+     });
   }
 
   dateFormat(date:any){

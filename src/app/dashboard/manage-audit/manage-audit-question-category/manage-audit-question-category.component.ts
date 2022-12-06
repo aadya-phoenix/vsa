@@ -238,6 +238,26 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
      });
   }
 
+  getUsers(){
+    this.commonService.showLoading();
+    const data = {
+      roleId: "aa1b2adc-e205-451e-8b2f-5b184df9e4f4",
+      roleName:"SectionHead"
+    };
+    this.employeeService.getUsersByRoleId(data).subscribe({
+      next: (res) => {
+        if (res) {
+          this.sectionHeadObj = res;
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      },
+    });
+  }
+
   getEmployeeList(){
     this.commonService.showLoading();  
     this.employeeService.getEmployee().subscribe({
