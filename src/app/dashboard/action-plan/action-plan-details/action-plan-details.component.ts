@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 
@@ -24,7 +25,7 @@ export class ActionPlanDetailsComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router,
     private commonService: CommonService,
-    private auditPlanService:AuditPlanService
+    private auditExeService:AuditExecutionService
   ) { 
     this.route.paramMap.subscribe((params:ParamMap)=>{
       const Id = params.get('id');
@@ -38,10 +39,13 @@ export class ActionPlanDetailsComponent implements OnInit {
 
   getCategoryList(){
     this.commonService.showLoading();
-    this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
+    this.auditExeService.getActionCategory(this.auditPlanId).subscribe({
       next: (res) => {
         if(res){
          this.categoryScoreList = res;
+         this.categoryScoreList.forEach((x:any)=>{
+          x.completePercent = Math.round(((x.actionPlanCount)/x.observationCount)*100);
+         })
          this.commonService.hideLoading();
         }
        },

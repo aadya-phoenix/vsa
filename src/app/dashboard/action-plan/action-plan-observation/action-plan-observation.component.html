@@ -9,7 +9,7 @@
             <table id="" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
-                        <th colspan="8">Observation({{actionPlanList.length}})</th>
+                        <th colspan="8">Observation({{actionPlanList.length}}) - {{actionPlanStatus}}</th>
                     </tr>
                     <tr class=" text-center sticky_header">
                         <th>Observation</th>
@@ -19,6 +19,7 @@
                         <th>Detail of Improvement Plan</th>
                         <th>In-Charge</th>
                         <th>Date</th>
+                        <th>Auditor Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,8 @@
                         <td><textarea [(ngModel)]="item.incharge" class="form-control width-300"></textarea>
                         </td>
                         <td ><input  [min]="minStartDate" [(ngModel)]="item.dateOfSubmission" class="inputbox_css-date" type="date"></td>
+                        <td><p class="show1 mb-0">{{item.remarkOfAuditor
+                        }}</p></td>
                     </tr>
                 </tbody>
             </table>

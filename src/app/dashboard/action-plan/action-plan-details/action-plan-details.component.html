@@ -25,20 +25,16 @@
                                         <td>{{(i+1)}}</td>
                                         <td>{{item.name}}</td>
                                         <td>
-                                          
                                             <p class="cursor-pointer mb-0" (click)="goToObservation(item.categoryId)">{{item.observationCount}}</p> 
-
-
-
                                         </td>
                                         <td> 
                                             <div class="d-flex">
-                                            <span class="w_17 mr-2">3/8</span>
+                                            <span class="w_17 mr-2">{{item.actionPlanCount}}/{{item.observationCount}}</span>
                                             <div class="progress w_80">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                                <div class="progress-bar" role="progressbar" [style.width.%]="item.completePercent" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{item.completePercent}}%</div>
                                               </div>
                                               </div>
-                                                    </td>               
+                                        </td>               
                                     </tr>
                                 </tbody>
                             </table>

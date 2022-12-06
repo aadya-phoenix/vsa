@@ -28,6 +28,7 @@ export class ActionPlanObservationComponent implements OnInit {
   categoryName:any;
   minStartDate = {};
   today= new Date();
+  actionPlanStatus:any;
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
@@ -59,7 +60,9 @@ export class ActionPlanObservationComponent implements OnInit {
       next: (res) => {
         if(res){
          this.actionPlanList = res;
-        
+         this.actionPlanList.find((x:any)=>{
+          x.isActionPlanRejected =='1'? this.actionPlanStatus= 'Rejected' : this.actionPlanStatus= 'Accepted';
+         });
          this.actionPlanList.forEach((x:any)=>{
           if(x.dateOfSubmission == "0001-01-01T00:00:00"){
             x.dateOfSubmission = null
@@ -104,8 +107,7 @@ export class ActionPlanObservationComponent implements OnInit {
   } 
 
   back(){
-      this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
-  
+   this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
   }
 
   getCategoryDetails(){

@@ -8608,7 +8608,9 @@ font-size: 13px  !important;
   .shadow-none {
     box-shadow: none !important;
   }
-  
+  .width-123{
+    width: 123px;
+  }
   .w-25 {
     width: 25% !important;
   }
