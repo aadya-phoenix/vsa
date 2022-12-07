@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <div class="header_card">
-            <h3 class="card-title">{{categoryName}}</h3>
+            <h3 class="card-title"></h3>
         </div>
     </div>
     <div class="card-body">
@@ -19,6 +19,7 @@
                         <th>In-Charge</th>
                         <th>Date</th>
                         <th>Auditor Remarks</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@
                         <td ><input  [min]="minStartDate" [(ngModel)]="item.dateOfSubmission" class="inputbox_css-date" type="date"></td>
                         <td><p class="show1 mb-0">{{item.remarkOfAuditor
                         }}</p></td>
+                        <td><button type="button" class="btn btn-primary" (click)="save(item)"> Save</button></td>
                     </tr>
                 </tbody>
             </table>

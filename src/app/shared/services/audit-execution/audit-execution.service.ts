@@ -37,6 +37,11 @@ export class AuditExecutionService {
   return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
 
+  saveAsDraftActionPlan(data:any){
+    const url = `${this.basePath}api/AuditExecution/SaveOrUpdateAuditplanActionplanDraft`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));  
+  }
+
   actionPlanApproval(data:any){
     const url = `${this.basePath}api/AuditExecution/UpdateAuditActionPlanApproval`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
