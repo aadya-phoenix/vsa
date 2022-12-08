@@ -48,21 +48,24 @@ export class EvidenceSubmissionComponent implements OnInit {
   }
 
   addFile(item: any) {
-    item.attachment += "|new"
+    item.activeAttachments += "|new"
   }
 
   removeFile(item: any, index: any) {
-    var arr = item.attachment.split("|")
+    var arr = item.activeAttachments.split("|")
     var newAttachments = ""
+    var currentIndex = 0
     for (let data of arr) {
-      if (newAttachments.length > 0) {
-        newAttachments += "|" + data
-      } else {
-        newAttachments = data
+      if (currentIndex != index) {
+        if (newAttachments.length > 0) {
+          newAttachments += "|" + data
+        } else {
+          newAttachments = data
+        }
       }
+      currentIndex++;
     }
-    item.attachment = newAttachments;
-
+    item.activeAttachments = newAttachments;
   }
 
   fileUpload(event: any, id: any, index: any) {
@@ -126,6 +129,7 @@ export class EvidenceSubmissionComponent implements OnInit {
           title: 'Evidence Submitted Successfully',
           icon: 'success',
         });
+        item.attachment = item.activeAttachments
         this.commonService.hideLoading();
       },
       error: (err: any) => {
