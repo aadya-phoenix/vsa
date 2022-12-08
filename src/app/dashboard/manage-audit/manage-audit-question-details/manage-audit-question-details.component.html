@@ -36,7 +36,7 @@
                             </h4>
                             <div class="d-flex">
                             <button *ngIf="regulationList[i].shRemarksCount > 0" class="btn btn-orange mr-1 mange-que-detail-button" (click)="openSectionModal(regulationList[i])" >Section Head Remarks</button>
-                            <button class="btn btn-primary mange-que-detail-button"  (click)="openLastModal(regulationList[i])" > Last Year Remarks</button>
+                            <button class="btn btn-primary mange-que-detail-button"  (click)="openLastModal(regulationList[i])" > Last Audit Remarks</button>
                            
                           </div>
                         </div>
@@ -79,7 +79,7 @@
                                        </th>
                                         <td [formGroupName]="j" >
                                           <div class="d-flex">
-                                            <input type="checkbox" aria-label="Checkbox for following text input" class="input-css-check mr-1">
+                                            <input type="checkbox" formControlName="repeatIssue" aria-label="Checkbox for following text input" class="input-css-check mr-1">
                                             <div class="image-upload mr-1">
                                            
                                               <label for="file_input_{{i}}_{{j}}">

@@ -9,7 +9,7 @@
             <table id="" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
-                        <th colspan="8">Observation({{actionPlanList.length}}) - {{actionPlanStatus}}</th>
+                        <th colspan="8">Observation({{actionPlanList.length}}) </th>
                     </tr>
                     <tr class=" text-center sticky_header">
                         <th>Item No.</th>
@@ -26,7 +26,7 @@
                     <tr class="tbody_data" *ngFor="let item of actionPlanList;let i =index">   
                         <td>{{item.item}}</td>  
                         <td>{{item.subItem}}</td>
-                        <td><p class="w-170">{{item.remark}}</p></td>
+                        <td><p class="w-170 show1">{{item.remark}}</p></td>
                         <td><textarea [(ngModel)]="item.detailOfImprovement" class="form-control width-300 "></textarea></td>
                         <td><textarea [(ngModel)]="item.incharge" class="form-control width-300"></textarea>
                         </td>

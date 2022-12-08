@@ -98,7 +98,8 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       auditPlanId: new FormControl(this.auditPlanId, []),
       createdBy: new FormControl(this.userId, []),
       regulationId: new FormControl('', []),
-      id: new FormControl('', [])
+      id: new FormControl('', []),
+      repeatIssue: new FormControl(false, []),
     });
   }
 
@@ -196,8 +197,9 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
               this.regulationId = reg.id;
               if (reg.lstObservation.length > 0) {
                 reg.lstObservation.forEach((x: any) => {
-                  reg.remarks.push({ remark: x.remark, id: x.id });
+                  reg.remarks.push({ remark: x.remark, id: x.id, repeatIssue:x.repeatIssue  });
                 });
+                console.log("repeatIssue",reg.remarks);
                 for (let item of reg.lstObservation) {
                   this.judgeNew.push(this.fb.group({
                     remark: item.remark,
@@ -206,7 +208,8 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
                     auditPlanId: this.auditPlanId,
                     createdBy: this.userId,
                     regulationId: reg.id,
-                    id: item.id
+                    id: item.id,
+                    repeatIssue: item.repeatIssue
                   }));
                 }
               }

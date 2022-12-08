@@ -28,8 +28,8 @@
                     <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
                         <td>{{item.item}}</td>  
                         <td>{{item.subItem}}</td>
-                        <td>{{item.remark}}</td>
-                        <td>{{item.detailOfImprovement}}</td>
+                        <td><p class="w-170 show1">{{item.remark}}</p></td>
+                        <td><p class="w-170 show1">{{item.detailOfImprovement}}</p></td>
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
                         <td><div *ngIf="item.closureStatus != 'Closed'"><input type="file" id="exampleInputFile" 

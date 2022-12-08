@@ -7,12 +7,15 @@
                         <div class="d-flex justif_space_betwen">
                             <h3 class="card-title">Create Plan Details</h3>
                             <div class="d-flex">
+                                <button class="btn button-upload btn-primary" (click)="openModal()"> <i class="fas fa-upload mr-1 upload_ico"></i>
+                                    <span class="now_rap">Upload Plan</span></button>
+                              <!--   <input type="file" name="myfile" /> -->
                               
-                                 <div class="mr-5" >
+                                <!--  <div class="mr-5" >
                                     <label for="upload">Upload Plan</label>
                                     <input style="margin-left: 8px;
                                     margin-right: -124px" type="file" (change)="bulkUpload($event)" id="upload" />
-                                </div>
+                                </div> -->
                                 <button class="btn btn-success d-flex align-items-center ml-1" (click)="download()">
                                     <i class="fas fa-download mr-1 upload_ico"></i>
                                     <span class="now_rap">Download Template</span>

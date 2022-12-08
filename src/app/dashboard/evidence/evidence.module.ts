@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { EvidenceRoutingModule } from './evidence-routing.module';
 import { EvidenceSubmissionComponent } from './evidence-submission/evidence-submission.component';
@@ -39,6 +39,7 @@ import { AddSectionHeadRemarksComponent } from './add-section-head-remarks/add-s
     DpmRejectComponent,
     AddSectionHeadRemarksComponent
   ],
+  providers:[DatePipe],
   entryComponents:[EvidenceAuditorRemarksComponent,SectionHeadRejectComponent,DpmRejectComponent],
   imports: [
     CommonModule,

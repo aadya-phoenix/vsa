@@ -81,7 +81,7 @@ export class ActionPlanObservationComponent implements OnInit {
 
   submit(){
     this.commonService.showLoading();
-  /*   let submittedFields = 0;
+    let submittedFields = 0;
     this.actionPlanList.forEach((element:any) => {
       if(!element.detailOfImprovement || !element.incharge || !element.dateOfSubmission){
         submittedFields++;
@@ -94,7 +94,7 @@ export class ActionPlanObservationComponent implements OnInit {
       });
       this.commonService.hideLoading();
       return;
-    } */
+    } 
     this.actionPlanList.forEach((item:any) => {
       item.isDraft = false;
     });

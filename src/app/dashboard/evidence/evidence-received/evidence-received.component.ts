@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
@@ -41,6 +42,7 @@ export class EvidenceReceivedComponent implements OnInit {
     private categoryService:CategoryMasterService,
     private auditExeService:AuditExecutionService,
     private route:ActivatedRoute,
+    private datepipe:DatePipe,
     private router:Router
   ) { 
     this.route.paramMap.subscribe((res:ParamMap)=>{
@@ -63,6 +65,14 @@ export class EvidenceReceivedComponent implements OnInit {
       next: (res) => {
         if(res){
          this.actionPlanList = res;
+         this.actionPlanList.forEach((x:any)=>{
+          if(x.dateOfSubmission == "0001-01-01T00:00:00"){
+            x.dateOfSubmission = null
+          }
+          else{
+          x.dateOfSubmission = this.datepipe.transform( x.dateOfSubmission,'yyyy-MM-dd');
+          }
+         });
          this.commonService.hideLoading();
         }
        },

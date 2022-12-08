@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Upload Plan</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="createPlanForm">
+        <div  class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+              <label>Choose File</label>
+              <input class="form-control" type="file" name="myfile" />
+            </div>
+            </div>
+          </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary mr-1" type="submit" (click)="submit()">Submit</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+  </div>

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import Swal from 'sweetalert2';
+import { UploadPlanComponent } from './upload-plan/upload-plan.component';
 
 @Component({
   selector: 'app-create-plan',
@@ -24,8 +26,10 @@ export class CreatePlanComponent implements OnInit {
   today= new Date();
   minStartDate = {};
   categoryObj:any=[];
+  bsModalRef ?: BsModalRef;
   constructor(
     private formBuilder: FormBuilder,
+    private modalService: BsModalService,
     private auditPlanService: AuditPlanService,
     private commonService: CommonService,
     private employeeService: EmployeeMasterService,
@@ -260,5 +264,20 @@ export class CreatePlanComponent implements OnInit {
 
   close() {
     this.router.navigateByUrl('/dashboard');
+  }
+
+  openModal(){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:'',
+       status:';',
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(UploadPlanComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+    });
+   
   }
 }

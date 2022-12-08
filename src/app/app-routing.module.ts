@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DefaultLayoutComponent } from './default-layout/default-layout.component';
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
       import('./login/login.module').then(
         (m) => m.LoginModule
       ),
+  },
+  {
+    path: 'change',
+    component:ChangePasswordComponent,
   },
   {
     path: '',

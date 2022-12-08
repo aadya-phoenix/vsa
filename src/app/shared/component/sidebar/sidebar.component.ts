@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
   isSectionHead = false;
   isVerticalHead = false;
   isDPM = false;
+  isViewOnly = false;
   SuperAdmin = dataConstants.SuperAdmin;
   Planner = dataConstants.Planner;
   Auditor = dataConstants.Auditor;
@@ -24,7 +25,7 @@ export class SidebarComponent implements OnInit {
   SectionHead = dataConstants.SectionHead;
   VerticalHead = dataConstants.VerticalHead;
   DPM = dataConstants.DPM;
-
+  ViewOnly = dataConstants.ViewOnly;
 
 
   constructor(
@@ -39,6 +40,9 @@ export class SidebarComponent implements OnInit {
       this.isSectionHead = this.getUserrole.role.toLowerCase() === this.SectionHead.role.toLowerCase();
       this.isVerticalHead = this.getUserrole.role.toLowerCase() === this.VerticalHead.role.toLowerCase();
       this.isDPM = this.getUserrole.role.toLowerCase() === this.DPM.role.toLowerCase();
+      
+      this.isViewOnly = this.getUserrole.role.toLowerCase() === this.ViewOnly.role.toLowerCase();
+
     }
   }
 

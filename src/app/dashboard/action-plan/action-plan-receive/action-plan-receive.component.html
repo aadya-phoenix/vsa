@@ -33,7 +33,7 @@
                                         <td>{{item.observationCount}}</td>
                                         <td><p><b>{{item.score}}</b></p></td>
                                         <td>
-                                            <button (click)="goToAction(item.id)"  [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }">{{item.actionPlanStatus}}</button>
+                                            <button (click)="goToAction(item)"  [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }">{{item.actionPlanStatus}}</button>
                                         </td>
                                     </tr>
                                 </tbody>
