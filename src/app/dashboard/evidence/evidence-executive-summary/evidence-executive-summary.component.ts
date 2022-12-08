@@ -14,11 +14,11 @@ import { ReportService } from 'src/app/shared/services/report/report.service';
   styleUrls: ['./evidence-executive-summary.component.css']
 })
 export class EvidenceExecutiveSummaryComponent implements OnInit {
-  auditPlanId:any;
+  auditPlanId: any;
   dateFormat = dataConstants.dateFormate;
-  auditReportData:any;
-  summaryDetails:any=[];
-  criticalObservations:any = [];
+  auditReportData: any;
+  summaryDetails: any = [];
+  criticalObservations: any = [];
   chartsData = false;
   supplierCategoryStatus = 'Yellow';
   categoryScoreSum = 0;
@@ -28,7 +28,7 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
   totalCountPercentage = 0;
   xScoreSum = 0;
   reportData: ChartData<'radar'> = {
-    labels:[],
+    labels: [],
     datasets: [
       { label: 'Category', data: [] },
     ]
@@ -36,21 +36,35 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
   reportOptions: ChartOptions = {
     responsive: true,
     plugins: {
+    },
+    scales: {
+      r: {
+        max: 100,
+        min: 0,
+        ticks: {
+          stepSize: 20,
+        },
+        pointLabels: {
+          font: {
+            size: 12
+          }
+        }
+      }
     }
   };
-  
+
   constructor(
-    private router:Router,
-    private route:ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private commonService: CommonService,
-    private auditExecutionService:AuditExecutionService,
-    private reportService:ReportService
+    private auditExecutionService: AuditExecutionService,
+    private reportService: ReportService
   ) {
-    this.route.paramMap.subscribe((params:ParamMap)=>{
+    this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
       this.auditPlanId = Id ? Id : 0;
     })
-   }
+  }
 
   ngOnInit(): void {
     this.getExecutiveSummary();
@@ -58,14 +72,14 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
     this.getCriticalObservations();
   }
 
-  getExecutiveSummary(){
+  getExecutiveSummary() {
     this.commonService.showLoading();
     this.reportService.getExecutiveSummary(this.auditPlanId).subscribe({
-      next:(res)=>{
-        if(res){
+      next: (res) => {
+        if (res) {
           this.auditReportData = res;
-          this.auditReportData.catergoryWiseScoreModel.forEach((element:any, index:number) => {
-            this.reportData.labels?.push(`${index+1} ${element.name}`);
+          this.auditReportData.catergoryWiseScoreModel.forEach((element: any, index: number) => {
+            this.reportData.labels?.push(`${index + 1} ${element.name}`);
             const reprotData = (element.categoryScore / element.totalCount) * 100;
             this.reportData.datasets[0].data.push(reprotData > 0 ? reprotData : 0);
             this.categoryScoreSum += element.categoryScore ? element.categoryScore : 0;
@@ -78,32 +92,32 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
           this.commonService.hideLoading();
         }
       },
-      error:(e)=>{
+      error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
       }
     });
   }
-  
-  back(){
+
+  back() {
     this.router.navigateByUrl(`dashboard/evidence/section-data`);
   }
 
-  getSummaryDetails(){
+  getSummaryDetails() {
     this.commonService.showLoading();
     this.auditExecutionService.getSummaryDetails(this.auditPlanId).subscribe({
-      next:(res)=>{
-        if(res){
+      next: (res) => {
+        if (res) {
           this.summaryDetails = res;
-          this.summaryDetails.forEach((x:any)=>{
-            if(x.judgementSymbol == 'Pie'){
+          this.summaryDetails.forEach((x: any) => {
+            if (x.judgementSymbol == 'Pie') {
               x.judgeSymbol = ''
             }
           });
           this.commonService.hideLoading();
         }
       },
-      error:(e)=>{
+      error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
       }
@@ -135,10 +149,10 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
         const contentDataURL = canvas.toDataURL({
           format: 'jpeg',
           quality: 0.8
-       });
+        });
         //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
         let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
-        pdf.addImage(contentDataURL, 'PNG', 0, 0, 21.0,29.7);
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, 21.0, 29.7);
         pdf.save('ExecutiveSummary.pdf');
       });
     }

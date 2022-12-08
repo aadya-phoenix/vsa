@@ -49,10 +49,20 @@ export class ExecutiveSummaryComponent implements OnInit {
   reportOptions: ChartOptions = {
     responsive: true,
     plugins: {
-      // title: {
-      //   display: true,
-      //   text: 'Executive Summary'
-      // }
+    },
+    scales: {
+      r: {
+        max: 100,
+        min: 0,
+        ticks: {
+          stepSize: 20,
+        },
+        pointLabels: {
+          font: {
+            size: 12
+          }
+        }
+      }
     }
   };
   constructor(

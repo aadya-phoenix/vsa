@@ -41,6 +41,20 @@ export class ManageAuditSummaryComponent implements OnInit {
         display: true,
         text: 'Executive Summary'
       }
+    },
+    scales: {
+      r: {
+        max: 100,
+        min: 0,
+        ticks: {
+          stepSize: 20,
+        },
+        pointLabels: {
+          font: {
+            size: 12
+          }
+        }
+      }
     }
   };
 
