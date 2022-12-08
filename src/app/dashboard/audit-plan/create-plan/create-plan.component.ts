@@ -92,7 +92,7 @@ export class CreatePlanComponent implements OnInit {
     this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
       Swal.fire({
-        title: 'Please fill all fields.',
+        title: 'Please fill all mandatory fields.',
         icon: 'error',
       });
       this.commonService.hideLoading();
@@ -118,7 +118,7 @@ export class CreatePlanComponent implements OnInit {
    this.auditPlanService.add(formData).subscribe({
       next: (res: any) => {
         Swal.fire({
-          title: 'Plan Created Successfully',
+          title: `AUD - ${res} Plan Created Successfully'`,
           icon: 'success',
         });
         this.createPlanForm.controls['attachment'].setValue('');

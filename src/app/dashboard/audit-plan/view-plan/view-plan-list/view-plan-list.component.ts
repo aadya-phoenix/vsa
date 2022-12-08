@@ -136,6 +136,7 @@ export class ViewPlanListComponent implements OnInit {
       }
     }); 
   }
+
   openModal(item:any){
     const initialState: ModalOptions = {
       initialState: {
@@ -149,6 +150,10 @@ export class ViewPlanListComponent implements OnInit {
     this.bsModalRef.onHidden?.subscribe(() => {
   });
    
+  }
+
+  editPlan(item:any){
+    this.router.navigateByUrl(`dashboard/view-plan/resubmit/${item.id}`);
   }
 
 }

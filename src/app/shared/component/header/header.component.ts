@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
     }
     this.userName =  this.authService.getLoginDetails();
     this.firstName = this.userName.Name;
-    console.log(" userName",this.userName);
    }
 
   ngOnInit(): void {

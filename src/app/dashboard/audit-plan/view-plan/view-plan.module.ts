@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AuditLogComponent } from './audit-log/audit-log.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ViewPlanReSubmitComponent } from './view-plan-re-submit/view-plan-re-submit.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ViewPlanAssignComponent,
     ViewEvidenceComponent,
     ViewPlanClosureComponent,
-    AuditLogComponent
+    AuditLogComponent,
+    ViewPlanReSubmitComponent
   ],
   entryComponents:[AuditLogComponent],
   providers:[DatePipe],

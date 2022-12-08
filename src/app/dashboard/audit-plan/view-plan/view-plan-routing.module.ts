@@ -5,6 +5,7 @@ import { ViewPlanAssignComponent } from './view-plan-assign/view-plan-assign.com
 import { ViewPlanClosureComponent } from './view-plan-closure/view-plan-closure.component';
 import { ViewPlanEditComponent } from './view-plan-edit/view-plan-edit.component';
 import { ViewPlanListComponent } from './view-plan-list/view-plan-list.component';
+import { ViewPlanReSubmitComponent } from './view-plan-re-submit/view-plan-re-submit.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'assign/:id',component:ViewPlanAssignComponent},
   {path:'evidence/:id',component:ViewEvidenceComponent},
   {path:'closure/:id',component:ViewPlanClosureComponent},
+  {path:'resubmit/:id',component:ViewPlanReSubmitComponent},
 ];
 
 @NgModule({

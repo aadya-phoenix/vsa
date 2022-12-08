@@ -42,7 +42,6 @@ export class SidebarComponent implements OnInit {
       this.isDPM = this.getUserrole.role.toLowerCase() === this.DPM.role.toLowerCase();
       
       this.isViewOnly = this.getUserrole.role.toLowerCase() === this.ViewOnly.role.toLowerCase();
-
     }
   }
 

@@ -75,10 +75,10 @@
                 <label class="filter_label">To Date</label>
                 <input type="date" [(ngModel)]="plannedEndDate" class="form-control filter_css" placeholder="Date ">
               </div>
-        <!--       <div class=" mr-1">
+               <div class=" mr-1">
                 <label class="filter_label">Status</label>
                 <input type="text" [(ngModel)]="statusName" class="form-control filter_css" placeholder="Status ">
-              </div> -->
+              </div> 
               <div class="mt_22">
                 <button type="button" (click)="filter()"
                   class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
@@ -98,19 +98,20 @@
                     <th>Location</th>
                     <th>Any Other Location</th>
                     <th>Category</th>
+                    <th>Audit Creation Date</th>
                     <th>Planned Start Date </th>
                     <th>Planned End Date</th>
                     <th>Report Release Date</th>
                     <th>Report</th>
                     <th>Status Pending At</th>
                     <th *ngIf="isSuperAdmin || isPlanner">View</th>
-                    <th *ngIf="isSuperAdmin || isPlanner">Add Auditor</th>
+                    <th *ngIf="isSuperAdmin ">Add Auditor</th>
                     <th>Auditors Assigned</th>
                     <th>Lead Auditor</th>
                     <th>Status </th>
                     <th> Action Plan</th>
                     <th> Evidences Recieved </th>
-                    <th> Log </th>
+                    <th> Action </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,6 +123,7 @@
                     <td>{{item.locationName}}</td>
                     <td>{{item.otherLocation}}</td>
                     <td>{{item.categoryName}}</td>
+                    <td>{{item.dateOfIssue | date:dateFormate}}</td>
                     <td>{{item.plannedStartDate | date:dateFormate}}</td>
                     <td>{{item.plannedEndDate | date:dateFormate}}</td>
                     <td>{{item.reportReleaseDate | date:dateFormate}}</td>
@@ -130,7 +132,7 @@
                     <td *ngIf="isSuperAdmin || isPlanner">
                       <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
                     </td>
-                    <td *ngIf="isSuperAdmin">
+                    <td *ngIf="isSuperAdmin" >
                       <div *ngIf="isSuperAdmin && (item.status == Accepted) && (item.typeOfReport != Final)"> <a
                           (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img
                             src="../../../../assets/icons/audit.png" class="viwe_iamge"></a> </div>
@@ -152,7 +154,9 @@
                     <td (click)="evidence(item.id)">{{item.evidenceReceived
                       }}</td>
                     <td> <button (click)="openModal(item)" class="mr-1 Auditor-log btn btn-secondary">
-                        <span>Audit Log</span></button></td>
+                        <span>Audit Log</span></button>
+                        <a *ngIf="item.status =='Rejected'" (click)="editPlan(item)"><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a>
+                      </td>
                   </tr>
                 </tbody>
               </table>
