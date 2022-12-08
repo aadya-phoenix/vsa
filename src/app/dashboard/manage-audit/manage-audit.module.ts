@@ -18,6 +18,8 @@ import { CriticalObservationComponent } from './critical-observation/critical-ob
 import { SectionHeadRemarksComponent } from './section-head-remarks/section-head-remarks.component';
 import { LastYearRemarksComponent } from './last-year-remarks/last-year-remarks.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ManageAuditLogComponent } from './manage-audit-log/manage-audit-log.component';
+import { ManageAuditReportComponent } from './manage-audit-report/manage-audit-report.component';
 
 
 
@@ -33,9 +35,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     VendorAttendeesComponent,
     CriticalObservationComponent,
     SectionHeadRemarksComponent,
-    LastYearRemarksComponent
+    LastYearRemarksComponent,
+    ManageAuditLogComponent,
+    ManageAuditReportComponent
   ],
-  entryComponents:[VendorAttendeesComponent,
+  entryComponents:[VendorAttendeesComponent,ManageAuditLogComponent,
     CriticalObservationComponent,SectionHeadRemarksComponent, LastYearRemarksComponent],
   providers:[DatePipe],
   imports: [

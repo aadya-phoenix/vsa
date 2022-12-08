@@ -35,11 +35,7 @@
                   <tr *ngFor="let item of summaryDetails; let i=index;">
                     <th>{{i+1}}</th>
                     <th>{{item.categoryName}}</th>
-                    <!--               rowspan="5"      </tr>
-                    <tr> 
-                      <th>1</th>-->
                     <td>{{item.auditAreaName}}</td>
-                    <!-- <td>①</td> -->
                     <td>{{item.regulationText}}</td>
                     <td *ngIf="item.judgementSymbol =='Triangle'"><img src="../../../../assets/icons/triangle.png"
                         class="diacisq_css"></td>
@@ -59,14 +55,14 @@
         </div>
       </div>
       <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
-        <div class="card">
+        <div class="card" id="MyDIv">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details </h3>
               <button class="btn btn-success" (click)="exportAsPDF('MyDIv');">Download PDF</button>
             </div>
           </div>
-          <div class="card-body" id="MyDIv">
+          <div class="card-body">
             <div class="row mb-2">
               <div class="col-md-3">
                 <img src="../../../../assets/img/report-logo.png">
@@ -86,7 +82,6 @@
                   </tr>
                   <tr class="text-center bac_table_white">
                     <th colspan="2">Date of Issue
-                      <!-- <td>{{auditReportData?.dateOfIssue | date:dateFormat}}</td> -->
                     <td rowspan="2">{{auditReportData?.preparedBy}}</td>
                     <td rowspan="2">{{auditReportData?.verifiedBy}}</td>
                     <td rowspan="2">{{auditReportData?.approvedBy}}</td>
@@ -95,26 +90,20 @@
                     <th colspan="2">Copy to</th>
                     <th colspan="2">Supplier name</th>
                     <td colspan="2">{{auditReportData?.dateOfIssue | date:dateFormat}}</td>
-                    <!-- <th>Supplier Attendant Name</th>
-                      <th colspan="2">Audit Date</th> -->
                   </tr>
                   <tr class="text-center">
                     <td>Vendor</td>
                     <td></td>
-                    <td rowspan="2" colspan="2" class="ver_midd">Dummy Industries</td>
+                    <td rowspan="2" colspan="2" class="ver_midd">{{auditDetails?.vendorName}}</td>
                     <th colspan="3">Supplier Attendant Name</th>
                     <th colspan="2">Audit Date</th>
-                    <!-- <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td> -->
                   </tr>
                   <tr class="text-center">
                     <td>QAPQ</td>
                     <td></td>
-                    <td colspan="3" rowspan="7" class="ver_midd">
-                      <!-- Mr. X - Director <br />
-                      Mr. Y - Plant Head -->
+                    <td colspan="3" class="vertical_top" ><p *ngFor="let item of auditReportData?.vendorAttendanceNames;let i =index;">{{i+1}}-{{item}}</p>
                     </td>
                     <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td>
-                    <!-- <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td> -->
                   </tr>
                   <tr class="text-center">
                     <td>SC</td>
@@ -133,7 +122,8 @@
                     <td></td>
                     <td></td>
                     <td class="border-right-0">Achieved Score:{{categoryScoreSum}}</td>
-                    <td class="text-left border-left-0" rowspan="2"> X 100 = <b>{{totalCountPercentage | number : '1.2-2'}}</b></td>
+                    <td class="text-left border-left-0" rowspan="2"> X 100 = <b>{{totalCountPercentage | number :
+                        '1.2-2'}}</b></td>
                   </tr>
                   <tr class="text-center">
                     <td></td>
@@ -149,39 +139,6 @@
                     <td></td>
                   </tr>
                 </thead>
-                <!-- <tbody class="text-center"> -->
-                <!-- <tr>
-                      <td>Vendor</td>
-                      <td>1</td>
-                      <td rowspan="2" class="ver_midd">Dummy Industries</td>
-                      <td>Mr. X - Director</td>
-                      <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td>
-                    </tr>
-                    <tr>
-                      <td>QAPQ</td>
-                      <td>1</td>
-                      <td rowspan="2">Mr. Y - Plant Head</td>  
-                      <th colspan="2">Audit Person</th>
-                    </tr>
-                    <tr>
-                      <td>SC</td>
-                      <td>1</td>
-                      <th>Supplier code:DD01</th>
-                      <td colspan="2">{{auditReportData?.auditPerson}}</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <th>(Audit Score)</th>
-                    </tr>
-                    <tr>
-                      <td>Total</td>
-                      <td>3</td>
-                      <td>62</td>
-                    </tr> -->
-                <!-- </tbody> -->
-                <!-- <tbody class="text-center">
-                  </tbody> -->
               </table>
             </div>
             <div class="table-responsive">
@@ -199,21 +156,8 @@
                 </thead>
               </table>
             </div>
-
             <p class="mb-1 mt-2"><b>Supplier category is "{{supplierCategoryStatus}}". Major improvement areas are as
                 follows:-</b></p>
-            <!-- <p>
-                1- New product development planning needs improvement.  All relevant activities to be included in preparation of APQP plan.<br>
-                2- Review of APQP plan to be adequately recorded and Process FMEAs to be made in accordance with the defined standards.<br>
-                3- Initial flow control process implementation to be improved. Extension criteria of the activity to be clearly defined..<br>
-                4- 4M change management to be defined and implemented effectively on shop floor with proper recording and quality checks of parts..<br>
-                5- Tier - 2 supplier controls needs strengthening. Supplier rating and auditing system to be standardized..<br>
-                6- Skill Evaluation criteria to be defined for operators and adherence to be strengthened. Monitoring of annual training plan to be improved..<br>
-                7- Quality abnormality handling process needs effective implementation with focus on root cause analysis and standardization of countermeasure actions..<br>
-                8- Implementation of updated standards on shop floor and actual working as per defined PCS / WI to be ensured..<br>
-                9- Adherence of material storage system (FIFO etc.) at BOP area to be improved. Visual identification of material to be strengthened..<br>
-                10- Implementation of defined work instructions and adherence to set standards to be strengthened..<br>
-              </p> -->
             <p class="mb-0" *ngFor="let item of criticalObservations;let i =index">
               {{i+1}}- {{item.criticalObservation}}
             </p>
@@ -224,7 +168,7 @@
 
                     <thead>
                       <tr class="now_rap  sticky_header">
-                        <th >Category</th>
+                        <th>Category</th>
                         <th>Achieved/Total</th>
                         <th rowspan="2">○</th>
                         <th rowspan="2">△</th>
@@ -277,14 +221,14 @@
         </div>
       </div>
       <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
-        <div class="card">
+        <div class="card" id="receivingData">
           <div class="card-header">
             <div class="header_card">
               <h3 class="card-title">Audit Area Details </h3>
-              <button class="btn btn-success" (click)="exportAsPDF('receivingData');">Download PDF ()</button>
+              <button class="btn btn-success" (click)="exportAsPDF('receivingData');">Download PDF</button>
             </div>
           </div>
-          <div class="card-body" id="receivingData">
+          <div class="card-body">
             <div class="row">
               <div class="col-sm-6">
                 <div class="table-responsive max_hei_table">
@@ -408,7 +352,417 @@
                     <th>RESULT OF VERIFICATION</th>
                   </tr>
                 </thead>
+                <tbody>
+                   <tr *ngFor="let item of cReportDetails">
+                   <td>{{item.item}}</td>
+                   <td>{{item.subItem}}</td>
+                   <td>{{item.remark}}</td>
+                   <td>{{item.detailOfImprovement}}</td>
+                   <td>{{item.incharge}}</td>
+                   <td>{{item.dateOfSubmission | date:dateFormat}}</td>
+                   <td>{{item.status}}</td>
+                  </tr> 
+                </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="printDiv">
+      <div class="card">
+        <div class="card-body container">
+          <div class="card" style='page-break-after: always;'>
+            <div class="card-header">
+              <div class="header_card">
+                <h3 class="card-title">Check Sheet</h3>
+              </div>
+            </div>
+            <div class="card-body" id="checkSheet">
+              <div class="row mb-2">
+                <div class="col-md-3">
+                  <img src="../../../../assets/img/report-logo.png">
+                </div>
+                <div class="col-md-9 fon_20 font-weight-bold text-center">MARUTI VENDOR QUALITY SYSTEM AUDIT CUM FOLLOW UP REPORT</div>
+              </div>
+              <div class="table-responsive" style="max-height: 100%;">
+                <table class="table table-bordered" style="margin: 0px;">
+                  <tr class="text-center">
+                    <td rowspan="2" style="width: 114px;font-weight: bold;" class="ver_midd">Supplier Name</td>
+                    <td rowspan="2" colspan="1" class="ver_midd" style="width: 200px;"></td>
+                    <td rowspan="3" colspan="2" style="text-align: left;padding:0;">
+                      <div style="border-bottom: 1px solid black; height:25px;">
+                        <u><b style="margin-left: 10px;">Vendor Attendees</b></u>
+                      </div>
+                      <div>
+                        
+                      </div>
+                    </td>
+                    <td rowspan="1" colspan="3" style="text-align: left;padding:0;">
+                      <div style="height:37px;">
+                        <b style="margin-left: 10px;">Date:</b>
+                      </div>
+                      <div>
+                        
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="text-center">
+                    <td rowspan="1" colspan="3" class="ver_midd" 
+                     style="text-align: left;padding:0;background: white; margin-left: 10px;"><b>Auditors:</b></td>
+                  </tr>
+                  <tr class="text-center">
+                    <td rowspan="1"  style="width: 114px;font-weight: bold;" class="ver_midd">Part Name</td>
+                    <td rowspan="1" colspan="1" class="ver_midd"></td>
+                    <td rowspan="1" colspan="3" class="ver_midd"></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="table-responsive max_hei_table">
+                <table class="table table-bordered">
+                  <thead class="bac_table_white">
+                    <tr class="now_rap text-center sticky_header">
+                      <th>S.No.</th>
+                      <th>Category</th>
+                      <th>Audit Area</th>
+                      <th>Concerning regulation</th>
+                      <th>Judgment</th>
+                      <th>Remarks</th>
+                      <th>Follow Up</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-center">
+                    <tr *ngFor="let item of summaryDetails; let i=index;">
+                      <th>{{i+1}}</th>
+                      <th>{{item.categoryName}}</th>
+                      <!--               rowspan="5"      </tr>
+                  <tr> 
+                    <th>1</th>-->
+                      <td>{{item.auditAreaName}}</td>
+                      <!-- <td>①</td> -->
+                      <td>{{item.regulationText}}</td>
+                      <td *ngIf="item.judgementSymbol =='Triangle'"><img src="../../../../assets/icons/triangle.png"
+                          class="diacisq_css"></td>
+                      <td *ngIf="item.judgementSymbol =='Pie'"><img src="../../../../assets/icons/square.png"
+                          class="diacisq_css"></td>
+                      <td *ngIf="item.judgementSymbol =='x'"><img src="../../../../assets/icons/new-moon.png"
+                          class="diacisq_css"></td>
+                      <td>
+                        {{item.remark}}
+                      </td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card" id="MyDIv" style='page-break-after: always;'>
+            <div class="card-header">
+              <div class="header_card">
+                <h3 class="card-title">Executive Summary</h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row mb-2">
+                <div class="col-md-3">
+                  <img src="../../../../assets/img/report-logo.png">
+                </div>
+                <div class="col-md-9 fon_20 font-weight-bold text-center">MARUTI SUZUKI INDIA LIMITED</div>
+              </div>
+              <div class="table-responsive" style="max-height: 100%;">
+                <table class="table table-bordered">
+                  <thead class="bac_table_white">
+                    <tr class="text-center bac_table_white">
+                      <th rowspan="2" colspan="4" class="ver_midd"> Vendor Quality System Audit Report</th>
+                      <th>Issue Deptt</th>
+                      <td>QA-VSA</td>
+                      <th>Prepared</th>
+                      <th>Verified</th>
+                      <th>Approved</th>
+                    </tr>
+                    <tr class="text-center bac_table_white">
+                      <th colspan="2">Date of Issue
+                        <!-- <td>{{auditReportData?.dateOfIssue | date:dateFormat}}</td> -->
+                      <td rowspan="2">{{auditReportData?.preparedBy}}</td>
+                      <td rowspan="2">{{auditReportData?.verifiedBy}}</td>
+                      <td rowspan="2">{{auditReportData?.approvedBy}}</td>
+                    </tr>
+                    <tr class="text-center">
+                      <th colspan="2">Copy to</th>
+                      <th colspan="2">Supplier name</th>
+                      <td colspan="2">{{auditReportData?.dateOfIssue | date:dateFormat}}</td>
+                      <!-- <th>Supplier Attendant Name</th>
+                    <th colspan="2">Audit Date</th> -->
+                    </tr>
+                    <tr class="text-center">
+                      <td>Vendor</td>
+                      <td></td>
+                      <td rowspan="2" colspan="2" class="ver_midd">Dummy Industries</td>
+                      <th colspan="3">Supplier Attendant Name</th>
+                      <th colspan="2">Audit Date</th>
+                      <!-- <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td> -->
+                    </tr>
+                    <tr class="text-center">
+                      <td>QAPQ</td>
+                      <td></td>
+                      <td colspan="3" rowspan="7" class="ver_midd">
+                        <!-- Mr. X - Director <br />
+                    Mr. Y - Plant Head -->
+                      </td>
+                      <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td>
+                      <!-- <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td> -->
+                    </tr>
+                    <tr class="text-center">
+                      <td>SC</td>
+                      <td></td>
+                      <th>Supplier code</th>
+                      <td></td>
+                      <th colspan="2">Audit Person</th>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <th colspan="2">(Audit Score)</th>
+                      <td colspan="2" rowspan="5">{{auditReportData?.auditPerson}}</td>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="border-right-0">Achieved Score:{{categoryScoreSum}}</td>
+                      <td class="text-left border-left-0" rowspan="2"> X 100 = <b>{{totalCountPercentage | number :
+                          '1.2-2'}}</b></td>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="border-right-0">Total Score:{{totalCountSum}}</td>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Total</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="table-responsive"  style='page-break-after: always;'>
+                <table class="table table-borderd">
+                  <thead>
+                    <tr class="now_rap text-center sticky_header">
+                      <th rowspan="2" class="ver_midd"><b>Subject:</b> Vendor System Audit</th>
+                      <th>Part Number：</th>
+                      <td>{{auditReportData?.partNumber}}</td>
+                    </tr>
+                    <tr class="text-center">
+                      <th>Part Name:</th>
+                      <td>{{auditReportData?.partNumber}}</td>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+
+              <p class="mb-1 mt-2"><b>Supplier category is "{{supplierCategoryStatus}}". Major improvement areas are as
+                  follows:-</b></p>
+              <p class="mb-0" *ngFor="let item of criticalObservations;let i =index">
+                {{i+1}}- {{item.criticalObservation}}
+              </p>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <div class="table-responsive">
+                    <table id="example2" class="table table-bordered table-hover">
+
+                      <thead>
+                        <tr class="now_rap  sticky_header">
+                          <th>Category</th>
+                          <th>Achieved/Total</th>
+                          <th rowspan="2">○</th>
+                          <th rowspan="2">△</th>
+                          <th rowspan="2">X</th>
+                        </tr>
+                        <tr class="now_rap text-center sticky_header">
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="tbody_data"
+                          *ngFor="let item of auditReportData?.catergoryWiseScoreModel;let i = index">
+                          <td class="w_17">{{i+1}}</td>
+                          <td class="w_27">{{item.categoryScore}}/{{item.totalCount}}</td>
+                          <td class="w_27">{{item.pieScore}}</td>
+                          <td class="w_27">{{item.triangleScore}}</td>
+                          <td class="w_27">{{item.xScore}}</td>
+                        </tr>
+                        <tr class="tbody_data">
+                          <td class="w_17">Total</td>
+                          <td class="w_27">{{categoryScoreSum}}/{{totalCountSum}}</td>
+                          <td class="w_27">{{pieScoreSum}}</td>
+                          <td class="w_27">{{triangleScoreSum}}</td>
+                          <td class="w_27">{{xScoreSum}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-8" *ngIf="this.chartsData">
+                  <canvas style="display: none;" id="canvasId" baseChart [data]="reportData" [type]="'radar'"
+                    [options]="reportOptions">
+                  </canvas>
+                  {{setCanvasImg()}}
+                  <img id="imgCanvas">
+                </div>
+              </div>
+              <div class="row">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr class="now_rap text-center sticky_header">
+                      <th>Pre decided negative marking (if any)</th>
+                      <th class="w_204"></th>
+                      <th>Improvement Submission Date</th>
+                      <th class="w_204"></th>
+                      <th>Last Audit Rating</th>
+                      <th class="w_204"></th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card" id="receivingData">
+            <div class="card-header">
+              <div class="header_card">
+                <h3 class="card-title">C'measure Report Format</h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="table-responsive max_hei_table">
+                    <table class="table table-bordered">
+                      <thead class="bac_table_white">
+                        <tr class="">
+                          <td rowspan="5">
+                            <p class="rota_css">Planning</p>
+                          </td>
+                          <td>RECEIVING DATE</td>
+                          <td rowspan="5">
+                            <p class="rota_css">Planning</p>
+                          </td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td rowspan="4"></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>Total</td>
+                          <td>0</td>
+                        </tr>
+                        <tr class="">
+                          <td rowspan="5">
+                            <p class="rota_css">Verification</p>
+                          </td>
+                          <td>RECEIVING DATE</td>
+                          <td rowspan="5">
+                            <p class="rota_css">Verification</p>
+                          </td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td rowspan="4"></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>Total</td>
+                          <td>0</td>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="table-responsive max_hei_table">
+                    <table class="table table-bordered">
+                      <thead class="bac_table_white">
+                        <tr class="">
+                          <th>Audit Point</th>
+                          <td></td>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="table-responsive max_hei_table">
+                    <table class="table table-bordered">
+                      <thead class="bac_table_white">
+                        <tr class="">
+                          <td rowspan="2">VENDOR NAME</td>
+                          <td rowspan="2"></td>
+                          <td></td>
+                          <td>PLANNED</td>
+                          <td>CHECKED</td>
+                          <td>APPROVED</td>
+                        </tr>
+                        <tr class="">
+                          <td rowspan="2">VENDOR NAME</td>
+                          <td>PLANNED</td>
+                          <td>CHECKED</td>
+                          <td>APPROVED</td>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="table-responsive max_hei_table">
+                    <table class="table table-bordered">
+                      <thead class="bac_table_white">
+                        <tr class="">
+                          <th>DEADLINE FOR SUBMISSION OF PLAN</th>
+                          <td></td>
+                          <th>DEADLINE FOR SUBMISSION OF ACTUAL RESULT</th>
+                          <td></td>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive max_hei_table">
+                <table class="table table-bordered">
+                  <thead class="bac_table_white">
+                    <tr class="">
+                      <th>ITEM NO.</th>
+                      <th>SUB ITEM NO.</th>
+                      <th>DESIRED IMPROVEMENT POINTS</th>
+                      <th>DETAIL OF IMPROVEMENT PLAN</th>
+                      <th>IN-CHARGE</th>
+                      <th>DATE</th>
+                      <th>RESULT OF VERIFICATION</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
             </div>
           </div>
         </div>

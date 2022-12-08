@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import Swal from 'sweetalert2';
+import { UploadPlanComponent } from './upload-plan/upload-plan.component';
 
 @Component({
   selector: 'app-create-plan',
@@ -19,12 +21,15 @@ export class CreatePlanComponent implements OnInit {
   vendorObj: any = [];
   locationObj: any = [];
   selectedFile: any;
+  selectedFile2: any;
   bulkFile: any;
   today= new Date();
   minStartDate = {};
   categoryObj:any=[];
+  bsModalRef ?: BsModalRef;
   constructor(
     private formBuilder: FormBuilder,
+    private modalService: BsModalService,
     private auditPlanService: AuditPlanService,
     private commonService: CommonService,
     private employeeService: EmployeeMasterService,
@@ -45,11 +50,11 @@ export class CreatePlanComponent implements OnInit {
       additionalMSILEmail: new FormControl('', []),
       auditeeEmail: new FormControl('', [Validators.required]),
       attachment: new FormControl('', []),
+      attachment1: new FormControl('', []),
     });
   }
 
   ngOnInit(): void {
-    //this.getEmployeeList();
     this.getVendorCategory();
   }
 
@@ -68,6 +73,21 @@ export class CreatePlanComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
+  onFile2Selected(event: any) {
+    const fsize = event.target.files[0].size;
+    const file = Math.round((fsize / 1024)/1024);
+    if(file > dataConstants.maxImageSize){
+      Swal.fire(
+        'Invalid File!',
+        `File is more than ${dataConstants.maxImageSize} mb. Please select a valid file`,
+        'warning'
+      )
+      event.target.value = '';
+      return;
+    }
+    this.selectedFile2 = event.target.files[0];
+  }
+
   submit() {
     this.commonService.showLoading();
     if (this.createPlanForm.invalid) {
@@ -79,9 +99,9 @@ export class CreatePlanComponent implements OnInit {
       return;
     }
     const body = this.createPlanForm.value;
-
     const formData = new FormData();
     formData.append('AttachmentFile', this.selectedFile);
+    formData.append('AttachmentFile1', this.selectedFile2);
     formData.append('vendorId', body.vendorId);
     formData.append('locationId', body.locationId);
     formData.append('otherLocation', body.otherLocation);
@@ -102,6 +122,7 @@ export class CreatePlanComponent implements OnInit {
           icon: 'success',
         });
         this.createPlanForm.controls['attachment'].setValue('');
+        this.createPlanForm.controls['attachment1'].setValue('');
         this.createPlanForm.reset();
         this.commonService.hideLoading();
       },
@@ -182,6 +203,7 @@ export class CreatePlanComponent implements OnInit {
   bulkUpload(event: any) {
     this.commonService.showLoading();
     this.bulkFile = event.target.files[0];
+    console.log("bulk upload")
     const formData = new FormData();
     formData.append('File', this.bulkFile);
     this.auditPlanService.bulkUpload(formData).subscribe({
@@ -242,5 +264,20 @@ export class CreatePlanComponent implements OnInit {
 
   close() {
     this.router.navigateByUrl('/dashboard');
+  }
+
+  openModal(){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:'',
+       status:';',
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(UploadPlanComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+    });
+   
   }
 }

@@ -15,14 +15,14 @@ import { PendingActionPlanComponent } from './pending-action-plan/pending-action
 const routes: Routes = [
   {path:'',component:ActionPlanListComponent},
   {path:'category/:id',component:ActionPlanDetailsComponent},
-  {path:'observe/:id/:cid',component:ActionPlanObservationComponent},
+  {path:'observe/:id',component:ActionPlanObservationComponent},
   {path:'action-pending-plan/:id', component:PendingActionPlanComponent},
   {path:'auditor',component:ActionPlanAuditorComponent},
   {path:'vendor', component:ActionPlanVendorComponent},
   {path:'vendor/category/:id', component:ActionPlanCategoryVendorComponent},
   {path:'receive',component:ActionPlanReceiveComponent},
   {path:'auditor/category/:id', component:ActionPlanAuditorCategoryComponent},
-  {path:'update/:id/:cid',component:ActionPlanUpdateComponent},
+  {path:'update/:id',component:ActionPlanUpdateComponent},
   {path:'new',component:ActionPlanComponent}
 ];
 

@@ -12,31 +12,54 @@
                         <th colspan="10">Observation({{actionPlanList.length}})</th>
                     </tr>
                     <tr class="sticky_header">
-                        <th>Observation</th>
-                        <th>Audit Area</th>
-                        <th>Regulation </th>
+                        <th>Item No.</th>
+                        <th>Sub Item No.</th>
                         <th>Desired Improvement Points </th>
                         <th>Detail of Improvement Plan</th>
                         <th>In-Charge</th>
                         <th>Date</th>
                         <th>Upload(Multiple Evidence Can be Uploaded)</th>
+                        <th>Current Status</th>
+                        <th>Auditor's Remarks</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                        <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
-                        <td><p class="show1">{{item.auditArea}}</p></td>
-                        <td><p class="show1">{{item.regulationText}}</p></td>
-                        <td>{{item.remark}}</td>
-                        <td>{{item.detailOfImprovement}}</td>
+                        <td>{{item.item}}</td>  
+                        <td>{{item.subItem}}</td>
+                        <td><p class="w-170 show1">{{item.remark}}</p></td>
+                        <td><p class="w-170 show1">{{item.detailOfImprovement}}</p></td>
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
-                        <td><input type="file" id="exampleInputFile" (change)="fileUpload($event)"
-                         class="form-control inputbox_css-date"  multiple></td>
-                        <td><button class="btn btn-success"  (click)="submit(item)">Submit</button></td>
-                    </tr>
-                </tbody>
+                        <td style="padding: 7px;">
+                            <div *ngIf="item.closureStatus != 'Closed' && item.attachment.length == 0">
+                                <div style="display: flex;" *ngFor="let attach of item.activeAttachments?.split('|'); let indexOfelement=index">
+                                    <input type="file" id="exampleInputFile" file="item" style="margin-top: 10px;"
+                                        (change)="fileUpload($event, item.id, indexOfelement)" class="form-control inputbox_css-date" multiple>
+                                    <button *ngIf="indexOfelement > 0" (click)="removeFile(item, indexOfelement)" style="margin-left: 8px; height: 30px; margin-top: 12px;"
+                                        class="btn btn-danger btn-add-deatil">-</button>
+                                </div>
+                        
+                                <input *ngIf="!(item.activeAttachments?.split('|').length > 0)" type="file" id="exampleInputFile"
+                                    (change)="fileUpload($event, item.id, 0)" class="form-control inputbox_css-date" multiple>
+                        
+                                <button class="btn btn-primary btn-add-deatil mr-1"
+                                    style="height: 30px; margin-top: 10px;" *ngIf="item.activeAttachments?.split('|').length < 7"
+                                    (click)="addFile(item)">+</button>
+                            </div>
+                        </td>
+                        <td>{{item.closureStatus}}</td>
+                        <td>
+                            <p class="show1">{{item.observationActionRemark}}</p>
+                        </td>
+                        <td>
+                            <div *ngIf="item.closureStatus != 'Closed' && item.attachment.length == 0">
+                                <button class="btn btn-success" (click)="submit(item)">Submit</button>
+                            </div>
+                        </td>
+                        </tr>
+                        </tbody>
             </table>
         </div>
         <nav aria-label="Page navigation example">

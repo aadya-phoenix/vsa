@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
@@ -30,6 +31,10 @@ export class EvidenceReceivedComponent implements OnInit {
   bsModalRef ?: BsModalRef;
   categoryId:any;
   categoryName:any;
+  open =1;
+  close =3;
+  partialClose =2;
+
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
@@ -37,20 +42,20 @@ export class EvidenceReceivedComponent implements OnInit {
     private categoryService:CategoryMasterService,
     private auditExeService:AuditExecutionService,
     private route:ActivatedRoute,
+    private datepipe:DatePipe,
     private router:Router
   ) { 
     this.route.paramMap.subscribe((res:ParamMap)=>{
       let Id = res.get('id');
-      // Id ? this.auditPlanId = Id : this.auditPlanId="8d0b375e-113d-47bd-b0dc-701c08ef3cd3";
-       let Cid = res.get('cid');
-       this.auditPlanId = Id;
-       this.categoryId = Cid;
+      let Cid = res.get('cid');
+      this.auditPlanId = Id;
+      this.categoryId = Cid;
     });
     this.userId = this.authService.getLoginDetails().UserId;
   }
 
   ngOnInit(): void {
-    this. getActionPlanList();
+    this.getActionPlanList();
     this.getCategoryDetails();
   }
 
@@ -60,6 +65,14 @@ export class EvidenceReceivedComponent implements OnInit {
       next: (res) => {
         if(res){
          this.actionPlanList = res;
+         this.actionPlanList.forEach((x:any)=>{
+          if(x.dateOfSubmission == "0001-01-01T00:00:00"){
+            x.dateOfSubmission = null
+          }
+          else{
+          x.dateOfSubmission = this.datepipe.transform( x.dateOfSubmission,'yyyy-MM-dd');
+          }
+         });
          this.commonService.hideLoading();
         }
        },
@@ -110,6 +123,9 @@ export class EvidenceReceivedComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(EvidenceAuditorRemarksComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+      this.getActionPlanList();
+    });
   }
 
   back(){
@@ -122,6 +138,31 @@ export class EvidenceReceivedComponent implements OnInit {
       next: (res) => {
         if(res){
          this.categoryName = res.name;
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
+     });
+  }
+
+  download(item:any){
+    this.commonService.showLoading();  
+    this.auditExeService.downloadDocument({
+      attachement: item
+    }).subscribe({
+      next: (response) => {
+        if(response){
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.body.type }));
+          const contentDisposition = response.headers.get('content-disposition');
+          const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim().replaceAll('"','');
+          console.log("file",fileName)
+          downloadLink.download = fileName;
+          downloadLink.click();
          this.commonService.hideLoading();
         }
        },

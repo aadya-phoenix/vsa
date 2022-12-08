@@ -172,4 +172,10 @@ export class AuditPlanService {
       .post(url, {})
       .pipe(catchError(this.commmonService.Errorhandling)); 
   }
+
+  getVendorAttendees(id:any){
+    const params = new HttpParams().set('AuditPlanId',id);
+    const url = `${this.basePath}api/AuditPlan/GetVendorAttendees`;
+    return this.http.postParams(url,{}, params).pipe(catchError(this.commmonService.Errorhandling));
+  }
 }

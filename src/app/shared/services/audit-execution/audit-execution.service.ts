@@ -37,6 +37,11 @@ export class AuditExecutionService {
   return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
   }
 
+  saveAsDraftActionPlan(data:any){
+    const url = `${this.basePath}api/AuditExecution/SaveOrUpdateAuditplanActionplanDraft`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));  
+  }
+
   actionPlanApproval(data:any){
     const url = `${this.basePath}api/AuditExecution/UpdateAuditActionPlanApproval`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
@@ -97,5 +102,24 @@ export class AuditExecutionService {
   saveSectionHeadRemarks(data:any){
     const url = `${this.basePath}api/AuditExecution/UpdateAuditPlanExecutionObservation`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  downloadDocument(data:any){
+    const url = `${this.basePath}api/AuditPlan/DownloadEvidenceDocument`;
+    return this.http
+      .postBlobParams(url,data,{ observe: 'response', responseType: 'blob' as 'json'} );
+     
+  }
+
+  getActionCategory(id:any){
+    const params = new HttpParams().set('AuditplanId',id);
+    const url = `${this.basePath}api/AuditExecution/GetActionPlanStatusCategoryWise`;
+    return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getCmeasureReport(id:any){
+    const params = new HttpParams().set('AuditplanId',id);
+    const url = `${this.basePath}api/AuditExecution/GetCMeasureReport`;
+    return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling));
   }
 }

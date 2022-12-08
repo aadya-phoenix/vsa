@@ -25,6 +25,10 @@ export class AuthenticationService {
     return JSON.parse(localStorage.getItem('loginDetails') || '{}');
   }
 
+  getAuditDetails() {
+    return JSON.parse(localStorage.getItem('auditDetails') || '{}');
+  }
+
   getRolefromlocal(){
     let role = JSON.parse(localStorage.getItem('role') || '{}')
     return JSON.parse(localStorage.getItem('role') || '{}')

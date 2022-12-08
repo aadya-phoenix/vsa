@@ -24,56 +24,13 @@
                                             placeholder="Enter Vendor Code" maxlength="200">
                                     </div>
                                 </div>
-                         <!--    <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="table-responsive max_hei_table">
-                                    <table class="table table-bordered table-hover" formArrayName="vendor_location">
-                                        <thead>
-                                          <tr *ngFor="let obj of vendorLocationArray.controls;let i = index;" class="now_rap text-center sticky_header">
-                                            <td>{{i+1}}</td>
-                                            <td class="p-1" [formGroupName]="i">
-                                              <input type="text" class="form-control form_width" formControlName="location" />
-                                            </td>
-                                            <td class="btn-width p-1">
-                                              <button class="btn btn-success mr-2 py-1" (click)="addLocation('')">
-                                                +
-                                              </button>
-                                              <button class="btn btn-danger py-1" *ngIf="i > 0" (click)="removeLocation(i)">
-                                                <i class="fa fa-trash"></i>
-                                              </button>
-                                            </td>
-                                          </tr>
-                                        </thead>
-                                      </table>
-                                      </div>
-                                    <table id="example2" class="table table-bordered table-hover">
-                                        <thead>
-                                            <tr class="now_rap text-center sticky_header">
-                                                <th>S.No</th>
-                                                <th>Location </th>
-                                                <th>Action </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="tbody_data">
-                                                <td>1</td>
-                                                <td><input type="text" class="form-control"></td>
-                                                <td>
-                                                    <button class="btn btn-primary">+</button>
-                                                    <button class="btn btn-danger">-</button>
-                                                </td>
-                                            </tr>
-                                            <tr class="tbody_data">
-                                                <td>1</td>
-                                                <td><input type="text" class="form-control"></td>
-                                                <td>
-                                                    <button class="btn btn-primary">+</button>
-                                                    <button class="btn btn-danger">-</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table> 
-                                </div> -->
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form_label">Vendor UserName</label>
+                                        <input type="text" class="form-control inputbox_css" formControlName="userName"
+                                            placeholder="Enter Vendor Code" maxlength="200">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer">

@@ -33,6 +33,7 @@ export class EmployeeEditComponent implements OnInit {
       code: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       roleId: new FormControl('', [Validators.required]),
+      userName:new FormControl('', [Validators.required]),
    });
   }
   ngOnInit(): void {
@@ -42,6 +43,10 @@ export class EmployeeEditComponent implements OnInit {
 
   save(){
     if (this.employeeForm.invalid) {
+      Swal.fire({
+        title: 'Please fill all fields.',
+        icon: 'error',
+      });
       return;
     }
     const body = this.employeeForm.value;
@@ -67,7 +72,7 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   addEmployee(body:any){
-    this.commonService.showLoading();  
+    this.commonService.showLoading();
     this.employeeService.add(body).subscribe({
       next:(res: any) => {
         this.router.navigateByUrl('dashboard/employee'); 
@@ -92,7 +97,7 @@ export class EmployeeEditComponent implements OnInit {
          this.employeeForm.controls['name'].setValue(this.employeeDetails.name);
          this.employeeForm.controls['code'].setValue(this.employeeDetails.code);
          this.employeeForm.controls['roleId'].setValue(this.employeeDetails.roleId);
-        // this.employeeForm.controls['createdDate'].setValue(this.dateFormat(this.employeeDetails.createdDate));
+        this.employeeForm.controls['userName'].setValue(this.employeeDetails.userName);
          this.commonService.hideLoading();
         }
        },

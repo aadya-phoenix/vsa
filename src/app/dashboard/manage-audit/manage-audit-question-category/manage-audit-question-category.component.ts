@@ -199,12 +199,20 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
   this.commonService.showLoading();
   this.auditExecuteService.submitReport(body).subscribe({
     next: (res) => {
-      if(res){
+      if(res.type == "Error"){
         this.commonService.hideLoading();
         Swal.fire({
-          title: 'Report Submitted Successfully',
-          icon: 'success',
+          title: res.message,
+          icon: 'error',
         });
+        return;
+       }
+        else{
+          this.commonService.hideLoading();
+          Swal.fire({
+            title: res.message,
+            icon: 'success',
+          });
         this.router.navigateByUrl('dashboard/view-plan');
       }
      },
@@ -228,6 +236,26 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
         this.commonService.hideLoading();
       } , 
      });
+  }
+
+  getUsers(){
+    this.commonService.showLoading();
+    const data = {
+      roleId: "aa1b2adc-e205-451e-8b2f-5b184df9e4f4",
+      roleName:"SectionHead"
+    };
+    this.employeeService.getUsersByRoleId(data).subscribe({
+      next: (res) => {
+        if (res) {
+          this.sectionHeadObj = res;
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      },
+    });
   }
 
   getEmployeeList(){

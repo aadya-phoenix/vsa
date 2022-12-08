@@ -33,40 +33,20 @@ export class EvidenceAuditorRemarksComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit(){
-
-   /*  this.commonService.showLoading();
-    this.actionPlanList.forEach((element:any) => {
-      element.auditPlanId = this.auditPlanId;
-      element.createdBy = this.userId;
-    });
-
-    this.auditExeService.saveActionPlan(this.actionPlanList).subscribe({
+  submit(){    
+    this.commonService.showLoading();
+    const body  = this.auditorRemakForm.value;
+    this.auditExeService.updateEvidenceReceived({
+      observationAction:this.status,
+      observationActionRemark:body.comment,
+      id:this.data.id}).subscribe({
       next: (res) => {
         if(res){
           Swal.fire({
             title: res.message,
             icon: 'success',
           });
-          this.commonService.hideLoading();
-        }
-       },
-       error: (e) => {
-        console.error(e);
-        this.commonService.hideLoading();
-      }, 
-     });  */
-    
-    this.commonService.showLoading();
-    const body  = this.auditorRemakForm.value;
-    this.auditExeService.updateEvidenceReceived({observationAction:this.status,id:
-      this.data}).subscribe({
-      next: (res) => {
-        if(res){
-          Swal.fire({
-            title: res.message,
-            icon: 'success',
-          })
+          this.bsModalRef.hide();
           this.commonService.hideLoading();
         }
        },
@@ -77,24 +57,4 @@ export class EvidenceAuditorRemarksComponent implements OnInit {
      }); 
 
   }
-
-  /* save(){
-    this.commonService.showLoading();
-    this.auditExeService.updateEvidenceReceived({observationAction:this.observationAction,id:this.id}).subscribe({
-      next: (res) => {
-        if(res){
-          Swal.fire({
-            title: res.message,
-            icon: 'success',
-          })
-          this.commonService.hideLoading();
-        }
-       },
-       error: (e) => {
-        console.error(e);
-        this.commonService.hideLoading();
-      },
-     }); 
-  }
- */
 }

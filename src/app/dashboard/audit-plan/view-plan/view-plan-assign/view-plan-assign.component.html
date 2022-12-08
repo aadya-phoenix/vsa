@@ -10,7 +10,8 @@
           </div>
           <div class="card-body">
             <form [formGroup]="assignAuditorForm">
-              <div class="table-responsive max_hei_table">
+            
+              <div class="table-responsive  overflow-visible" style="">
                 <table class="table table-bordered" formArrayName="assignAuditor">
                   <thead class="sticky_header">
                     <tr>
@@ -27,10 +28,12 @@
                           <option *ngFor="let item of auditorList" [value]="item.id">{{item.name}} ({{item.code}})
                           </option>
                         </select> -->
+                       
                         <ng-select [items]="auditorList[i]" bindLabel="code" bindValue="id"
                           formControlName="auditorId" class="form-control"
                           (search)="searchAuditor($event.term, i)" (change)="audotorChange($event, i)">
                         </ng-select>
+                       
                       </td>
                       <td class="btn-width p-1">
                         <button class="btn btn-success mr-2 py-1" (click)="addAuditor('')">
@@ -44,6 +47,7 @@
                   </tbody>
                 </table>
               </div>
+             
             </form>
           </div>
           <div class="card-footer text-right">

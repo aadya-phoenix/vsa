@@ -2,30 +2,19 @@
     <div class="card-header">
         <div class="header_card">
             <h3 class="card-title">{{categoryName}}</h3>
-<!--             <div class="form-group mb-0 w_26">
-                <select class="form-control filter_css">
-                    <option>Select Vendor Name</option>
-                    <option>Vendor1</option>
-                    <option>Vendor1</option>
-                    <option>Vendor1</option>
-                    <option>Vendor1</option> 
-                    <option>Vendor1</option> 
-                    <option>Vendor1</option>
-                </select>
-            </div> -->
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive max_hei_table" >
+       
+        <div class="table-responsive max_hei_table">
             <table id="" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
                         <th colspan="10">Observation({{actionPlanList.length}})</th>
                     </tr>
                     <tr class=" text-center sticky_header">
-                        <th>Observation</th>
-                        <th>Audit Area</th>
-                        <th>Regulation </th>
+                        <th>Item No.</th>
+                        <th>Sub Item No.</th>
                         <th>Desired Improvement Points </th>
                         <th>Detail of Improvement Plan</th>
                         <th>In-Charge</th>
@@ -36,28 +25,35 @@
                 </thead>
                 <tbody>
                     <tr class="tbody_data" *ngFor="let item of actionPlanList| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
-                        <td>{{(i+1) + pagination.pageSize * ( pagination.pageNumber-1 ) }}</td>    
-                        <td><p class="show1">{{item.auditArea}}</p></td>
-                        <td><p class="show1">{{item.regulationText}}</p></td>
-                        <td>{{item.remarkOfAuditor}}</td>
-                        <td>{{item.detailOfImprovement}}</td>
-                        <td>{{item.incharge}}</td>
+                        <td><p class="w-170 show1">{{item.item}}</p></td>  
+                        <td><p class="w-170 show1">{{item.subItem}}</p></td>
+                        <td><p class="w-170 show1">{{item.remark}}</p></td>
+                        <td><p class="w-170 show1">{{item.detailOfImprovement}}</p></td>
+                        <td><p class="w-170 show1">{{item.incharge}}</p></td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
-                        <td></td>
-                        <td><button class="btn btn-success mr-1" 
+                        <td>
+                            <a *ngIf="item.attachment" (click)="download(item.attachment)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a>
+                        </td>
+                        <td><div *ngIf="item.attachment && !item.closureStatus">
+                            <button class="btn btn-success mr-1" 
               
-                            (click)="observeAction(1,item.id)">Open</button>
+                            (click)="openModal(open,item)">Open</button>
                            <button class="btn btn-danger  mr-1" 
                 
-                           (click)="observeAction(3,item.id)">Close</button>
+                           (click)="openModal(close,item)">Close</button>
                            <button class="btn btn-primary" style="color: #fff;"
                           
-                           (click)="observeAction(2,item.id)">Partially Close</button>
+                           (click)="openModal(partialClose,item)">Partially Close</button>
+                        </div>
+                        <div *ngIf="item.closureStatus && item.attachment">
+                         <button class="btn btn-default cursor-none">{{item.closureStatus}}</button>
+                        </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+       
         <nav aria-label="Page navigation example">
             <div class="pagination justift_end">
               <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>

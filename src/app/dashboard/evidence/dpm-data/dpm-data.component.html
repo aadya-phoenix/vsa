@@ -22,7 +22,7 @@
                                         <th>Auditor Name </th>
                                         <th>View Report</th>
                                         <th>No Of Observation</th>
-                                        <th>Action</th>
+                                      <!--   <th>Action</th> -->
                                         <th>Accept</th>
                                         <th>Reject</th>
                                     </tr>
@@ -36,7 +36,7 @@
                                         <td>{{item.auditorName}}</td>
                                         <td><a (click)="goToReport(item.id)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
                                         <td>{{item.observationCount}}</td>
-                                        <td> <a><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a></td>
+                                    <!--     <td> <a><img src="../../../../../assets/icons/document-editor.png" class="w_25"></a></td> -->
                                         <td><div *ngIf="item.dpmApprovalStatus !='Approved' && item.dpmApprovalStatus !='Rejected'">
                                             <button class="btn btn-success" (click)="submit(accept,
                                             item)" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Accept</button>

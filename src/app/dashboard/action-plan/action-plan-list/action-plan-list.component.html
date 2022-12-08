@@ -27,11 +27,12 @@
                                         <th>Vendor Code </th>
                                         <th>Planned Start Date </th>
                                         <th>Planned End Date</th>
-                                        <th>No Of Observation</th>
+                                       
                                         <th>Audit Completion Date</th>
+                                        <th>No Of Observation</th>
                                         <th>Score</th>
-                                        <th>Action Plan</th>
-                                        <th>Status</th>    
+                                        <th>Status At Vendor</th>
+                                        <th>Status At Auditor</th>    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,15 +41,16 @@
                                         <td>{{item.vendorCode}}</td>
                                         <td>{{item.plannedStartDate | date:dateFormat}}</td>
                                         <td>{{item.plannedEndDate | date:dateFormat}}</td>
-                                        <td>{{item.observationCount}}</td>
+                                       
                                         <td>{{item.reportReleaseDate | date:dateFormat}}</td>
+                                        <td>{{item.observationCount}}</td>
                                         <td>
                                             <p><b>{{item.score}}</b></p>
                                         </td>
-                                        <td><button class="btn btn-primary">Submitted</button></td>
+                                        <td><button class="btn btn-primary">{{item.statusNew}}</button></td>
                                         <td>
                                             <button (click)="goToCategory(item.id)"
-                                            [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }" >{{item.actionPlanStatus}}</button>
+                                            [ngClass]="{'submit': item.actionPlanStatus === 'Submitted', 'to_be_submit' : item.actionPlanStatus === 'To be Submitted','to_be_received': item.actionPlanStatus === 'To be Received','accepted': item.actionPlanStatus ==='Accepted','rejected': item.actionPlanStatus ==='Rejected' }" >{{item.actionPlanStatus =='To be Received' ? 'Pending' : item.actionPlanStatus}}</button>
                                         </td>
                                     </tr>
                                 </tbody>

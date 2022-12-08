@@ -5,6 +5,8 @@ import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
+import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
@@ -19,7 +21,9 @@ export class ManageAuditSummaryComponent implements OnInit {
   dateFormat = dataConstants.dateFormate;
   auditReportData: any;
   summaryDetails: any = [];
+  auditDetails: any;
   criticalObservations: any = [];
+  vendorAttendees:any=[];
   supplierCategoryStatus = 'Yellow';
   chartsData = false;
   categoryScoreSum = 0;
@@ -57,6 +61,7 @@ export class ManageAuditSummaryComponent implements OnInit {
       }
     }
   };
+  cReportDetails:any=[];
 
   @ViewChild('pdfTable') pdfTable: ElementRef | undefined;
 
@@ -65,6 +70,7 @@ export class ManageAuditSummaryComponent implements OnInit {
     private route: ActivatedRoute,
     private commonService: CommonService,
     private auditExecutionService: AuditExecutionService,
+    private authService:AuthenticationService,
     private reportService: ReportService
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -77,6 +83,8 @@ export class ManageAuditSummaryComponent implements OnInit {
     this.getExecutiveSummary();
     this.getSummaryDetails();
     this.getCriticalObservations();
+    this.getCmeasureReport();
+    this.auditDetails = this.authService.getAuditDetails();
   }
 
   getExecutiveSummary() {
@@ -132,22 +140,29 @@ export class ManageAuditSummaryComponent implements OnInit {
     this.router.navigateByUrl(`dashboard/manage-audit/question/${this.auditPlanId}`);
   }
 
+  setCanvasImg() {
+    var canvasId = document.getElementById('canvasId') as HTMLCanvasElement;
+    var imgCanvas = document.getElementById('imgCanvas') as HTMLImageElement;
+    var printDiv = document.getElementById('printDiv') as HTMLDivElement;
+    imgCanvas.src = canvasId?.toDataURL()
+    printDiv.style.display = "none";
+  }
+
   exportAsPDF(div_id: any) {
-    let data = document.getElementById(div_id);
-    if (data != null) {
-      html2canvas(data, {
-        allowTaint: true
-      }).then((canvas: any) => {
-        const contentDataURL = canvas.toDataURL({
-          format: 'jpeg',
-          quality: 0.8
-       });
-        //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
-        let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
-        pdf.addImage(contentDataURL, 'PNG', 0, 0, 21.0,29.7);
-        pdf.save('ExecutiveSummary.pdf');
-      });
-    }
+    var printContents = document.getElementById('printDiv')?.innerHTML;
+    var popupWin = window.open('', 'width=300,height=300');
+    popupWin?.document.open();
+    var style = `<style>
+               .table-responsive { max-height: 100%; overflow: inherit; }
+               </style >`;
+    var html = '<html><head>'
+      + '<link rel="stylesheet" type="text/css" href="/styles.css" />'
+      + style
+      + '<link rel="stylesheet" type="text/css" href="webpack:///node_modules/bootstrap/scss/_card.scss" />'
+      + '</head><body onload="window.print()">'
+      + printContents + '</html>';
+    popupWin?.document.write(html);
+    popupWin?.document.close();
   }
 
   getSummaryDetails() {
@@ -169,6 +184,27 @@ export class ManageAuditSummaryComponent implements OnInit {
         this.commonService.hideLoading();
       }
     });
+  }
+
+  getCmeasureReport(){
+    this.commonService.showLoading();
+    this.auditExecutionService.getCmeasureReport(this.auditPlanId).subscribe({
+      next: (res) => {
+        if (res) {
+          this.cReportDetails = res;
+          this.commonService.hideLoading();
+          this.cReportDetails.forEach((x:any)=>{
+            if(x.dateOfSubmission == "0001-01-01T00:00:00"){
+              x.dateOfSubmission = null
+            }
+           });
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });  
   }
 
 }

@@ -1,7 +1,7 @@
 <section class="content pt-2">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-sm-12">
         <div class="card card-default">
           <div class="card-header">
             <div class="d-flex align-items-center d-flex justify-content-between">
@@ -34,9 +34,12 @@
                               <h4 class="fon_14"><b>{{i+1}}.</b>
                                 {{regulationList[i]?.name}}
                             </h4>
-                            <button class="btn btn-orange mr-1 mange-que-detail-button" (click)="openSectionModal(regulationList[i])" >Section Head Remarks</button>
-                            <button class="btn btn-primary mange-que-detail-button"  (click)="openLastModal(regulationList[i])" > Last Year Remarks</button>
-                           </div>
+                            <div class="d-flex">
+                            <button *ngIf="regulationList[i].shRemarksCount > 0" class="btn btn-orange mr-1 mange-que-detail-button" (click)="openSectionModal(regulationList[i])" >Section Head Remarks</button>
+                            <button class="btn btn-primary mange-que-detail-button"  (click)="openLastModal(regulationList[i])" > Last Audit Remarks</button>
+                           
+                          </div>
+                        </div>
                           </div>
                           <div class="card-body">
                             <div class="row" [formGroupName]="i">
@@ -76,7 +79,7 @@
                                        </th>
                                         <td [formGroupName]="j" >
                                           <div class="d-flex">
-                                            <input type="checkbox" aria-label="Checkbox for following text input" class="input-css-check mr-1">
+                                            <input type="checkbox" formControlName="repeatIssue" aria-label="Checkbox for following text input" class="input-css-check mr-1">
                                             <div class="image-upload mr-1">
                                            
                                               <label for="file_input_{{i}}_{{j}}">

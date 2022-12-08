@@ -6,12 +6,15 @@ import { CreatePlanComponent } from './create-plan.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { UploadPlanComponent } from './upload-plan/upload-plan.component';
 
 
 @NgModule({
   declarations: [
-    CreatePlanComponent
+    CreatePlanComponent,
+    UploadPlanComponent
   ],
+  entryComponents:[UploadPlanComponent],
   imports: [
     CommonModule,
     FormsModule,

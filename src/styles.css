@@ -259,8 +259,8 @@ tbody tr{
   padding: 2px 14px !important;
   font-size: 13px !important;
   color: #fff !important;
-    background-color: #218838 !important;
-    border-color: #1e7e34 !important;
+ background-color: #218838 !important;
+  border-color: #1e7e34 !important;
 }
 .btn-primary {
   padding: 2px 14px !important;
@@ -315,23 +315,23 @@ tbody tr{
   font-size: 9px !important;
 }
 .Accepted {
-  background: green; 
-font-size: 13px;
+  background: green !important; 
+font-size: 13px  !important;
   padding: 2px 14px !important;
-  color: #fff;
-  margin-bottom: 0px;
-  border-radius: 0.25rem;
-  cursor: pointer;
+  color: #fff  !important;
+  margin-bottom: 0px  !important;
+  border-radius: 0.25rem  !important;
+  cursor: pointer  !important;
 }
 .Auditor-log{
   background-color: #5a6268 !important;
   border-color: #5a6268 !important;
-  font-size: 13px;
+  font-size: 13px  !important;
     padding: 2px 14px !important;
-    color: #fff;
-    margin-bottom: 0px;
-    border-radius: 0.25rem;
-    cursor: pointer;
+    color: #fff  !important;
+    margin-bottom: 0px  !important;
+    border-radius: 0.25rem  !important;
+    cursor: pointer  !important;
 }
 .Auditor-log :hover{
  
@@ -340,23 +340,23 @@ font-size: 13px;
    
 }
 .Submitted{
-  background: #1a65a3;
-  font-size: 13px;
+  background: #1a65a3  !important;
+  font-size: 13px  !important;
   padding: 2px 14px !important;
-  color: #fff;
-  margin-bottom: 0px;
-  border-radius: 0.25rem;
-  cursor: pointer;
+  color: #fff  !important;
+  margin-bottom: 0px  !important;
+  border-radius: 0.25rem  !important;
+  cursor: pointer  !important;
 }
 
 .Rejected{
-  background: #dc3545;
-  font-size: 13px;
+  background: #dc3545  !important;
+  font-size: 13px  !important;
   padding: 2px 14px !important;
-  color: #fff;
-  margin-bottom: 0px;
-  border-radius: 0.25rem;
-  cursor: pointer;
+  color: #fff  !important;
+  margin-bottom: 0px  !important;
+  border-radius: 0.25rem  !important;
+  cursor: pointer  !important;
 }
 .modal-header{
   padding: 6px 22px !important;
@@ -429,6 +429,9 @@ font-size: 13px;
 }
 .ver_midd{
     vertical-align:middle !important;
+}
+.vertical_top{
+  vertical-align:top !important;
 }
 .rota_css {
   margin-bottom: 0px;
@@ -8608,7 +8611,9 @@ font-size: 13px;
   .shadow-none {
     box-shadow: none !important;
   }
-  
+  .width-123{
+    width: 123px;
+  }
   .w-25 {
     width: 25% !important;
   }

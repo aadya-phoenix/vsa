@@ -41,7 +41,7 @@
                       <td><p [ngClass]="item.status">{{item.status =='Submitted' ? 'Pending' : item.status}} </p></td>
                       <td>  
                         <div  *ngIf="isVendor && item. status == 'Submitted'">
-                        <p class="Accepted" 
+                        <p class="Accepted mb-1" 
                         (click)="getVendorAction(accept,item)" >Accept </p>
                         <p class="Rejected" (click)="openModal(reject,item)">Reject </p>
                       </div>

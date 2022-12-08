@@ -10,29 +10,27 @@
                 <thead>
                     <tr class="text-center">
                         <th colspan="9">Observation({{actionPlanList.length}})
-                            <button class="btn btn-success mr-1" (click)="submit('accept')">Accept</button>
-                            <button class="btn btn-danger" (click)="submit('reject')">Reject</button>
+                            <button class="btn btn-success mr-1" (click)="submit(accept)">Accept</button>
+                            <button class="btn btn-danger" (click)="submit(reject)">Reject</button>
                         </th>
                     </tr>
                     <tr class="sticky_header fon_9">
-                        <th>Observation</th>
-                        <th>Audit Area</th>
-                        <th>Regulation </th>
+                        <th>Item No.</th>
+                        <th>Sub Item No.</th>
                         <th>Desired Improvement Points </th>
                         <th>Detail of Improvement Plan</th>
                         <th>In-Charge</th>
                         <th>Date</th>
-                        <th>Action</th>
+                        <th>Enter Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="tbody_data" *ngFor="let item of actionPlanList ;let i =index">
-                        <td>{{i+1}}</td>  
-                        <td><p class="show1">{{item.auditArea}}</p></td>  
-                        <td><p class="show1">{{item.regulationText}}</p></td>
-                        <td>{{item.remark}}</td>
-                        <td>{{item.detailOfImprovement}}</td>
-                        <td>{{item.incharge}}</td>
+                        <td>{{item.item}}</td>  
+                        <td>{{item.subItem}}</td>
+                        <td><p class="w-170 show1">{{item.remark}}</p></td>
+                        <td><p class="w-170 show1">{{item.detailOfImprovement}}</p></td>
+                        <td><p class="w-170 show1">{{item.incharge}}</p></td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td> 
                         <td>
                            <textarea [(ngModel)]="item.remarkOfAuditor" class="form-control width-300" placeholder="Enter your Remarks"></textarea>

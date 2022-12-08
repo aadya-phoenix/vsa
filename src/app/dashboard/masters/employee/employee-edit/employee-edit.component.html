@@ -14,14 +14,14 @@
                           <label class="form_label">Employee Name</label>
                           <input type="text" class="form-control inputbox_css" 
                                  placeholder="Enter Employee Name" 
-                                 formControlName="name" maxlength="200">
+                           [attr.disabled]="true"      formControlName="name" maxlength="200">
                         </div>
                       </div>
                       <div class="col-sm-4">
                         <div class="form-group">
                           <label class="form_label">Employee Code</label>
                           <input type="text" class="form-control inputbox_css" 
-                                 placeholder="Enter Employee Code"
+                          [attr.disabled]="true"     placeholder="Enter Employee Code"
                                  formControlName="code" maxlength="200">
                         </div>
                       </div>
@@ -31,6 +31,14 @@
                           <select class="form-control" formControlName="roleId">
                             <option *ngFor="let item of rolesObj" [value]="item.id">{{item.name}}</option>
                           </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form_label">Employee UserName</label>
+                          <input type="text" class="form-control inputbox_css" 
+                             placeholder="Enter Employee UserName"
+                            formControlName="userName" maxlength="200">
                         </div>
                       </div>
                     </div>

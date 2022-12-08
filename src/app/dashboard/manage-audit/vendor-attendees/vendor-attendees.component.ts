@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class VendorAttendeesComponent implements OnInit {
   executiveSummaryForm:FormGroup;
   data:any;
-  auditPlanId:any;
+  vendors:any;
   constructor(
     private fb:FormBuilder,
     private commonService: CommonService,
@@ -27,7 +27,7 @@ export class VendorAttendeesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:'',auditId:this.data}));
+    this.getVendorAttendees();
   }
 
   get vendorAttendeeArray(): FormArray {
@@ -55,12 +55,14 @@ export class VendorAttendeesComponent implements OnInit {
     const data = {
       vendorAttendee: body.vendorAttendee
     };
-    this.auditPlanService.saveVendorAttendees(data).subscribe({
+
+  this.auditPlanService.saveVendorAttendees(data).subscribe({
       next:(res: any) => {
         Swal.fire({
           title: res.message,
           icon: 'success',
         });
+        this.bsModalRef.hide();
         this.commonService.hideLoading();
       },
       error:(err:any) =>{
@@ -70,4 +72,28 @@ export class VendorAttendeesComponent implements OnInit {
   }
 
 
+  getVendorAttendees() {
+     this.commonService.showLoading();
+    this.auditPlanService.getVendorAttendees(this.data).subscribe({
+      next: (res) => {
+        if (res) {
+          this.vendors = res;
+          if(this.vendors.length > 0){
+            this.vendors.forEach((x:any)=>{
+            this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:x.vendorAttendee
+              ,auditId:this.data}));
+          });
+         }
+          else{
+            this.vendorAttendeeArray.push(this.addMoreVendorAttendee({vendor:'',auditId:this.data}));
+          }
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    }); 
+  }
 }

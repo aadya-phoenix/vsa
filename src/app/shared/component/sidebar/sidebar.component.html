@@ -14,7 +14,7 @@
             </a>
           </li>
           <li class="nav-item" >
-            <a class="nav-link active-sidebar" *ngIf="isSuperAdmin || isPlanner">
+            <a class="nav-link active-sidebar" *ngIf="isSuperAdmin">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>
                 Setup
@@ -81,7 +81,7 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item"  *ngIf="isSuperAdmin || isAuditor">
+              <li class="nav-item"  *ngIf="isSuperAdmin || isAuditor || isPlanner">
                 <a routerLink="/dashboard/view-plan" class="nav-link">
                   <img src="../../assets/icons/view.png" class="side_img">
                   <p>
@@ -134,7 +134,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" *ngIf="!isVendor">
+          <li class="nav-item" *ngIf="!isVendor && !isViewOnly">
             <a routerLink="/dashboard/manage-audit" class="nav-link active-sidebar">
               <img src="../../assets/icons/management.png" class="side_img">
               <p>

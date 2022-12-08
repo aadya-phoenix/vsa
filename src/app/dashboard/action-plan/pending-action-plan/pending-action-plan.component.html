@@ -10,8 +10,8 @@
                 <thead>
                     <tr class="text-center">
                         <th colspan="9">Observation({{actionPlanList.length}})
-                            <button class="btn btn-success mr-1" (click)="submit('accept')">Accept</button>
-                            <button class="btn btn-danger" (click)="submit('reject')">Reject</button>
+                           <!--  <button class="btn btn-success mr-1" (click)="submit('accept')">Accept</button>
+                            <button class="btn btn-danger" (click)="submit('reject')">Reject</button> -->
                         </th>
                     </tr>
                     <tr class=" text-center sticky_header fon_9">
@@ -21,7 +21,7 @@
                         <th>DETAIL OF IMPROVEMENT PLAN</th>
                         <th>IN-CHARGE</th>
                         <th>DATE</th>
-                        <th>Action</th>
+                        <th>Auditor Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,7 +33,7 @@
                         <td>{{item.incharge}}</td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td> 
                         <td>
-                           <textarea [(ngModel)]="item.remarkOfAuditor" class="form-control" placeholder="Enter your Remarks"></textarea>
+                          
                         </td>
                     </tr>
                 </tbody>

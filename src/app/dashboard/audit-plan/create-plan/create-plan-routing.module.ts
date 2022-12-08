@@ -4,6 +4,7 @@ import { CreatePlanComponent } from './create-plan.component';
 
 const routes: Routes = [
   {path:'',component:CreatePlanComponent},
+  
 ];
 
 @NgModule({

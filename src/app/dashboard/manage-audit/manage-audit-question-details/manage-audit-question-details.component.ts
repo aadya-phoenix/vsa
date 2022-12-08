@@ -98,7 +98,8 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       auditPlanId: new FormControl(this.auditPlanId, []),
       createdBy: new FormControl(this.userId, []),
       regulationId: new FormControl('', []),
-      id: new FormControl('', [])
+      id: new FormControl('', []),
+      repeatIssue: new FormControl(false, []),
     });
   }
 
@@ -196,16 +197,19 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
               this.regulationId = reg.id;
               if (reg.lstObservation.length > 0) {
                 reg.lstObservation.forEach((x: any) => {
-                  reg.remarks.push({ remark: x.remark, id: x.id });
+                  reg.remarks.push({ remark: x.remark, id: x.id, repeatIssue:x.repeatIssue  });
                 });
+                console.log("repeatIssue",reg.remarks);
                 for (let item of reg.lstObservation) {
                   this.judgeNew.push(this.fb.group({
                     remark: item.remark,
-                    file: item.file,
+                    fileAttachment: item.file,
+                    file: "",
                     auditPlanId: this.auditPlanId,
                     createdBy: this.userId,
                     regulationId: reg.id,
-                    id: item.id
+                    id: item.id,
+                    repeatIssue: item.repeatIssue
                   }));
                 }
               }
@@ -272,12 +276,11 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
           for (let nestedKey in data[dataKey][previewKey]) {
             if (nestedKey == "file") {
               var fileIndex = this.myFileIndex.findIndex(x => x == index + "|" + remarkIndex)
-              debugger
               if (fileIndex > -1) {
                 var file = this.myFile[fileIndex]
                 formData.append(`ObservationList[${previewKey}].${nestedKey}`, file, file.name);
               } else {
-                formData.append(`ObservationList[${previewKey}].fileAttachment`, data[dataKey][previewKey][nestedKey]);
+                formData.append(`ObservationList[${previewKey}].fileAttachment`, data[dataKey][previewKey]["fileAttachment"]);
               }
             } else
               formData.append(`ObservationList[${previewKey}].${nestedKey}`, data[dataKey][previewKey][nestedKey]);

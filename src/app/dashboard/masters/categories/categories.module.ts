@@ -17,7 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     ReactiveFormsModule,
     CategoriesRoutingModule,
-    NgxPaginationModule
+
   ]
 })
 export class CategoriesModule { }

@@ -2,7 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { take } from 'rxjs';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
+import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
@@ -31,6 +33,7 @@ export class ManageAuditViewComponent implements OnInit {
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private auditPlanService:AuditPlanService,
+    private auditExeService:AuditExecutionService,
     private employeeService:EmployeeMasterService,
     private router:Router,
     private route: ActivatedRoute,
@@ -68,7 +71,6 @@ export class ManageAuditViewComponent implements OnInit {
   ngOnInit(): void {
     if(this.viewPlanId){
       this.getViewPlanDetails();
-      this.getAttachment();
     }
   }
 
@@ -105,22 +107,57 @@ export class ManageAuditViewComponent implements OnInit {
   }
 
   getAttachment(){
-    this.auditPlanService.getAttachment(this.viewPlanId).subscribe({
-      next: (res) => {
-        if(res){
-          console.log("attachment",res)
+    this.commonService.showLoading();
+    this.auditPlanService.getAttachment(this.viewPlanId).pipe(take(1))
+      .subscribe({
+        next: (response: any) => {
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.body.type }));
+          const contentDisposition = response.headers.get('content-disposition');
+          const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim().replaceAll('"','');
+          console.log("file",fileName)
+          downloadLink.download = fileName;
+          downloadLink.click();
+          this.commonService.hideLoading();
+        }, error: (e) => {
+          console.error(e);
+          this.commonService.hideLoading();
         }
-      },
-     error: (e) => console.error(e), 
-    });
+      });
+  };
+
+  download(){
+    this.commonService.showLoading();  
+    this.auditExeService.downloadDocument({
+      attachement: this.viewPlanDetails.attachment1
+    }).subscribe({
+      next: (response) => {
+        if(response){
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.body.type }));
+          const contentDisposition = response.headers.get('content-disposition');
+          const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim().replaceAll('"','');
+          console.log("file",fileName)
+          downloadLink.download = fileName;
+          downloadLink.click();
+         this.commonService.hideLoading();
+        }
+       },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+      , 
+     });
   }
 
   dateFormat(date:any){
     const newdate = new Date(date);
     return this.datepipe.transform(newdate,'yyyy-MM-dd');
   }
- close(){
-  this.router.navigateByUrl('dashboard/manage-audit');
- }
+  
+  close(){
+   this.router.navigateByUrl('dashboard/manage-audit');
+  }
 
 }

@@ -18,8 +18,7 @@ export class ActionPlanListComponent implements OnInit {
     page: 1,
     pageNumber: 1,
     pageSize: 10
-  }
-
+  };
 
   constructor(
     private router:Router,
@@ -40,6 +39,9 @@ export class ActionPlanListComponent implements OnInit {
             return x.dpmApprovalStatus
             == "Approved";
            });
+           this.auditPlanList.forEach((x:any)=>{
+            x.actionPlanStatus ==  "To be Submitted" ? x.statusNew = 'To Be Submitted' : x.statusNew = 'Submitted';
+           })
         }
         this.commonService.hideLoading();
       },
@@ -51,7 +53,7 @@ export class ActionPlanListComponent implements OnInit {
   }
 
   goToCategory(id:any){
-   this.router.navigateByUrl(`dashboard/action-plan/category/${id}`);
+    this.router.navigateByUrl(`dashboard/action-plan/observe/${id}`);
   }
 
   gridView1(){}

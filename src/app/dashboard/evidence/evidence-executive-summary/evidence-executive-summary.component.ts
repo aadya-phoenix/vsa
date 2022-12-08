@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 
@@ -20,6 +21,8 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
   summaryDetails: any = [];
   criticalObservations: any = [];
   chartsData = false;
+  auditDetails: any;
+  vendorAttendees:any=[];
   supplierCategoryStatus = 'Yellow';
   categoryScoreSum = 0;
   totalCountSum = 0;
@@ -36,6 +39,10 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
   reportOptions: ChartOptions = {
     responsive: true,
     plugins: {
+      title: {
+        display: true,
+        text: 'Executive Summary'
+      }
     },
     scales: {
       r: {
@@ -52,12 +59,16 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
       }
     }
   };
+  cReportDetails:any=[];
+
+  @ViewChild('pdfTable') pdfTable: ElementRef | undefined;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private commonService: CommonService,
     private auditExecutionService: AuditExecutionService,
+    private authService:AuthenticationService,
     private reportService: ReportService
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -70,6 +81,8 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
     this.getExecutiveSummary();
     this.getSummaryDetails();
     this.getCriticalObservations();
+    this.getCmeasureReport();
+    this.auditDetails = this.authService.getAuditDetails();
   }
 
   getExecutiveSummary() {
@@ -78,6 +91,11 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
       next: (res) => {
         if (res) {
           this.auditReportData = res;
+          this.categoryScoreSum = 0;
+          this.totalCountSum = 0;
+          this.pieScoreSum = 0;
+          this.triangleScoreSum = 0;
+          this.xScoreSum = 0;
           this.auditReportData.catergoryWiseScoreModel.forEach((element: any, index: number) => {
             this.reportData.labels?.push(`${index + 1} ${element.name}`);
             const reprotData = (element.categoryScore / element.totalCount) * 100;
@@ -88,32 +106,8 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
             this.triangleScoreSum += element.triangleScore ? element.triangleScore : 0;
             this.xScoreSum += element.xScore ? element.xScore : 0;
           });
+          this.totalCountPercentage = (this.categoryScoreSum * 100) / this.totalCountSum;
           this.chartsData = true;
-          this.commonService.hideLoading();
-        }
-      },
-      error: (e) => {
-        console.error(e);
-        this.commonService.hideLoading();
-      }
-    });
-  }
-
-  back() {
-    this.router.navigateByUrl(`dashboard/evidence/section-data`);
-  }
-
-  getSummaryDetails() {
-    this.commonService.showLoading();
-    this.auditExecutionService.getSummaryDetails(this.auditPlanId).subscribe({
-      next: (res) => {
-        if (res) {
-          this.summaryDetails = res;
-          this.summaryDetails.forEach((x: any) => {
-            if (x.judgementSymbol == 'Pie') {
-              x.judgeSymbol = ''
-            }
-          });
           this.commonService.hideLoading();
         }
       },
@@ -140,6 +134,7 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
     });
   }
 
+
   exportAsPDF(div_id: any) {
     let data = document.getElementById(div_id);
     if (data != null) {
@@ -158,5 +153,49 @@ export class EvidenceExecutiveSummaryComponent implements OnInit {
     }
   }
 
+  getSummaryDetails() {
+    this.commonService.showLoading();
+    this.auditExecutionService.getSummaryDetails(this.auditPlanId).subscribe({
+      next: (res) => {
+        if (res) {
+          this.summaryDetails = res;
+          this.summaryDetails.forEach((x: any) => {
+            if (x.judgementSymbol == 'Pie') {
+              x.judgeSymbol = ''
+            }
+          });
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });
+  }
 
+  getCmeasureReport(){
+    this.commonService.showLoading();
+    this.auditExecutionService.getCmeasureReport(this.auditPlanId).subscribe({
+      next: (res) => {
+        if (res) {
+          this.cReportDetails = res;
+          this.commonService.hideLoading();
+          this.cReportDetails.forEach((x:any)=>{
+            if(x.dateOfSubmission == "0001-01-01T00:00:00"){
+              x.dateOfSubmission = null
+            }
+           });
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      }
+    });  
+  }
+
+  back(){
+    this.router.navigateByUrl(`dashboard/evidence/section-data`);
+  }
 }

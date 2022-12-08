@@ -25,9 +25,9 @@ export class ActionPlanObservationComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   }
-  categoryName:any;
   minStartDate = {};
   today= new Date();
+  actionPlanStatus:any;
   constructor(
     private authService:AuthenticationService,
     private commonService: CommonService,
@@ -48,18 +48,18 @@ export class ActionPlanObservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCategoryDetails();
     this.getActionPlanList();
   }
 
   getActionPlanList(){
     this.commonService.showLoading();
-    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId,
-      categoryId: this.categoryId}).subscribe({
+    this.auditExeService.getActionPlan({auditPlanId:this.auditPlanId}).subscribe({
       next: (res) => {
         if(res){
          this.actionPlanList = res;
-        
+         this.actionPlanList.find((x:any)=>{
+          x.isActionPlanRejected =='2'? this.actionPlanStatus= 'Rejected' : this.actionPlanStatus= 'Accepted';
+         });
          this.actionPlanList.forEach((x:any)=>{
           if(x.dateOfSubmission == "0001-01-01T00:00:00"){
             x.dateOfSubmission = null
@@ -83,9 +83,7 @@ export class ActionPlanObservationComponent implements OnInit {
     this.commonService.showLoading();
     let submittedFields = 0;
     this.actionPlanList.forEach((element:any) => {
-      element.auditPlanId = this.auditPlanId;
-      element.createdBy = this.userId;
-      if(!element.dateOfSubmission || !element.detailOfImprovement|| !element.incharge){
+      if(!element.detailOfImprovement || !element.incharge || !element.dateOfSubmission){
         submittedFields++;
       }
     });
@@ -96,7 +94,10 @@ export class ActionPlanObservationComponent implements OnInit {
       });
       this.commonService.hideLoading();
       return;
-    }
+    } 
+    this.actionPlanList.forEach((item:any) => {
+      item.isDraft = false;
+    });
     this.auditExeService.saveActionPlan(this.actionPlanList).subscribe({
       next: (res) => {
         if(res){
@@ -104,7 +105,7 @@ export class ActionPlanObservationComponent implements OnInit {
             title: 'Improvement Plan Submitted Successfully',
             icon: 'success',
           });
-          this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
+          this.router.navigateByUrl(`dashboard/action-plan`);
           this.commonService.hideLoading();
         }
        },
@@ -120,35 +121,25 @@ export class ActionPlanObservationComponent implements OnInit {
   } 
 
   back(){
-    Swal.fire({
-      title: 'Are you sure want to Go Back?',
-      text: 'The data you entered will not be saved',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
-    }).then((result) => {
-      if (result.value) {
-      this.router.navigateByUrl(`dashboard/action-plan/category/${this.auditPlanId}`);
-      }
-    }); 
+   this.router.navigateByUrl(`dashboard/action-plan`);
   }
 
-  getCategoryDetails(){
-    this.commonService.showLoading();  
-    this.categoryService.getCategoryDetails(this.categoryId).subscribe({
+  save(item:any){
+    item.isDraft = true;
+    this.auditExeService.saveAsDraftActionPlan(item).subscribe({
       next: (res) => {
         if(res){
-         this.categoryName = res.name;
-         this.commonService.hideLoading();
+          Swal.fire({
+            title: 'Improvement Plan Submitted Successfully',
+            icon: 'success',
+          });
+          this.commonService.hideLoading();
         }
        },
-      error: (e) => {
+       error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
-      }
-      , 
-     });
+      }, 
+     });  
   }
-
 }

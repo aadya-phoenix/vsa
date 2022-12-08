@@ -81,12 +81,6 @@
                                     <input type="date" [(ngModel)]="plannedEndDate" class="form-control mr-1 filter_css inputbox_css "
                                         placeholder="Date ">
                                 </div>
-
-                                <div class=" mr-1">
-                                    <label class="filter_label">Status</label>
-                                    <input type="text" [(ngModel)]="statusName" class="form-control mr-1 filter_css inputbox_css "
-                                        placeholder="Status ">
-                                </div>
                                 <div class="mt_24">
                                     <button type="button" (click)="filter()"
                                         class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span>
@@ -100,7 +94,7 @@
                             <div class="table-responsive max_hei_table">
                                 <table id="" class="table table-bordered table-hover">
                                     <thead>
-                                        <tr class=" text-center sticky_header">
+                                        <tr class=" sticky_header">
                                             <th>Audit No</th>
                                             <th>Vendor Code </th>
                                             <th>Vendor Name</th>
@@ -108,9 +102,13 @@
                                             <th>Any Other Location</th>
                                             <th>Planned Start Date </th>
                                             <th>Planned End Date</th>
-                                            <th>Status </th>
+                                            <th>Audit Plan Status (By Vendor) </th>
+                                           
                                             <th *ngIf="isAuditor || isPlanner">View</th>
                                             <th *ngIf="isAuditor || isSuperAdmin || isPlanner">Initiate Audit </th>
+                                            <th>View Report</th>
+                                            <th>Audit Plan Approval Status(By SH / DPM)</th>
+                                            <th>Audit Log</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -119,13 +117,14 @@
                                             <td>{{item.auditNumber}}</td>
                                             <td>{{item.vendorCode}}</td>
                                             <td>{{item.vendorName}}</td>
-                                            <td>{{item.locationName}}</td>
+                                            <td><p class="show1 mb-0">{{item.locationName}}</p></td>
                                             <td>{{item.otherLocation}}</td>
                                             <td>{{item.plannedStartDate | date:dateFormate}}</td>
                                             <td>{{item.plannedEndDate | date:dateFormate}}</td>
                                             <td>
-                                                <p [ngClass]="item.status">{{item.status}} </p>
+                                                <p [ngClass]="item.status" class="btn btn-defult width-123">{{item.status}} </p>
                                             </td>
+                                        
                                             <td *ngIf="isAuditor || isPlanner">
                                                 <a (click)="viewManageAudit(item)" ><img
                                                         src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
@@ -137,6 +136,9 @@
                                                         class="viwe_iamge"></a>
                                                 </div>
                                             </td>
+                                            <td><a (click)="goToReport(item.id)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a></td>
+                                            <td><p class="mb-0 width-123"></p></td>
+                                            <td><button (click)="openModal(item)" class="btn btn-secondary">Audit Log</button></td>
                                         </tr>
                                     </tbody>
                                 </table>

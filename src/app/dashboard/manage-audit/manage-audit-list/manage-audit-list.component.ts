@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { dataConstants } from 'src/app/shared/constants/dataConstants';
 import { AuditExecutionService } from 'src/app/shared/services/audit-execution/audit-execution.service';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
+import { ManageAuditLogComponent } from '../manage-audit-log/manage-audit-log.component';
 
 @Component({
   selector: 'app-manage-audit-list',
@@ -12,6 +14,7 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
   styleUrls: ['./manage-audit-list.component.css']
 })
 export class ManageAuditListComponent implements OnInit {
+  bsModalRef ?: BsModalRef;
   dateFormate= dataConstants.dateFormate;
   getUserrole: any;
   isSuperAdmin =false;
@@ -38,6 +41,7 @@ export class ManageAuditListComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
+    private modalService: BsModalService,
     private auditPlanService:AuditPlanService,
     private auditExecuteService:AuditExecutionService,
     private commonService: CommonService,
@@ -128,5 +132,22 @@ export class ManageAuditListComponent implements OnInit {
         this.commonService.hideLoading();
       }
     }); 
+  }
+
+  openModal(item:any){
+    const initialState: ModalOptions = {
+      initialState: {
+       data:item.id,
+       title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(ManageAuditLogComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.onHidden?.subscribe(() => {
+    });
+  }
+
+  goToReport(id:any){
+   this.router.navigateByUrl(`dashboard/manage-audit/report/${id}`)
   }
 }

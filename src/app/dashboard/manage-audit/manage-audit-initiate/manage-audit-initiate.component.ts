@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
+import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
 import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
 import { VendorMasterService } from 'src/app/shared/services/vendor-master/vendor-master.service';
@@ -53,6 +54,7 @@ export class ManageAuditInitiateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getinitiateDetails();
+    localStorage.setItem('auditDetails', JSON.stringify({}));
   }
 
   getinitiateDetails(){
@@ -61,6 +63,7 @@ export class ManageAuditInitiateComponent implements OnInit {
       next: (res) => {
         if(res){
          this.initiateDetails = res;
+         localStorage.setItem('auditDetails', JSON.stringify(this.initiateDetails));
          this.vendorId = this.initiateDetails.vendorId;
          this.initiateForm.controls['vendorName'].setValue(this.initiateDetails.vendorName);
          this.initiateForm.controls['vendorCode'].setValue(this.initiateDetails.vendorCode);

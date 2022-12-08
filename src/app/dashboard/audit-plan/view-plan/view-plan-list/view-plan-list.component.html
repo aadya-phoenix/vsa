@@ -1,188 +1,203 @@
 <section class="content">
-    <div class="container-fluid">
-      <div class="d-flex justify-content-center mb-2 flex_direction_media">
-        <a  class="child_counter gradien_plan">
-          <div class="">
-            <div class="d-flex justify-content-between align-items-center">
-              <img src="../../../../assets/icons/counter/shield.png" class="counter_img">
-              <p class="color_white mb-0 fon_13">Total Plan</p>
-            </div>
-            <div>
-              <p class="counter_digit">{{counters.totalPlanCount}}</p>
-              <a></a>
-            </div>
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center mb-2 flex_direction_media">
+      <a class="child_counter gradien_plan">
+        <div class="">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="../../../../assets/icons/counter/shield.png" class="counter_img">
+            <p class="color_white mb-0 fon_13">Total Plan</p>
           </div>
-        </a>
-        <a  class="child_counter gradien_approve">
-          <div class="">
-            <div class="d-flex justify-content-between align-items-center">
-              <img src="../../../../assets/icons/counter/approve.png" class="counter_img">
-              <p class="color_white mb-0 fon_13">Approve Task</p>
-            </div>
-            <div>
-              <p class="counter_digit">{{counters.approvedAudits}}</p>
-              <a></a>
-            </div>
+          <div>
+            <p class="counter_digit">{{counters.totalPlanCount}}</p>
+            <a></a>
           </div>
-        </a>
-        <a  class="child_counter gradien_pending">
-          <div class="">
-            <div class="d-flex justify-content-between align-items-center">
-              <img src="../../../../assets/icons/counter/pending.png" class="counter_img">
-              <p class="color_white mb-0 fon_13">Pending Plan</p>
-            </div>
-            <div>
-              <p class="counter_digit">{{counters.pendingAudits}}</p>
-              <a></a>
-            </div>
+        </div>
+      </a>
+      <a class="child_counter gradien_approve">
+        <div class="">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="../../../../assets/icons/counter/approve.png" class="counter_img">
+            <p class="color_white mb-0 fon_13">Approve Task</p>
           </div>
-        </a>
-        <a  class="child_counter gradien_auditor_assign">
-          <div class="">
-            <div class="d-flex justify-content-between align-items-center">
-              <img src="../../../../assets/icons/counter/auditor.png" class="counter_img">
-              <p class="color_white mb-0 fon_13">Auditor Assign</p>
-            </div>
-            <div>
-              <p class="counter_digit">{{counters.auditorAssigned}}</p>
-              <a></a>
-            </div>
+          <div>
+            <p class="counter_digit">{{counters.approvedAudits}}</p>
+            <a></a>
           </div>
-        </a>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <div class="header_card  justify-content-center mb-1">
-                <h3 class="card-title">Audit Plan ( Manage Audit ) </h3>              
-              </div>
-              <div class="d-flex align-items-center justify-content-center">
-                <div class=" mr-1">
-                  <label class="filter_label">Vendor Code</label>
+        </div>
+      </a>
+      <a class="child_counter gradien_pending">
+        <div class="">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="../../../../assets/icons/counter/pending.png" class="counter_img">
+            <p class="color_white mb-0 fon_13">Pending Plan</p>
+          </div>
+          <div>
+            <p class="counter_digit">{{counters.pendingAudits}}</p>
+            <a></a>
+          </div>
+        </div>
+      </a>
+      <a class="child_counter gradien_auditor_assign">
+        <div class="">
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="../../../../assets/icons/counter/auditor.png" class="counter_img">
+            <p class="color_white mb-0 fon_13">Auditor Assign</p>
+          </div>
+          <div>
+            <p class="counter_digit">{{counters.auditorAssigned}}</p>
+            <a></a>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="header_card  justify-content-center mb-1">
+              <h3 class="card-title">Audit Plan ( Manage Audit ) </h3>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+              <div class=" mr-1">
+                <label class="filter_label">Vendor Code</label>
                 <input type="text" [(ngModel)]="vendorCode" class="form-control  filter_css" placeholder="Vendor Code ">
-                </div>
-                <div class=" mr-1">
-                  <label class="filter_label">Vendor Name</label>
+              </div>
+              <div class=" mr-1">
+                <label class="filter_label">Vendor Name</label>
                 <input type="text" [(ngModel)]="vendorName" class="form-control  filter_css" placeholder="Vendor Name ">
-                </div>
+              </div>
 
-                <div class=" mr-1">
-                  <label class="filter_label">From Date</label>
+              <div class=" mr-1">
+                <label class="filter_label">From Date</label>
                 <input type="date" [(ngModel)]="plannedStartDate" class="form-control  filter_css" placeholder="Date ">
               </div>
-             <div class=" mr-1">
-                  <label class="filter_label">To Date</label>
+              <div class=" mr-1">
+                <label class="filter_label">To Date</label>
                 <input type="date" [(ngModel)]="plannedEndDate" class="form-control filter_css" placeholder="Date ">
               </div>
-             <div class=" mr-1">
-                  <label class="filter_label">Status</label>
+        <!--       <div class=" mr-1">
+                <label class="filter_label">Status</label>
                 <input type="text" [(ngModel)]="statusName" class="form-control filter_css" placeholder="Status ">
-              </div>
+              </div> -->
               <div class="mt_22">
-                <button type="button" (click)="filter()" class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
-                <button type="button" (click)="reset()" class="form-control mr-1 filter_css heigh_60 btn btn-secondary"><span>Reset</span></button>
-              </div> 
+                <button type="button" (click)="filter()"
+                  class="form-control mr-1 filter_css heigh_60 btn btn-primary"><span>Submit</span> </button>
+                <button type="button" (click)="reset()"
+                  class="form-control mr-1 filter_css heigh_60 btn btn-secondary"><span>Reset</span></button>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive max_hei_table">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                    <tr class="now_rap text-center sticky_header">
-                      <th>Audit No</th>
-                      <th>Vendor Code </th>
-                      <th>Vendor Name</th>
-                      <th>Location</th>
-                      <th>Any Other Location</th>
-                      <th>Category</th>
-                      <th>Planned Start Date </th>
-                      <th>Planned End Date</th>
-                      <th>Report Release Date</th>
-                      <th>Report</th>
-                      <th>Status Pending At</th>
-                      <th *ngIf="isSuperAdmin || isPlanner">View</th>
-                      <th *ngIf="isSuperAdmin || isPlanner">Add Auditor</th>
-                      <th>Auditors Assigned</th>
-                      <th>Final Auditor</th>
-                      <th>Status </th>          
-                      <th> Action Plan</th>   
-                      <th> Evidences Recieved </th>
-                      <th> Log </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="tbody_data" *ngFor="let item of viewPlanListToShow| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index"> 
-                      <td>{{item.auditNumber}}</td>
-                      <td>{{item.vendorCode}}</td>
-                      <td>{{item.vendorName}}</td>
-                      <td>{{item.locationName}}</td>
-                      <td>{{item.otherLocation}}</td>
-                      <td>{{item.categoryName}}</td>
-                      <td>{{item.plannedStartDate | date:dateFormate}}</td>
-                      <td>{{item.plannedEndDate | date:dateFormate}}</td>
-                      <td>{{item.reportReleaseDate | date:dateFormate}}</td>
-                      <td>{{item.typeOfReport}}</td>
-                      <td>{{item.statusPendingAt}}</td>
-                      <td *ngIf="isSuperAdmin || isPlanner">
-                        <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>             
-                      </td>
-                      <td *ngIf="isSuperAdmin">
-                         <div *ngIf="isSuperAdmin && (item.status == Accepted) && (item.typeOfReport != Final)">  <a  (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img src="../../../../assets/icons/audit.png" class="viwe_iamge"></a> </div></td>
-                      <td><p class="w_120 show1">{{item.auditorName}}</p></td>
-                      <td></td>
-                      <td><p [ngClass]="item.status" >{{item.status =='Submitted' ? 'Pending At Vendor' : item.status}} </p></td>
-                      <td><div *ngIf="item.status == 'Accepted'">
-                        <button class="btn btn-primary" (click)="pendingAction(item)" >
-                          {{item.actionPlanStatus}}</button>
-                      </div></td>
-                      <td (click)="evidence(item.id)" >{{item.evidenceReceived
-                      }}</td>
-                      <td>  <button (click)="openModal(item)" class="mr-1 Auditor-log btn btn-secondary">
-                        <span>Audit Log</span></button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <nav aria-label="Page navigation example">
-                <div class="pagination justift_end">
-                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-                </div>
-              </nav> 
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section><div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Request Details</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">Vendor Code</th>
-                <th scope="col">Vendor Name</th>
-                <th scope="col">Auditor Name</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-            
-              
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="card-body">
+            <div class="table-responsive max_hei_table">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr class="now_rap sticky_header">
+                    <th>Audit No</th>
+                    <th>Vendor Code </th>
+                    <th>Vendor Name</th>
+                    <th>Location</th>
+                    <th>Any Other Location</th>
+                    <th>Category</th>
+                    <th>Planned Start Date </th>
+                    <th>Planned End Date</th>
+                    <th>Report Release Date</th>
+                    <th>Report</th>
+                    <th>Status Pending At</th>
+                    <th *ngIf="isSuperAdmin || isPlanner">View</th>
+                    <th *ngIf="isSuperAdmin || isPlanner">Add Auditor</th>
+                    <th>Auditors Assigned</th>
+                    <th>Lead Auditor</th>
+                    <th>Status </th>
+                    <th> Action Plan</th>
+                    <th> Evidences Recieved </th>
+                    <th> Log </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="tbody_data"
+                    *ngFor="let item of viewPlanListToShow| paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNumber } ;let i =index">
+                    <td>{{item.auditNumber}}</td>
+                    <td>{{item.vendorCode}}</td>
+                    <td>{{item.vendorName}}</td>
+                    <td>{{item.locationName}}</td>
+                    <td>{{item.otherLocation}}</td>
+                    <td>{{item.categoryName}}</td>
+                    <td>{{item.plannedStartDate | date:dateFormate}}</td>
+                    <td>{{item.plannedEndDate | date:dateFormate}}</td>
+                    <td>{{item.reportReleaseDate | date:dateFormate}}</td>
+                    <td>{{item.typeOfReport}}</td>
+                    <td>{{item.statusPendingAt}}</td>
+                    <td *ngIf="isSuperAdmin || isPlanner">
+                      <a (click)="viewPlan(item)"><img src="../../../../assets/icon/view.png" class="viwe_iamge"></a>
+                    </td>
+                    <td *ngIf="isSuperAdmin">
+                      <div *ngIf="isSuperAdmin && (item.status == Accepted) && (item.typeOfReport != Final)"> <a
+                          (click)="assign(item)" data-toggle="tooltip" data-placement="top" title="Add Auditor"><img
+                            src="../../../../assets/icons/audit.png" class="viwe_iamge"></a> </div>
+                    </td>
+                     <td>
+                      <p class="show1">{{item.auditorName}}</p>
+                    </td>
+                    <td>{{item.finalAuditor}}</td>
+                    <td>
+                      <p [ngClass]="item.status" class="btn btn-default">{{item.status =='Submitted' ? 'Pending At
+                        Vendor' : item.status}} </p>
+                    </td>
+                    <td>
+                      <div *ngIf="item.status == 'Accepted'">
+                        <button class="btn btn-primary" (click)="pendingAction(item)">
+                          {{item.actionPlanStatus}}</button>
+                      </div>
+                    </td>
+                    <td (click)="evidence(item.id)">{{item.evidenceReceived
+                      }}</td>
+                    <td> <button (click)="openModal(item)" class="mr-1 Auditor-log btn btn-secondary">
+                        <span>Audit Log</span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <nav aria-label="Page navigation example">
+              <div class="pagination justift_end">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+              </div>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</section>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Request Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Vendor Code</th>
+              <th scope="col">Vendor Name</th>
+              <th scope="col">Auditor Name</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
