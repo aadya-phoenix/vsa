@@ -33,4 +33,9 @@ export class AuthenticationService {
     let role = JSON.parse(localStorage.getItem('role') || '{}')
     return JSON.parse(localStorage.getItem('role') || '{}')
   }
+
+  setPassword(data:any){
+    const url = `${this.basePath}api/User/UpdatePassword/UpdatePassword`;
+    return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));  
+  }
 }

@@ -32,7 +32,9 @@ export const dataConstants = {
     JudgementValues:{
         Triangle:"70d2109a-1bb4-46ff-ad68-25b00efdce33",
         X:"4a616c17-5038-4b50-b437-5a781c09ffc0",
-        Pie:"0c12ff85-a88e-4f05-a4f8-8115ead3e379"
+        Pie:"0c12ff85-a88e-4f05-a4f8-8115ead3e379",
+       /*  Na:"83262F3C-2195-487B-A279-39DC1B3982FF", */
+        Na:"83262f3c-2195-487b-a279-39dc1b3982ff"
     }
     
     

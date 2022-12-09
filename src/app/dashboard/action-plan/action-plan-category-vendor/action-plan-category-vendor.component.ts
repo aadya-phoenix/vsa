@@ -45,7 +45,14 @@ export class ActionPlanCategoryVendorComponent implements OnInit {
         if(res){
          this.categoryScoreList = res;
          this.categoryScoreList.forEach((x:any)=>{
-          x.completePercent = Math.round(((x.closure)/x.actionPlanCount)*100);
+          let divScore = Math.round(((x.closure)/x.actionPlanCount));
+           
+          if(isNaN(divScore)){
+            x.completePercent = 0;
+          }
+          else{
+            x.completePercent = Math.round(((x.closure)/x.actionPlanCount)*100);
+          }
          })
          this.commonService.hideLoading();
         }

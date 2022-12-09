@@ -29,10 +29,10 @@
                 <div class="">
                   <div class="d-flex justify-content-between align-items-center">
                     <img src="../../../../assets/icons/counter/shield.png" class="counter_img">
-                    <p class="color_white mb-0 fon_13">Total Plan</p>
+                    <p class="color_white mb-0 fon_13">Total Audits(MTD)</p>
                   </div>
                   <div>
-                    <p class="counter_digit">12</p>
+                    <p class="counter_digit">{{counters?.total}}</p>
                     <a></a>
                   </div>
                 </div>
@@ -41,10 +41,10 @@
                 <div class="">
                   <div class="d-flex justify-content-between align-items-center">
                     <img src="../../../../assets/icons/counter/approve.png" class="counter_img">
-                    <p class="color_white mb-0 fon_13">Approve Task</p>
+                    <p class="color_white mb-0 fon_13">In Progress</p>
                   </div>
                   <div>
-                    <p class="counter_digit">5</p>
+                    <p class="counter_digit">{{counters?.inProgress}}</p>
                     <a></a>
                   </div>
                 </div>
@@ -53,10 +53,10 @@
                 <div class="">
                   <div class="d-flex justify-content-between align-items-center">
                     <img src="../../../../assets/icons/counter/pending.png" class="counter_img">
-                    <p class="color_white mb-0 fon_13">Pending Plan</p>
+                    <p class="color_white mb-0 fon_13">Completed</p>
                   </div>
                   <div>
-                    <p class="counter_digit">4</p>
+                    <p class="counter_digit">{{counters?.completed}}</p>
                     <a></a>
                   </div>
                 </div>
@@ -65,10 +65,10 @@
                 <div class="">
                   <div class="d-flex justify-content-between align-items-center">
                     <img src="../../../../assets/icons/counter/auditor.png" class="counter_img">
-                    <p class="color_white mb-0 fon_13">Auditor Assign</p>
+                    <p class="color_white mb-0 fon_13">Past Due</p>
                   </div>
                   <div>
-                    <p class="counter_digit">3</p>
+                    <p class="counter_digit">{{counters?.pastDue}}</p>
                     <a></a>
                   </div>
                 </div>

@@ -10,6 +10,7 @@ import { EvidenceReceivedComponent } from './evidence-received/evidence-received
 import { EvidenceScoreCategoryComponent } from './evidence-score-category/evidence-score-category.component';
 import { EvidenceSubmissionComponent } from './evidence-submission/evidence-submission.component';
 import { SectionHeadDataComponent } from './section-head-data/section-head-data.component';
+import { SectionHeadRejectedRecordsComponent } from './section-head-rejected-records/section-head-rejected-records.component';
 
 const routes: Routes = [
   {path:'',component:EvidenceAuditsComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path:'category/:id',component:EvidenceReceiveCategoryComponent},
   {path:'remark/:id',component:AddSectionHeadRemarksComponent},
   {path:'report/:id',component:EvidenceExecutiveSummaryComponent},
-  {path:'dpm-report/:id',component:DpmReportComponent}
+  {path:'dpm-report/:id',component:DpmReportComponent},
+  {path:'section-reject',component:SectionHeadRejectedRecordsComponent}
 ];
 
 @NgModule({

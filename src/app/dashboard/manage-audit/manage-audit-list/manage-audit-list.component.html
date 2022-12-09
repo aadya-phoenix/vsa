@@ -8,10 +8,10 @@
                             <div class=" p-2 gradien_plan">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <img src="../../../../assets/icons/counter/user.png" class="counter_img">
-                                    <p class="color_white mb-0 fon_13">Total Auditor(MTD)</p>
+                                    <p class="color_white mb-0 fon_13">Total Audits(MTD)</p>
                                 </div>
                                 <div>
-                                    <p class="counter_digit">8</p>
+                                    <p class="counter_digit">{{counters?.total}}</p>
                                     <a></a>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@
                                     <p class="color_white mb-0 fon_13">In Progress</p>
                                 </div>
                                 <div>
-                                    <p class="counter_digit">6</p>
+                                    <p class="counter_digit">{{counters?.inProgress}}</p>
                                     <a></a>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                     <p class="color_white mb-0 fon_13">Completed</p>
                                 </div>
                                 <div>
-                                    <p class="counter_digit">6</p>
+                                    <p class="counter_digit">{{counters?.completed}}</p>
                                     <a></a>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                     <p class="color_white mb-0 fon_13">Past Due</p>
                                 </div>
                                 <div>
-                                    <p class="counter_digit">6</p>
+                                    <p class="counter_digit">{{counters?.pastDue}}</p>
                                     <a></a>
                                 </div>
                             </div>

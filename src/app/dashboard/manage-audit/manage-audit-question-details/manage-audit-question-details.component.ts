@@ -37,6 +37,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
   triangle = dataConstants.JudgementValues.Triangle;
   cross = dataConstants.JudgementValues.X;
   pie = dataConstants.JudgementValues.Pie;
+  na = dataConstants.JudgementValues.Na;
   auditPlanDetails: any;
   viewPlanId: any;
   vendorName: any;
@@ -199,7 +200,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
                 reg.lstObservation.forEach((x: any) => {
                   reg.remarks.push({ remark: x.remark, id: x.id, repeatIssue:x.repeatIssue  });
                 });
-                console.log("repeatIssue",reg.remarks);
                 for (let item of reg.lstObservation) {
                   this.judgeNew.push(this.fb.group({
                     remark: item.remark,
@@ -252,7 +252,6 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
 
   submit(index: any, id: any) {
     this.commonService.showLoading();
-    //
     const body = this.questionForm.controls['metadata'].value;
     if (!body[index].JudgementId) {
       Swal.fire({
@@ -262,6 +261,15 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
       this.commonService.hideLoading();
       return;
     }
+    if((body[index].JudgementId == this.triangle || body[index].JudgementId == this.cross)
+      && !body[index].ObservationList[0].remark ){
+        Swal.fire({
+          title: 'Please Submit Remarks.',
+          icon: 'error',
+        });
+        this.commonService.hideLoading();
+        return;
+      }
     body[index].ObservationList.forEach((x: any) => {
       x.regulationId = id;
     });
@@ -382,5 +390,12 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(LastYearRemarksComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+  getPie(event:any){
+    Swal.fire({
+      title:  `No need for Remarks`,
+      icon: 'warning'
+     });
   }
 }

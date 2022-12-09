@@ -56,6 +56,7 @@ export class ManageAuditListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getViewPlanList();
+    this.getStatusCount();
   }
 
   getViewPlanList(){
@@ -149,5 +150,19 @@ export class ManageAuditListComponent implements OnInit {
 
   goToReport(id:any){
    this.router.navigateByUrl(`dashboard/manage-audit/report/${id}`)
+  }
+
+  getStatusCount(){
+    this.commonService.showLoading();
+    this.auditExecuteService.getStatusCount().subscribe({
+      next:(res: any) => {
+        this.counters = res;
+        this.commonService.hideLoading();
+      },
+      error:(err:any) =>  {
+        console.error(err);
+        this.commonService.hideLoading();
+      }
+    });  
   }
 }

@@ -66,7 +66,7 @@ export class CreatePlanComponent implements OnInit {
         'Invalid File!',
         `File is more than ${dataConstants.maxImageSize} mb. Please select a valid file`,
         'warning'
-      )
+      );
       event.target.value = '';
       return;
     }
@@ -216,10 +216,6 @@ export class CreatePlanComponent implements OnInit {
         this.commonService.hideLoading();
       },
       error: (err: any) => {
-        /* Swal.fire({
-          title: 'Please check format & try again',
-          icon: 'error',
-        }); */
         this.bulkFile = '';
         this.commonService.hideLoading();
       }

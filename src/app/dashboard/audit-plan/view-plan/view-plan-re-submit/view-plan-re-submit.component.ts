@@ -55,18 +55,18 @@ export class ViewPlanReSubmitComponent implements OnInit {
     });
     
     this.viewPlanForm = this.formBuilder.group({
-      vendorId: new FormControl('', [Validators.required]),
-      locationId: new FormControl('', [Validators.required]),
+      vendorId: new FormControl('', []),
+      locationId: new FormControl('', []),
       otherLocation: new FormControl('', []),
-      vendorCategoryId:new FormControl('', [Validators.required]),
+      vendorCategoryId:new FormControl('', []),
       otherCode: new FormControl('', []),
       typeCode: new FormControl('', []),
       typeName: new FormControl('', []),
       typeLocation: new FormControl('', []),
-      plannedStartDate: new FormControl('', [Validators.required]),
-      plannedEndDate: new FormControl('', [Validators.required]),
+      plannedStartDate: new FormControl('', []),
+      plannedEndDate: new FormControl('', []),
       additionalMSILEmail: new FormControl('', []),
-      auditeeEmail: new FormControl('', [Validators.required]),
+      auditeeEmail: new FormControl('', []),
    });
   }
 
@@ -90,6 +90,43 @@ export class ViewPlanReSubmitComponent implements OnInit {
     }
     const body = this.viewPlanForm.value;
     body.id = this.viewPlanId;
+    if(!body.vendorId){
+      body.vendorId = this.viewPlanDetails.vendorId;
+    }
+    if(!body.locationId){
+      body.locationId = this.viewPlanDetails.locationId;
+    }
+    if(!body.otherLocation){
+      body.otherLocation = this.viewPlanDetails.otherLocation;
+    }
+    if(!body.vendorCategoryId){
+      body.vendorCategoryId = this.viewPlanDetails.vendorCategoryId;
+    }
+    if(!body.otherCode){
+      body.otherCode = this.viewPlanDetails.otherCode;
+    }
+    if(!body.typeCode){
+      body.typeCode = this.viewPlanDetails.typeCode;
+    }
+    if(!body.typeName){
+      body.typeName = this.viewPlanDetails.typeName;
+    }
+    if(!body.typeLocation){
+      body.typeLocation = this.viewPlanDetails.typeLocation;
+    }
+    if(!body.plannedStartDate){
+      body.plannedStartDate = this.viewPlanDetails.plannedStartDate;
+    }
+    if(!body.plannedEndDate){
+      body.plannedEndDate = this.viewPlanDetails.plannedEndDate;
+    }
+    if(!body.additionalMSILEmail){
+      body.additionalMSILEmail = this.viewPlanDetails.additionalMSILEmail;
+    }
+    if(!body.auditeeEmail){
+      body.auditeeEmail = this.viewPlanDetails.auditeeEmail;
+    }
+    
     
     const formData = new FormData();
      formData.append('Id', body.id);  
@@ -262,7 +299,7 @@ export class ViewPlanReSubmitComponent implements OnInit {
     this.viewPlanForm.controls['vendorId'].setValue(vendorId);
     vendorId ? this.getLocation(vendorId) :  this.viewPlanForm.controls['locationId'].setValue('');
     vendorEmail ?  this.viewPlanForm.controls['auditeeEmail'].setValue(vendorEmail): this.viewPlanForm.controls['auditeeEmail'].setValue('');
-   }
+  }
 
    getVendorCategory() {
     this.commonService.showLoading();

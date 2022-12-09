@@ -83,8 +83,8 @@
                   <tr class="text-center bac_table_white">
                     <th colspan="2">Date of Issue
                     <td rowspan="2">{{auditReportData?.preparedBy}}</td>
-                    <td rowspan="2">{{auditReportData?.verifiedBy}}</td>
-                    <td rowspan="2">{{auditReportData?.approvedBy}}</td>
+                    <td rowspan="2">{{auditDetails?.dpm}}</td>
+                    <td rowspan="2"></td>
                   </tr>
                   <tr class="text-center">
                     <th colspan="2">Copy to</th>
@@ -103,7 +103,7 @@
                     <td></td>
                     <td colspan="3" class="vertical_top" ><p *ngFor="let item of auditReportData?.vendorAttendanceNames;let i =index;">{{i+1}}-{{item}}</p>
                     </td>
-                    <td colspan="2">{{auditReportData?.auditDate | date:dateFormat}}</td>
+                    <td colspan="2">{{auditDetails?.actualStartDate | date:dateFormat}} -{{auditDetails?.actualEndDate | date:dateFormat}}</td>
                   </tr>
                   <tr class="text-center">
                     <td>SC</td>
@@ -116,7 +116,7 @@
                     <td></td>
                     <td></td>
                     <th colspan="2">(Audit Score)</th>
-                    <td colspan="2" rowspan="5">{{auditReportData?.auditPerson}}</td>
+                    <td colspan="2" rowspan="5">{{auditDetails?.auditorName}}</td>
                   </tr>
                   <tr class="text-center">
                     <td></td>
@@ -151,7 +151,7 @@
                   </tr>
                   <tr class="text-center">
                     <th>Part Name:</th>
-                    <td>{{auditReportData?.partNumber}}</td>
+                    <td>{{auditDetails?.partName}}</td>
                   </tr>
                 </thead>
               </table>

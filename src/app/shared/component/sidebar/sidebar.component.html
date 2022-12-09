@@ -64,6 +64,30 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item" *ngIf="isSectionHead"> 
+            <a routerLink="/dashboard/evidence/section-data" class="nav-link active-sidebar">
+              <img src="../../assets/icons/planning.png" class="side_img">
+              <p>
+              Pending For Approval
+              </p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isSectionHead"> 
+            <a routerLink="/dashboard/evidence/section-reject" class="nav-link active-sidebar">
+              <img src="../../assets/icons/planning.png" class="side_img">
+              <p>
+              Rejected Records
+              </p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isDPM"> 
+            <a routerLink="/dashboard/evidence/dpm" class="nav-link active-sidebar">
+              <img src="../../assets/icons/planning.png" class="side_img">
+              <p>
+                Report Approval
+              </p>
+            </a>
+          </li>
           <li class="nav-item" *ngIf="!isViewOnly">
             <a class="nav-link active-sidebar">
               <img src="../../assets/icons/management.png" class="side_img">
@@ -94,41 +118,6 @@
                   <img src="../../assets/icons/planning.png" class="side_img">
                   <p>
                     Pending Plan
-                  </p>
-                </a>
-              </li>
-
-           
-              <!-- <li class="nav-item" *ngIf="isSectionHead"> 
-                <a routerLink="/dashboard/evidence/section-data" class="nav-link">
-                  <img src="../../assets/icons/planning.png" class="side_img">
-                  <p>
-                    SectionHead Data
-                  </p>
-                </a>
-              </li> -->
-            
-              <!-- <li class="nav-item" *ngIf="isAuditor"> 
-                <a routerLink="/dashboard/action-plan/action-pending-plan" class="nav-link">
-                  <img src="../../assets/icons/planning.png" class="side_img">
-                  <p>
-                    RESULT OF VERIFICATION
-                  </p>
-                </a>
-              </li> -->
-              <li class="nav-item" *ngIf="isSectionHead"> 
-                <a routerLink="/dashboard/evidence/section-data" class="nav-link active-sidebar">
-                  <img src="../../assets/icons/planning.png" class="side_img">
-                  <p>
-                  Pending For Approval
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item" *ngIf="isDPM"> 
-                <a routerLink="/dashboard/evidence/dpm" class="nav-link active-sidebar">
-                  <img src="../../assets/icons/planning.png" class="side_img">
-                  <p>
-                    Report Approval
                   </p>
                 </a>
               </li>

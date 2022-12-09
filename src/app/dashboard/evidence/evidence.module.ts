@@ -21,6 +21,7 @@ import { DpmReportComponent } from './dpm-report/dpm-report.component';
 import { SectionHeadRejectComponent } from './section-head-reject/section-head-reject.component';
 import { DpmRejectComponent } from './dpm-reject/dpm-reject.component';
 import { AddSectionHeadRemarksComponent } from './add-section-head-remarks/add-section-head-remarks.component';
+import { SectionHeadRejectedRecordsComponent } from './section-head-rejected-records/section-head-rejected-records.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AddSectionHeadRemarksComponent } from './add-section-head-remarks/add-s
     DpmReportComponent,
     SectionHeadRejectComponent,
     DpmRejectComponent,
-    AddSectionHeadRemarksComponent
+    AddSectionHeadRemarksComponent,
+    SectionHeadRejectedRecordsComponent
   ],
   providers:[DatePipe],
   entryComponents:[EvidenceAuditorRemarksComponent,SectionHeadRejectComponent,DpmRejectComponent],

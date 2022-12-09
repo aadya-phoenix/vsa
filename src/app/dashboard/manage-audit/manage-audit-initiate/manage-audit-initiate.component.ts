@@ -113,7 +113,7 @@ export class ManageAuditInitiateComponent implements OnInit {
     this.commonService.showLoading();
     if(this.initiateForm.invalid){
       Swal.fire({
-        title: 'Please fill all fields.',
+        title: 'Please fill all mandatory fields.',
         icon: 'error',
       });
       this.commonService.hideLoading();

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import { dataConstants } from '../shared/constants/dataConstants';
+import { AuditExecutionService } from '../shared/services/audit-execution/audit-execution.service';
+import { AuditPlanService } from '../shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from '../shared/services/auth/authentication.service';
+import { CommonService } from '../shared/services/common/common.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,13 +16,17 @@ export class DashboardComponent implements OnInit {
   isVendor =false;
   getUserrole: any;
   Vendor = dataConstants.Vendor;
+  counters:any;
   constructor(
     private authService: AuthenticationService,
+    private auditPlanService:AuditPlanService,
+    private auditExecuteService:AuditExecutionService,
+    private commonService: CommonService,
+    private router:Router
   ) {
     this.getUserrole = this.authService.getRolefromlocal();
 
     this.isVendor = this.getUserrole.RoleId === this.Vendor.RoleId && this.getUserrole.role === this.Vendor.role; 
-    console.log("vendor",this.isVendor);
   }
   pieChartOptions: ChartOptions = {
     responsive: true,
@@ -99,6 +107,21 @@ export class DashboardComponent implements OnInit {
     },
   };
   ngOnInit(): void {
+    this.getStatusCount();
+  }
+
+  getStatusCount(){
+    this.commonService.showLoading();
+    this.auditExecuteService.getStatusCount().subscribe({
+      next:(res: any) => {
+        this.counters = res;
+        this.commonService.hideLoading();
+      },
+      error:(err:any) =>  {
+        console.error(err);
+        this.commonService.hideLoading();
+      }
+    });  
   }
 
 }

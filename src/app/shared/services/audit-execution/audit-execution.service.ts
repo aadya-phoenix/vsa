@@ -122,4 +122,9 @@ export class AuditExecutionService {
     const url = `${this.basePath}api/AuditExecution/GetCMeasureReport`;
     return this.http.postParams(url, {}, params).pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  getStatusCount(){
+    const url = `${this.basePath}api/AuditExecution/GetAuditStatusCount`;
+    return this.http.post(url, {}).pipe(catchError(this.commmonService.Errorhandling));
+  }
 }
