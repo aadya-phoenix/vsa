@@ -43,6 +43,20 @@ export class ManageAuditReportComponent implements OnInit {
         display: true,
         text: 'Executive Summary'
       }
+    },
+    scales: {
+      r: {
+        max: 100,
+        min: 0,
+        ticks: {
+          stepSize: 20,
+        },
+        pointLabels: {
+          font: {
+            size: 12
+          }
+        }
+      }
     }
   };
   cReportDetails:any=[];
@@ -124,22 +138,29 @@ export class ManageAuditReportComponent implements OnInit {
     this.router.navigateByUrl(`dashboard/manage-audit`);
   }
 
+  setCanvasImg() {
+    var canvasId = document.getElementById('canvasId') as HTMLCanvasElement;
+    var imgCanvas = document.getElementById('imgCanvas') as HTMLImageElement;
+    var printDiv = document.getElementById('printDiv') as HTMLDivElement;
+    imgCanvas.src = canvasId?.toDataURL()
+    printDiv.style.display = "none";
+  }
+
   exportAsPDF(div_id: any) {
-    let data = document.getElementById(div_id);
-    if (data != null) {
-      html2canvas(data, {
-        allowTaint: true
-      }).then((canvas: any) => {
-        const contentDataURL = canvas.toDataURL({
-          format: 'jpeg',
-          quality: 0.8
-       });
-        //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
-        let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
-        pdf.addImage(contentDataURL, 'PNG', 0, 0, 21.0,29.7);
-        pdf.save('ExecutiveSummary.pdf');
-      });
-    }
+    var printContents = document.getElementById('printDiv')?.innerHTML;
+    var popupWin = window.open('', 'width=300,height=300');
+    popupWin?.document.open();
+    var style = `<style>
+               .table-responsive { max-height: 100%; overflow: inherit; }
+               </style >`;
+    var html = '<html><head>'
+      + '<link rel="stylesheet" type="text/css" href="/styles.css" />'
+      + style
+      + '<link rel="stylesheet" type="text/css" href="webpack:///node_modules/bootstrap/scss/_card.scss" />'
+      + '</head><body onload="window.print()">'
+      + printContents + '</html>';
+    popupWin?.document.write(html);
+    popupWin?.document.close();
   }
 
   getSummaryDetails() {
@@ -169,12 +190,12 @@ export class ManageAuditReportComponent implements OnInit {
       next: (res) => {
         if (res) {
           this.cReportDetails = res;
+          this.commonService.hideLoading();
           this.cReportDetails.forEach((x:any)=>{
             if(x.dateOfSubmission == "0001-01-01T00:00:00"){
               x.dateOfSubmission = null
             }
            });
-          this.commonService.hideLoading();
         }
       },
       error: (e) => {

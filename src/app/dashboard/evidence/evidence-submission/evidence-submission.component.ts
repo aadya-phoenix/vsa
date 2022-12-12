@@ -82,24 +82,7 @@ export class EvidenceSubmissionComponent implements OnInit {
     }).subscribe({
       next: (res) => {
         if (res) {
-          var i = 1;
-          var j = 1;
           this.actionPlanList = res;
-          this.actionPlanList.forEach((item: any) => {
-            this.actionPlanList.forEach((subitem: any) => {
-              if (item.regulationId
-                == subitem.regulationId
-              ) {
-                item.itemno =
-                  subitem.itemno = i;
-                subitem.subitemno = i + '.' + j;
-                j++;
-                console.log("j ++", j);
-              }
-            });
-            i++;
-          });
-          console.log("item", this.actionPlanList);
           this.commonService.hideLoading();
         }
       },
@@ -163,6 +146,5 @@ export class EvidenceSubmissionComponent implements OnInit {
       ,
     });
   }
-
-
+  
 }

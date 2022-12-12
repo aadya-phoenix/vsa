@@ -273,6 +273,12 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     body[index].ObservationList.forEach((x: any) => {
       x.regulationId = id;
     });
+    if(body[index].JudgementId == this.pie && body[index].ObservationList[0].remark){
+      Swal.fire({
+        title:  `No need for Remarks`,
+        icon: 'warning'
+       });
+    }
     body[index].isSubmitted = true;
     const data = body[index];
     const formData: any = new FormData();
@@ -392,9 +398,9 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  getPie(event:any){
+  getNa(event:any){
     Swal.fire({
-      title:  `No need for Remarks`,
+      title:  `Are you sure this is a Non-Applicable Clause`,
       icon: 'warning'
      });
   }

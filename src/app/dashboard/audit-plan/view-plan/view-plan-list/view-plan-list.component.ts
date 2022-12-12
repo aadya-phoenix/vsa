@@ -6,6 +6,7 @@ import { AuditExecutionService } from 'src/app/shared/services/audit-execution/a
 import { AuditPlanService } from 'src/app/shared/services/audit-plan/audit-plan.service';
 import { AuthenticationService } from 'src/app/shared/services/auth/authentication.service';
 import { CommonService } from 'src/app/shared/services/common/common.service';
+import Swal from 'sweetalert2';
 import { AuditLogComponent } from '../audit-log/audit-log.component';
 
 @Component({
@@ -154,6 +155,31 @@ export class ViewPlanListComponent implements OnInit {
 
   editPlan(item:any){
     this.router.navigateByUrl(`dashboard/view-plan/resubmit/${item.id}`);
+  }
+
+  delete(item_id: any){
+    Swal.fire({
+       title: 'Are you sure want to remove?',
+       text: 'You will not be able to recover this request!',
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonText: 'Yes, delete it!',
+       cancelButtonText: 'No, keep it'
+     }).then((result) => {
+       if (result.value) {
+         this.auditPlanService.delete(item_id).subscribe({
+          next :(res:any)=>{
+          this.getViewPlanList();
+           Swal.fire(
+             'Deleted!',
+             'Your request has been deleted.',
+             'success'
+           )},
+         error:  (err:any)=>{
+         }
+        });
+       }
+     }) 
   }
 
 }

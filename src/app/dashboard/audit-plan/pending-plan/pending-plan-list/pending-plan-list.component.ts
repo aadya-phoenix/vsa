@@ -69,7 +69,7 @@ export class PendingPlanListComponent implements OnInit {
     this.commonService.showLoading();
     const body = {
     auditPlanId: item.id,
-    comment: "test",
+    comment: "",
     isRejected : status
     };
      this.auditPlanService.vendorAction(body).subscribe({

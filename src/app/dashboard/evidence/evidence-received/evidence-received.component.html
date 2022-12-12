@@ -31,8 +31,10 @@
                         <td><p class="w-170 show1">{{item.detailOfImprovement}}</p></td>
                         <td><p class="w-170 show1">{{item.incharge}}</p></td>
                         <td>{{item.dateOfSubmission | date:dateFormat}}</td>
-                        <td>
-                            <a *ngIf="item.attachment" (click)="download(item.attachment)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a>
+                        <td> 
+                            <div *ngIf="item.attachment">
+                            <a *ngFor="let report of item.attachment"  (click)="download(report)"><img src="../../../../assets/img/pie-chart.png" class="w_30"></a>
+                          </div>
                         </td>
                         <td><div *ngIf="item.attachment && !item.closureStatus">
                             <button class="btn btn-success mr-1" 

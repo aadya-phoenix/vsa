@@ -66,12 +66,15 @@ export class EvidenceReceivedComponent implements OnInit {
         if(res){
          this.actionPlanList = res;
          this.actionPlanList.forEach((x:any)=>{
-          if(x.dateOfSubmission == "0001-01-01T00:00:00"){
-            x.dateOfSubmission = null
-          }
-          else{
+          x.dateOfSubmission == "0001-01-01T00:00:00" ?
+            x.dateOfSubmission = null : 
           x.dateOfSubmission = this.datepipe.transform( x.dateOfSubmission,'yyyy-MM-dd');
+  
+          if(x.attachment){
+            x.attachment =  x.attachment.split("|");
+
           }
+
          });
          this.commonService.hideLoading();
         }

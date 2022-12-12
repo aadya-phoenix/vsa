@@ -53578,6 +53578,12 @@ font-size: 13px  !important;
   .max_hei_table-400{
     max-height: 400px;
   }
+  .max_hei_table-600{
+    max-height: 600px;
+  }
+  .width-300{
+    width: 300px !important;
+  }
   .sticky_header {
     position: sticky;
     top: -7px;

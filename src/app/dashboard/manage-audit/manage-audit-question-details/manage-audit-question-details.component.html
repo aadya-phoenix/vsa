@@ -49,7 +49,7 @@
                                   <div class="d-flex">
                                    
                                     <div class="mr-3">
-                                      <input type="radio"  formControlName="JudgementId"   [value]="pie" (click)="getPie($event)"
+                                      <input type="radio"  formControlName="JudgementId"   [value]="pie" 
                                         class="chek_box"><img src="../../../../assets/icons/square.png"
                                         class="diacisq_css">
                                     </div>
@@ -64,7 +64,7 @@
                                         src="../../../../assets/icons/new-moon.png" class="diacisq_css">
                                     </div>
                                     <div class="mr-3">
-                                      <input type="radio" formControlName="JudgementId"   [value]="na" class="chek_box"><b>N/A</b>
+                                      <input type="radio" (click)="getNa($event)" formControlName="JudgementId"   [value]="na" class="chek_box"><b>N/A</b>
                                     </div>
                                       </div>
                                 </div>
