@@ -14,6 +14,7 @@ import { AuditLogComponent } from './audit-log/audit-log.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ViewPlanReSubmitComponent } from './view-plan-re-submit/view-plan-re-submit.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ViewPlanReSubmitComponent } from './view-plan-re-submit/view-plan-re-su
     ReactiveFormsModule,
     ViewPlanRoutingModule,
     NgxPaginationModule,
+    Ng2SearchPipeModule,
     NgSelectModule,
     ModalModule.forRoot(),
   ]

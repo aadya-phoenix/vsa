@@ -39,6 +39,7 @@ export class ViewPlanListComponent implements OnInit {
   Accepted = 'Accepted';
   Final = 'Final';
   bsModalRef ?: BsModalRef;
+  searchText:any;
   constructor(
     private router:Router,
     private modalService: BsModalService,

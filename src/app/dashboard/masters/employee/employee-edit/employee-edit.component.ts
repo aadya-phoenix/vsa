@@ -32,6 +32,7 @@ export class EmployeeEditComponent implements OnInit {
     this.employeeForm = this.formBuilder.group({
       code: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
+      email:new FormControl('', [Validators.required]),
       roleId: new FormControl('', [Validators.required]),
       userName:new FormControl('', [Validators.required]),
    });
@@ -96,8 +97,9 @@ export class EmployeeEditComponent implements OnInit {
          this.employeeDetails = res;
          this.employeeForm.controls['name'].setValue(this.employeeDetails.name);
          this.employeeForm.controls['code'].setValue(this.employeeDetails.code);
+         this.employeeForm.controls['email'].setValue(this.employeeDetails.email);
          this.employeeForm.controls['roleId'].setValue(this.employeeDetails.roleId);
-        this.employeeForm.controls['userName'].setValue(this.employeeDetails.userName);
+         this.employeeForm.controls['userName'].setValue(this.employeeDetails.userName);
          this.commonService.hideLoading();
         }
        },

@@ -15,7 +15,7 @@ ng-if="stopSpinner==true">
  <div class="col-md-4" style="
      background: #fff;background-size:cover;">
    <div class="inner-form-new">
-     <header class="header_fixed">
+     <header class="header_fixed text-center">
      <img src="../../assets/img/maruti-logo.png" class="w_300" /> 
      </header>
      <div class="title">
@@ -36,6 +36,7 @@ ng-if="stopSpinner==true">
        <div class="btn_div">
 
          <button type="submit" (click)="login()" class="btn btn-blue">Log In</button>
+         <button type="button" routerLink="/forget" class="btn btn-blue">Forgot Password</button>
        </div>
        
       </form>

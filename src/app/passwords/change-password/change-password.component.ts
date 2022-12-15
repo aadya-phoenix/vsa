@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { AuthenticationService } from '../shared/services/auth/authentication.service';
-import { CommonService } from '../shared/services/common/common.service';
+import { AuthenticationService } from '../../shared/services/auth/authentication.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
   selector: 'app-change-password',
@@ -13,6 +14,7 @@ export class ChangePasswordComponent implements OnInit {
   public setPasswordForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
+    private router:Router,
     private authService:AuthenticationService,
     private commonService: CommonService
   ) { 
@@ -34,7 +36,8 @@ export class ChangePasswordComponent implements OnInit {
       Swal.fire({
         title: res.message,
         icon: 'success',
-      })
+      });
+      this.router.navigateByUrl(`login`);
       this.commonService.hideLoading();
       },
       error:(err:any) =>{

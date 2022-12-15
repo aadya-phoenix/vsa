@@ -51,7 +51,7 @@ export class ManageAuditSummaryComponent implements OnInit {
         max: 100,
         min: 0,
         ticks: {
-          stepSize: 20,
+          stepSize: 25,
         },
         pointLabels: {
           font: {

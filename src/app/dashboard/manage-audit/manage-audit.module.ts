@@ -20,6 +20,7 @@ import { LastYearRemarksComponent } from './last-year-remarks/last-year-remarks.
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ManageAuditLogComponent } from './manage-audit-log/manage-audit-log.component';
 import { ManageAuditReportComponent } from './manage-audit-report/manage-audit-report.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -48,6 +49,7 @@ import { ManageAuditReportComponent } from './manage-audit-report/manage-audit-r
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    Ng2SearchPipeModule,
     ManageAuditRoutingModule,
     NgxPaginationModule,
     NgChartsModule

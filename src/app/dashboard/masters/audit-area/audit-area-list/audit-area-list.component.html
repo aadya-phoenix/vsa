@@ -5,8 +5,8 @@
           <div class="card">
             <div class="card-header">
               <div class="header_card">
-                <h3 class="card-title">Clause Details</h3>
-                <a *ngIf="isSuperAdmin" (click)="addAuditArea()" class="btn btn-primary"> <img src="../../../../../assets/icons/traffic-data.png" class="side_imgmaster mr-1">Add Clause</a>
+                <h3 class="card-title">Audit Area Details</h3>
+                <a *ngIf="isSuperAdmin" (click)="addAuditArea()" class="btn btn-primary"> <img src="../../../../../assets/icons/traffic-data.png" class="side_imgmaster mr-1">Add Audit Area</a>
               </div>
             </div>
             <div class="card-body">
@@ -15,7 +15,7 @@
                 <thead>
                   <tr class="sticky_header">
                     <th>S.No</th>
-                    <th>Clause Name </th>
+                    <th>Audit Area Name </th>
                     <th>Category </th>
                     <th *ngIf="isSuperAdmin">Action</th>
                   </tr>

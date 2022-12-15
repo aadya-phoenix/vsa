@@ -312,7 +312,7 @@ export class ManageAuditQuestionDetailsComponent implements OnInit {
         if (res) {
           this.commonService.hideLoading();
           Swal.fire({
-            title: res.message,
+            title: 'AuditPlan Observation Saved Successfully.',
             icon: 'success',
           });
         }

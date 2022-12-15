@@ -32,7 +32,7 @@ export class ManageAuditListComponent implements OnInit {
   plannedEndDate:any;
   statusName:string='';
   counters:any;
-
+  searchText:any;
   pagination = {
     page: 1,
     pageNumber: 1,

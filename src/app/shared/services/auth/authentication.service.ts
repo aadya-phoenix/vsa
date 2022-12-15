@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -37,5 +38,11 @@ export class AuthenticationService {
   setPassword(data:any){
     const url = `${this.basePath}api/User/UpdatePassword/UpdatePassword`;
     return this.http.post(url, data).pipe(catchError(this.commmonService.Errorhandling));  
+  }
+
+  forgetPassword(email:any){
+    const params = new HttpParams().set('email',email);
+    const url = `${this.basePath}api/Token/ForgotPassword`;
+    return this.http.postParams(url, {}, params);
   }
 }

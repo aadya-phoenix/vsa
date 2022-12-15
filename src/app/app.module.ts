@@ -13,13 +13,15 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordComponent } from './passwords/change-password/change-password.component';
+import { ForgetPasswordComponent } from './passwords/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

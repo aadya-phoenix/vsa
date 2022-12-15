@@ -5,8 +5,8 @@
           <div class="card">
             <div class="card-header">
               <div class="header_card">
-                <h3 class="card-title">Regulation Master</h3>
-                <a *ngIf="isSuperAdmin" (click)="addRegulation()" class="btn btn-primary"> <img src="../../../../../assets/icons/gdpr.png" class="side_imgmaster mr-1">Add Regulation</a>
+                <h3 class="card-title">Check Points Master</h3>
+                <a *ngIf="isSuperAdmin" (click)="addRegulation()" class="btn btn-primary"> <img src="../../../../../assets/icons/gdpr.png" class="side_imgmaster mr-1">Add Check Point</a>
               </div>
             </div>
             <div class="card-body">
@@ -16,9 +16,9 @@
                     <tr class="sticky_header">
                       <th>S.No</th>
                       <th>Check Point Name </th>
-                      <th>Categories</th>
                       <th>Clause</th>
-                      <th>Regulation Creation Date</th>
+                      <th>Audit Area</th>
+                      <th>Creation Date</th>
                       <th *ngIf="isSuperAdmin">Action</th>
                     </tr>
                   </thead>

@@ -27,6 +27,14 @@
                       </div>
                       <div class="col-sm-4">
                         <div class="form-group">
+                          <label class="form_label">Employee Email</label>
+                          <input type="text" class="form-control inputbox_css" 
+                           placeholder="Enter Employee Name" 
+                             [attr.disabled]="true"  formControlName="email" maxlength="200">
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
                           <label class="form_label">Employee Role</label>
                           <select class="form-control" formControlName="roleId">
                             <option *ngFor="let item of rolesObj" [value]="item.id">{{item.name}}</option>
