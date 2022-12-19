@@ -1,4 +1,45 @@
-<app-report-filter menuType="Dealer"></app-report-filter>
+<div class="row">
+    <div class="col-md-12 p-3">
+        <div class="card mb-0">
+            <div class="card-header">
+                <h5 class="card-title"> Search Filter</h5>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label>Select Year</label>
+                            <div class="input-group">
+                                <select [(ngModel)]="yearDropDownValue" placeholder="Select MSIL"
+                                    class="custom-control custom-select" [ngModelOptions]="{ standalone: true }">
+                                    <option value="" class="max-width">Select All</option>
+                                    <option [value]="item.value" *ngFor="let item of yearDropDown">
+                                        {{
+                                        item.text
+                                        }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-primary" (click)="reloadDatawithFilter()">
+                    Apply
+                </button>
+                <button type="button" class="btn btn-secondary ml-2" (click)="resetForm()">
+                    Reset
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="content p-3">
     <div class="row">
         <div class="col-md-12 p-0">
