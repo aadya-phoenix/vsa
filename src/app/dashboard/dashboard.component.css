@@ -33,3 +33,11 @@
 .font_wei_500{
 font-weight: 500;
 }
+.graph-bar-width{
+    width: 80%;
+    margin: auto;
+}
+.graph-pie-width{
+    width: 80%;
+    margin: auto;
+}

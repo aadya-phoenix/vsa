@@ -33,7 +33,9 @@ export class ReportFilterComponent implements OnInit {
     let yearArr = [];
     yearArr.push({text : currentYear, value : currentYear});
     for (let index = 0; index < 19; index++) {
+      console.log("index",index);
       const year = currentYear + 1 + index;
+      console.log("year",year);
       if(year <= new Date().getFullYear()){
         yearArr.push({text : year, value : year});
       }

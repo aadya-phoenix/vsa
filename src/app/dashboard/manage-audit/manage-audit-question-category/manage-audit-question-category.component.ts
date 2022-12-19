@@ -21,37 +21,37 @@ import { VendorAttendeesComponent } from '../vendor-attendees/vendor-attendees.c
   styleUrls: ['./manage-audit-question-category.component.css']
 })
 export class ManageAuditQuestionCategoryComponent implements OnInit {
-  bsModalRef ?: BsModalRef;
-  executiveSummaryForm:FormGroup;
-  auditPlanId:any;
-  sectionHeadObj:any=[];
-  categoryScoreList:any;
+  bsModalRef?: BsModalRef;
+  executiveSummaryForm: FormGroup;
+  auditPlanId: any;
+  sectionHeadObj: any = [];
+  categoryScoreList: any;
   draft = dataConstants.ReportType.Provisional;
   final = dataConstants.ReportType.Final;
-  getLoginDetails:any;
-  sectionHeadId:any;
-  auditPlanDetails:any;
-  reportType:any;
+  getLoginDetails: any;
+  sectionHeadId: any;
+  auditPlanDetails: any;
+  reportType: any;
   Final = 'Final';
-  vendorName:any;
+  vendorName: any;
   isNotCompleteRegulation = true;
   constructor(
-    private fb:FormBuilder,
-    private authService:AuthenticationService,
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
     private modalService: BsModalService,
-    private auditPlanService:AuditPlanService,
-    private auditExecuteService:AuditExecutionService,
+    private auditPlanService: AuditPlanService,
+    private auditExecuteService: AuditExecutionService,
     private commonService: CommonService,
-    private employeeService:EmployeeMasterService,
-    private router:Router,
-    private route:ActivatedRoute
-  ) { 
-    this.executiveSummaryForm=this.fb.group({
+    private employeeService: EmployeeMasterService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.executiveSummaryForm = this.fb.group({
       criticalObservation: this.fb.array([]),
       vendorAttendee: this.fb.array([])
     });
 
-    this.route.paramMap.subscribe((params:ParamMap)=>{
+    this.route.paramMap.subscribe((params: ParamMap) => {
       const Id = params.get('id');
       this.auditPlanId = Id ? Id : 0;
     })
@@ -65,77 +65,76 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     this.getAuditPlanDetails();
   }
 
-  getCategoryList(){
+  getCategoryList() {
     this.commonService.showLoading();
     let overAllRegulations = 0;
     let overAllCompetedRegulation = 0;
-    this.auditPlanService.getScoreAndCategoryList({id:this.auditPlanId}).subscribe({
+    this.auditPlanService.getScoreAndCategoryList({ id: this.auditPlanId }).subscribe({
       next: (res) => {
-        if(res){
-         this.categoryScoreList = res;
-         let i=0;
-         this.categoryScoreList.forEach((x:any):any=>{
-          
-          x.totalRegulation = Math.round((x.totalCount)/3);
+        if (res) {
+          this.categoryScoreList = res;
+          let i = 0;
+          this.categoryScoreList.forEach((x: any): any => {
 
-         x.completePercent = Math.round(((x.competedRegulation)/x.totalRegulation)*100);
-         x.scorePercent = Math.round(((x.categoryScore)/x.totalCount)*100);
-          overAllRegulations += x.totalRegulation;
-          overAllCompetedRegulation += x.competedRegulation;
-         });
-         if(overAllRegulations == overAllCompetedRegulation)
-         {
-          this.isNotCompleteRegulation=false;
-         }
-         this.commonService.hideLoading();
+            x.totalRegulation = Math.round((x.totalCount) / 3);
+
+            x.completePercent = Math.round(((x.competedRegulation) / x.totalRegulation) * 100);
+            x.scorePercent = Math.round(((x.categoryScore) / x.totalCount) * 100);
+            overAllRegulations += x.totalRegulation;
+            overAllCompetedRegulation += x.competedRegulation;
+          });
+          if (overAllRegulations == overAllCompetedRegulation) {
+            this.isNotCompleteRegulation = false;
+          }
+          this.commonService.hideLoading();
         }
-       },
-      error: (e) =>{
+      },
+      error: (e) => {
         console.error(e),
-        this.commonService.hideLoading();
-      } , 
-     });
+          this.commonService.hideLoading();
+      },
+    });
   }
 
-  saveCriticalObservation(){
+  saveCriticalObservation() {
     this.commonService.showLoading();
     const body = this.executiveSummaryForm.value;
-    const data ={
-      criticalObservation:body.criticalObservation
-    } ;
+    const data = {
+      criticalObservation: body.criticalObservation
+    };
     this.auditPlanService.saveCriticalObservation(data).subscribe({
-      next:(res: any) => {
+      next: (res: any) => {
         Swal.fire({
           title: res.message,
           icon: 'success',
         });
         this.commonService.hideLoading();
       },
-      error:(err:any) =>{
+      error: (err: any) => {
         this.commonService.hideLoading();
-      } 
-    }); 
+      }
+    });
 
   }
 
-  saveVendorAttendee(){
+  saveVendorAttendee() {
     this.commonService.showLoading();
     const body = this.executiveSummaryForm.value;
     const data = {
       vendorAttendee: body.vendorAttendee
     };
     this.auditPlanService.saveVendorAttendees(data).subscribe({
-      next:(res: any) => {
+      next: (res: any) => {
         Swal.fire({
           title: res.message,
           icon: 'success',
         });
         this.commonService.hideLoading();
       },
-      error:(err:any) =>{
+      error: (err: any) => {
         this.commonService.hideLoading();
-      } 
-    }); 
+      }
+    });
   }
 
   get criticalObservationArray(): FormArray {
@@ -174,75 +173,75 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
 
   removeVendorAttendee(i: any) {
     this.vendorAttendeeArray.removeAt(i);
-  } 
+  }
 
-  details(id:any){
+  details(id: any) {
     this.router.navigateByUrl(`dashboard/manage-audit/question-details/${this.auditPlanId}/${id}`);
   }
 
-  viewSummary(){
+  viewSummary() {
     this.router.navigateByUrl(`dashboard/manage-audit/summary/${this.auditPlanId}`);
   }
 
-  reportSubmit(status:any){
-  const body ={
-    id : this.auditPlanId,
-    typeOfReportId : status,
-    userId:this.getLoginDetails.UserId
-  };
-  const sectionHeadData ={
-    id: this.auditPlanId,
-    sectionHeadUserId: this.sectionHeadId,
+  reportSubmit(status: any) {
+    const body = {
+      id: this.auditPlanId,
+      typeOfReportId: status,
+      userId: this.getLoginDetails.UserId
+    };
+    const sectionHeadData = {
+      id: this.auditPlanId,
+      sectionHeadUserId: this.sectionHeadId,
       isAuditPlanRejected: 1
-  }
-  status == this.final ? this.assignSectionHead(sectionHeadData):'';
-  this.commonService.showLoading();
-  this.auditExecuteService.submitReport(body).subscribe({
-    next: (res) => {
-      if(res.type == "Error"){
-        this.commonService.hideLoading();
-        Swal.fire({
-          title: res.message,
-          icon: 'error',
-        });
-        return;
-       }
-        else{
+    }
+    status == this.final ? this.assignSectionHead(sectionHeadData) : '';
+    this.commonService.showLoading();
+    this.auditExecuteService.submitReport(body).subscribe({
+      next: (res) => {
+        if (res.type == "Error") {
+          this.commonService.hideLoading();
+          Swal.fire({
+            title: res.message,
+            icon: 'error',
+          });
+          return;
+        }
+        else {
           this.commonService.hideLoading();
           Swal.fire({
             title: res.message,
             icon: 'success',
           });
-        this.router.navigateByUrl('dashboard/view-plan');
-      }
-     },
-    error: (e) =>{
-      console.error(e),
-      this.commonService.hideLoading();
-    } , 
-   });
+          this.router.navigateByUrl('dashboard/view-plan');
+        }
+      },
+      error: (e) => {
+        console.error(e),
+          this.commonService.hideLoading();
+      },
+    });
   }
 
-  assignSectionHead(body:any){
+  assignSectionHead(body: any) {
     this.commonService.showLoading();
     this.auditExecuteService.assignSectionHead(body).subscribe({
       next: (res) => {
-        if(res){
-          this.commonService.hideLoading();        
+        if (res) {
+          this.commonService.hideLoading();
         }
-       },
-      error: (e) =>{
+      },
+      error: (e) => {
         console.error(e),
-        this.commonService.hideLoading();
-      } , 
-     });
+          this.commonService.hideLoading();
+      },
+    });
   }
 
-  getUsers(){
+  getUsers() {
     this.commonService.showLoading();
     const data = {
       roleId: "aa1b2adc-e205-451e-8b2f-5b184df9e4f4",
-      roleName:"SectionHead"
+      roleName: "SectionHead"
     };
     this.employeeService.getUsersByRoleId(data).subscribe({
       next: (res) => {
@@ -258,82 +257,82 @@ export class ManageAuditQuestionCategoryComponent implements OnInit {
     });
   }
 
-  getEmployeeList(){
-    this.commonService.showLoading();  
+  getEmployeeList() {
+    this.commonService.showLoading();
     this.employeeService.getEmployee().subscribe({
       next: (res) => {
-        if(res){
-         this.sectionHeadObj = res.filter((x:any)=>{
-          return x.roleId == "aa1b2adc-e205-451e-8b2f-5b184df9e4f4" &&
-          x.roleName == 'SectionHead';
-         });
-         this.commonService.hideLoading();
+        if (res) {
+          this.sectionHeadObj = res.filter((x: any) => {
+            return x.roleId == "aa1b2adc-e205-451e-8b2f-5b184df9e4f4" &&
+              x.roleName == 'SectionHead';
+          });
+          this.commonService.hideLoading();
         }
-       },
-      error: (e) =>{
-        console.error(e);
-        this.commonService.hideLoading();
-      } , 
-     });
-  }
-
-  back(){
-    this.router.navigateByUrl(`dashboard/manage-audit/initiate/${this.auditPlanId}`);
-  }
-
-  getSectionHead(event:any){
-    this.sectionHeadId = event.target.value;
-  }
-
-  getAuditPlanDetails(){
-    this.commonService.showLoading();  
-    this.auditPlanService.getPlanDetails(this.auditPlanId).subscribe({
-      next: (res) => {
-        if(res){
-         this.auditPlanDetails = res;
-         this.vendorName =  this.auditPlanDetails.vendorName;
-         this.reportType = res.typeOfReport;
-         this.commonService.hideLoading();
-        }
-       },
+      },
       error: (e) => {
         console.error(e);
         this.commonService.hideLoading();
-      }, 
-     });
+      },
+    });
   }
 
-  isSubmit(){
-  if(this.reportType != this.Final)
-  return true;
-  else 
-  return false;
+  back() {
+    this.router.navigateByUrl(`dashboard/manage-audit/initiate/${this.auditPlanId}`);
   }
 
-  openVendorModal(){
+  getSectionHead(event: any) {
+    this.sectionHeadId = event.target.value;
+  }
+
+  getAuditPlanDetails() {
+    this.commonService.showLoading();
+    this.auditPlanService.getPlanDetails(this.auditPlanId).subscribe({
+      next: (res) => {
+        if (res) {
+          this.auditPlanDetails = res;
+          this.vendorName = this.auditPlanDetails.vendorName;
+          this.reportType = res.typeOfReport;
+          this.commonService.hideLoading();
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        this.commonService.hideLoading();
+      },
+    });
+  }
+
+  isSubmit() {
+    if (this.reportType != this.Final)
+      return true;
+    else
+      return false;
+  }
+
+  openVendorModal() {
     const initialState: ModalOptions = {
       initialState: {
-       data:this.auditPlanId,
-       title: 'Modal with component'
+        data: this.auditPlanId,
+        title: 'Modal with component'
       }
     };
     this.bsModalRef = this.modalService.show(VendorAttendeesComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.onHidden?.subscribe(() => {
-   });
+    });
   }
 
-  openCriticalModal(){
+  openCriticalModal() {
     const initialState: ModalOptions = {
       initialState: {
-       data:this.auditPlanId,
-       title: 'Modal with component'
+        data: this.auditPlanId,
+        title: 'Modal with component'
       }
     };
     this.bsModalRef = this.modalService.show(CriticalObservationComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.onHidden?.subscribe(() => {
-   });
+    });
   }
 
 }

@@ -9,19 +9,29 @@
         </div>
         <div class="card-body" *ngIf="!isVendor">
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
+              <div class="graph-bar-width">
               <canvas baseChart [data]="actionPlanData" height="100%" [type]="'bar'" [options]="actionPlanOptions">
               </canvas>
+              </div>
             </div>
-            <div class="col-sm-4">
+           
+          </div>
+          <div class="row mt-4">
+            <div class="col-sm-6">
+              <div class="graph-pie-width">
+              
               <canvas baseChart [data]="pieChartData" [type]="'pie'" [options]="pieChartOptions">
               </canvas>
             </div>
-            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-6">
+              <div class="graph-pie-width">
               <canvas baseChart [data]="pieChartData1" [type]="'pie'" [options]="pieChartOptions1">
               </canvas>
+              </div>
             </div>
-          </div>
+            </div>
         </div>
           <div class="container-fluid mt-4 mb-4" *ngIf="isVendor">
             <div class="d-flex justify-content-center mb-2 flex_direction_media">

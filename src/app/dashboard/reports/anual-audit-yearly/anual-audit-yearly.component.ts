@@ -65,7 +65,7 @@ export class AnualAuditYearlyComponent implements OnInit {
       this.SpinnerService.show();
       let data: any = {
         year: payload.year,
-        locationId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        locationId: null
       };
       if (payload.month) {
         data.month = payload.month
