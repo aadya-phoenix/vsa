@@ -1,3 +1,10 @@
+<style>
+    @media print {
+      #downloadcta {
+        visibility: hidden;
+      }
+    }
+  </style>
 <div class="row">
     <div class="col-md-12 p-3">
         <div class="card mb-0">
@@ -42,6 +49,11 @@
 </div>
 <section class="content p-3">
     <div class="row">
+        <button id="downloadcta" *ngIf="data.length > 0" class="btn btn-success d-flex align-items-center ml-1"
+            onclick="window.print();" style="margin-bottom: 10px; width: 110px;">
+           <i class="fas fa-download mr-1 upload_ico"></i>
+           <span class="now_rap">Download</span>
+       </button>
         <div class="col-md-12 p-0">
             <div class="card card-default">
                 <div class="card-body">
