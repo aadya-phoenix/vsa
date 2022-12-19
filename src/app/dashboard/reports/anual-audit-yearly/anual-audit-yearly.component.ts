@@ -14,7 +14,9 @@ import { SwalService } from 'src/app/shared/services/swal.service';
 })
 export class AnualAuditYearlyComponent implements OnInit {
 
-  subscription: Subscription;
+ /*  subscription: Subscription; */
+  yearDropDown: any = [];
+  yearDropDownValue: any ='';
   data: any = []
   selectedFilter = 'month';
   lables : any = []
@@ -40,16 +42,17 @@ export class AnualAuditYearlyComponent implements OnInit {
     private _swalService: SwalService,
     private reportService: ReportService,
     private messageService: MessageService) {
-    this.subscription = this.messageService
+/*     this.subscription = this.messageService
       .FilterObserab()
       .subscribe((data) => {
         if (data) {
           this.getData(data.filter);
         }
-      });
+      }); */
   }
 
   ngOnInit(): void {
+    this.getYearDropdownData();
   }
 
   getData(payload: any) {
@@ -82,7 +85,7 @@ export class AnualAuditYearlyComponent implements OnInit {
             datasets: [
               { label: 'Plan', data: this.planData, stack: '0', backgroundColor: 'rgb(127 127 127)', borderColor: 'rgb(127 127 127)', hoverBackgroundColor: 'rgb(127 127 127)', hoverBorderColor: 'rgb(127 127 127)' },
               { label: 'Final', data: this.finalData, stack: '1', backgroundColor: 'rgb(0 32 96)', borderColor: 'rgb(0 32 96)', hoverBackgroundColor: 'rgb(0 32 96)', hoverBorderColor: 'rgb(0 32 96)' },
-              { label: 'Provisional', data: this.provisionalData, stack: '1', backgroundColor: 'rgb(255 192 0)', borderColor: 'rgb(255 192 0)', hoverBackgroundColor: 'rgb(255 192 0)', hoverBorderColor: 'rgb(255 192 0)' },
+          /*     { label: 'Provisional', data: this.provisionalData, stack: '1', backgroundColor: 'rgb(255 192 0)', borderColor: 'rgb(255 192 0)', hoverBackgroundColor: 'rgb(255 192 0)', hoverBorderColor: 'rgb(255 192 0)' }, */
             ],
           };
           this.SpinnerService.hide();
@@ -96,12 +99,40 @@ export class AnualAuditYearlyComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if (this.subscription) {
+  /*   if (this.subscription) {
       this.messageService.getFilterObserab().forEach((subscript: any) => {
         subscript.unsubscribe();
       })
       this.subscription.unsubscribe();
+    } */
+  }
+
+  getYearDropdownData(){
+    let currentYear = new Date().getFullYear() - 3;
+    let yearArr = [];
+    yearArr.push({text : currentYear, value : currentYear});
+    for (let index = 0; index < 19; index++) {
+      const year = currentYear + 1 + index;
+      if(year <= new Date().getFullYear()){
+        yearArr.push({text : year, value : year});
+      }
     }
+    this.yearDropDown = yearArr;
+    this.yearDropDownValue = new Date().getFullYear();
+  }
+
+
+
+  resetForm() {
+    this.yearDropDownValue = null;
+  }
+
+
+  reloadDatawithFilter() {
+    var payload = {
+      year: this.yearDropDownValue ? parseInt(this.yearDropDownValue) : null,
+    };
+    this.getData(payload);
   }
 
 }
