@@ -38,75 +38,10 @@ export class VendorWiseScoreComponent implements OnInit {
   ];
   vendorcategoryObj:any=[];
  
-  colors=['rgb(0 0 0)','rgb(157 195 230)','rgb(165 165 165)',]
+  colors = ['rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(157 195 230)', 'rgb(165 165 165)']
   yearWiseVSAData: ChartData<'line'> = {
     labels: ['FY 18-19', 'FY 19-20', 'FY 20-21', 'FY 21-22', 'FY 22-23'],
     datasets: [
-      {
-        label: 'VCode 1',
-        data: [60,70,80,75,90],
-        backgroundColor: 'rgb(157 195 230)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(157 195 230)',
-        pointHoverBackgroundColor: 'rgb(157 195 230)',
-        pointHoverBorderColor: 'rgb(157 195 230)',
-        pointBorderColor: 'rgb(157 195 230)',
-        pointStyle: 'rect',
-        borderColor: 'rgb(157 195 230)'
-      },
-      {
-        label: 'VCode 2',
-        data: [70,75,80,78,77],
-        backgroundColor: 'rgb(165 165 165)',
-        pointStyle: 'triangle',
-        borderColor: 'rgb(165 165 165)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(165 165 165)',
-        pointHoverBackgroundColor: 'rgb(165 165 165)',
-        pointHoverBorderColor: 'rgb(165 165 165)',
-        pointBorderColor: 'rgb(165 165 165)',
-      },
-      {
-        label: 'VCode 3',
-        data: [75,80,80,80,80],
-        backgroundColor: 'rgb(18 59 111)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(18 59 111)',
-        pointHoverBackgroundColor: 'rgb(18 59 111)',
-        pointHoverBorderColor: 'rgb(18 59 111)',
-        pointBorderColor: 'rgb(18 59 111)',
-        pointStyle: 'rect',
-        borderColor: 'rgb(18 59 111)'
-      },
-      {
-        label: 'VCode 4',
-        data: [80,80,85,85,85],
-        backgroundColor: 'rgb(255 102 0)',
-        pointStyle: 'crossRot',
-        borderColor: 'rgb(255 102 0)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(255 102 0)',
-        pointHoverBackgroundColor: 'rgb(255 102 0)',
-        pointHoverBorderColor: 'rgb(255 102 0)',
-        pointBorderColor: 'rgb(255 102 0)',
-      },
-      {
-        label: 'VCode 5',
-        data: [75,80,75,80,80],
-        backgroundColor: 'rgb(112 173 71)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(112 173 71)',
-        pointHoverBackgroundColor: 'rgb(112 173 71)',
-        pointHoverBorderColor: 'rgb(112 173 71)',
-        pointBorderColor: 'rgb(112 173 71)',
-        pointStyle: 'circle',
-        borderColor: 'rgb(112 173 71)'
-      }
     ],
   };
 
@@ -169,22 +104,55 @@ export class VendorWiseScoreComponent implements OnInit {
     this.getCategoryList();
   }
 
-  
+  map = new Map<string, [any]>();
+
+  fillCategoryMap() {
+    this.data.forEach((x: any, index: any) => {
+      let category = x.suppliers;
+      let value = this.map.get(category);
+      if(value != undefined) {
+        value.push(x.score);
+        this.map.set(category, value);
+      } else {
+        this.map.set(category, [x.score]);
+      }
+    })
+  }
+
+  getDatasetObject(data: any, category: any, index: any): any { 
+    let color = this.colors[index];
+    return {
+      label: category,
+      data: data,
+      pointStyle: 'rectRot',
+      backgroundColor: color,
+      borderColor: color,
+      pointRadius: 8,
+      pointHoverRadius: 10,
+      pointBackgroundColor: color,
+      pointHoverBackgroundColor: color,
+      pointHoverBorderColor: color,
+      pointBorderColor: color,
+    };
+  }
+
   getData(payload:any) {
     this.reportService.getClauseWiseVendorTrend(payload).subscribe({
       next: (res: any) => {
         this.data = res;
         this.labels =  _.map(this.data, 'finYear');
-        this.clause =  _.map(this.data, 'catName');
+        this.clause =  _.map(this.data, 'suppliers');
         this.yearLabels = this.labels.filter(this.onlyUnique);
-
-        this.data.forEach((x:any,index:any)=> {
-          this.yearWiseVSAData.datasets.push(this.getDatasetObject(x,index))
-        })
+        this.fillCategoryMap()
+        var dataset: any[] = [];
+        var index = 0;
+        this.map.forEach((value: [any], key: string) => {
+          dataset.push(this.getDatasetObject(value, key, index))
+          index++;
+        });
         this.yearWiseVSAData  = {
           labels:this.yearLabels,
-         datasets:[]
-       
+         datasets:dataset
         };
        
         this.SpinnerService.hide();
@@ -292,25 +260,4 @@ export class VendorWiseScoreComponent implements OnInit {
       });
     }
   }
-
-  getDatasetObject(data:any, index:any) :any{
-    let map = new Map<string, string>();
-    map.set("CC1", data.catName); 
-  
-    let color = this.colors[index];
-    return {
-       label: 'Overall Score',
-       data: data.score ,
-       pointStyle: 'rectRot',
-       backgroundColor: color,
-       borderColor: color,
-       pointRadius: 8,
-       pointHoverRadius: 10,
-       pointBackgroundColor: color,
-       pointHoverBackgroundColor: color,
-       pointHoverBorderColor: color,
-       pointBorderColor: color,
-     };
-    }
-
 }

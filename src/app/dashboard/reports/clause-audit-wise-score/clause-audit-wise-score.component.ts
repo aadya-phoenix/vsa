@@ -20,25 +20,25 @@ export class ClauseAuditWiseScoreComponent implements OnInit {
     datasets: [] as any
   };
   isChecked = false;
-  clauseList:any=[];
-  yearLabels:any=[];
-  labels:any=[];
-  data:any=[];
+  clauseList: any = [];
+  yearLabels: any = [];
+  labels: any = [];
+  data: any = [];
   selectedFilter = 'vendor';
-  commodity:any;
-  vendorId:any;
-  numberOfDefect:any=0;
-  totalScore:any=0;
-  vendorCategoryId:any;
-  category:any;
-  vendorObj:any=[];
-  clause:any=[];
-  categoryObj:any=[
-    {name:'Red',value:'red'},{name:'Yellow',value:'yellow'},{name:'Green',value:'green'}
+  commodity: any;
+  vendorId: any;
+  numberOfDefect: any = 0;
+  totalScore: any = 0;
+  vendorCategoryId: any;
+  category: any;
+  vendorObj: any = [];
+  clause: any = [];
+  categoryObj: any = [
+    { name: 'Red', value: 'red' }, { name: 'Yellow', value: 'yellow' }, { name: 'Green', value: 'green' }
   ];
-  vendorcategoryObj:any=[];
- 
-  colors=['rgb(0 0 0)','rgb(157 195 230)','rgb(165 165 165)',]
+  vendorcategoryObj: any = [];
+
+  colors = ['rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(0 0 0)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(157 195 230)', 'rgb(165 165 165)', 'rgb(157 195 230)', 'rgb(165 165 165)']
 
   yearWiseVSAOptions: ChartOptions = {
     responsive: true,
@@ -89,10 +89,10 @@ export class ClauseAuditWiseScoreComponent implements OnInit {
     private _swalService: SwalService,
     private auditPlanService: AuditPlanService,
     private reportService: ReportService,
-    private categoryService:CategoryMasterService,
+    private categoryService: CategoryMasterService,
     private employeeService: EmployeeMasterService,
     private SpinnerService: NgxSpinnerService,
-    private datepipe:DatePipe
+    private datepipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -100,24 +100,57 @@ export class ClauseAuditWiseScoreComponent implements OnInit {
     this.getCategoryList();
   }
 
-  
-  getData(payload:any) {
+  map = new Map<string, [any]>();
+
+  fillCategoryMap() {
+    this.data.forEach((x: any, index: any) => {
+      let category = x.catName;
+      let value = this.map.get(category);
+      if (value != undefined) {
+        value.push(x.score);
+        this.map.set(category, value);
+      } else {
+        this.map.set(category, [x.score]);
+      }
+    })
+  }
+
+  getDatasetObject(data: any, category: any, index: any): any {
+    let color = this.colors[index];
+    return {
+      label: category,
+      data: data,
+      pointStyle: 'rectRot',
+      backgroundColor: color,
+      borderColor: color,
+      pointRadius: 8,
+      pointHoverRadius: 10,
+      pointBackgroundColor: color,
+      pointHoverBackgroundColor: color,
+      pointHoverBorderColor: color,
+      pointBorderColor: color,
+    };
+  }
+
+  getData(payload: any) {
     this.reportService.getClauseAuditWiseScore(payload).subscribe({
       next: (res: any) => {
         this.data = res;
-        this.labels =  _.map(this.data, 'finYear');
-        this.clause =  _.map(this.data, 'catName');
+        this.labels = _.map(this.data, 'auditNumber');
+        this.clause = _.map(this.data, 'catName');
         this.yearLabels = this.labels.filter(this.onlyUnique);
-
-        this.data.forEach((x:any,index:any)=> {
-          this.yearWiseVSAData.datasets.push(this.getDatasetObject(x,index))
-        })
-        this.yearWiseVSAData  = {
-          labels:this.yearLabels,
-         datasets:[]
-       
+        this.fillCategoryMap()
+        var dataset: any[] = [];
+        var index = 0;
+        this.map.forEach((value: [any], key: string) => {
+          dataset.push(this.getDatasetObject(value, key, index))
+          index++;
+        });
+        this.yearWiseVSAData = {
+          labels: this.yearLabels,
+          datasets: dataset
         };
-       
+
         this.SpinnerService.hide();
       },
       error: (err: any) => {
@@ -125,7 +158,7 @@ export class ClauseAuditWiseScoreComponent implements OnInit {
         this._swalService.errorMessageBox(err.message);
       }
     });
-    
+
   }
 
   resetForm() {
@@ -135,18 +168,18 @@ export class ClauseAuditWiseScoreComponent implements OnInit {
    this.vendorId = null;
  }
 
- reloadDatawithFilter() {
-   var payload = {
-    vendorId :  this.vendorId,
-     vendorCategoryId:  this.vendorCategoryId,
-     numberOfDefect: parseInt(this.numberOfDefect), 
-      category:  this.category 
-  };
-   this.getData(payload);
- }
+  reloadDatawithFilter() {
+    var payload = {
+      vendorId: this.vendorId,
+      vendorCategoryId: this.vendorCategoryId,
+      numberOfDefect: parseInt(this.numberOfDefect),
+      category: this.category
+    };
+    this.getData(payload);
+  }
 
   onFilterSelected() {
-    
+
   }
 
   searchVendor(elem: any) {
@@ -190,58 +223,38 @@ export class ClauseAuditWiseScoreComponent implements OnInit {
     });
   }
 
-  onlyUnique(value:any, index:number, self:any) {
+  onlyUnique(value: any, index: number, self: any) {
     return self.indexOf(value) === index;
   }
 
   getCategoryList() {
     this.SpinnerService.show();
     this.categoryService.getCategory().subscribe({
-      next: (res:any) => {
-        if(res){
-          res.forEach((x:any)=>{
-            x.isChecked=false;
+      next: (res: any) => {
+        if (res) {
+          res.forEach((x: any) => {
+            x.isChecked = false;
           })
-         this.clauseList = res;
-         this.SpinnerService.hide();
+          this.clauseList = res;
+          this.SpinnerService.hide();
         }
-       },
-      error: (e:any) => {
+      },
+      error: (e: any) => {
         console.error(e);
         this.SpinnerService.hide();
-      }, 
-     });
+      },
+    });
   }
 
-  getClause(event:any,item:any){
-    console.log("event",event.target.value,item);
+  getClause(event: any, item: any) {
+    console.log("event", event.target.value, item);
     this.isChecked = !this.isChecked;
-    item ? item.isChecked=!item.isChecked :'';
-    if (event.target.value== 'all'){
-      this.clauseList.forEach((x:any)=>{
+    item ? item.isChecked = !item.isChecked : '';
+    if (event.target.value == 'all') {
+      this.clauseList.forEach((x: any) => {
         x.isChecked = this.isChecked;
       });
     }
   }
-
-  getDatasetObject(data:any, index:any) :any{
-    let map = new Map<string, string>();
-    map.set("CC1", data.catName); 
-  
-    let color = this.colors[index];
-    return {
-       label: 'Overall Score',
-       data: data.score ,
-       pointStyle: 'rectRot',
-       backgroundColor: color,
-       borderColor: color,
-       pointRadius: 8,
-       pointHoverRadius: 10,
-       pointBackgroundColor: color,
-       pointHoverBackgroundColor: color,
-       pointHoverBorderColor: color,
-       pointBorderColor: color,
-     };
-    }
 
 }

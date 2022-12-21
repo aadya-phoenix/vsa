@@ -225,12 +225,6 @@ export class ClauseWiseScoreComponent implements OnInit {
         this.labels = _.map(this.data, 'finYear');
         this.clause = _.map(this.data, 'catName');
         this.yearLabels = this.labels.filter(this.onlyUnique);
-        /*  this.data.forEach((x:any,index:any) => {
-           this.getDatasetObject(x);
-         }); */
-        // this.data.forEach((x: any, index: any) => {
-        //   this.yearWiseVSAData.datasets.push(this.getDatasetObject(x, index))
-        // })
         this.fillCategoryMap()
         var dataset: any[] = [];
         var index = 0;
@@ -241,86 +235,6 @@ export class ClauseWiseScoreComponent implements OnInit {
         this.yearWiseVSAData = {
           labels: this.yearLabels,
           datasets: dataset
-         /*  datasets: [
-            {
-              label: 'Overall Score',
-              data: [70, 75, 80, 83, 85],
-              pointStyle: 'rectRot',
-              backgroundColor: 'rgb(0 0 0)',
-              borderColor: 'rgb(0 0 0)',
-              pointRadius: 8,
-              pointHoverRadius: 10,
-              pointBackgroundColor: 'rgb(0 0 0)',
-              pointHoverBackgroundColor: 'rgb(0 0 0)',
-              pointHoverBorderColor: 'rgb(0 0 0)',
-              pointBorderColor: 'rgb(0 0 0)',
-            },
-            {
-              label: 'CC1',
-              data: [60,70,80,75,90],
-              backgroundColor: 'rgb(157 195 230)',
-              pointRadius: 8,
-              pointHoverRadius: 10,
-              pointBackgroundColor: 'rgb(157 195 230)',
-              pointHoverBackgroundColor: 'rgb(157 195 230)',
-              pointHoverBorderColor: 'rgb(157 195 230)',
-              pointBorderColor: 'rgb(157 195 230)',
-              pointStyle: 'rect',
-              borderColor: 'rgb(157 195 230)'
-            },
-            {
-              label: 'CC2',
-              data: [70,75,80,78,77],
-              backgroundColor: 'rgb(165 165 165)',
-              pointStyle: 'triangle',
-              borderColor: 'rgb(165 165 165)',
-              pointRadius: 8,
-              pointHoverRadius: 10,
-              pointBackgroundColor: 'rgb(165 165 165)',
-              pointHoverBackgroundColor: 'rgb(165 165 165)',
-              pointHoverBorderColor: 'rgb(165 165 165)',
-              pointBorderColor: 'rgb(165 165 165)',
-            },
-            {
-              label: 'CC3',
-              data: [75,80,80,80,80],
-              backgroundColor: 'rgb(18 59 111)',
-              pointRadius: 8,
-              pointHoverRadius: 10,
-              pointBackgroundColor: 'rgb(18 59 111)',
-              pointHoverBackgroundColor: 'rgb(18 59 111)',
-              pointHoverBorderColor: 'rgb(18 59 111)',
-              pointBorderColor: 'rgb(18 59 111)',
-              pointStyle: 'rect',
-              borderColor: 'rgb(18 59 111)'
-            },
-            {
-              label: 'CC4',
-              data: [80,80,85,85,85],
-              backgroundColor: 'rgb(255 102 0)',
-              pointStyle: 'crossRot',
-              borderColor: 'rgb(255 102 0)',
-              pointRadius: 8,
-              pointHoverRadius: 10,
-              pointBackgroundColor: 'rgb(255 102 0)',
-              pointHoverBackgroundColor: 'rgb(255 102 0)',
-              pointHoverBorderColor: 'rgb(255 102 0)',
-              pointBorderColor: 'rgb(255 102 0)',
-            },
-            {
-              label: 'CC5',
-              data: [75,80,75,80,80],
-              backgroundColor: 'rgb(112 173 71)',
-              pointRadius: 8,
-              pointHoverRadius: 10,
-              pointBackgroundColor: 'rgb(112 173 71)',
-              pointHoverBackgroundColor: 'rgb(112 173 71)',
-              pointHoverBorderColor: 'rgb(112 173 71)',
-              pointBorderColor: 'rgb(112 173 71)',
-              pointStyle: 'circle',
-              borderColor: 'rgb(112 173 71)'
-            }
-          ] */,
         };
 
         this.SpinnerService.hide();
