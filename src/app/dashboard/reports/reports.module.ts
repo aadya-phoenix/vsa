@@ -23,6 +23,8 @@ import { ReportFilterComponent } from 'src/app/shared/component/report-filter/re
 import { AnualAuditYearlyComponent } from './anual-audit-yearly/anual-audit-yearly.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ClauseAuditWiseScoreComponent } from './clause-audit-wise-score/clause-audit-wise-score.component';
+import { VendorAuditWiseScoreComponent } from './vendor-audit-wise-score/vendor-audit-wise-score.component';
+import { RepeatTrendAuditWiseComponent } from './repeat-trend-audit-wise/repeat-trend-audit-wise.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { ClauseAuditWiseScoreComponent } from './clause-audit-wise-score/clause-
     ReportFilterComponent,
     AnualAuditYearlyComponent,
     ClauseAuditWiseScoreComponent,
+    VendorAuditWiseScoreComponent,
+    RepeatTrendAuditWiseComponent,
   ],
   providers:[DatePipe],
   imports: [

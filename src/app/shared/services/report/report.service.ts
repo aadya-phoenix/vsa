@@ -154,8 +154,29 @@ export class ReportService {
       .pipe(catchError(this.commmonService.Errorhandling)); 
   }
 
+  getClauseAuditWiseVendorTrend(data:any){
+    const url = `${this.basePath}api/AuditReports/GetVendorAuditScoreTrend`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
   getClauseAuditWiseScore(data:any){
     const url = `${this.basePath}api/AuditReports/GetClauseWiseVendorAuditScoreTrend`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  getRepeatTrendVendorWise(data:any){
+    const url = `${this.basePath}api/AuditReports/GetRepeatIssueVendorTrend`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  getRepeatTrendAuditWise(data:any){
+    const url = `${this.basePath}api/AuditReports/GetRepeatAuditVendorTrend`;
     return this.http
       .post(url,data , this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling)); 

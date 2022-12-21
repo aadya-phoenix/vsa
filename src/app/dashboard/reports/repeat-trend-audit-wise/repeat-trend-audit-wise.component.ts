@@ -9,12 +9,11 @@ import { ReportService } from 'src/app/shared/services/report/report.service';
 import { SwalService } from 'src/app/shared/services/swal.service';
 
 @Component({
-  selector: 'app-trade-repeat',
-  templateUrl: './trade-repeat.component.html',
-  styleUrls: ['./trade-repeat.component.css']
+  selector: 'app-repeat-trend-audit-wise',
+  templateUrl: './repeat-trend-audit-wise.component.html',
+  styleUrls: ['./repeat-trend-audit-wise.component.css']
 })
-export class TradeRepeatComponent implements OnInit {
-
+export class RepeatTrendAuditWiseComponent implements OnInit {
   selectedFilter = 'vendor';
 
   yearWiseVSAData: ChartData<'line'> = {
@@ -172,7 +171,7 @@ export class TradeRepeatComponent implements OnInit {
 
   
   getData(payload:any) {
-    this.reportService.getRepeatTrendVendorWise(payload).subscribe({
+    this.reportService.getRepeatTrendAuditWise(payload).subscribe({
       next: (res: any) => {
         this.data = res;
         this.labels =  _.map(this.data, 'finYear');

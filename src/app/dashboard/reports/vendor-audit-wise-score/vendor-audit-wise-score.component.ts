@@ -9,14 +9,31 @@ import { ReportService } from 'src/app/shared/services/report/report.service';
 import { SwalService } from 'src/app/shared/services/swal.service';
 
 @Component({
-  selector: 'app-trade-repeat',
-  templateUrl: './trade-repeat.component.html',
-  styleUrls: ['./trade-repeat.component.css']
+  selector: 'app-vendor-audit-wise-score',
+  templateUrl: './vendor-audit-wise-score.component.html',
+  styleUrls: ['./vendor-audit-wise-score.component.css']
 })
-export class TradeRepeatComponent implements OnInit {
-
+export class VendorAuditWiseScoreComponent implements OnInit {
+  isChecked = false;
+  clauseList:any=[];
+  yearLabels:any=[];
+  labels:any=[];
+  data:any=[];
   selectedFilter = 'vendor';
-
+  commodity:any;
+  vendorId:any;
+  numberOfDefect:any=0;
+  totalScore:any=0;
+  vendorCategoryId:any;
+  category:any;
+  vendorObj:any=[];
+  clause:any=[];
+  categoryObj:any=[
+    {name:'Red',value:'red'},{name:'Yellow',value:'yellow'},{name:'Green',value:'green'}
+  ];
+  vendorcategoryObj:any=[];
+ 
+  colors=['rgb(0 0 0)','rgb(157 195 230)','rgb(165 165 165)',]
   yearWiseVSAData: ChartData<'line'> = {
     labels: ['FY 18-19', 'FY 19-20', 'FY 20-21', 'FY 21-22', 'FY 22-23'],
     datasets: [
@@ -95,7 +112,7 @@ export class TradeRepeatComponent implements OnInit {
         grid: {
           display: false
         },
-        title: { text: "No. of repeat observations", display: true },
+        title: { text: "Score (%)", display: true },
         ticks: {
           callback: function (value, index, ticks) {
             return value + '%'
@@ -129,33 +146,10 @@ export class TradeRepeatComponent implements OnInit {
     plugins: {
       title: {
         display: true,
-        text: 'Trend of repeat observations',
+        text: 'Vendor wise Score Trend',
       },
     },
   };
-  isChecked = false;
-  clauseList:any=[];
-  yearLabels:any=[];
-  labels:any=[];
-  data:any=[];
-
-  commodity:any;
-  vendorId:any;
-  numberOfDefect:any=0;
-  totalScore:any=0;
-  vendorCategoryId:any;
-  category:any;
-  vendorObj:any=[];
-  clause:any=[];
-  categoryObj:any=[
-    {name:'Red',value:'red'},{name:'Yellow',value:'yellow'},{name:'Green',value:'green'}
-  ];
-  vendorcategoryObj:any=[];
- 
-  colors=['rgb(0 0 0)','rgb(157 195 230)','rgb(165 165 165)',]
-
-
-  
   constructor(
     private _swalService: SwalService,
     private auditPlanService: AuditPlanService,
@@ -172,7 +166,7 @@ export class TradeRepeatComponent implements OnInit {
 
   
   getData(payload:any) {
-    this.reportService.getRepeatTrendVendorWise(payload).subscribe({
+    this.reportService.getClauseAuditWiseVendorTrend(payload).subscribe({
       next: (res: any) => {
         this.data = res;
         this.labels =  _.map(this.data, 'finYear');

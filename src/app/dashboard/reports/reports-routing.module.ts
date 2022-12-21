@@ -11,7 +11,9 @@ import { ClauseWiseScoreComponent } from './clause-wise-score/clause-wise-score.
 import { DistStatusComponent } from './dist-status/dist-status.component';
 import { ExecutiveSummaryComponent } from './executive-summary/executive-summary.component';
 import { PendingStatusComponent } from './pending-status/pending-status.component';
+import { RepeatTrendAuditWiseComponent } from './repeat-trend-audit-wise/repeat-trend-audit-wise.component';
 import { TradeRepeatComponent } from './trade-repeat/trade-repeat.component';
+import { VendorAuditWiseScoreComponent } from './vendor-audit-wise-score/vendor-audit-wise-score.component';
 import { VendorDistStatusComponent } from './vendor-dist-status/vendor-dist-status.component';
 import { VendorSummaryComponent } from './vendor-summary/vendor-summary.component';
 import { VendorWiseScoreComponent } from './vendor-wise-score/vendor-wise-score.component';
@@ -65,7 +67,13 @@ const routes: Routes = [
     path: 'vendor-wise-score', component: VendorWiseScoreComponent
   },
   {
+    path: 'vendor-audit-wise-score', component: VendorAuditWiseScoreComponent
+  },
+  {
     path: 'trade-repeat', component: TradeRepeatComponent
+  },
+  {
+    path: 'repeat-audit-trend', component: RepeatTrendAuditWiseComponent
   },
   {
     path: 'executive-summary', component: ExecutiveSummaryComponent
