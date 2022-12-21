@@ -70,9 +70,18 @@ export class AverageDefectComponent implements OnInit {
   avgDefectOptions: ChartOptions = {
     responsive: true,
     scales: {
-      y: {
-        display: true,
+      y:{
+        grid:{
+          display: false
+        },
+        title:{ text:"Avg Defect / Month", display:true},
       },
+      x:{
+        grid:{
+          display: false
+        },
+        title:{ text:"VSA Score %", display:true},
+      }
     },
     plugins: {
       title: {
@@ -94,11 +103,11 @@ export class AverageDefectComponent implements OnInit {
     this.getfiscalData();
   }
 
-  getData() {
+  getData(payload:any) {
     this.red=[];
     this.green=[];
     this.yellow=[];
-    this.reportService.getVendorDefects({year:2022}).subscribe({
+    this.reportService.getVendorDefects(payload).subscribe({
       next: (res: any) => {
         this.data = res;
         this.data.forEach((x:any)=>{
@@ -177,14 +186,14 @@ export class AverageDefectComponent implements OnInit {
   }
 
   reloadDatawithFilter() {
-   /*  let year= parseInt(this.fiscalYearValue);
+     let year= parseInt(this.fiscalYearValue);
     let from = new Date(year, 3, 1);
     let to =  new Date(year+1,2,31);
     var payload = {
        finAuditFromDate :  this.datepipe.transform(from,'yyyy-MM-dd'),
        finAuditToDate: this.datepipe.transform(to,'yyyy-MM-dd'),
-    }; */
-    this.getData();
+    }; 
+    this.getData(payload);
   }
 
   getfiscalData(){

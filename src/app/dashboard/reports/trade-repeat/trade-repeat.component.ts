@@ -202,6 +202,7 @@ export class TradeRepeatComponent implements OnInit {
    this.vendorCategoryId=null;
    this.numberOfDefect=0;
    this.category=null ;
+   this.vendorId = null;
  }
 
  reloadDatawithFilter() {
