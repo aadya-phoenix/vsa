@@ -6,6 +6,7 @@ import { AnualAuditYearlyComponent } from './anual-audit-yearly/anual-audit-year
 import { AnualAuditComponent } from './anual-audit/anual-audit.component';
 import { AverageDefectSupplierComponent } from './average-defect-supplier/average-defect-supplier.component';
 import { AverageDefectComponent } from './average-defect/average-defect.component';
+import { ClauseAuditWiseScoreComponent } from './clause-audit-wise-score/clause-audit-wise-score.component';
 import { ClauseWiseScoreComponent } from './clause-wise-score/clause-wise-score.component';
 import { DistStatusComponent } from './dist-status/dist-status.component';
 import { ExecutiveSummaryComponent } from './executive-summary/executive-summary.component';
@@ -56,6 +57,9 @@ const routes: Routes = [
   },
   {
     path: 'clause-wise-score', component: ClauseWiseScoreComponent
+  },
+  {
+    path: 'clause-audit-wise-score', component: ClauseAuditWiseScoreComponent
   },
   {
     path: 'vendor-wise-score', component: VendorWiseScoreComponent

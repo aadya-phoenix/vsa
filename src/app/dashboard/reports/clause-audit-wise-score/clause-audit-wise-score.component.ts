@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ChartData, ChartOptions } from 'chart.js';
 import * as _ from 'lodash';
@@ -9,16 +10,15 @@ import { ReportService } from 'src/app/shared/services/report/report.service';
 import { SwalService } from 'src/app/shared/services/swal.service';
 
 @Component({
-  selector: 'app-vendor-wise-score',
-  templateUrl: './vendor-wise-score.component.html',
-  styleUrls: ['./vendor-wise-score.component.css']
+  selector: 'app-clause-audit-wise-score',
+  templateUrl: './clause-audit-wise-score.component.html',
+  styleUrls: ['./clause-audit-wise-score.component.css']
 })
-export class VendorWiseScoreComponent implements OnInit {
-
-/*   yearWiseVSAData: ChartData<'line'> = {
+export class ClauseAuditWiseScoreComponent implements OnInit {
+  yearWiseVSAData: ChartData<'line'> = {
     labels: [],
     datasets: [] as any
-  }; */
+  };
   isChecked = false;
   clauseList:any=[];
   yearLabels:any=[];
@@ -39,76 +39,6 @@ export class VendorWiseScoreComponent implements OnInit {
   vendorcategoryObj:any=[];
  
   colors=['rgb(0 0 0)','rgb(157 195 230)','rgb(165 165 165)',]
-  yearWiseVSAData: ChartData<'line'> = {
-    labels: ['FY 18-19', 'FY 19-20', 'FY 20-21', 'FY 21-22', 'FY 22-23'],
-    datasets: [
-      {
-        label: 'VCode 1',
-        data: [60,70,80,75,90],
-        backgroundColor: 'rgb(157 195 230)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(157 195 230)',
-        pointHoverBackgroundColor: 'rgb(157 195 230)',
-        pointHoverBorderColor: 'rgb(157 195 230)',
-        pointBorderColor: 'rgb(157 195 230)',
-        pointStyle: 'rect',
-        borderColor: 'rgb(157 195 230)'
-      },
-      {
-        label: 'VCode 2',
-        data: [70,75,80,78,77],
-        backgroundColor: 'rgb(165 165 165)',
-        pointStyle: 'triangle',
-        borderColor: 'rgb(165 165 165)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(165 165 165)',
-        pointHoverBackgroundColor: 'rgb(165 165 165)',
-        pointHoverBorderColor: 'rgb(165 165 165)',
-        pointBorderColor: 'rgb(165 165 165)',
-      },
-      {
-        label: 'VCode 3',
-        data: [75,80,80,80,80],
-        backgroundColor: 'rgb(18 59 111)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(18 59 111)',
-        pointHoverBackgroundColor: 'rgb(18 59 111)',
-        pointHoverBorderColor: 'rgb(18 59 111)',
-        pointBorderColor: 'rgb(18 59 111)',
-        pointStyle: 'rect',
-        borderColor: 'rgb(18 59 111)'
-      },
-      {
-        label: 'VCode 4',
-        data: [80,80,85,85,85],
-        backgroundColor: 'rgb(255 102 0)',
-        pointStyle: 'crossRot',
-        borderColor: 'rgb(255 102 0)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(255 102 0)',
-        pointHoverBackgroundColor: 'rgb(255 102 0)',
-        pointHoverBorderColor: 'rgb(255 102 0)',
-        pointBorderColor: 'rgb(255 102 0)',
-      },
-      {
-        label: 'VCode 5',
-        data: [75,80,75,80,80],
-        backgroundColor: 'rgb(112 173 71)',
-        pointRadius: 8,
-        pointHoverRadius: 10,
-        pointBackgroundColor: 'rgb(112 173 71)',
-        pointHoverBackgroundColor: 'rgb(112 173 71)',
-        pointHoverBorderColor: 'rgb(112 173 71)',
-        pointBorderColor: 'rgb(112 173 71)',
-        pointStyle: 'circle',
-        borderColor: 'rgb(112 173 71)'
-      }
-    ],
-  };
 
   yearWiseVSAOptions: ChartOptions = {
     responsive: true,
@@ -151,7 +81,7 @@ export class VendorWiseScoreComponent implements OnInit {
     plugins: {
       title: {
         display: true,
-        text: 'Vendor wise Score Trend',
+        text: 'Year wise VSA Status ',
       },
     },
   };
@@ -162,6 +92,7 @@ export class VendorWiseScoreComponent implements OnInit {
     private categoryService:CategoryMasterService,
     private employeeService: EmployeeMasterService,
     private SpinnerService: NgxSpinnerService,
+    private datepipe:DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -171,7 +102,7 @@ export class VendorWiseScoreComponent implements OnInit {
 
   
   getData(payload:any) {
-    this.reportService.getClauseWiseVendorTrend(payload).subscribe({
+    this.reportService.getClauseAuditWiseScore(payload).subscribe({
       next: (res: any) => {
         this.data = res;
         this.labels =  _.map(this.data, 'finYear');

@@ -22,6 +22,7 @@ import { ExecutiveSummaryComponent } from './executive-summary/executive-summary
 import { ReportFilterComponent } from 'src/app/shared/component/report-filter/report-filter.component';
 import { AnualAuditYearlyComponent } from './anual-audit-yearly/anual-audit-yearly.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ClauseAuditWiseScoreComponent } from './clause-audit-wise-score/clause-audit-wise-score.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ExecutiveSummaryComponent,
     ReportFilterComponent,
     AnualAuditYearlyComponent,
+    ClauseAuditWiseScoreComponent,
   ],
   providers:[DatePipe],
   imports: [

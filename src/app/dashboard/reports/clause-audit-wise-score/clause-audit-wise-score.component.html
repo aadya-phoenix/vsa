@@ -1,0 +1,132 @@
+<style>
+    @media print {
+      #downloadcta, .form-group {
+        visibility: hidden;
+      }
+    }
+  </style>
+    <div class="row">
+        <div class="col-md-12 p-3">
+            <div class="card mb-0">
+                <div class="card-header">
+                    <h5 class="card-title"> Search Filter</h5>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-3">
+                            <div class="form-group">
+                                <label>Select Vendor</label>
+                                    <ng-select  [items]="vendorObj" [(ngModel)]="vendorId"  class="custom-control custom-select"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    bindLabel="code" 
+                                        bindValue="id"  class="form-control inputbox_css"
+                                        (search)="searchVendor($event.term)">
+                                    </ng-select>
+                                    </div>
+                     
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="form_label">Select Vendor Name </label>
+                                <ng-select  [items]="vendorObj" bindLabel="name"
+                                    bindValue="id" [(ngModel)]="vendorId" 
+                                    class="form-control inputbox_css ">
+                                </ng-select>
+                            </div>
+                        </div> 
+                        <div class="col-3">
+                            <div class="form-group">
+                              <label>Select Commodity</label>
+                              <div class="input-group">
+                                <ng-select [items]="vendorcategoryObj"
+                                bindLabel="categoryName" bindValue="id" [(ngModel)]="vendorCategoryId"
+                                [ngModelOptions]="{ standalone: true }"
+                                class="form-control inputbox_css ">
+                            </ng-select>
+                              </div>
+                            </div>
+                        </div>
+                       <div class="col-3">
+                            <div class="form-group">
+                              <label>Select Category</label>
+                              <div class="input-group">
+                                <ng-select [items]="categoryObj"
+                                bindLabel="name" bindValue="name" [(ngModel)]="category"
+                                [ngModelOptions]="{ standalone: true }"
+                                class="form-control inputbox_css ">
+                            </ng-select>
+                              </div>
+                            </div>
+                        </div> 
+                        <div class="col-3">
+                        <div class="form-group">
+                            <label>No of Defects </label>
+                            <div class="input-group">
+                                <input type="text" [(ngModel)]="numberOfDefect" class="form-control  filter_css" >
+                            </div>
+                          </div> 
+                      </div> 
+                     <!--  <div>
+                        <label>Select Clause </label>
+                        <div *ngFor="let item of clauseList">
+                          <input type="checkbox"  (click)="getClause($event,item)"  [checked]="item.isChecked"> <span>{{item.name}}</span>
+                        </div>
+                         <input type="checkbox" (click)="getClause($event,'')" value="all"> <span>Select All</span>
+                      </div>   -->                  
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-primary" (click)="reloadDatawithFilter()">
+                        Apply
+                    </button>
+                    <button type="button" class="btn btn-secondary ml-2" (click)="resetForm()">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<section class="content p-3">
+    <div class="row">
+        <button id="downloadcta" class="btn btn-success d-flex align-items-center ml-1"
+            onclick="window.print();" style="margin-bottom: 10px; width: 110px;">
+           <i class="fas fa-download mr-1 upload_ico"></i>
+           <span class="now_rap">Download</span>
+       </button>
+        <div class="col-md-12 p-0">
+            <div class="card card-default">
+                <div class="card-body">
+            <!--         <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form_label">Filter</label>
+                                <select class="form-control" name="filter" [(ngModel)]="selectedFilter"
+                                    (change)='onFilterSelected()'>
+                                    <option value="vendor">Vendor Name/Code</option>
+                                    <option value="commodity">Commodity</option>
+                                    <option value="category">Category – R/Y/G</option>
+                                    <option value="defects">No. of Defects</option>
+                                    <option value="location">Location</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <canvas baseChart [data]="yearWiseVSAData" height="200%" [type]="'line'" [options]="yearWiseVSAOptions">
+                            </canvas>
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

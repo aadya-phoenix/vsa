@@ -146,4 +146,18 @@ export class ReportService {
       .post(url,data , this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling)); 
   }
+
+  getClauseWiseVendorTrend(data:any){
+    const url = `${this.basePath}api/AuditReports/GetVendorYearScoreTrend`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
+
+  getClauseAuditWiseScore(data:any){
+    const url = `${this.basePath}api/AuditReports/GetClauseWiseVendorAuditScoreTrend`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
 }
