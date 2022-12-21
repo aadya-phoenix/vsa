@@ -6,6 +6,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 import { SwalService } from 'src/app/shared/services/swal.service';
 import * as _ from 'lodash';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-anual-audit',
@@ -24,7 +25,7 @@ export class AnualAuditComponent implements OnInit {
     labels: this.lables,
     datasets: [],
   };
-
+  fileName= 'ExcelSheet.xlsx';
   chartOptions: ChartOptions = {
     responsive: true,
     plugins: {
@@ -76,8 +77,10 @@ export class AnualAuditComponent implements OnInit {
           this.planData = _.map(this.data, 'plannedAudits');
           this.finalData = _.map(this.data, 'finalAudits');
           this.provisionalData = _.map(this.data, 'provisionalAudits');
+
           this.salesData = {
             labels: this.lables,
+           
             datasets: [
               { label: 'Plan', data: this.planData, stack: '0', backgroundColor: 'rgb(127 127 127)', borderColor: 'rgb(127 127 127)', hoverBackgroundColor: 'rgb(127 127 127)', hoverBorderColor: 'rgb(127 127 127)' },
               { label: 'Final', data: this.finalData, stack: '1', backgroundColor: 'rgb(0 32 96)', borderColor: 'rgb(0 32 96)', hoverBackgroundColor: 'rgb(0 32 96)', hoverBorderColor: 'rgb(0 32 96)' },
@@ -101,6 +104,19 @@ export class AnualAuditComponent implements OnInit {
       })
       this.subscription.unsubscribe();
     }
+  }
+
+  exportExcel(){
+   /* pass here the table id */
+   let element = document.getElementById('excel-table');
+   const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+   /* generate workbook and add the worksheet */
+   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+   /* save to file */  
+   XLSX.writeFile(wb, this.fileName);
   }
 
 }

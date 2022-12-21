@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { NgChartsModule } from 'ng2-charts';
 import { ReportsRoutingModule } from './reports-routing.module';
@@ -21,6 +21,7 @@ import { TradeRepeatComponent } from './trade-repeat/trade-repeat.component';
 import { ExecutiveSummaryComponent } from './executive-summary/executive-summary.component';
 import { ReportFilterComponent } from 'src/app/shared/component/report-filter/report-filter.component';
 import { AnualAuditYearlyComponent } from './anual-audit-yearly/anual-audit-yearly.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -41,14 +42,16 @@ import { AnualAuditYearlyComponent } from './anual-audit-yearly/anual-audit-year
     TradeRepeatComponent,
     ExecutiveSummaryComponent,
     ReportFilterComponent,
-    AnualAuditYearlyComponent
+    AnualAuditYearlyComponent,
   ],
+  providers:[DatePipe],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ReportsRoutingModule,
-    NgChartsModule
+    NgChartsModule,
+    NgSelectModule,
   ]
 })
 export class ReportsModule { }

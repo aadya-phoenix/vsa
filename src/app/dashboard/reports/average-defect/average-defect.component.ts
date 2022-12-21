@@ -1,5 +1,12 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ChartData, ChartOptions } from 'chart.js';
+import * as _ from 'lodash';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { EmployeeMasterService } from 'src/app/shared/services/employee-master/employee-master.service';
+import { MessageService } from 'src/app/shared/services/message.service';
+import { ReportService } from 'src/app/shared/services/report/report.service';
+import { SwalService } from 'src/app/shared/services/swal.service';
 
 @Component({
   selector: 'app-average-defect',
@@ -8,7 +15,16 @@ import { ChartData, ChartOptions } from 'chart.js';
 })
 export class AverageDefectComponent implements OnInit {
 
+  red:any=[];
+  yellow:any=[];
+  green:any=[];
+  fiscalYearValue:any;
+  fiscalYearArr:any=[];
+  data:any=[];
   avgDefectData: ChartData<'scatter'> = {
+    datasets: [],
+  };
+ /*  avgDefectData: ChartData<'scatter'> = {
     datasets: [
       {
         label: 'VSA Green',
@@ -50,7 +66,7 @@ export class AverageDefectComponent implements OnInit {
         pointBorderColor:  'rgb(2 177 177)',
       }
     ],
-  };
+  }; */
   avgDefectOptions: ChartOptions = {
     responsive: true,
     scales: {
@@ -65,9 +81,121 @@ export class AverageDefectComponent implements OnInit {
       },
     },
   };
-  constructor() { }
+  constructor(
+    private _swalService: SwalService,
+    private reportService: ReportService,
+    private messageService: MessageService,
+    private employeeService: EmployeeMasterService,
+    private SpinnerService: NgxSpinnerService,
+    private datepipe:DatePipe
+  ) { }
 
   ngOnInit(): void {
+    this.getfiscalData();
+  }
+
+  getData() {
+    this.red=[];
+    this.green=[];
+    this.yellow=[];
+    this.reportService.getVendorDefects({year:2022}).subscribe({
+      next: (res: any) => {
+        this.data = res;
+        this.data.forEach((x:any)=>{
+          if (x.status == 'Red'){
+            this.red.push({x: x.vsaScore
+              ,y: x.avgDefect
+            });
+          }
+          if (x.status == 'Yellow'){
+            this.yellow.push({x:x.vsaScore
+              ,y: x.avgDefect
+            });
+          }
+          if (x.status == 'Green'){
+            this.green.push({x:x.vsaScore
+              ,y: x.avgDefect
+            });
+          }
+        });
+        this.avgDefectData = {
+          labels: ['VSA SCORE %'],
+          datasets: [
+            {
+              label: 'VSA Red',
+              data:this.red,
+              pointStyle: 'rectRounded',
+              backgroundColor: 'rgb(255 99 132)',
+              borderColor: 'rgb(255 99 132)',
+              pointRadius: 8,
+              pointHoverRadius: 10,
+              pointBackgroundColor: 'rgb(255 99 132)',
+              pointHoverBackgroundColor: 'rgb(255 99 132)',
+              pointHoverBorderColor:  'rgb(197 4 45)',
+              pointBorderColor:  'rgb(197 4 45)',
+            },
+            {
+              label: 'VSA Yellow',
+              data: this.yellow,
+              pointStyle: 'triangle',
+              backgroundColor: 'rgb(255, 205, 86)',
+              borderColor: 'rgb(255, 205, 86)',
+              pointRadius: 8,
+              pointHoverRadius: 10,
+              pointBackgroundColor: 'rgb(255, 205, 86)',
+              pointHoverBackgroundColor: 'rgb(255, 205, 86)',
+              pointHoverBorderColor:  'rgb(233 164 1)',
+              pointBorderColor:  'rgb(233 164 1)',
+            },
+            {
+              label: 'VSA Green',
+              data: this.green,
+              pointStyle: 'circle',
+              backgroundColor: 'rgb(75 192 192)',
+              borderColor: 'rgb(75 192 192)',
+              pointRadius: 8,
+              pointHoverRadius: 10,
+              pointBackgroundColor: 'rgb(75 192 192)',
+              pointHoverBackgroundColor: 'rgb(75 192 192)',
+              pointHoverBorderColor:  'rgb(2 177 177)',
+              pointBorderColor:  'rgb(2 177 177)',
+            }
+          ],
+        };
+        this.SpinnerService.hide();
+      },
+      error: (err: any) => {
+        this.SpinnerService.hide();
+        this._swalService.errorMessageBox(err.message);
+      }
+    });
+    
+  }
+
+  resetForm() {
+    this.fiscalYearValue = null;
+  }
+
+  reloadDatawithFilter() {
+   /*  let year= parseInt(this.fiscalYearValue);
+    let from = new Date(year, 3, 1);
+    let to =  new Date(year+1,2,31);
+    var payload = {
+       finAuditFromDate :  this.datepipe.transform(from,'yyyy-MM-dd'),
+       finAuditToDate: this.datepipe.transform(to,'yyyy-MM-dd'),
+    }; */
+    this.getData();
+  }
+
+  getfiscalData(){
+    let currentYear = new Date().getFullYear() - 5;
+    this.fiscalYearArr = [];
+    for (let index = 0; index < 10; index++) {
+     
+      this.fiscalYearArr.push({text : currentYear + '-' +  (currentYear+1), id:currentYear,  });
+      currentYear++;
+     
+    }
   }
 
 }

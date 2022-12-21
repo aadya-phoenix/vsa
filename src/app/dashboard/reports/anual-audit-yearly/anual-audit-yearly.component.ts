@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 import { SwalService } from 'src/app/shared/services/swal.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-anual-audit-yearly',
@@ -15,6 +16,7 @@ import { SwalService } from 'src/app/shared/services/swal.service';
 export class AnualAuditYearlyComponent implements OnInit {
 
  /*  subscription: Subscription; */
+  fileName= 'ExcelSheet.xlsx';
   yearDropDown: any = [];
   yearDropDownValue: any ='';
   data: any = []
@@ -121,12 +123,9 @@ export class AnualAuditYearlyComponent implements OnInit {
     this.yearDropDownValue = new Date().getFullYear();
   }
 
-
-
   resetForm() {
     this.yearDropDownValue = null;
   }
-
 
   reloadDatawithFilter() {
     var payload = {
@@ -134,5 +133,18 @@ export class AnualAuditYearlyComponent implements OnInit {
     };
     this.getData(payload);
   }
+
+  exportExcel(){
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+ 
+    /* save to file */  
+    XLSX.writeFile(wb, this.fileName);
+   }
 
 }

@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ReportService } from 'src/app/shared/services/report/report.service';
 import { SwalService } from 'src/app/shared/services/swal.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-dist-status',
@@ -19,7 +20,7 @@ export class DistStatusComponent implements OnInit {
     labels: [],
     datasets: [],
   };
-
+  fileName= 'ExcelSheet.xlsx';
   monthChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: true,
@@ -133,11 +134,12 @@ export class DistStatusComponent implements OnInit {
     this.reportService.getDistributionStatusMonthWise_Percent_ResponsePieChart({}).subscribe({
       next: (res: any) => {
         this.pieData = res[0];
+      
         this.pieChartData = {
           labels: [
-            'GREEN',
-            'Yellow',
-            'RED'
+            'GREEN %',
+            'Yellow %',
+            'RED %'
           ],
           datasets: [{
             label: 'VSA Category-Current Year',
@@ -164,4 +166,16 @@ export class DistStatusComponent implements OnInit {
     });
   }
 
+  exportExcel(){
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+ 
+    /* save to file */  
+    XLSX.writeFile(wb, this.fileName);
+   }
 }

@@ -104,4 +104,46 @@ export class ReportService {
       .post(url,data , this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling));
   }
+
+  getActionPlanVendorWise(data:any){
+    const url = `${this.basePath}api/AuditReports/GetAuditEvidenceVerificationSummary`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getCategoryWiseDefects(data:any){
+    const url = `${this.basePath}api/AuditReports/GetCategoryWiseDefects`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));
+  }
+
+  getCategorySupplierDefects(data:any){
+    const url = `${this.basePath}api/AuditReports/GetCategoryWiseSupplierDefects`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));
+  }
+  
+  getVendorDefects(data:any){
+    const url = `${this.basePath}api/AuditReports/GetAuditPlanVendorDefects`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));  
+  }
+
+  getVendorSummaryYearwise(data:any){
+    const url = `${this.basePath}api/AuditReports/GetVendorSummaryYearWise`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));  
+  }
+
+  getClauseWiseScoreTrend(data:any){
+    const url = `${this.basePath}api/AuditReports/GetClauseWiseScoreTrend`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling)); 
+  }
 }
