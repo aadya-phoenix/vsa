@@ -181,4 +181,11 @@ export class ReportService {
       .post(url,data , this.http.headers)
       .pipe(catchError(this.commmonService.Errorhandling)); 
   }
+
+  getAuditPendingStatus(data:any){
+    const url = `${this.basePath}api/AuditReports/GetauditPendingStatus`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));  
+  }
 }
