@@ -25,6 +25,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ClauseAuditWiseScoreComponent } from './clause-audit-wise-score/clause-audit-wise-score.component';
 import { VendorAuditWiseScoreComponent } from './vendor-audit-wise-score/vendor-audit-wise-score.component';
 import { RepeatTrendAuditWiseComponent } from './repeat-trend-audit-wise/repeat-trend-audit-wise.component';
+import { VendorSummaryYearWiseComponent } from './vendor-summary-year-wise/vendor-summary-year-wise.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { RepeatTrendAuditWiseComponent } from './repeat-trend-audit-wise/repeat-
     PendingStatusComponent,
     AverageDefectSupplierComponent,
     VendorSummaryComponent,
+    VendorSummaryYearWiseComponent,
     ClauseWiseScoreComponent,
     VendorWiseScoreComponent,
     TradeRepeatComponent,

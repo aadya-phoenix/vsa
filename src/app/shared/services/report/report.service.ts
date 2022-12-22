@@ -140,6 +140,13 @@ export class ReportService {
       .pipe(catchError(this.commmonService.Errorhandling));  
   }
 
+  getVendorSummaryYearwiseCummulative(data:any){
+    const url = `${this.basePath}api/AuditReports/GetVendorSummaryYearWiseCummulative`;
+    return this.http
+      .post(url,data , this.http.headers)
+      .pipe(catchError(this.commmonService.Errorhandling));  
+  }
+
   getClauseWiseScoreTrend(data:any){
     const url = `${this.basePath}api/AuditReports/GetClauseWiseScoreTrend`;
     return this.http

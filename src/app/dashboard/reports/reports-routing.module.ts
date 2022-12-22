@@ -15,6 +15,7 @@ import { RepeatTrendAuditWiseComponent } from './repeat-trend-audit-wise/repeat-
 import { TradeRepeatComponent } from './trade-repeat/trade-repeat.component';
 import { VendorAuditWiseScoreComponent } from './vendor-audit-wise-score/vendor-audit-wise-score.component';
 import { VendorDistStatusComponent } from './vendor-dist-status/vendor-dist-status.component';
+import { VendorSummaryYearWiseComponent } from './vendor-summary-year-wise/vendor-summary-year-wise.component';
 import { VendorSummaryComponent } from './vendor-summary/vendor-summary.component';
 import { VendorWiseScoreComponent } from './vendor-wise-score/vendor-wise-score.component';
 import { VsaStatusComponent } from './vsa-status/vsa-status.component';
@@ -56,6 +57,9 @@ const routes: Routes = [
   },
   {
     path: 'vendor-summary', component: VendorSummaryComponent
+  },
+  {
+    path: 'vendor-summary-year-wise', component: VendorSummaryYearWiseComponent
   },
   {
     path: 'clause-wise-score', component: ClauseWiseScoreComponent
